@@ -1,0 +1,10 @@
+JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+            Movie movie = new Movie();
+            movie.setTitle(jsonObject.get("title").getAsString());
+
+            String overview = jsonObject.get("overview").getAsString();
+            movie.setOverview(overview);
+
+            List<Genre> genres = gson.fromJson(jsonObject.get("genres"), getGenresListType());
+            movie.setGenres(String.join(", ", genres.stream().map(Genre::getName).collect(Collectors.toList())));
