@@ -1,4 +1,4 @@
-package com.example.apiattempt;
+package com.liftoff.ecommerce;
 
 public class Genre {
     private int id;

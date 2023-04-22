@@ -1,4 +1,4 @@
-package com.example.apiattempt;
+package com.liftoff.ecommerce;
 
 
 import com.google.gson.Gson;
