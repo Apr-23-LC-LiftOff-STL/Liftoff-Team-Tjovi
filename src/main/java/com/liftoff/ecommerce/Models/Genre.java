@@ -1,4 +1,4 @@
-package com.liftoff.ecommerce;
+package com.liftoff.ecommerce.Models;
 
 public class Genre {
     private int id;
