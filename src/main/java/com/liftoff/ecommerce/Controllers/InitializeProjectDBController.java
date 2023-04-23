@@ -1,4 +1,4 @@
-package com.liftoff.ecommerce;
+package com.liftoff.ecommerce.Controllers;
 
 
 import com.google.gson.Gson;
@@ -6,6 +6,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.liftoff.ecommerce.Models.Genre;
+import com.liftoff.ecommerce.Models.Movie;
+import com.liftoff.ecommerce.Repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,19 +52,33 @@ public class InitializeProjectDBController {
 
             JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
+
             Movie movie = new Movie();
+            // Extract and set title
             movie.setTitle(jsonObject.get("title").getAsString());
 
+            // Extract and set overview
             String overview = jsonObject.get("overview").getAsString();
             movie.setOverview(overview);
 
+            // Extract and set genres as one string
             List<Genre> genres = gson.fromJson(jsonObject.get("genres"), getGenresListType());
             movie.setGenres(String.join(", ", genres.stream().map(Genre::getName).collect(Collectors.toList())));
 
+            // Check for presence of poster_path in API call, extract and set if not NULL
             if (jsonObject.get("poster_path") != null && !jsonObject.get("poster_path").isJsonNull()){
                String posterPath = jsonObject.get("poster_path").getAsString();
                 movie.setPosterPath(posterPath);
             }
+            // Extract and set release_date as ReleaseDate field
+            String releaseDate = jsonObject.get("release_date").getAsString();
+            movie.setReleaseDate(releaseDate);
+
+            // Extract and set the runtime as a String
+            String runtime = jsonObject.get("runtime").getAsString();
+            movie.setRuntime(runtime);
+
+            movie.setPrice();
             movieRepo.save(movie);
 
 

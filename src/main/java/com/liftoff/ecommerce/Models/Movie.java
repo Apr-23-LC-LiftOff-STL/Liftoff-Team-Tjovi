@@ -1,8 +1,8 @@
-package com.liftoff.ecommerce;
+package com.liftoff.ecommerce.Models;
 
 import jakarta.persistence.*;
-
-import java.util.List;
+import java.text.DecimalFormat;
+import java.util.Random;
 
 @Entity
 public class Movie {
@@ -14,9 +14,15 @@ public class Movie {
 
     private String posterPath;
     @Lob
-    @Column(name="overview", length=5000)
+    @Column(name="overview", length=999)
     private String overview;
     private String genres;
+
+    private String releaseDate;
+
+    private String runtime;
+
+    private Double price;
 
     public Long getId() {
         return id;
@@ -56,5 +62,33 @@ public class Movie {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        Double truePrice = new Random().nextDouble(9, 20);
+
+        this.price = Double.parseDouble(decimalFormat.format(truePrice));
+
     }
 }

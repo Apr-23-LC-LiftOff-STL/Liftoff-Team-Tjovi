@@ -1,5 +1,7 @@
-package com.liftoff.ecommerce;
+package com.liftoff.ecommerce.Controllers;
 
+import com.liftoff.ecommerce.Models.Movie;
+import com.liftoff.ecommerce.Repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
