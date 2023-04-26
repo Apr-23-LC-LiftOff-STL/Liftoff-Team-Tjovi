@@ -1,0 +1,16 @@
+.footer {
+    bottom: 0;
+     left: 0;
+     width: 100%;
+     position: sticky;
+     background-color: #333;
+     background-color: #ddd;
+     opacity: 70%;
+     color: white;
+     color: rgb(58, 58, 58);
+     line-height: 100%;
+     text-align: right;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     filter: drop-shadow(0 0 0.75rem #ddd);
+   }
