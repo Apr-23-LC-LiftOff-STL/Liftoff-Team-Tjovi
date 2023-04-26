@@ -1,13 +1,16 @@
-import "./Footer.css";
+import "bulma/css/bulma.css";
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <p>MovieDL &#8195;</p>
-      <p>4811 Delmar Blvd, St. Louis, MO 63108 &#8195;</p>
-      <p>(314) 254-0107 &#8195;</p>
-    </div>
+<footer class="footer">
+  <div class="content has-text-centered">
+      <strong>MovieDL</strong>
+      <p>4811 Delmar Blvd, St. Louis, MO 63108</p>
+      <p>(314) 254-0107</p>
+  </div>
+</footer>
   );
 };
 
 export default Footer;
+

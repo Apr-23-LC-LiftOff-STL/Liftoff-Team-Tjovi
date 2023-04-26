@@ -1,8 +1,7 @@
-import "./App.css";
-
 //Navigation component imports
 import Navbar from "./Components/Navbar/Navbar";
 import Sortbar from "./Components/Sortbar/Sortbar";
+import PaginationBulma from "./Components/Pagination/PaginationBulma";
 import Footer from "./Components/Footer/Footer";
 
 //MovieCardApp component-related imports
@@ -17,6 +16,7 @@ const App = () => {
       <Navbar />
       <Sortbar />
       <MovieCardApp />
+      <PaginationBulma />
       <Footer />
     </div>
   );
