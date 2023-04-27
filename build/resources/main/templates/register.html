@@ -8,7 +8,7 @@
 
 <form method="post">
     <div class="form-group">
-        <label>Username
+        <label>Email
             <input class="form-control" th:field="${registerFormDTO.username}" />
         </label>
         <p class="error" th:errors="${registerFormDTO.username}"></p>
@@ -24,6 +24,47 @@
             <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
         </label>
     </div>
+    <div class="form-group">
+        <label>First Name
+            <input class="form-control" th:field="${registerFormDTO.firstName}" />
+        </label>
+        <p class="error" th:errors="${registerFormDTO.firstName}"></p>
+    </div>
+    <div class="form-group">
+        <label>Last Name
+            <input class="form-control" th:field="${registerFormDTO.lastName}" />
+        </label>
+        <p class="error" th:errors="${registerFormDTO.lastName}"></p>
+    </div>
+    <div class="form-group">
+        <label>Phone Number
+            <input class="form-control" th:field="${registerFormDTO.phoneNumberOne}" />
+            <input class="form-control" th:field="${registerFormDTO.phoneNumberTwo}" />
+            <input class="form-control" th:field="${registerFormDTO.phoneNumberThree}" />
+
+        </label>
+<!--        <p class="error" th:errors="${registerFormDTO.phoneNumber}"></p>-->
+    </div><div class="form-group">
+    <label>Street Address
+        <input class="form-control" th:field="${registerFormDTO.streetAddress}" />
+    </label>
+    <p class="error" th:errors="${registerFormDTO.streetAddress}"></p>
+</div><div class="form-group">
+    <label>City
+        <input class="form-control" th:field="${registerFormDTO.city}" />
+    </label>
+    <p class="error" th:errors="${registerFormDTO.city}"></p>
+</div><div class="form-group">
+    <label>State
+        <input class="form-control" th:field="${registerFormDTO.state}" />
+    </label>
+    <p class="error" th:errors="${registerFormDTO.state}"></p>
+</div><div class="form-group">
+    <label>Zip Code
+        <input class="form-control" th:field="${registerFormDTO.zipCode}" />
+    </label>
+    <p class="error" th:errors="${registerFormDTO.zipCode}"></p>
+</div>
 
     <input type="submit" class="btn btn-primary" value="Register" />
 </form>

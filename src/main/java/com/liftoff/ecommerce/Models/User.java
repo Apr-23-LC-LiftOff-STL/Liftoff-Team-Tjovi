@@ -15,15 +15,117 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
+    private String firstName;
+
+    private String lastName;
+
+    private int phoneNumberOne;
+
+    private int phoneNumberTwo;
+
+    private int phoneNumberThree;
+
+    private String phoneNumberAll;
+
+    private String streetAddress;
+
+    private String city;
+
+    private String state;
+
+    private int zipCode;
+
     public User() {}
 
-    public User(String username, String password) {
+    public User(String username, String password, String firstName, String lastName, int phoneNumberOne, int phoneNumberTwo, int phoneNumberThree,String phoneNumberAll, String streetAddress, String city, String state, int zipCode) {
         this.username = username;
-        this.pwHash = encoder.encode(password);
+        this.pwHash=encoder.encode(password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumberOne = phoneNumberOne;
+        this.phoneNumberTwo = phoneNumberTwo;
+        this.phoneNumberThree = phoneNumberThree;
+        this.phoneNumberAll = phoneNumberOne + "-" + phoneNumberTwo + "-" + phoneNumberThree;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getPhoneNumberOne() {
+        return phoneNumberOne;
+    }
+
+    public void setPhoneNumberOne(int phoneNumberOne) {
+        this.phoneNumberOne = phoneNumberOne;
+    }
+
+    public int getPhoneNumberTwo() {
+        return phoneNumberTwo;
+    }
+
+    public void setPhoneNumberTwo(int phoneNumberTwo) {
+        this.phoneNumberTwo = phoneNumberTwo;
+    }
+
+    public int getPhoneNumberThree() {
+        return phoneNumberThree;
+    }
+
+    public void setPhoneNumberThree(int phoneNumberThree) {
+        this.phoneNumberThree = phoneNumberThree;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 
     public boolean isMatchingPassword(String password) {
