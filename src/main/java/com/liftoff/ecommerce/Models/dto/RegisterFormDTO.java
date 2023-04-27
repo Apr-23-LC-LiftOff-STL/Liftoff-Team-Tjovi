@@ -1,6 +1,6 @@
 package com.liftoff.ecommerce.Models.dto;
 
-public class RegisterFormDTO extends LoginFormDTO{
+public class RegisterFormDTO extends LoginFormDTO {
 
     private String verifyPassword;
 
@@ -11,4 +11,5 @@ public class RegisterFormDTO extends LoginFormDTO{
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
     }
+
 }
