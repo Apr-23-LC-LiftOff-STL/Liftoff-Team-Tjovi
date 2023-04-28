@@ -113,7 +113,11 @@ public class User extends AbstractEntity {
         this.city = city;
     }
 
-    public User(StateSelector stateSelector) {
+    public StateSelector getStateSelector() {
+        return stateSelector;
+    }
+
+    public void setStateSelector(StateSelector stateSelector) {
         this.stateSelector = stateSelector;
     }
 
