@@ -1,6 +1,5 @@
 import { Outlet, NavLink } from "react-router-dom"
 import NavBar from "../components/NavBar"
-import SortBar from "../components/SortBar"
 import Footer from "../components/Footer"
 
 export default function RootLayout() {
