@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 
-export default function ProductsLayout() {
+export default function AccountLayout() {
   return (
     <div>
       <Outlet />

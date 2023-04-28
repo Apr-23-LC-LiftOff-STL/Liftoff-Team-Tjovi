@@ -1,7 +1,7 @@
 const SortBar = () => {
     return (
         <div>
-        <h1>SORT BY:</h1>
+        <h2 className="subtitle">Sort By:</h2>
         <p>Titles: A-Z</p>
         <p>Titles: Z-A</p>
         <p>Price: High to Low</p>

@@ -4,7 +4,7 @@ import mainLogo from "./Logo_MovieDL_20230426.png";
 
 const NavBar = () => {
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav className="navbar is-" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           <img src={mainLogo} width="112" height="28" />
@@ -43,14 +43,23 @@ const NavBar = () => {
           <div className="navbar-item">
             <div className="buttons">
               <a className="button is-primary" href="/register">
-                <strong>Register</strong>
+                Register
               </a>
-              <a className="button is-light" href="login">
+              <a className="button is-light" href="/login">
                 Log in
               </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">Account</a>
+                  <div className="navbar-dropdown is-right">
+                    <a className="navbar-item" href="/account/profile">My Profile</a>
+                    <a className="navbar-item" href="/account/orders">Account History</a>
+                    <hr className="navbar-divider" />
+                    <div className="navbar-item">Log Out</div>
+                </div>
+              </div>
               <a className="button is-light" href="/cart">
-                🛒
-              </a>
+              🛒
+            </a>
             </div>
           </div>
         </div>

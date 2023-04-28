@@ -1,14 +1,24 @@
 export default function Account() {
-    return (
+  return (
+    <div>
       <div>
-        <h2>Cart</h2>
-        <p>Item 1</p>
-        <p>Item 2</p>
-        <p>Item 3</p>
-        <p>Total Items in Cart: X</p>
-        <p>Total Price: $XX.XX</p>
-        <button className="button is-primary">Complete Purchase</button>
+        <div>
+          <h1 className="title">Your Cart</h1>
+          <br></br>
+          <p className="box">Movie 1 - details, price, (# of same item?) [X]</p>
+          <button class="delete"></button>
+          <p className="box">Movie 2 - details, price (# of same item?) [X]</p>
+          <button class="delete"></button>
+          <p className="box">Movie 3 - details, price, (# of same item?) [X]</p>
+          <button class="delete"></button>
+        </div>
+        <br></br>
       </div>
-    )
-  }
-  
+      <div className="box">
+        <p>Total Items in Cart: 3</p>
+        <p>Total Price: $54.99</p>
+      </div>
+      <button className="button is-primary">Complete Purchase</button>
+    </div>
+  );
+}

@@ -18,11 +18,14 @@ import NotFound from './pages/NotFound'
 import Products, { productsLoader } from './pages/products/Products'
 import ProductsDetails, { productsDetailsLoader } from "./pages/products/ProductsDetails"
 import ProductsError from './pages/products/ProductsError'
+import Orders from './pages/Orders.js'
+import Profile from './pages/Profile.js'
 
 // layouts
 import RootLayout from './layouts/RootLayout'
 import HelpLayout from './layouts/HelpLayout'
 import ProductsLayout from './layouts/ProductsLayout'
+import AccountLayout from './layouts/AccountLayout'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,9 +36,12 @@ const router = createBrowserRouter(
         <Route path="faq" element={<Faq />} />
         <Route path="contact" element={<Contact/>} action={contactAction} />
       </Route>
-      <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
-      <Route path="account" element={<Account />} />
+      <Route path="login" element={<Login />} />
+      <Route path="account" element={<AccountLayout />}>
+        <Route path="orders" element={<Orders />} />
+        <Route path="profile" element={<Profile />} />
+      </Route>
       <Route path="cart" element={<Cart />} />
       <Route path="products" element={<ProductsLayout />} errorElement={<ProductsError />}>
         <Route 

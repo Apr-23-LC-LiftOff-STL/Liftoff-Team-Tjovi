@@ -2,23 +2,29 @@ export default function Login() {
   return (
     <div>
       <div>
-        <h2>Log In</h2>
+      <h1 className="title">Log In</h1>
       </div>
-      <form>
-        <div>
-          <label>
-            E-Mail
-            <input text name="email" required></input>
-          </label>
+      <form className="box">
+        <div className="field">
+          <label className="label">Email</label>
+          <div className="control">
+            <input
+              className="input"
+              type="email"
+              placeholder="e.g. alex@example.com"
+            />
+          </div>
         </div>
-        <div>
-          <label>
-            Password
-            <input text name="password" required></input>
-          </label>
+
+        <div className="field">
+          <label className="label">Password</label>
+          <div className="control">
+            <input className="input" type="password" placeholder="********" />
+          </div>
         </div>
-       <button className="button is-light">Forgot Password?</button>
-        <button className="button is-primary">Log In</button>
+
+        <button className="button is-primary">Sign in</button>
+        <button className="button is-light">Forgot Password?</button>
       </form>
     </div>
   );

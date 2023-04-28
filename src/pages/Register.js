@@ -1,60 +1,74 @@
-export default function Register() {
+export default function Login() {
   return (
     <div>
-      <div>
-        <h2>Register</h2>
-      </div>
-      <form>
-        <div>
-          <label>
-            First Name
-            <input text="firstname" required></input>
-          </label>
+      <h1 className="title">Register</h1>
+    <div>
+      <form className="box">
+        <div className="field">
+          <label className="label">Email</label>
+          <div className="control">
+            <input
+              className="input"
+              type="email"
+              placeholder="e.g. alex@example.com"
+              name="email"
+            />
+          </div>
         </div>
-        <div>
-          <label>
-            Last Name
-            <input text name="lastname" required></input>
-          </label>
+
+        <div className="field">
+          <label className="label">Password</label>
+          <div className="control">
+            <input className="input" type="password" placeholder="********" />
+          </div>
         </div>
-        <div>
-          <label>
-            Telephone Number
-            <input text name="tel" required></input>
-          </label>
+
+        <div className="field">
+          <label className="label">Verify Password</label>
+          <div className="control">
+            <input className="input" type="password" placeholder="********" />
+          </div>
         </div>
-        <div>
-          <label>
-            Street Address
-            <input text name="address1" required></input>
-          </label>
+
+        <div className="field">
+          <label className="label">Street Address</label>
+          <div className="control">
+            <input className="input" type="text" name="address1" />
+          </div>
         </div>
-        <div>
-          <label>
-            Building or Suite #
-            <input text name="address2"></input>
-          </label>
+
+        <div className="field">
+          <label className="label">Suite or Floor No.</label>
+          <div className="control">
+            <input className="input" type="text" name="address2" placeholder="(optional)"/>
+          </div>
         </div>
-        <div>
-          <label>
-            City
-            <input text name="city" required></input>
-          </label>
+
+        <div className="field">
+          <label className="label">City</label>
+          <div className="control">
+            <input className="input" type="text" name="city" />
+          </div>
         </div>
-        <div>
-          <label>
-            State
-            <input text name="state" required></input>
-          </label>
+
+        <div className="field">
+          <label className="label">State</label>
+          <div className="control">
+            <input className="input" type="text" name="state" />
+          </div>
         </div>
-        <div>
-          <label>
-            Zip Code
-            <input text name="zipcode" required></input>
-          </label>
+
+        <div className="field">
+          <label className="label">Telephone</label>
+          <div className="control">
+            <input className="input" type="tel" name="tel" placeholder="(555) 555-5555" />
+          </div>
         </div>
+
         <button className="button is-primary">Register</button>
+        <button className="button is-light">Cancel Registration</button>
       </form>
+    </div>
     </div>
   );
 }
