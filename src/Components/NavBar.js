@@ -1,16 +1,13 @@
 import "bulma/css/bulma.css";
+import GenreSelect from "./GenreSelect";
 import mainLogo from "./Logo_MovieDL_20230426.png";
 
-const Navbar = () => {
+const NavBar = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          <img
-            src={mainLogo}
-            width="112"
-            height="28"
-          />
+          <img src={mainLogo} width="112" height="28" />
         </a>
 
         <a
@@ -29,29 +26,14 @@ const Navbar = () => {
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item" href="/">
-            Browse All
-          </a>
-
-          <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">Genre Select</a>
-
-            <div className="navbar-dropdown">
-              <a className="navbar-item">Genre 1</a>
-              <a className="navbar-item">Genre 2</a>
-              <a className="navbar-item">Genre 3</a>
-              <hr className="navbar-divider" />
-              <a className="navbar-item">Surprise me!</a>
-            </div>
-          </div>
-
           <div className="navbar-item">
             <form className="navbar-start" action="" method="get">
               <input
-                className="navbar-start"
+                className="navbar-item"
                 type="text"
                 maxlength="128"
               ></input>
+              <GenreSelect />
               <input className="button is-light" type="submit" value="Search" />
             </form>
           </div>
@@ -77,4 +59,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

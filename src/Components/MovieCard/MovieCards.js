@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MovieCard from './MovieCard';
 import ReactPaginate from 'react-paginate';
-import './MovieCardApp.css';
+import './MovieCards.css';
 
 
-function MovieCardApp() {
+function MovieCards() {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const resultsPerPage = 25;
@@ -45,4 +45,4 @@ function MovieCardApp() {
     </div>
   );
 }
-export default MovieCardApp;
+export default MovieCards;

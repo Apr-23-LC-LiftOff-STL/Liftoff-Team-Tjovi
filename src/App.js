@@ -1,25 +1,65 @@
-//Navigation component imports
-import Navbar from "./Components/Navbar/Navbar";
-import Sortbar from "./Components/Sortbar/Sortbar";
-import PaginationBulma from "./Components/Pagination/PaginationBulma";
-import Footer from "./Components/Footer/Footer";
+import {
+  createBrowserRouter, 
+  createRoutesFromElements,
+  Route, 
+  RouterProvider
+} from 'react-router-dom'
 
-//MovieCardApp component-related imports
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import MovieCardApp from "./Components/MovieCard/MovieCardApp.js";
-import ReactPaginate from "react-paginate";
+// pages
+import Home from './pages/Home'
+import About from './pages/About'
+import Faq from './pages/help/Faq'
+import Contact, { contactAction } from './pages/help/Contact'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Account from './pages/Account'
+import Cart from './pages/Cart'
+import NotFound from './pages/NotFound'
+import Products, { productsLoader } from './pages/products/Products'
+import ProductsDetails, { productsDetailsLoader } from "./pages/products/ProductsDetails"
+import ProductsError from './pages/products/ProductsError'
 
-const App = () => {
+// layouts
+import RootLayout from './layouts/RootLayout'
+import HelpLayout from './layouts/HelpLayout'
+import ProductsLayout from './layouts/ProductsLayout'
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+      <Route path="help" element={<HelpLayout />}>
+        <Route path="faq" element={<Faq />} />
+        <Route path="contact" element={<Contact/>} action={contactAction} />
+      </Route>
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
+      <Route path="account" element={<Account />} />
+      <Route path="cart" element={<Cart />} />
+      <Route path="products" element={<ProductsLayout />} errorElement={<ProductsError />}>
+        <Route 
+          index 
+          element={<Products />} 
+          loader={productsLoader}
+          // errorElement={<ProductsError />}
+        />
+        <Route 
+          path=":id" 
+          element={<ProductsDetails />}
+          loader={productsDetailsLoader}
+        />
+      </Route>
+
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  )
+)
+
+function App() {
   return (
-    <div className="body">
-      <Navbar />
-      <Sortbar />
-      <MovieCardApp />
-      <PaginationBulma />
-      <Footer />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
-export default App;
+export default App
