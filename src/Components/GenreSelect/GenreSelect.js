@@ -1,4 +1,5 @@
 import Select from "react-select"; // npm install react-select
+import makeAnimated from 'react-select/animated';
 import { useState } from "react";
 
 // Getting started with React Select
@@ -32,11 +33,14 @@ const GenreSelect = () => {
     setSelectedOptions(selectedOptions.value);
   };
 
+  const animatedComponents = makeAnimated();
+
   return (
     <div style={{width: '300px'}}>
       <Select
-      menuPlacement="auto"
-      menuPosition="fixed"
+      name="genre-select"
+      placeholder="Filter by Genre"
+        components={animatedComponents}
         isMulti
         onChange={handleChange}
         options={options}
