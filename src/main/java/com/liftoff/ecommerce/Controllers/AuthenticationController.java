@@ -1,5 +1,6 @@
 package com.liftoff.ecommerce.Controllers;
 
+import com.liftoff.ecommerce.Models.StateSelector;
 import com.liftoff.ecommerce.Models.User;
 import com.liftoff.ecommerce.Models.dto.LoginFormDTO;
 import com.liftoff.ecommerce.Models.dto.RegisterFormDTO;
@@ -47,7 +48,7 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
-        model.addAttribute("title", "Register");
+        model.addAttribute("states", StateSelector.values());
         return "register";
     }
 
@@ -81,7 +82,7 @@ public class AuthenticationController {
                                 registerFormDTO.getFirstName(), registerFormDTO.getLastName(),
                                 registerFormDTO.getPhoneNumberOne(), registerFormDTO.getPhoneNumberTwo(),
                                 registerFormDTO.getPhoneNumberThree(), registerFormDTO.getPhoneNumberAll(), registerFormDTO.getStreetAddress(),
-                                registerFormDTO.getCity(), registerFormDTO.getState(), registerFormDTO.getZipCode());
+                                registerFormDTO.getCity(), registerFormDTO.getStateSelector(), registerFormDTO.getZipCode());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 

@@ -1,5 +1,7 @@
 package com.liftoff.ecommerce.Models.dto;
 
+import com.liftoff.ecommerce.Models.StateSelector;
+
 public class RegisterFormDTO extends LoginFormDTO {
 
     private String verifyPassword;
@@ -20,7 +22,7 @@ public class RegisterFormDTO extends LoginFormDTO {
 
     private String city;
 
-    private String state;
+    private StateSelector stateSelector;
 
     private Integer zipCode;
 
@@ -98,12 +100,12 @@ public class RegisterFormDTO extends LoginFormDTO {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
+    public StateSelector getStateSelector() {
+        return stateSelector;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStateSelector(StateSelector stateSelector) {
+        this.stateSelector = stateSelector;
     }
 
     public Integer getZipCode() {

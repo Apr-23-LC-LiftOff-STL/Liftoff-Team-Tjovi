@@ -31,13 +31,14 @@ public class User extends AbstractEntity {
 
     private String city;
 
-    private String state;
+
+    private StateSelector stateSelector;
 
     private int zipCode;
 
     public User() {}
 
-    public User(String username, String password, String firstName, String lastName, int phoneNumberOne, int phoneNumberTwo, int phoneNumberThree,String phoneNumberAll, String streetAddress, String city, String state, int zipCode) {
+    public User(String username, String password, String firstName, String lastName, int phoneNumberOne, int phoneNumberTwo, int phoneNumberThree,String phoneNumberAll, String streetAddress, String city, StateSelector stateSelector, int zipCode) {
         this.username = username;
         this.pwHash=encoder.encode(password);
         this.firstName = firstName;
@@ -48,7 +49,7 @@ public class User extends AbstractEntity {
         this.phoneNumberAll = phoneNumberOne + "-" + phoneNumberTwo + "-" + phoneNumberThree;
         this.streetAddress = streetAddress;
         this.city = city;
-        this.state = state;
+        this.stateSelector=stateSelector;
         this.zipCode = zipCode;
     }
 
@@ -112,12 +113,8 @@ public class User extends AbstractEntity {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    public User(StateSelector stateSelector) {
+        this.stateSelector = stateSelector;
     }
 
     public int getZipCode() {

@@ -44,27 +44,38 @@
 
         </label>
 <!--        <p class="error" th:errors="${registerFormDTO.phoneNumber}"></p>-->
-    </div><div class="form-group">
-    <label>Street Address
-        <input class="form-control" th:field="${registerFormDTO.streetAddress}" />
-    </label>
-    <p class="error" th:errors="${registerFormDTO.streetAddress}"></p>
-</div><div class="form-group">
-    <label>City
-        <input class="form-control" th:field="${registerFormDTO.city}" />
-    </label>
-    <p class="error" th:errors="${registerFormDTO.city}"></p>
-</div><div class="form-group">
-    <label>State
-        <input class="form-control" th:field="${registerFormDTO.state}" />
-    </label>
-    <p class="error" th:errors="${registerFormDTO.state}"></p>
-</div><div class="form-group">
-    <label>Zip Code
-        <input class="form-control" th:field="${registerFormDTO.zipCode}" />
-    </label>
-    <p class="error" th:errors="${registerFormDTO.zipCode}"></p>
-</div>
+    </div>
+    <div class="form-group">
+        <label>Street Address
+            <input class="form-control" th:field="${registerFormDTO.streetAddress}" />
+        </label>
+        <p class="error" th:errors="${registerFormDTO.streetAddress}"></p>
+    </div>
+    <div class="form-group">
+        <label>City
+            <input class="form-control" th:field="${registerFormDTO.city}" />
+        </label>
+        <p class="error" th:errors="${registerFormDTO.city}"></p>
+    </div>
+
+    <div class="form-group">
+        <label>State
+            <select th:field="${registerFormDTO.stateSelector}">
+                <option th:each="state : ${states}"
+                        th:value="${state}"
+                        th:text="${state.displayName}"
+                ></option>
+            </select>
+        </label>
+<!--        <p class="error" th:errors="${registerFormDTO.stateSelector}"></p>-->
+    </div>
+
+    <div class="form-group">
+        <label>Zip Code
+            <input class="form-control" th:field="${registerFormDTO.zipCode}" />
+        </label>
+        <p class="error" th:errors="${registerFormDTO.zipCode}"></p>
+    </div>
 
     <input type="submit" class="btn btn-primary" value="Register" />
 </form>
