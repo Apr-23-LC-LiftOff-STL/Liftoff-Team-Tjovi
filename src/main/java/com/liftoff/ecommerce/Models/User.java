@@ -19,37 +19,54 @@ public class User extends AbstractEntity {
 
     private String lastName;
 
-    private int phoneNumberOne;
+//    private int phoneNumberOne;
+////
+////    private int phoneNumberTwo;
+////
+////    private int phoneNumberThree;
+////
+////    private String phoneNumberAll;
 
-    private int phoneNumberTwo;
-
-    private int phoneNumberThree;
-
-    private String phoneNumberAll;
+    private String phoneNumber;
 
     private String streetAddress;
 
     private String city;
 
 
-    private StateSelector stateSelector;
+//    private StateSelector stateSelector;
+
+    private String state;
 
     private int zipCode;
 
     public User() {}
 
-    public User(String username, String password, String firstName, String lastName, int phoneNumberOne, int phoneNumberTwo, int phoneNumberThree,String phoneNumberAll, String streetAddress, String city, StateSelector stateSelector, int zipCode) {
+//    public User(String username, String password, String firstName, String lastName, int phoneNumberOne, int phoneNumberTwo, int phoneNumberThree,String phoneNumberAll, String streetAddress, String city, StateSelector stateSelector, int zipCode) {
+//        this.username = username;
+//        this.pwHash=encoder.encode(password);
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.phoneNumberOne = phoneNumberOne;
+//        this.phoneNumberTwo = phoneNumberTwo;
+//        this.phoneNumberThree = phoneNumberThree;
+//        this.phoneNumberAll = phoneNumberOne + "-" + phoneNumberTwo + "-" + phoneNumberThree;
+//        this.streetAddress = streetAddress;
+//        this.city = city;
+//        this.stateSelector=stateSelector;
+//        this.zipCode = zipCode;
+//    }
+
+
+    public User(String username, String password, String firstName, String lastName, String phoneNumber, String streetAddress, String city, String state, int zipCode) {
         this.username = username;
-        this.pwHash=encoder.encode(password);
+        this.pwHash = encoder.encode(password);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumberOne = phoneNumberOne;
-        this.phoneNumberTwo = phoneNumberTwo;
-        this.phoneNumberThree = phoneNumberThree;
-        this.phoneNumberAll = phoneNumberOne + "-" + phoneNumberTwo + "-" + phoneNumberThree;
+        this.phoneNumber = phoneNumber;
         this.streetAddress = streetAddress;
         this.city = city;
-        this.stateSelector=stateSelector;
+        this.state=state;
         this.zipCode = zipCode;
     }
 
@@ -73,28 +90,37 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public int getPhoneNumberOne() {
-        return phoneNumberOne;
+//    public int getPhoneNumberOne() {
+//        return phoneNumberOne;
+//    }
+//
+//    public void setPhoneNumberOne(int phoneNumberOne) {
+//        this.phoneNumberOne = phoneNumberOne;
+//    }
+//
+//    public int getPhoneNumberTwo() {
+//        return phoneNumberTwo;
+//    }
+//
+//    public void setPhoneNumberTwo(int phoneNumberTwo) {
+//        this.phoneNumberTwo = phoneNumberTwo;
+//    }
+//
+//    public int getPhoneNumberThree() {
+//        return phoneNumberThree;
+//    }
+//
+//    public void setPhoneNumberThree(int phoneNumberThree) {
+//        this.phoneNumberThree = phoneNumberThree;
+//    }
+
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneNumberOne(int phoneNumberOne) {
-        this.phoneNumberOne = phoneNumberOne;
-    }
-
-    public int getPhoneNumberTwo() {
-        return phoneNumberTwo;
-    }
-
-    public void setPhoneNumberTwo(int phoneNumberTwo) {
-        this.phoneNumberTwo = phoneNumberTwo;
-    }
-
-    public int getPhoneNumberThree() {
-        return phoneNumberThree;
-    }
-
-    public void setPhoneNumberThree(int phoneNumberThree) {
-        this.phoneNumberThree = phoneNumberThree;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getStreetAddress() {
@@ -113,12 +139,21 @@ public class User extends AbstractEntity {
         this.city = city;
     }
 
-    public StateSelector getStateSelector() {
-        return stateSelector;
+//    public StateSelector getStateSelector() {
+//        return stateSelector;
+//    }
+//
+//    public void setStateSelector(StateSelector stateSelector) {
+//        this.stateSelector = stateSelector;
+//    }
+
+
+    public String getState() {
+        return state;
     }
 
-    public void setStateSelector(StateSelector stateSelector) {
-        this.stateSelector = stateSelector;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public int getZipCode() {

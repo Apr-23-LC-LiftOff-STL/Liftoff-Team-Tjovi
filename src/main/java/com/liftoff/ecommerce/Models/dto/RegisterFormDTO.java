@@ -10,19 +10,22 @@ public class RegisterFormDTO extends LoginFormDTO {
 
     private String lastName;
 
-    private Integer phoneNumberOne;
+//    private Integer phoneNumberOne;
+//
+//    private Integer phoneNumberTwo;
+//
+//    private Integer phoneNumberThree;
+//
+//    private String phoneNumberAll;
 
-    private Integer phoneNumberTwo;
-
-    private Integer phoneNumberThree;
-
-    private String phoneNumberAll;
+    private String phoneNumber;
 
     private String streetAddress;
 
     private String city;
 
-    private StateSelector stateSelector;
+//    private StateSelector stateSelector;
+    private String state;
 
     private Integer zipCode;
 
@@ -50,35 +53,41 @@ public class RegisterFormDTO extends LoginFormDTO {
         this.lastName = lastName;
     }
 
-    public Integer getPhoneNumberOne() {
-        return phoneNumberOne;
-    }
+//    public Integer getPhoneNumberOne() {
+//        return phoneNumberOne;
+//    }
+//
+//    public void setPhoneNumberOne(Integer phoneNumberOne) {
+//        this.phoneNumberOne = phoneNumberOne;
+//    }
+//
+//    public Integer getPhoneNumberTwo() {
+//        return phoneNumberTwo;
+//    }
+//
+//    public void setPhoneNumberTwo(Integer phoneNumberTwo) {
+//        this.phoneNumberTwo = phoneNumberTwo;
+//    }
+//
+//    public Integer getPhoneNumberThree() {
+//        return phoneNumberThree;
+//    }
+//
+//    public void setPhoneNumberThree(Integer phoneNumberThree) {
+//        this.phoneNumberThree = phoneNumberThree;
+//    }
+//
+//    public String getPhoneNumberAll() {
+//        this.phoneNumberAll = phoneNumberOne + "-" + phoneNumberTwo + "-" + phoneNumberThree;
+//        return phoneNumberAll;
+//    }
+public String getPhoneNumber() {
+    return phoneNumber;
+}
 
-    public void setPhoneNumberOne(Integer phoneNumberOne) {
-        this.phoneNumberOne = phoneNumberOne;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
-
-    public Integer getPhoneNumberTwo() {
-        return phoneNumberTwo;
-    }
-
-    public void setPhoneNumberTwo(Integer phoneNumberTwo) {
-        this.phoneNumberTwo = phoneNumberTwo;
-    }
-
-    public Integer getPhoneNumberThree() {
-        return phoneNumberThree;
-    }
-
-    public void setPhoneNumberThree(Integer phoneNumberThree) {
-        this.phoneNumberThree = phoneNumberThree;
-    }
-
-    public String getPhoneNumberAll() {
-        this.phoneNumberAll = phoneNumberOne + "-" + phoneNumberTwo + "-" + phoneNumberThree;
-        return phoneNumberAll;
-    }
-
 //    public void setPhoneNumberAll(String phoneNumberAll) {
 //        this.phoneNumberAll = phoneNumberOne + "-" + phoneNumberTwo + "-" + phoneNumberThree;
 //
@@ -100,12 +109,19 @@ public class RegisterFormDTO extends LoginFormDTO {
         this.city = city;
     }
 
-    public StateSelector getStateSelector() {
-        return stateSelector;
-    }
+//    public StateSelector getStateSelector() {
+//        return stateSelector;
+//    }
+//
+//    public void setStateSelector(StateSelector stateSelector) {
+//        this.stateSelector = stateSelector;
+//    }
+public String getState() {
+    return state;
+}
 
-    public void setStateSelector(StateSelector stateSelector) {
-        this.stateSelector = stateSelector;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Integer getZipCode() {
