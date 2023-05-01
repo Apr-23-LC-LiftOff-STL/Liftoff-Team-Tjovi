@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.Random;
 
 @Entity
+@Table(name = "movie")
 public class Movie {
     @Id
     @GeneratedValue
