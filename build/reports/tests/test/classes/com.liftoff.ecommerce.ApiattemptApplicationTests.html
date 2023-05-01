@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.027s</div>
+<div class="counter">0.006s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 <a name="contextLoads()"></a>
 <h3 class="failures">contextLoads()</h3>
 <span class="code">
-<pre>java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@6cd7f381 testClass = com.liftoff.ecommerce.ApiattemptApplicationTests, locations = [], classes = [com.liftoff.ecommerce.ECommerceApp], contextInitializerClasses = [], activeProfiles = [], propertySourceLocations = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2f16c6b3, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@53941c2f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@65a15628, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@ee86bcb, org.springframework.boot.test.context.SpringBootTestAnnotation@117a9a2b], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+<pre>java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@7d685f4e testClass = com.liftoff.ecommerce.ApiattemptApplicationTests, locations = [], classes = [com.liftoff.ecommerce.ECommerceApp], contextInitializerClasses = [], activeProfiles = [], propertySourceLocations = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2f16c6b3, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@53941c2f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@65a15628, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@ee86bcb, org.springframework.boot.test.context.SpringBootTestAnnotation@117a9a2b], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:142)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:127)
 	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
@@ -230,7 +230,7 @@ Caused by: org.hibernate.type.descriptor.java.spi.JdbcTypeRecommendationExceptio
 </thead>
 <tr>
 <td class="failures">contextLoads()</td>
-<td class="failures">0.027s</td>
+<td class="failures">0.006s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -238,14 +238,14 @@ Caused by: org.hibernate.type.descriptor.java.spi.JdbcTypeRecommendationExceptio
 <div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>15:40:34.806 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [ApiattemptApplicationTests]: using SpringBootContextLoader
-15:40:34.831 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-15:40:34.835 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: ApiattemptApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-15:40:34.922 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [ApiattemptApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
-15:40:35.138 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/geoffreymeier/Projects/Liftoff-Team-Tjovi/build/classes/java/main/com/liftoff/ecommerce/ECommerceApp.class]
-15:40:35.147 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.liftoff.ecommerce.ECommerceApp for test class com.liftoff.ecommerce.ApiattemptApplicationTests
-15:40:35.490 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [ApiattemptApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-15:40:35.494 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [ApiattemptApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+<pre>16:25:46.711 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [ApiattemptApplicationTests]: using SpringBootContextLoader
+16:25:46.726 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+16:25:46.728 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: ApiattemptApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:25:46.772 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [ApiattemptApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+16:25:46.909 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/geoffreymeier/Projects/Liftoff-Team-Tjovi/build/classes/java/main/com/liftoff/ecommerce/ECommerceApp.class]
+16:25:46.916 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.liftoff.ecommerce.ECommerceApp for test class com.liftoff.ecommerce.ApiattemptApplicationTests
+16:25:47.095 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [ApiattemptApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+16:25:47.098 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [ApiattemptApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -255,7 +255,7 @@ Caused by: org.hibernate.type.descriptor.java.spi.JdbcTypeRecommendationExceptio
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.5)
 
-2023-05-01T15:40:36.287-05:00  WARN 11504 --- [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
+2023-05-01T16:25:47.573-05:00  WARN 13023 --- [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -264,25 +264,25 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-2023-05-01T15:40:36.349-05:00  INFO 11504 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Starting ApiattemptApplicationTests using Java 17.0.6 with PID 11504 (started by geoffreymeier in /Users/geoffreymeier/Projects/Liftoff-Team-Tjovi)
-2023-05-01T15:40:36.353-05:00  INFO 11504 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-05-01T15:40:38.857-05:00  INFO 11504 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-05-01T15:40:39.085-05:00  INFO 11504 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 194 ms. Found 3 JPA repository interfaces.
-2023-05-01T15:40:41.249-05:00  INFO 11504 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-05-01T15:40:41.535-05:00  INFO 11504 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-05-01T15:40:42.964-05:00  INFO 11504 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-05-01T15:40:44.279-05:00  INFO 11504 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@149d7cc6
-2023-05-01T15:40:44.287-05:00  INFO 11504 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-05-01T15:40:44.355-05:00  INFO 11504 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2023-05-01T15:40:44.362-05:00  WARN 11504 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2023-05-01T15:40:45.276-05:00 ERROR 11504 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Could not determine recommended JdbcType for `com.liftoff.ecommerce.Repositories.MovieRepository`
-2023-05-01T15:40:45.278-05:00  WARN 11504 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Could not determine recommended JdbcType for `com.liftoff.ecommerce.Repositories.MovieRepository`
-2023-05-01T15:40:45.280-05:00  INFO 11504 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-05-01T15:40:45.313-05:00  INFO 11504 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-05-01T15:40:45.352-05:00  INFO 11504 --- [    Test worker] .s.b.a.l.ConditionEvaluationReportLogger : 
+2023-05-01T16:25:47.597-05:00  INFO 13023 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Starting ApiattemptApplicationTests using Java 17.0.6 with PID 13023 (started by geoffreymeier in /Users/geoffreymeier/Projects/Liftoff-Team-Tjovi)
+2023-05-01T16:25:47.599-05:00  INFO 13023 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-05-01T16:25:48.891-05:00  INFO 13023 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-01T16:25:48.994-05:00  INFO 13023 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 2 JPA repository interfaces.
+2023-05-01T16:25:50.025-05:00  INFO 13023 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-01T16:25:50.127-05:00  INFO 13023 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-01T16:25:50.723-05:00  INFO 13023 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-01T16:25:51.300-05:00  INFO 13023 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5835e24a
+2023-05-01T16:25:51.304-05:00  INFO 13023 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-01T16:25:51.347-05:00  INFO 13023 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-05-01T16:25:51.351-05:00  WARN 13023 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-05-01T16:25:51.803-05:00 ERROR 13023 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Could not determine recommended JdbcType for `com.liftoff.ecommerce.Repositories.MovieRepository`
+2023-05-01T16:25:51.804-05:00  WARN 13023 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Could not determine recommended JdbcType for `com.liftoff.ecommerce.Repositories.MovieRepository`
+2023-05-01T16:25:51.805-05:00  INFO 13023 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-01T16:25:51.824-05:00  INFO 13023 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-05-01T16:25:51.844-05:00  INFO 13023 --- [    Test worker] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2023-05-01T15:40:45.417-05:00 ERROR 11504 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
+2023-05-01T16:25:51.880-05:00 ERROR 13023 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Could not determine recommended JdbcType for `com.liftoff.ecommerce.Repositories.MovieRepository`
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770) ~[spring-beans-6.0.7.jar:6.0.7]
@@ -417,9 +417,9 @@ Caused by: org.hibernate.type.descriptor.java.spi.JdbcTypeRecommendationExceptio
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.7.jar:6.0.7]
 	... 108 common frames omitted
 
-2023-05-01T15:40:45.505-05:00 ERROR 11504 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.liftoff.ecommerce.ApiattemptApplicationTests@7df3da0b]
+2023-05-01T16:25:51.915-05:00 ERROR 13023 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.liftoff.ecommerce.ApiattemptApplicationTests@61eab26b]
 
-java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@6cd7f381 testClass = com.liftoff.ecommerce.ApiattemptApplicationTests, locations = [], classes = [com.liftoff.ecommerce.ECommerceApp], contextInitializerClasses = [], activeProfiles = [], propertySourceLocations = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2f16c6b3, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@53941c2f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@65a15628, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@ee86bcb, org.springframework.boot.test.context.SpringBootTestAnnotation@117a9a2b], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@7d685f4e testClass = com.liftoff.ecommerce.ApiattemptApplicationTests, locations = [], classes = [com.liftoff.ecommerce.ECommerceApp], contextInitializerClasses = [], activeProfiles = [], propertySourceLocations = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2f16c6b3, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@53941c2f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@65a15628, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@ee86bcb, org.springframework.boot.test.context.SpringBootTestAnnotation@117a9a2b], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:142) ~[spring-test-6.0.7.jar:6.0.7]
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:127) ~[spring-test-6.0.7.jar:6.0.7]
 	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.0.7.jar:6.0.7]
@@ -605,7 +605,7 @@ Unconditional classes:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.6.1</a> at May 1, 2023, 3:40:45 PM</p>
+<a href="http://www.gradle.org">Gradle 7.6.1</a> at May 1, 2023, 4:25:52 PM</p>
 </div>
 </div>
 </body>
