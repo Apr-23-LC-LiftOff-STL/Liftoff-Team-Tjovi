@@ -34,13 +34,13 @@ function MovieCards() {
         <h1>Movie Cards</h1>
       </header>
       <div className="movie-grid">
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            title={movie.title}
-            posterPath={movie.posterPath}
-          />
-        ))}
+      {Array.isArray(displayedMovies) && displayedMovies.map((movie) => (
+  <MovieCard
+    key={movie.id}
+    title={movie.title}
+    posterPath={movie.posterPath}
+  />
+))}
       </div>
     </div>
   );

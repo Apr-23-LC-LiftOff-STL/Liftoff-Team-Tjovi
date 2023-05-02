@@ -1,17 +1,42 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
 export default function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:8080/login', {
+        username: username,
+        password: password,
+      });
+
+      // Handle successful login
+      console.log(response.data);
+    } catch (error) {
+      // Handle errors
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <div>
-      <h1 className="title">Log In</h1>
+        <h1 className="title">Log In</h1>
       </div>
-      <form className="box">
+      <form className="box" onSubmit={handleSubmit}>
         <div className="field">
-          <label className="label">Email</label>
+          <label className="label">Username</label>
           <div className="control">
             <input
               className="input"
-              type="email"
-              placeholder="e.g. alex@example.com"
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
         </div>
@@ -19,13 +44,22 @@ export default function Login() {
         <div className="field">
           <label className="label">Password</label>
           <div className="control">
-            <input className="input" type="password" placeholder="********" />
+            <input
+              className="input"
+              type="password"
+              placeholder="********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
         </div>
 
-        <button className="button is-primary">Sign in</button>
+        <button type="submit" className="button is-primary">
+          Sign in
+        </button>
         <button className="button is-light">Forgot Password?</button>
       </form>
     </div>
   );
 }
+
