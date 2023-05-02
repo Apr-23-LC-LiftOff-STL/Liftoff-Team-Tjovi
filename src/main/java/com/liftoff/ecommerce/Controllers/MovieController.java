@@ -31,6 +31,19 @@ public class MovieController {
         return (List<Movie>) movieRepo.findAll();
     }
 
+    @DeleteMapping("{id}")
+    public String deleteMovie(@PathVariable int id){
+        Optional<Movie> movieToDelete = movieRepo.findById((long) id);
+
+        if(movieToDelete==null){
+            throw new RuntimeException("Movie id not found - " + id);
+        }
+
+        movieRepo.deleteById((long) id);
+        return "Deleted movie id: " + id;
+    }
+
+
 
 
 
