@@ -1,77 +1,64 @@
 package com.liftoff.ecommerce.Models;
 
 
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.liftoff.ecommerce.Repositories.MovieRepository;
-import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
-import com.liftoff.ecommerce.Repositories.UserRepository;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Null;
-import org.apache.tomcat.util.json.JSONParser;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.*;
+
+import org.hibernate.annotations.JdbcTypeCode;
+
+import org.hibernate.type.SqlTypes;
+
 
 import java.util.ArrayList;
-import java.util.Optional;
+
 
 
 @Entity
-@Table(name = "shopping_cart")
-public class ShoppingCart {
+@Table(name = "Shopping_cart")
+public class ShoppingCart{
+
 
     @Id
-    @Column(name = "user_id")
-    private @NotBlank Integer userId;
+    @GeneratedValue
+    private int cartId;
 
-    @Column(name = "movie_id")
-    private @NotBlank Long movieId;
-
-
+    @JdbcTypeCode(SqlTypes.INTEGER)
+    @JoinColumn(name = "user",referencedColumnName = "id")
     @ManyToOne
-    @JoinColumn(name = "movie_id", referencedColumnName = "id")
-    private Movie movie;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+    @JdbcTypeCode(SqlTypes.ARRAY)
+    @JoinColumn(name = "movies",referencedColumnName = "id")
+    private ArrayList<Movie>movies;
 
-    public ShoppingCart() {
+    public ShoppingCart(){}
+
+    public void addToCart(Movie movie){
+        this.movies.add(movie);
     }
 
-    public ShoppingCart(User user, Integer userId) {
+    public ShoppingCart(User user, ArrayList<Movie>movies) {
+        this.user=user;
+        this.movies=movies;
+    }
+
+    public ShoppingCart(int cartId, User user, ArrayList<Movie> movies) {
+        this.cartId = cartId;
         this.user = user;
-        this.userId = userId;
+        this.movies = movies;
+    }
+
+    public void removeFromCart(Movie movie){
+        this.movies.remove(movie);
     }
 
 
-    public Integer getUserId() {
-        return userId;
+    public int getCartId() {
+        return cartId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
-
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-
 
     public User getUser() {
         return user;
@@ -81,43 +68,18 @@ public class ShoppingCart {
         this.user = user;
     }
 
-    @Autowired
-    private UserRepository userRepository;
-
-    private ArrayList<Movie> userCart;
-
-    public void createCartForUser(User user) {
-        if (userRepository.findById(user.getId()).isPresent()) {
-            userCart = new ArrayList<>();
-
-        }
-
-    }
-    @Autowired
-    ShoppingCartRepository shoppingCartRepository;
-
-    public void showCart(Integer userId){
-        if (shoppingCartRepository.existsById(userId)){
-            userCart.toString();
-        }
+    public ArrayList<Movie> getMovies() {
+        return movies;
     }
 
-    @Autowired
-    private MovieRepository movieRepository;
-
-    public void addToCart(Movie movie) {
-        if (movieRepository.findById(movie.getId()).isPresent()) {
-            userCart.add(movie);
-        }
-
+    public void setMovies(ArrayList<Movie> movies) {
+        this.movies = movies;
     }
 
-    public void deleteFromCart(Movie movie) {
-        if (movieRepository.findById(movie.getId()).isPresent()) {
-            userCart.remove(movie);
-        }
 
-    }
+
+
+
 }
 
 

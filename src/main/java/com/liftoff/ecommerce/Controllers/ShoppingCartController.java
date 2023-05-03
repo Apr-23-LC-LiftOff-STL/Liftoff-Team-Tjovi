@@ -7,15 +7,14 @@ import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import com.liftoff.ecommerce.Models.Movie;
 import com.liftoff.ecommerce.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 @RestController
+@RequestMapping("/ShoppingCart")
 public class ShoppingCartController {
 
 
@@ -28,52 +27,37 @@ public class ShoppingCartController {
     @Autowired
     private UserRepository userRepository;
 
+@PostMapping("/createCart/{user}")
+    public void createCart(@PathVariable User user){
+    if (userRepository.existsById(user.getId())){
+        ShoppingCart shoppingCart = new ShoppingCart(user,new ArrayList<>());
+        shoppingCartRepository.save(shoppingCart);
+    }
+}
 
-
-    @PostMapping("")
-    public void createCartForUser(User user){
-
-       if(shoppingCartRepository.findById(user.getId()).isEmpty()){
-           ShoppingCart shoppingCart = new ShoppingCart(user,user.getId());
-           shoppingCart.createCartForUser(user);
-           shoppingCartRepository.save(shoppingCart);
-       }
-       if(shoppingCartRepository.findById(user.getId()).isPresent()) {
-           shoppingCartRepository.findById(user.getId());
-       }
+@PostMapping("/add")
+    public void addToCart(Movie movie,ShoppingCart shoppingCart){
+    if (shoppingCartRepository.findById(shoppingCart.getCartId()).isPresent() && movieRepository.existsById(movie.getId())){
+        shoppingCart.addToCart(movie);
+        shoppingCartRepository.save(shoppingCart);
+    }
+}
+@PostMapping("/remove")
+    public void deleteFromCart(Movie movie,ShoppingCart shoppingCart){
+    if (shoppingCartRepository.findById(shoppingCart.getCartId()).isPresent() && movieRepository.existsById(movie.getId())){
+        shoppingCart.removeFromCart(movie);
+        shoppingCartRepository.save(shoppingCart);
 
     }
-
-
-    @GetMapping("/cart/{user_id}")
-    public void viewCart(ShoppingCart shoppingCart, @PathVariable(name = "user_id") Integer userId){
-        shoppingCartRepository.findById(userId);
-        shoppingCart.showCart(userId);
-    }
-
-
-
-@PostMapping("/addToCart/{movie_id}")
-    public void addToCart(@PathVariable(name= "movie_id") Movie movie,ShoppingCart shoppingCart){
-
-        if (shoppingCartRepository.existsById(shoppingCart.getUserId())){
-            shoppingCart.addToCart(movie);
-        }
-
-    }
-
-    @PostMapping("/removeFromCart/{movie_id}")
-    public void removeFromCart(@PathVariable(name= "movie_id") Movie movie,ShoppingCart shoppingCart){
-
-        if (shoppingCartRepository.existsById(shoppingCart.getUserId())){
-            shoppingCart.deleteFromCart(movie);
-        }
-
-
-
+}
+    @GetMapping("/{id}")
+    public Optional<ShoppingCart> getCartById(@PathVariable Integer id) throws Exception {
+        return (shoppingCartRepository.findById(id));
     }
 
 
 
 
 }
+
+
