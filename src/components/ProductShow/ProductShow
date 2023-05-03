@@ -1,10 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 import "bulma/css/bulma.css";
 
-export default function Products() {
+export default function ProductShow() {
   const products = useLoaderData();
-
-  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
     <div className="card">
@@ -14,17 +12,17 @@ export default function Products() {
             <div class="media">
               <div class="media-left">
                 <figure>
-                  <img src={`${baseImgUrl}${products.posterPath}`} />
+                  <img src={products.posterPath} />
                 </figure>
-              </div>
             </div>
+          </div>
           </div>
           <div class="card-content">
             <p class="title is-4">{products.title}</p>
             <p class="subtitle is-6">({products.releaseDate.slice(0, 4)})</p>
-            <p>Genres: {products.genres}</p>
-            <p>Runtime: {products.runtime} minutes</p>
-            <p>Price: ${products.price}</p>
+              <p>Genres: {products.genres}</p>
+              <p>Runtime: {products.runtime} minutes</p>
+              <p>Price: ${products.price}</p>
           </div>
         </Link>
       ))}
@@ -34,7 +32,7 @@ export default function Products() {
 
 // data loader
 export const productsLoader = async () => {
-  const res = await fetch("http://localhost:8080/");
+  const res = await fetch('http://localhost:8080/');
 
   if (!res.ok) {
     throw Error("Could not fetch the list of products");

@@ -1,15 +1,18 @@
 import React from 'react';
-const MovieCard = ({ title, posterPath }) => {
+import "./MovieCards.css"
+
+const MovieCard = ({ title, posterPath, id }) => {
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
+
   return (
-    <div className="card">
-      <div className="card-image">
+    <div className="movie-card">
+      <div className="movie-img">
         {posterPath && (
           <img src={`${baseImgUrl}${posterPath}`} alt={`Poster for ${title}`} />
         )}
       </div>
-      <div className="card-content">
-        <div className="title">{title}</div>
+      <div className="">
+        <div className="">{title}</div>
       </div>
     </div>
   );

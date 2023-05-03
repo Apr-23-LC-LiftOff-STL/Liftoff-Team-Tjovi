@@ -4,6 +4,7 @@ import MovieCard from './MovieCard';
 import ReactPaginate from 'react-paginate';
 import './MovieCards.css';
 
+const baseProductUrl = '/products/';
 
 function MovieCards() {
   const [movies, setMovies] = useState([]);
@@ -29,17 +30,19 @@ function MovieCards() {
     (currentPage + 1) * resultsPerPage
   );
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="">
+      <header className="">
         <h1>Movie Cards</h1>
       </header>
       <div className="movie-grid">
         {movies.map((movie) => (
+          <a href={`${baseProductUrl}${movie.id}`}>
           <MovieCard
             key={movie.id}
             title={movie.title}
             posterPath={movie.posterPath}
           />
+          </a>
         ))}
       </div>
     </div>
