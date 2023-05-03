@@ -28,7 +28,7 @@ export default function ProductsDetails() {
             <p>Genres: {product.genres}</p>
             <p>Runtime: {product.runtime} minutes</p>
             <br />
-            <p>Price: ${product.price}</p>
+            <p>Price: ${product.price.toFixed(2)}</p>
           </div>
           <footer class="card-footer">
             <a href="#" class="card-footer-item">

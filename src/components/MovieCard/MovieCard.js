@@ -1,8 +1,9 @@
 import React from 'react';
 import "./MovieCards.css"
 
-const MovieCard = ({ title, posterPath, id }) => {
+const MovieCard = ({ title, posterPath }) => {
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
+
 
   return (
     <div className="movie-card">

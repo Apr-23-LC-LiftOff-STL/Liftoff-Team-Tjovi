@@ -4,7 +4,7 @@ import "bulma/css/bulma.css";
 export default function Products() {
   const products = useLoaderData();
 
-  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+  const baseImgUrl = "https://image.tmdb.org/t/p/w300";
 
   return (
     <div className="card">
@@ -24,7 +24,7 @@ export default function Products() {
             <p class="subtitle is-6">({products.releaseDate.slice(0, 4)})</p>
             <p>Genres: {products.genres}</p>
             <p>Runtime: {products.runtime} minutes</p>
-            <p>Price: ${products.price}</p>
+            <p>Price: ${products.price.toFixed(2)}</p>
           </div>
         </Link>
       ))}
