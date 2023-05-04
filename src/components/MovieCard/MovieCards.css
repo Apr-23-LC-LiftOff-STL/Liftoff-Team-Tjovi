@@ -1,19 +1,29 @@
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  column-gap: 10px;
-  row-gap: 10px;
-  margin-left: 5%;
-  margin-right: 5%;
+  column-gap: 15px;
+  row-gap: 20px;
+  margin-left: 8%;
+  margin-right: 8%;
   margin-top: 20px;
 }
 
 .movie-card {
   border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: max(1.25vw, 14px);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+  transition: 0.3s;
+  transition: transform 250ms;
+  padding-bottom: 10px;
+  font-size: max(1.1vw, 12px);
   text-align: center;
+  color:rgb(51, 51, 51);
 }
+
+.movie-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 255, 162, 0.3);
+  transform: translateY(-5px);
+}
+
 
 .movie-img {
   width: 100;
