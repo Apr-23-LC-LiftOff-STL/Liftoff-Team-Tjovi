@@ -4,82 +4,76 @@ package com.liftoff.ecommerce.Models;
 
 import jakarta.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
+
 
 import org.hibernate.type.SqlTypes;
 
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 @Entity
-@Table(name = "Shopping_cart")
+@Data
+@AllArgsConstructor
+@Builder
 public class ShoppingCart{
 
 
-    @Id
-    @GeneratedValue
-    private int cartId;
+@Id
+private int id;
+@Column
+private Integer userId;
+@Column
+private ArrayList<Long> movieIds;
 
-    @JdbcTypeCode(SqlTypes.INTEGER)
-    @JoinColumn(name = "user",referencedColumnName = "id")
-    @ManyToOne
-    private User user;
-    @JdbcTypeCode(SqlTypes.ARRAY)
-    @JoinColumn(name = "movies",referencedColumnName = "id")
-    private ArrayList<Movie>movies;
+    public ShoppingCart(){
 
-    public ShoppingCart(){}
-
-    public void addToCart(Movie movie){
-        this.movies.add(movie);
     }
 
-    public ShoppingCart(User user, ArrayList<Movie>movies) {
-        this.user=user;
-        this.movies=movies;
-    }
-
-    public ShoppingCart(int cartId, User user, ArrayList<Movie> movies) {
-        this.cartId = cartId;
-        this.user = user;
-        this.movies = movies;
-    }
-
-    public void removeFromCart(Movie movie){
-        this.movies.remove(movie);
+    public ShoppingCart(Integer userId,ArrayList<Long>movieIds) {
+        this.movieIds=movieIds;
+        this.userId = userId;
     }
 
 
-    public int getCartId() {
-        return cartId;
+    public int getId() {
+        return id;
     }
 
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public ArrayList<Movie> getMovies() {
-        return movies;
+    public ArrayList<Long> getMovieIds() {
+        return movieIds;
     }
 
-    public void setMovies(ArrayList<Movie> movies) {
-        this.movies = movies;
+    public void setMovieIds(ArrayList<Long> movieIds) {
+        this.movieIds = movieIds;
     }
 
+    public void addToCart(Long movieId){
 
+        getMovieIds().add(movieId);
+   }
 
-
-
+    public void deleteFromCart(Long movieId){
+        getMovieIds().remove(movieId);
+    }
 }
 
 

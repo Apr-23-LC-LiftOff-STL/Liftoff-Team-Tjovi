@@ -6,6 +6,7 @@ import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import com.liftoff.ecommerce.Models.Movie;
 import com.liftoff.ecommerce.Repositories.UserRepository;
+import com.liftoff.ecommerce.Service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,49 +15,34 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/ShoppingCart")
+@RequestMapping("/")
 public class ShoppingCartController {
 
-
+    @Autowired
+   private ShoppingCartService shoppingCartService;
 
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
-    @Autowired
-    private MovieRepository movieRepository;
 
-    @Autowired
-    private UserRepository userRepository;
 
-@PostMapping("/createCart/{user}")
-    public void createCart(@PathVariable User user){
-    if (userRepository.existsById(user.getId())){
-        ShoppingCart shoppingCart = new ShoppingCart(user,new ArrayList<>());
-        shoppingCartRepository.save(shoppingCart);
-    }
+
+@GetMapping("/createCart/{userId}")
+public void createCartForUser(@PathVariable Integer userId){
+    shoppingCartService.createShoppingCartClass(userId);
+}
+@GetMapping("/add/{id}/{movieId}")
+public void addToCart(@PathVariable int id,@PathVariable Long movieId){
+    shoppingCartService.addToCart(movieId,id);
+}
+@GetMapping("/remove/{id}/{movieId}")
+public void removeFromCart(@PathVariable int id,@PathVariable Long movieId){
+    shoppingCartService.removeFromCart(movieId,id);
 }
 
-@PostMapping("/add")
-    public void addToCart(Movie movie,ShoppingCart shoppingCart){
-    if (shoppingCartRepository.findById(shoppingCart.getCartId()).isPresent() && movieRepository.existsById(movie.getId())){
-        shoppingCart.addToCart(movie);
-        shoppingCartRepository.save(shoppingCart);
-    }
+@GetMapping("/cart/{id}")
+public Optional<ShoppingCart> seeCart(@PathVariable int id) throws Exception{
+  return shoppingCartRepository.findById(id);
 }
-@PostMapping("/remove")
-    public void deleteFromCart(Movie movie,ShoppingCart shoppingCart){
-    if (shoppingCartRepository.findById(shoppingCart.getCartId()).isPresent() && movieRepository.existsById(movie.getId())){
-        shoppingCart.removeFromCart(movie);
-        shoppingCartRepository.save(shoppingCart);
-
-    }
-}
-    @GetMapping("/{id}")
-    public Optional<ShoppingCart> getCartById(@PathVariable Integer id) throws Exception {
-        return (shoppingCartRepository.findById(id));
-    }
-
-
-
 
 }
 
