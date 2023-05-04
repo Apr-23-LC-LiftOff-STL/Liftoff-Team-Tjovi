@@ -1,5 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
 import "bulma/css/bulma.css";
+import "./Products.css";
 
 export default function Products() {
   const products = useLoaderData();

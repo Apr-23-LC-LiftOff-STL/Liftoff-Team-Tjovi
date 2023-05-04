@@ -1,45 +1,83 @@
 import { useLoaderData, useParams } from "react-router-dom";
-
-import "bulma/css/bulma.css";
+import { NavLink } from "react-router-dom";
 
 export default function ProductsDetails() {
   const { id } = useParams();
   const product = useLoaderData();
 
-  const baseImgUrl = "https://image.tmdb.org/t/p/w300";
+  const baseImgUrl = "https://image.tmdb.org/t/p/w400";
 
   return (
     <div>
-      <h1 className="title">Product Details</h1>
-
-      <div className="card">
-        <div class="row">
-          <div class="column">
-            <img
-              src={`${baseImgUrl}${product.posterPath}`}
-              alt={`Poster for ${product.title}`}
-            ></img>
+      <section class="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column">
+              <div className="card is-horizontal shadow-md transform is-duration-300 hover-shadow-xl hover-translate-y">
+                <div className="card-image">
+                  <figure className="image">
+                    <img
+                      src={`${baseImgUrl}${product.posterPath}`}
+                      alt={`Poster for ${product.title}`}
+                    ></img>
+                  </figure>
+                </div>
+                <div className="card-content p-0 is-flex is-flex-direction-column">
+                  <div className="content p-5 has-text-weight-normal">
+                    <div className="is-size-5">
+                      <h3>{product.title}</h3>
+                    </div>
+                    <p className="is-size-6 has-text-weight-normal is-italic">
+                      {product.overview}
+                    </p>
+                    <p>
+                      <span className="has-text-weight-semibold">Genres: </span>
+                      {product.genres}
+                    </p>
+                    <p>
+                      <span className="has-text-weight-semibold">
+                        Runtime:{" "}
+                      </span>
+                      {product.runtime} minutes
+                    </p>
+                  </div>
+                  <div className="content p-5 has-background-info-light">
+                    <div className="columns">
+                      <div className="column">
+                        <div className="is-size-5">
+                          <span className="has-text-weight-semibold">
+                            Price:
+                          </span>{" "}
+                          ${product.price.toFixed(2)}
+                        </div>
+                        <div className="is-size-6">
+                          <span className="has-text-primary-dark">
+                            <br />
+                            &#9733;&#9733;&#9733;&#9733;&#9733;
+                          </span>{" "}
+                          10 Reviews
+                        </div>
+                      </div>
+                      <div className="column">
+                        <button className="button is-primary is-normal is-fullwidth has-text-weight-semibold">
+                          Add to Cart
+                        </button>
+                        <br />
+                        <NavLink to="/">
+                          <button className="button is-normal is-fullwidth">
+                            Home
+                          </button>
+                        </NavLink>
+                      </div>
+                    </div>
+                    <p className="is-size-7"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="column">
-            <p class="title is-4">{product.title}</p>
-            <p class="subtitle is-6">({product.releaseDate.slice(0, 4)})</p>
-            <p>Overview: {product.overview}</p>
-            <br />
-            <p>Genres: {product.genres}</p>
-            <p>Runtime: {product.runtime} minutes</p>
-            <br />
-            <p>Price: ${product.price.toFixed(2)}</p>
-          </div>
-          <footer class="card-footer">
-            <a href="#" class="card-footer-item">
-              Add to Cart
-            </a>
-            <a href="/" class="card-footer-item">
-              Home
-            </a>
-          </footer>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
