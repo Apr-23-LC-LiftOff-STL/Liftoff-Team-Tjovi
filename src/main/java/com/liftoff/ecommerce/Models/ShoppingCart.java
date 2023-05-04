@@ -10,34 +10,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 
+
 import org.hibernate.type.SqlTypes;
 
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ShoppingCart{
 
 
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
 private int id;
-
+@Column
 private Integer userId;
+@Column
+private ArrayList<Long> movieIds;
 
-private ArrayList<Long>movieIds;
+    public ShoppingCart(){
 
+    }
 
     public ShoppingCart(Integer userId,ArrayList<Long>movieIds) {
         this.movieIds=movieIds;
         this.userId = userId;
     }
+
 
     public int getId() {
         return id;
@@ -59,12 +62,17 @@ private ArrayList<Long>movieIds;
         return movieIds;
     }
 
-   public void addToCart(Long movieId){
-        this.movieIds.add(movieId);
+    public void setMovieIds(ArrayList<Long> movieIds) {
+        this.movieIds = movieIds;
+    }
+
+    public void addToCart(Long movieId){
+
+        getMovieIds().add(movieId);
    }
 
     public void deleteFromCart(Long movieId){
-        this.movieIds.remove(movieId);
+        getMovieIds().remove(movieId);
     }
 }
 

@@ -13,18 +13,20 @@ import java.util.ArrayList;
 @Service
 public class ShoppingCartService {
     @Autowired
-    ShoppingCartRepository shoppingCartRepository;
+    private ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
 
     public void createShoppingCartClass(int userId){
-        while (userRepository.existsById(userId)){
+        if (userRepository.existsById(userId)){
             ShoppingCart shoppingCart = new ShoppingCart(userId,new ArrayList<>());
+            shoppingCart.setMovieIds(new ArrayList<>());
+            shoppingCart.setId(userId);
             shoppingCartRepository.save(shoppingCart);
         }
     }
@@ -39,14 +41,20 @@ public class ShoppingCartService {
 //        return null;
 //    }
 
-    public void addToCart(long movieId,ShoppingCart shoppingCart){
-        if (movieRepository.existsById(movieId) && shoppingCartRepository.existsById(shoppingCart.getId())){
-           shoppingCart.addToCart(movieId);
+    public void addToCart(long movieId,int id){
+
+        if (movieRepository.existsById(movieId) && shoppingCartRepository.existsById(id)){
+
+                shoppingCartRepository.findById(id).get().addToCart(movieId);
+                shoppingCartRepository.save(shoppingCartRepository.findById(id).get());
+
         }
     }
-    public void removeFromCart(long movieId, ShoppingCart shoppingCart){
-        if (movieRepository.existsById(movieId) && shoppingCartRepository.existsById(shoppingCart.getId())){
-            shoppingCart.deleteFromCart(movieId);
+    public void removeFromCart(long movieId, int id){
+        if (movieRepository.existsById(movieId) && shoppingCartRepository.existsById(id)){
+            shoppingCartRepository.findById(id).get().deleteFromCart(movieId);
+            shoppingCartRepository.save(shoppingCartRepository.findById(id).get());
         }
     }
+
 }

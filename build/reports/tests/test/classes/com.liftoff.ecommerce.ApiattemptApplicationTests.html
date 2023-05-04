@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.180s</div>
+<div class="counter">0.413s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,8 @@
 </tr>
 </thead>
 <tr>
-<td class="success">shoppingCart()</td>
-<td class="success">1.180s</td>
+<td class="success">contextLoads()</td>
+<td class="success">0.413s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,14 +87,14 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>17:01:59.169 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [ApiattemptApplicationTests]: using SpringBootContextLoader
-17:01:59.184 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-17:01:59.186 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: ApiattemptApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-17:01:59.224 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [ApiattemptApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
-17:01:59.361 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/geoffreymeier/Projects/Liftoff-Team-Tjovi/build/classes/java/main/com/liftoff/ecommerce/ECommerceApp.class]
-17:01:59.365 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.liftoff.ecommerce.ECommerceApp for test class com.liftoff.ecommerce.ApiattemptApplicationTests
-17:01:59.544 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [ApiattemptApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-17:01:59.548 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [ApiattemptApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+<pre>14:41:22.534 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [ApiattemptApplicationTests]: using SpringBootContextLoader
+14:41:22.548 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+14:41:22.550 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: ApiattemptApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:41:22.605 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [ApiattemptApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+14:41:22.759 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/geoffreymeier/Projects/Liftoff-Team-Tjovi/build/classes/java/main/com/liftoff/ecommerce/ECommerceApp.class]
+14:41:22.766 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.liftoff.ecommerce.ECommerceApp for test class com.liftoff.ecommerce.ApiattemptApplicationTests
+14:41:23.025 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [ApiattemptApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+14:41:23.029 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [ApiattemptApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -104,7 +104,7 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.5)
 
-2023-05-03T17:02:00.023-05:00  WARN 1459 --- [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
+2023-05-04T14:41:23.641-05:00  WARN 9232 --- [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -113,21 +113,21 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-2023-05-03T17:02:00.051-05:00  INFO 1459 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Starting ApiattemptApplicationTests using Java 17.0.6 with PID 1459 (started by geoffreymeier in /Users/geoffreymeier/Projects/Liftoff-Team-Tjovi)
-2023-05-03T17:02:00.053-05:00  INFO 1459 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-05-03T17:02:01.310-05:00  INFO 1459 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-05-03T17:02:01.411-05:00  INFO 1459 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 3 JPA repository interfaces.
-2023-05-03T17:02:02.340-05:00  INFO 1459 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-05-03T17:02:02.426-05:00  INFO 1459 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-05-03T17:02:02.944-05:00  INFO 1459 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-05-03T17:02:03.806-05:00  INFO 1459 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7114e780
-2023-05-03T17:02:03.811-05:00  INFO 1459 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-05-03T17:02:03.850-05:00  INFO 1459 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2023-05-03T17:02:03.855-05:00  WARN 1459 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2023-05-03T17:02:05.586-05:00  INFO 1459 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-05-03T17:02:05.599-05:00  INFO 1459 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-05-03T17:02:06.505-05:00  WARN 1459 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-05-03T17:02:07.328-05:00  INFO 1459 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Started ApiattemptApplicationTests in 7.691 seconds (process running for 9.589)
+2023-05-04T14:41:23.670-05:00  INFO 9232 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Starting ApiattemptApplicationTests using Java 17.0.6 with PID 9232 (started by geoffreymeier in /Users/geoffreymeier/Projects/Liftoff-Team-Tjovi)
+2023-05-04T14:41:23.673-05:00  INFO 9232 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-05-04T14:41:25.301-05:00  INFO 9232 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-04T14:41:25.408-05:00  INFO 9232 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90 ms. Found 3 JPA repository interfaces.
+2023-05-04T14:41:26.586-05:00  INFO 9232 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-04T14:41:26.693-05:00  INFO 9232 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-04T14:41:27.316-05:00  INFO 9232 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-04T14:41:28.184-05:00  INFO 9232 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1a10c47e
+2023-05-04T14:41:28.189-05:00  INFO 9232 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-04T14:41:28.244-05:00  INFO 9232 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-05-04T14:41:28.248-05:00  WARN 9232 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-05-04T14:41:30.549-05:00  INFO 9232 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-04T14:41:30.567-05:00  INFO 9232 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-04T14:41:31.756-05:00  WARN 9232 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-04T14:41:32.834-05:00  INFO 9232 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Started ApiattemptApplicationTests in 9.677 seconds (process running for 11.982)
 </pre>
 </span>
 </div>
@@ -139,7 +139,7 @@ You may wish to exclude one of them to ensure predictable runtime behavior
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.6.1</a> at May 3, 2023, 5:02:08 PM</p>
+<a href="http://www.gradle.org">Gradle 7.6.1</a> at May 4, 2023, 2:41:33 PM</p>
 </div>
 </div>
 </body>

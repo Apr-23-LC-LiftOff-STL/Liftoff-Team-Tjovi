@@ -19,23 +19,30 @@ import java.util.Optional;
 public class ShoppingCartController {
 
     @Autowired
-    ShoppingCartService shoppingCartService;
+   private ShoppingCartService shoppingCartService;
+
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
 
 
 
 @GetMapping("/createCart/{userId}")
-public void createCartForUser(@PathVariable("userId") Integer userId){
+public void createCartForUser(@PathVariable Integer userId){
     shoppingCartService.createShoppingCartClass(userId);
 }
-@PostMapping("/add/{movieId}")
-public void addToCart( Long movieId,ShoppingCart shoppingCart){
-    shoppingCartService.addToCart(movieId,shoppingCart);
+@GetMapping("/add/{id}/{movieId}")
+public void addToCart(@PathVariable int id,@PathVariable Long movieId){
+    shoppingCartService.addToCart(movieId,id);
 }
-@PostMapping("")
-public void removeFromCart(Long movieId,ShoppingCart shoppingCart){
-    shoppingCartService.removeFromCart(movieId,shoppingCart);
+@GetMapping("/remove/{id}/{movieId}")
+public void removeFromCart(@PathVariable int id,@PathVariable Long movieId){
+    shoppingCartService.removeFromCart(movieId,id);
 }
 
+@GetMapping("/cart/{id}")
+public Optional<ShoppingCart> seeCart(@PathVariable int id) throws Exception{
+  return shoppingCartRepository.findById(id);
+}
 
 }
 
