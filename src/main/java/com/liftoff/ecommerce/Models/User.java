@@ -3,7 +3,7 @@ package com.liftoff.ecommerce.Models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="User")
+@Table(name="user")
 public class User {
 
     @Id
@@ -12,7 +12,10 @@ public class User {
     private int id;
 
     @Column (name= "username")
-    private String username;
+    private String userName;
+
+    @Column(name="password")
+    private String password;
 
     @Column (name= "first_name")
     private String firstName;
@@ -38,9 +41,10 @@ public class User {
     public User() {
     }
 
-    public User(String username, String firstName, String lastName, String phoneNumber, String streetAddress,
+    public User(String userName, String password, String firstName, String lastName, String phoneNumber, String streetAddress,
                 String city, String state, int zipCode) {
-        this.username = username;
+        this.userName = userName;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -58,12 +62,20 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -126,7 +138,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + userName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
