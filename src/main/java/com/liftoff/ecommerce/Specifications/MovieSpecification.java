@@ -1,12 +1,14 @@
 package com.liftoff.ecommerce.Specifications;
 
 import com.liftoff.ecommerce.Models.Movie;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
 public class MovieSpecification {
 
-    public static Specification<Movie> hasGenre(String genre) {
-        return (movie, cq, cb) -> genre == null ? null : cb.like(cb.lower(movie.get("genres")), "%" + genre.toLowerCase() + "%");
+    //TODO: Add multiple genre option -- look into exclusivity?
+    public static Specification<Movie> hasGenre(String genreName) {
+        return  StringUtils.isBlank(genreName) ? null : (movie, cq, cb) -> cb.equal(movie.join("genres").get("name"), genreName);
     }
 
     public static Specification<Movie> hasTitle(String title) {

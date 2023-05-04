@@ -16,7 +16,7 @@ import java.util.Optional;
 
 import static java.lang.Thread.sleep;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/")
 public class MovieController {
@@ -46,6 +46,12 @@ public class MovieController {
 
             return movieRepo.findAll(spec, pageable);
     }
+
+   // @GetMapping("/favicon.ico")
+    //@ResponseBody
+    //public void favicon() {
+        // Empty method to handle favicon requests and avoid the type mismatch warning
+    //}
 }
 
 
