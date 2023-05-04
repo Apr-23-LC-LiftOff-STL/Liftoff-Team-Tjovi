@@ -43,8 +43,4 @@ public class MovieController {
         return "Deleted movie id: " + id;
     }
 
-
-
-
-
 }
