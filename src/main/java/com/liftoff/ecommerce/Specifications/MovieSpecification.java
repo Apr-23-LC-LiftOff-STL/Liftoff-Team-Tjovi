@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MovieSpecification {
 
-    //TODO: Add multiple genre option -- look into exclusivity?
+
     public static Specification<Movie> hasGenre(String genreNames) {
         return (StringUtils.isBlank(genreNames))
                 ? null
