@@ -1,6 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
 import "bulma/css/bulma.css";
-import "./Products.css";
 
 export default function Products() {
   const products = useLoaderData();
@@ -8,10 +7,10 @@ export default function Products() {
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
 
   return (
-    <div className="card">
+    <div className="container">
       {products.map((products) => (
         <Link to={products.id.toString()} key={products.id}>
-          <div class="card-content">
+          <div className="card-content">
             <div class="media">
               <div class="media-left">
                 <figure>

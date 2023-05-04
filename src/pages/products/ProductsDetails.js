@@ -1,5 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import "./Products.css";
 
 export default function ProductsDetails() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ export default function ProductsDetails() {
 
   return (
     <div>
-      <section class="section">
+      <section className="section">
         <div className="container">
           <div className="columns">
             <div className="column">
