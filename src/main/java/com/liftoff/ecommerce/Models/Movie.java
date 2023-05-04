@@ -1,8 +1,12 @@
 package com.liftoff.ecommerce.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.text.DecimalFormat;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @Entity
 public class Movie {
@@ -16,7 +20,13 @@ public class Movie {
     @Lob
     @Column(name="overview", length=999)
     private String overview;
-    private String genres;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "movie_genre",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @JsonManagedReference
+    private Set<Genre> genres = new HashSet<>();
 
     private String releaseDate;
 
@@ -40,11 +50,11 @@ public class Movie {
         this.overview = overview;
     }
 
-    public String getGenres() {
+    public Set<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(String genres) {
+    public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
 
