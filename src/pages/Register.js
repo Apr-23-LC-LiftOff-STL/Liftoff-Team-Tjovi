@@ -9,7 +9,7 @@ export default function Login() {
           <div className="control">
             <input
               className="input"
-              type="email"
+              type="email" required
               placeholder="e.g. alex@example.com"
               name="email"
             />
@@ -19,21 +19,27 @@ export default function Login() {
         <div className="field">
           <label className="label">Password</label>
           <div className="control">
-            <input className="input" type="password" placeholder="********" />
+            <input className="input"
+             type="password" required
+             placeholder="********" />
           </div>
         </div>
 
         <div className="field">
           <label className="label">Verify Password</label>
           <div className="control">
-            <input className="input" type="password" placeholder="********" />
+            <input className="input"
+             type="password" required
+              placeholder="********" />
           </div>
         </div>
 
         <div className="field">
           <label className="label">Street Address</label>
           <div className="control">
-            <input className="input" type="text" name="address1" />
+            <input className="input"
+             type="text" required 
+             name="address1" />
           </div>
         </div>
 
@@ -47,21 +53,27 @@ export default function Login() {
         <div className="field">
           <label className="label">City</label>
           <div className="control">
-            <input className="input" type="text" name="city" />
+            <input className="input" 
+            type="text" required 
+            name="city" />
           </div>
         </div>
 
         <div className="field">
           <label className="label">State</label>
           <div className="control">
-            <input className="input" type="text" name="state" />
+            <input className="input"
+             type="text" required
+              name="state" />
           </div>
         </div>
 
         <div className="field">
           <label className="label">Telephone</label>
           <div className="control">
-            <input className="input" type="tel" name="tel" placeholder="(555) 555-5555" />
+            <input className="input"
+             type="tel" name="tel" required
+              placeholder="(555) 555-5555" />
           </div>
         </div>
 
