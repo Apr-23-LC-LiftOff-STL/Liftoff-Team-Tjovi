@@ -7,14 +7,14 @@
 5.) In the text box enter the following text:
     
     {
-        "email": "josh@example.com",
-        "password": "12345",
+        "email": "<email>",
+        "password": "<password>",
         "role": "user",
-        "firstName": "Josh",
-        "lastName": "Jennemann",
-        "phoneNumber": "636.288.9794",
-        "streetAddress": "4152 Miami St",
-        "city": "St. Louis",
+        "firstName": "<first name>",
+        "lastName": "<last name>",
+        "phoneNumber": "<phone number>",
+        "streetAddress": "<street address>",
+        "city": "<City>",
         "state": "MO",
         "zipCode": 63116
 }
