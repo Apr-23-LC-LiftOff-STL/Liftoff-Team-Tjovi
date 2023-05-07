@@ -1,8 +1,22 @@
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 export default function Login() {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    var value = e.target.value === "" ? null : e.target.value;
+
+    setValues({
+      ...values,
+      [e.target.name]: value,
+    });
+  };
   return (
     <div>
       <div>
-      <h1 className="title">Log In</h1>
+        <h1 className="title">Log In</h1>
       </div>
       <form className="box">
         <div className="field">
@@ -10,7 +24,10 @@ export default function Login() {
           <div className="control">
             <input
               className="input"
+              name="email"
               type="email"
+              value={values.email}
+              onChange={handleChange}
               placeholder="e.g. alex@example.com"
             />
           </div>
@@ -19,7 +36,14 @@ export default function Login() {
         <div className="field">
           <label className="label">Password</label>
           <div className="control">
-            <input className="input" type="password" placeholder="********" />
+            <input
+              className="input"
+              name="password"
+              type="password"
+              value={values.password}
+              onChange={handleChange}
+              placeholder="********"
+            />
           </div>
         </div>
 
