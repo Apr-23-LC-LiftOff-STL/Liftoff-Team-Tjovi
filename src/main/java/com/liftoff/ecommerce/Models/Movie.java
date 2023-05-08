@@ -1,9 +1,12 @@
 package com.liftoff.ecommerce.Models;
 
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import java.text.DecimalFormat;
 import java.util.Random;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Entity
 public class Movie {
     @Id
