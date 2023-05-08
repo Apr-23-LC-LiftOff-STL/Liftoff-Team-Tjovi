@@ -23,6 +23,7 @@ public class Customer {
     private String lastName;
     private String phoneNumber;
     private String streetAddress;
+    private String suite;
     private String city;
     private String state;
     private int zipCode;
@@ -89,6 +90,14 @@ public class Customer {
 
     public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
+    }
+
+    public String getSuite() {
+        return suite;
+    }
+
+    public void setSuite(String suite) {
+        this.suite = suite;
     }
 
     public String getCity() {
