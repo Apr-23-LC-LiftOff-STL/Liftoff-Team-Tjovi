@@ -1,6 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useState } from 'react';
+import { useState } from "react";
 import "./Products.css";
 
 // https://responsive-bulma-cards.netlify.app/ - example #5
@@ -12,10 +12,17 @@ export default function ProductsDetails() {
   const baseImgUrl = "https://image.tmdb.org/t/p/w400";
 
   const [addToCart, setAddToCart] = useState("");
-  const [addToCartButtonStyle, setAddToCartButtonStyle] = useState("is-primary");
+  const [addToCartButtonStyle, setAddToCartButtonStyle] = useState(
+    "button is-medium is-primary is-fullwidth is-rounded has-text-weight-semibold"
+  );
+  const [buttonDisable, setButtonDisable] = useState(false);
+
   const addToCartButtonHandler = (e) => {
     setAddToCart(`"${product.title}" was added to cart!`);
-    setAddToCartButtonStyle("is-success");
+    setAddToCartButtonStyle(
+      "button is-medium is-primary is-fullwidth is-rounded has-text-weight-semibold"
+    );
+    setButtonDisable(true);
   };
 
   return (
@@ -26,7 +33,7 @@ export default function ProductsDetails() {
             <div className="column">
               <div className="card is-horizontal shadow-xl transform is-duration-100">
                 <div className="card-image p-4">
-                  <figure className="image">
+                  <figure className="image ">
                     <img
                       src={`${baseImgUrl}${product.posterPath}`}
                       alt={`Poster for ${product.title}`}
@@ -42,12 +49,14 @@ export default function ProductsDetails() {
                       {product.overview}
                     </p>
                     <p>
-                      <span className="has-text-weight-semibold">&emsp; &emsp; Genres: </span>
+                      <span className="has-text-weight-semibold">
+                        &emsp; &emsp; Genres:{" "}
+                      </span>
                       {product.genres}
                     </p>
                     <p>
                       <span className="has-text-weight-semibold">
-                      &emsp; &emsp; Runtime:{" "}
+                        &emsp; &emsp; Runtime:{" "}
                       </span>
                       {product.runtime} minutes
                     </p>
@@ -60,21 +69,26 @@ export default function ProductsDetails() {
                             Price:
                           </span>{" "}
                           ${product.price.toFixed(2)}
-                          <span className="is-italic is-size-6 has-text-danger pl-5">{addToCart}</span>
+                          <span className="is-italic is-size-6 has-text-danger pl-5">
+                            {addToCart}
+                          </span>
                         </div>
                         <div>
-                        
-                        <br />
-                        <button className="button is-medium is-primary is-fullwidth has-text-weight-semibold" onClick={addToCartButtonHandler}>
-                          Add to Cart
-                        </button>
-                        <br />
-                        <NavLink to="/">
-                          <button className="button is-normal is-link is-fullwidth">
-                            Home
+                          <br />
+                          <button
+                            className={addToCartButtonStyle}
+                            onClick={addToCartButtonHandler}
+                            disabled={buttonDisable}
+                          >
+                            Add to Cart
                           </button>
-                        </NavLink>
-                      </div>
+                          <br />
+                          <NavLink to="/">
+                            <button className="button is-normal is-link is-fullwidth is-rounded">
+                              Home
+                            </button>
+                          </NavLink>
+                        </div>
                       </div>
                     </div>
                     <p className="is-size-7"></p>
