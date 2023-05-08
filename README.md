@@ -29,7 +29,7 @@ Of course, enter your own information in the < >'s, except for role, which you c
 
 6.) Hit send
 
-7.) At the bottom of the screen you should see a message letting you know your user has been registered. Double check your customer table in MySQL to ensure the user has been successfuly added to the database. If you attempt to re-send the POST request with the same email you should get an error as it shouldn't allow you to register more than one user with the same username(email).
+7.) At the bottom of the screen you should see a message letting you know your user has been registered. Double check your customer table in MySQL to ensure the user has been successfuly added to the database.
 
 # Copy of commit message for the commit with the above code and structure that is allowing the above functionality
 
