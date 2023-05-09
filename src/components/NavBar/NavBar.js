@@ -38,7 +38,6 @@ const NavBar = () => {
             </form>
           </div>
         </div>
-
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
