@@ -2,15 +2,16 @@ import "bulma/css/bulma.css";
 
 import SearchBar from "./SearchBar";
 import GenreSelect from "./GenreSelect/GenreSelect";
-import mainLogo from "./Logo_MovieDL_20230426.png";
+import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
 
 const NavBar = () => {
+  
   return (
     <nav className="navbar is-" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          <img src={mainLogo} width="112" height="28" />
+          <img src={logo125} width="112" height="28" />
         </a>
 
         <a
