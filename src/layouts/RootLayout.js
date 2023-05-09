@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from "react-router-dom"
-import NavBar from "../components/NavBar"
+import NavBar from "../components/NavBar/NavBar"
 import Footer from "../components/Footer"
 
 export default function RootLayout() {

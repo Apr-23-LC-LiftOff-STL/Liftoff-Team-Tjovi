@@ -1,6 +1,9 @@
 import "bulma/css/bulma.css";
-import GenreSelect from "./GenreSelect/GenreSelect";
+
+import SearchBar from "./SearchBar";
+import GenreSelect from "../GenreSelect/GenreSelect";
 import mainLogo from "./Logo_MovieDL_20230426.png";
+
 
 const NavBar = () => {
   return (
@@ -28,11 +31,7 @@ const NavBar = () => {
         <div className="navbar-start">
           <div className="navbar-item">
             <form className="navbar-start" action="" method="get">
-              <input
-                className="navbar-item"
-                type="text"
-                maxlength="128"
-              ></input>
+              <SearchBar />
               <GenreSelect />
               <input className="button is-light" type="submit" value="Search" />
             </form>
