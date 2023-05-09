@@ -13,7 +13,7 @@ const GenreSelect = () => {
   const handleChange = (selectedGenres) => {
     let arrGenres = [];
     arrGenres.push(selectedGenres);
-    setSelectedGenres(arrGenres);
+    setSelectedGenres(arrGenres); // logic may need to change for this
     console.log(`Genre(s) selected:`, arrGenres);
   };
   

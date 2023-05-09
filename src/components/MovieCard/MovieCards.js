@@ -17,7 +17,7 @@ function MovieCards() {
   const resultsPerPage = 36;
 
   const searchTerm = useSearchStore((state) => state.searchTerm);
-  const genres = useGenreStore((state) => state.genres);
+  const selectedGenres = (useGenreStore((state) => state.seletedGenres));
 
   // fetch movies
   useEffect(() => {
@@ -44,11 +44,11 @@ function MovieCards() {
         <div className="movie-grid">
           {movies.slice(0,resultsPerPage)
             .filter((movie) => {
-              return searchTerm.toLowerCase() === ""
+              return (searchTerm.toLowerCase() === ""
                 ? movie
                 : movie.title.toLowerCase().includes(searchTerm) ||
                 movie.genres.toLowerCase().includes(searchTerm) ||
-                movie.releaseDate.includes(searchTerm);
+                movie.releaseDate.includes(searchTerm));
             })
             .map((movie) => (
               <a href={`${baseProductUrl}${movie.id}`}>
