@@ -1,6 +1,9 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import "./Products.css";
+
+// https://responsive-bulma-cards.netlify.app/ - example #5
 
 export default function ProductsDetails() {
   const { id } = useParams();
@@ -8,23 +11,37 @@ export default function ProductsDetails() {
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w400";
 
+  const [addToCart, setAddToCart] = useState("");
+  const [addToCartButtonStyle, setAddToCartButtonStyle] = useState(
+    "button is-medium is-primary is-fullwidth is-rounded has-text-weight-semibold"
+  );
+  const [buttonDisable, setButtonDisable] = useState(false);
+
+  const addToCartButtonHandler = (e) => {
+    setAddToCart(`"${product.title}" was added to cart!`);
+    setAddToCartButtonStyle(
+      "button is-medium is-primary is-fullwidth is-rounded has-text-weight-semibold"
+    );
+    setButtonDisable(true);
+  };
+
   return (
     <div>
       <section className="section">
         <div className="container">
-          <div className="columns">
+          <div className="columns is-centered">
             <div className="column">
-              <div className="card is-horizontal shadow-md transform is-duration-300 hover-shadow-xl hover-translate-y">
-                <div className="card-image">
-                  <figure className="image">
+              <div className="card is-horizontal shadow-xl transform is-duration-100">
+                <div className="card-image p-4">
+                  <figure className="image ">
                     <img
                       src={`${baseImgUrl}${product.posterPath}`}
                       alt={`Poster for ${product.title}`}
                     ></img>
                   </figure>
                 </div>
-                <div className="card-content p-0 is-flex is-flex-direction-column">
-                  <div className="content p-5 has-text-weight-normal">
+                <div className="card-content p-4 is-flex is-flex-direction-column">
+                  <div className="content p-4 has-text-weight-normal">
                     <div className="is-size-5">
                       <h3>{product.title}</h3>
                     </div>
@@ -32,12 +49,14 @@ export default function ProductsDetails() {
                       {product.overview}
                     </p>
                     <p>
-                      <span className="has-text-weight-semibold">Genres: </span>
+                      <span className="has-text-weight-semibold">
+                        &emsp; &emsp; Genres:{" "}
+                      </span>
                       {product.genres}
                     </p>
                     <p>
                       <span className="has-text-weight-semibold">
-                        Runtime:{" "}
+                        &emsp; &emsp; Runtime:{" "}
                       </span>
                       {product.runtime} minutes
                     </p>
@@ -45,30 +64,31 @@ export default function ProductsDetails() {
                   <div className="content p-5 has-background-info-light">
                     <div className="columns">
                       <div className="column">
-                        <div className="is-size-5">
+                        <div className="is-size-4">
                           <span className="has-text-weight-semibold">
                             Price:
                           </span>{" "}
                           ${product.price.toFixed(2)}
+                          <span className="is-italic is-size-6 has-text-danger pl-5">
+                            {addToCart}
+                          </span>
                         </div>
-                        <div className="is-size-6">
-                          <span className="has-text-primary-dark">
-                            <br />
-                            &#9733;&#9733;&#9733;&#9733;&#9733;
-                          </span>{" "}
-                          10 Reviews
-                        </div>
-                      </div>
-                      <div className="column">
-                        <button className="button is-primary is-normal is-fullwidth has-text-weight-semibold">
-                          Add to Cart
-                        </button>
-                        <br />
-                        <NavLink to="/">
-                          <button className="button is-normal is-fullwidth">
-                            Home
+                        <div>
+                          <br />
+                          <button
+                            className={addToCartButtonStyle}
+                            onClick={addToCartButtonHandler}
+                            disabled={buttonDisable}
+                          >
+                            Add to Cart
                           </button>
-                        </NavLink>
+                          <br />
+                          <NavLink to="/">
+                            <button className="button is-normal is-link is-fullwidth is-rounded">
+                              Home
+                            </button>
+                          </NavLink>
+                        </div>
                       </div>
                     </div>
                     <p className="is-size-7"></p>
