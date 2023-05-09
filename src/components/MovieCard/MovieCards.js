@@ -46,7 +46,7 @@ function MovieCards() {
             .filter((movie) => {
               return (searchTerm.toLowerCase() === ""
                 ? movie
-                : movie.title.toLowerCase().includes(searchTerm) ||
+                : movie.title.toLowerCase().includes(searchTerm) || movie.title.toUpperCase().includes(searchTerm.toUpperCase()) ||
                 movie.genres.toLowerCase().includes(searchTerm) ||
                 movie.releaseDate.includes(searchTerm));
             })
