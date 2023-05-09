@@ -6,21 +6,29 @@ export default function Register() {
   const [values, setValues] = useState({
     email: "",
     password: "",
+    role: "",
     verifyPassword: "",
-    address1: "",
-    address2: "",
+    firstName:"",
+    lastName:"",
+    phoneNumber:"",
+    streetAddress: "",
+    suite: "",
     city: "",
     state: "",
-    tel: "",
+    zipCode:""
   });
 
  
   const saveFormData = async () => {
-    const response = await fetch("/api/registration", {
+    const response = await fetch("http://localhost:8080/register", {
       method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(values),
+      
     });
-    if (response.status !== 200) {
+    if (response.status !== 201) {
       
       throw new Error(`Request failed: ${response.status}`);
 
@@ -112,29 +120,57 @@ export default function Register() {
           </div>
 
           <div className="field">
-            <label className="label">Street Address</label>
+            <label className="label">First Name</label>
             <div className="control">
               <input
                 className="input"
                 type="text"
-                value={values.address1}
+                value={values.firstName}
                 onChange={handleChange}
                 required
-                name="address1"
+                name="firstName"
               />
             </div>
           </div>
 
           <div className="field">
-            <label className="label">Suite or Floor No.</label>
+            <label className="label">Last Name</label>
             <div className="control">
               <input
                 className="input"
                 type="text"
-                value={values.address2}
+                value={values.lastName}
                 onChange={handleChange}
-                name="address2"
-                placeholder="(optional)"
+                required
+                name="lastName"
+              />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Street Address</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                value={values.streetAddress}
+                onChange={handleChange}
+                required
+                name="streetAddress"
+              />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Suite/Apt. Number</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                value={values.suite}
+                onChange={handleChange}
+                required
+                name="suite"
               />
             </div>
           </div>
@@ -168,13 +204,27 @@ export default function Register() {
           </div>
 
           <div className="field">
+            <label className="label">Zip Code</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                value={values.zipCode}
+                onChange={handleChange}
+                name="zipCode"
+                placeholder="(optional)"
+              />
+            </div>
+          </div>
+
+          <div className="field">
             <label className="label">Telephone</label>
             <div className="control">
               <input
                 className="input"
                 type="tel"
-                name="tel"
-                value={values.tel}
+                name="phoneNumber"
+                value={values.phoneNumber}
                 onChange={handleChange}
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required
