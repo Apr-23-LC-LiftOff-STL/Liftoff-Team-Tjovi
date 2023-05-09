@@ -1,4 +1,3 @@
-import { InputGroup } from "react-bootstrap";
 import "./Cart.css";
 import { useState } from "react";
 
