@@ -1,7 +1,7 @@
 import "bulma/css/bulma.css";
 
 import SearchBar from "./SearchBar";
-import GenreSelect from "../GenreSelect/GenreSelect";
+import GenreSelect from "./GenreSelect/GenreSelect";
 import mainLogo from "./Logo_MovieDL_20230426.png";
 
 

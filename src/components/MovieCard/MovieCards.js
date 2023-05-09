@@ -5,6 +5,7 @@ import MovieCard from "./MovieCard.js";
 
 // import search term (Zustand)
 import { useSearchStore } from "../../store/searchStore.js";
+import { useGenreStore } from "../../store/genreStore.js";
 
 function MovieCards() {
   const baseProductUrl = "/products/";
@@ -16,6 +17,7 @@ function MovieCards() {
   const resultsPerPage = 36;
 
   const searchTerm = useSearchStore((state) => state.searchTerm);
+  const genres = useGenreStore((state) => state.genres);
 
   // fetch movies
   useEffect(() => {
