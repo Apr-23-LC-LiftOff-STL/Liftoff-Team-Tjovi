@@ -42,7 +42,7 @@ function MovieCards() {
           />
         </form> */}
         <div className="movie-grid">
-          {movies.slice(0,resultsPerPage)
+          {movies.slice(0,resultsPerPage).sort((a, b) => 0.5 - Math.random())
             .filter((movie) => {
               return (searchTerm.toLowerCase() === ""
                 ? movie
