@@ -233,6 +233,20 @@ export default function Register() {
             </div>
           </div>
 
+          <div className="field">
+            <label className="label">Role</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                value={values.role}
+                onChange={handleChange}
+                required
+                name="role"
+              />
+            </div>
+          </div>
+
           <button className="button is-primary" onClick={onSubmit}>
             Register
           </button>
