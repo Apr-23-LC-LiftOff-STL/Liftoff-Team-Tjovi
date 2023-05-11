@@ -30,10 +30,11 @@
 
 .movie-img {
   width: 100;
+  box-shadow: 0 8px 16px 4px rgba(31, 31, 31, 0.2);
   border-radius: 15px;
 }
 
 .movie-img:hover {
-  box-shadow: 0 8px 16px 4px rgba(0, 255, 162, 0.25);
+  box-shadow: 0 8px 16px 4px rgba(0, 255, 162, 0.35);
   transform: translateY(-5px);
 }

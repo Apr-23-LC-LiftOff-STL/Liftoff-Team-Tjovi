@@ -1,59 +1,51 @@
 import "./Cart.css";
 import { useState } from "react";
+import { useCartStore } from "../../store/cartStore";
 
-const CartItem = () => {
-  const price = 12.98;
+const CartItem = (props) => {
 
-  const [quantity, setQuantity] = useState(0);
-  const [subTotal, setSubtotal] = useState(price * quantity);
+  const cart = useCartStore((state) => state.cart);
 
-  const handleQuantity = (e) => {
-    setQuantity(e.target.value);
-    setSubtotal(quantity * price);
+  const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
+
+  const addToCart = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const cartTotalItems = useCartStore((state) => state.cartTotalItems);
+  const emptyCart = useCartStore((state) => state.emptyCart);
+
+  const addToCartButtonHandler = (e) => {
+    cartTotalItems();
+    console.log(JSON.stringify(cart));
+    addToCart(props.id);
   };
 
-  const removeElement = () => {
-    setQuantity(0);
-    setSubtotal(0);
+  const removeFromCartButtonHandler = (e) => {
+    cartTotalItems();
+    console.log(JSON.stringify(cart));
+    removeFromCart(props.id);
+    //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
+    //setCartMessage(`"${product.title}" was removed from cart!`);
+  };
+
+  const emptyCartButtonHandler = (e) => {
+    emptyCart();
+    //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
+    //setCartMessage("Cart Emptied");
   };
 
   return (
-    <div>
-      <ul className="shopping-cart">
-        <li className="sp-product-row">
-          <div className="sp-product-image">
-            <img src="https://fakeimg.pl/100x150/" />
-          </div>
+    <div className="card">
+      <div>
+        Movie ID: {props.id}{" "}Count: {props.count}
+      </div>
+      <div>
+        <button className="button is-primary is-small" onClick={addToCartButtonHandler}> + </button>
+        <button className="button is-warning is-small" onClick={removeFromCartButtonHandler}> - </button>
+        <button className="button is-danger is-small">X</button>
+      </div>
+      <div>
 
-          <div className="sp-product-details">
-            <h3 className="sp-product-title">The Great Escape</h3>
-            <div className="sp-product-description">2009</div>
-          </div>
-          <form
-            className="sp-product-manage"
-            oninput="total.value=parseInt(price.value)*parseInt(quantity.value)"
-          >
-            <input id="price" readonly className="sp-product-price" />${price} x
-            <input
-              value={quantity}
-              onChange={handleQuantity}
-              id="quantity"
-              className="sp-product-quantity"
-              type="number"
-              min="0"
-            />
-            <output id="total" className="sp-product-total-price">
-              ${subTotal}
-            </output>
-            <button
-              className="button is-danger is-light is-small"
-              onClick={removeElement}
-            >
-              X
-            </button>
-          </form>
-        </li>
-      </ul>
+      </div>
     </div>
   );
 };
