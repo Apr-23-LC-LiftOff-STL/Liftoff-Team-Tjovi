@@ -15,20 +15,20 @@ import axios from "axios"
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user, setUser] = useState()
+    const [customer, setCustomer] = useState()
 
   
   useEffect(() => {
-      const loggedInUser = localStorage.getItem("user");
-      if (loggedInUser) {
-        const foundUser = JSON.parse(loggedInUser);
-        setUser(foundUser);
+      const loggedInCustomer = localStorage.getItem("customer");
+      if (loggedInCustomer) {
+        const foundCustomer = JSON.parse(loggedInCustomer);
+        setCustomer(foundCustomer);
       }
     }, []);
 
-       // logout the user
+       // logout the customer
        const handleLogout = () => {
-        setUser({});
+        setCustomer({});
         setEmail("");
         setPassword("");
         localStorage.clear();
@@ -38,32 +38,32 @@ import axios from "axios"
     
     const handleSubmit = async e => {
       e.preventDefault();
-      const user = { email, password };
+      const customer = { email, password };
       const response = await axios.post(
         'http://localhost:8080/login',
-        user
+        customer
       );
       
-      // Set the state of the user
-      setUser(response.data)
+      // Set the state of the customer
+      setCustomer(response.data)
 
-      // Store the user in localStorage
-      localStorage.setItem("user", JSON.stringify(response.data))
+      // Store the customer in localStorage
+      localStorage.setItem("customer", JSON.stringify(response.data))
       
     };
 
-    // if there's a user show the message below
-    if (user) {
+    // if there's a customer show the message below
+    if (customer) {
       return (
         <div>
-          {user.name} is loggged in
+          {email} is loggged in
           <button onClick={ handleLogout }>logout</button>
         </div>
       );
     } 
 
     
-    // if there's no user, show the login form
+    // if there's no customer, show the login form
     return (
       <form onSubmit={handleSubmit}>
         <label htmlFor="email"> Email: </label>
