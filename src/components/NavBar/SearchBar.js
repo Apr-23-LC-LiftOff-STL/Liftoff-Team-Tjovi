@@ -9,7 +9,7 @@ const SearchBar = () => {
 
   return (
     <div>
-      <input className="input is-success" placeHolder="Search Movies" text onChange={handleChange} />
+      <input className="input is-success is-size-6" placeHolder="Search Movies" text onChange={handleChange} />
     </div>
   );
 };

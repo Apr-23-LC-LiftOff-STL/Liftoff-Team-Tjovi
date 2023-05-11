@@ -47,7 +47,7 @@ const GenreSelect = () => {
   const animatedComponents = makeAnimated();
 
   return (
-    <div style={{width: '300px'}}>
+    <div className={{width: '300px'}}>
       <Select
       name="genre-select"
       placeholder="Filter by Genre"

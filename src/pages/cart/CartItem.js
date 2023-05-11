@@ -2,6 +2,11 @@ import "./Cart.css";
 import { useState } from "react";
 import { useCartStore } from "../../store/cartStore";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { faSubtract } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
+
 const CartItem = (props) => {
 
   const cart = useCartStore((state) => state.cart);
@@ -39,9 +44,9 @@ const CartItem = (props) => {
         Movie ID: {props.id}{" "}Count: {props.count}
       </div>
       <div>
-        <button className="button is-primary is-small" onClick={addToCartButtonHandler}> + </button>
-        <button className="button is-warning is-small" onClick={removeFromCartButtonHandler}> - </button>
-        <button className="button is-danger is-small">X</button>
+        <button className="button is-primary is-small" onClick={addToCartButtonHandler}><FontAwesomeIcon icon={faAdd} /></button>
+        <button className="button is-warning is-small" onClick={removeFromCartButtonHandler}><FontAwesomeIcon icon={faSubtract} /></button>
+        <button className="button is-danger is-small"><FontAwesomeIcon icon={faX} /></button>
       </div>
       <div>
 

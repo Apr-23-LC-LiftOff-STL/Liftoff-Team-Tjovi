@@ -35,6 +35,6 @@
 }
 
 .movie-img:hover {
-  box-shadow: 0 8px 16px 4px rgba(0, 255, 162, 0.35);
+  box-shadow: 0 8px 16px 4px rgba(0, 255, 162, 0.4);
   transform: translateY(-5px);
 }

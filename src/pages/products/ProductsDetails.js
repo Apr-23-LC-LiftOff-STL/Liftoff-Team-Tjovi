@@ -3,6 +3,12 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./Products.css";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { faSubtract } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+
 // Styling originated from:  https://responsive-bulma-cards.netlify.app/ - example #5
 
 import { useCartStore } from "../../store/cartStore";
@@ -100,24 +106,24 @@ export default function ProductsDetails() {
                             className="button is-normal is-primary is-rounded has-text-weight-semibold"
                             onClick={addToCartButtonHandler}
                           >
-                            Add to Cart
+                            <FontAwesomeIcon icon={faAdd} />&nbsp; Add to Cart
                           </button>
                           <button
                             className="button is-normal is-warning is-rounded"
                             onClick={removeFromCartButtonHandler}
                           >
-                            Remove From Cart
+                            <FontAwesomeIcon icon={faSubtract} />&nbsp; Remove From Cart
                           </button>
                           <button
                             className="button is-danger is-normal is-rounded"
                             onClick={emptyCartButtonHandler}
                             disabled={buttonDisabled}
                           >
-                            Empty Cart
+                            <FontAwesomeIcon icon={faX} />&nbsp; Empty Cart
                           </button>
                           <NavLink to="/">
                             <button className="button is-normal is-link is-rounded">
-                              Home
+                            <FontAwesomeIcon icon={faHome} />&nbsp; Home
                             </button>
                           </NavLink>
                         </div>

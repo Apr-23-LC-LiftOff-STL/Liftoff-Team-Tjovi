@@ -4,6 +4,9 @@ import SearchBar from "./SearchBar";
 import GenreSelect from "./GenreSelect/GenreSelect";
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = () => {
   
@@ -48,7 +51,7 @@ const NavBar = () => {
                 Log in
               </a>
                 <div class="navbar-item has-dropdown is-hoverable">
-                  <a class="navbar-link">Account</a>
+                  <a class="navbar-link">Account &nbsp; <FontAwesomeIcon icon={faUser} /></a>
                   <div className="navbar-dropdown is-right">
                     <a className="navbar-item" href="/account/profile">My Profile</a>
                     <a className="navbar-item" href="/account/orders">Account History</a>
@@ -57,7 +60,7 @@ const NavBar = () => {
                 </div>
               </div>
               <a className="button is-light" href="/cart">
-              🛒
+              <FontAwesomeIcon icon={faCartShopping} />
             </a>
             </div>
           </div>
