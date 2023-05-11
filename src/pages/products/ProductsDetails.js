@@ -20,8 +20,9 @@ export default function ProductsDetails() {
   const cart = useCartStore((state) => state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const cartTotalItems = useCartStore((state) => state.cartTotalItems);
-  const moviesInCart = cart.find((f) => f.id === id)?.count || 0;
+  const cartTotalAllItems = useCartStore((state) => state.cartTotalAllItems);
+  const cartTotalThisItem = useCartStore((state) => state.cartTotalThisItem);
+  //const moviesInCart = cart.find((f) => f.id === id)?.count || 0;
   const emptyCart = useCartStore((state) => state.emptyCart);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
@@ -31,15 +32,17 @@ export default function ProductsDetails() {
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const addToCartButtonHandler = (e) => {
-    cartTotalItems();
+    cartTotalAllItems();
+    cartTotalThisItem();
     console.log(JSON.stringify(cart));
     addToCart(product.id);
     setCartMessageStyle("is-italic is-size-6 has-text-primary pl-5");
-    setCartMessage(`"${product.title}" was added to cart!`);
+    setCartMessage(`"${product.title}" was added to cart! ${cartTotalThisItem}`);
   };
 
   const removeFromCartButtonHandler = (e) => {
-    cartTotalItems();
+    cartTotalAllItems();
+    cartTotalThisItem();
     console.log(JSON.stringify(cart));
     removeFromCart(product.id);
     setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");

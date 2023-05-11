@@ -15,17 +15,17 @@ const CartItem = (props) => {
 
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const cartTotalItems = useCartStore((state) => state.cartTotalItems);
+  const cartTotalAllItems = useCartStore((state) => state.cartTotalAllItems);
   const emptyCart = useCartStore((state) => state.emptyCart);
 
   const addToCartButtonHandler = (e) => {
-    cartTotalItems();
+    cartTotalAllItems();
     console.log(JSON.stringify(cart));
     addToCart(props.id);
   };
 
   const removeFromCartButtonHandler = (e) => {
-    cartTotalItems();
+    cartTotalAllItems();
     console.log(JSON.stringify(cart));
     removeFromCart(props.id);
     //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");

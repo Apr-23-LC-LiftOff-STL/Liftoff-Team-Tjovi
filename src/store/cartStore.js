@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 export const useCartStore = create(
   persist((set, get) => ({
-    cart: [],
+    cart:[],
     addToCart: (id) =>
       set((state) => {
         const isPresent = state.cart.find((movies) => movies.id === id);
@@ -60,8 +60,12 @@ export const useCartStore = create(
         };
       }),
 
-    cartTotalItems: () => {
+    cartTotalAllItems: () => {
       console.log(`Number of unique movies in cart: ${get().cart.length}`);
+    },
+
+    cartTotalThisItem: () => {
+      console.log(`Number of this movie in cart: ${get().cart.length}`); // TODO: need proper logic here
     },
 
     fetchMovies: async () => {

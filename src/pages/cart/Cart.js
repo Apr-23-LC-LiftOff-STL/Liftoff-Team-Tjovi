@@ -12,17 +12,17 @@ const Cart = () => {
 
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const cartTotalItems = useCartStore((state) => state.cartTotalItems);
+  const cartTotalAllItems = useCartStore((state) => state.cartTotalAllItems);
   const emptyCart = useCartStore((state) => state.emptyCart);
 
   const addToCartButtonHandler = (e) => {
-    cartTotalItems();
+    cartTotalAllItems();
     console.log(JSON.stringify(cart));
     addToCart(cart.id);
   };
 
   const removeFromCartButtonHandler = (e) => {
-    cartTotalItems();
+    cartTotalAllItems();
     console.log(JSON.stringify(cart));
     removeFromCart(cart.id);
     //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
@@ -48,7 +48,7 @@ const Cart = () => {
               </column>
               <column className="column">
               <div>
-                  Movie ID: {product.id} Count: {product.count}
+                  Movie ID: {product.id} Amount in Cart: {product.count}
                 </div>
                 <div>
                 <div className="card">
