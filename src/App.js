@@ -13,13 +13,14 @@ import Contact, { contactAction } from './pages/help/Contact'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
-import Cart from './pages/Cart'
+
 import NotFound from './pages/NotFound'
 import Products, { productsLoader } from './pages/products/Products'
 import ProductsDetails, { productsDetailsLoader } from "./pages/products/ProductsDetails"
 import ProductsError from './pages/products/ProductsError'
 import Orders from './pages/Orders.js'
 import Profile from './pages/Profile.js'
+import CartLayout from './layouts/CartLayout'
 
 // layouts
 import RootLayout from './layouts/RootLayout'
@@ -42,7 +43,7 @@ const router = createBrowserRouter(
         <Route path="orders" element={<Orders />} />
         <Route path="profile" element={<Profile />} />
       </Route>
-      <Route path="cart" element={<Cart />} />
+      <Route path="cart" element={<CartLayout />} />
       <Route path="products" element={<ProductsLayout />} errorElement={<ProductsError />}>
         <Route 
           index 
