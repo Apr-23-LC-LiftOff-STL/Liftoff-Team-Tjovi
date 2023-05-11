@@ -13,6 +13,41 @@ export default function Login() {
       [e.target.name]: value,
     });
   };
+   const saveLoginData = async () => {
+    const response = await fetch("http://localhost:8080/user", {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+      
+    });
+    if (response.status !== 201) {
+      
+      throw new Error(`Request failed: ${response.status}`);
+
+    }
+  };
+  const onSubmit = async (event) => {
+    console.log("you are here");
+   
+    event.preventDefault();
+    if (values.password !== values.verifyPassword) {
+     
+    } else {
+      try {
+         await saveLoginData();
+        alert("Your login was successful");
+        
+        
+       
+        navigate("/");
+      } catch (e) {
+        alert(`Login failed! ${e.message}`);
+        console.log("Failed");
+      }
+    }
+
   return (
     <div>
       <div>
@@ -47,9 +82,10 @@ export default function Login() {
           </div>
         </div>
 
-        <button className="button is-primary">Sign in</button>
+        <button className="button is-primary"onClick={onSubmit}>Sign in</button>
         <button className="button is-light">Forgot Password?</button>
       </form>
     </div>
   );
+}
 }
