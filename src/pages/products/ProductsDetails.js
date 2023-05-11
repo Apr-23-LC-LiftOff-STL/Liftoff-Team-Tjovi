@@ -4,6 +4,7 @@ export default function ProductsDetails() {
   const { id } = useParams();
   const product = useLoaderData();
 
+
   return (
     <div className="card">
       <div class="card-content">

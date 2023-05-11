@@ -10,12 +10,11 @@ import axios from "axios"
 //   });
 
 
-
   const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [customer, setCustomer] = useState()
+    const [customer, setCustomer] = useState();
 
   
   useEffect(() => {
@@ -23,6 +22,7 @@ import axios from "axios"
       if (loggedInCustomer) {
         const foundCustomer = JSON.parse(loggedInCustomer);
         setCustomer(foundCustomer);
+        
       }
     }, []);
 
@@ -46,10 +46,10 @@ import axios from "axios"
       
       // Set the state of the customer
       setCustomer(response.data)
+     
 
       // Store the customer in localStorage
       localStorage.setItem("customer", JSON.stringify(response.data))
-      
     };
 
     // if there's a customer show the message below
