@@ -43,6 +43,7 @@ public class ProjectSecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
+                    .requestMatchers("/movies/products/edit").hasAuthority("EDITPRODUCT")
                     .requestMatchers("/movies/{id}", "/account**").authenticated()
                     .requestMatchers("/movies", "/login", "/register").permitAll()
                 .and().formLogin()
