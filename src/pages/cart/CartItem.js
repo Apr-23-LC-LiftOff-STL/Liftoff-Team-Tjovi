@@ -2,16 +2,15 @@ import "./Cart.css";
 import { useState } from "react";
 import { useCartStore } from "../../store/cartStore";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 const CartItem = (props) => {
-
   const cart = useCartStore((state) => state.cart);
 
-  const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
+  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -40,16 +39,35 @@ const CartItem = (props) => {
 
   return (
     <div className="card">
+      <div>(CartItem component**)</div>
+      <div>Movie Image</div>
+      <div className="is-size-5">Movie Name (2009)</div>
       <div>
-        Movie ID: {props.id}{" "}Count: {props.count}
+        Movie ID: {props.id} Count: {props.count}
       </div>
       <div>
-        <button className="button is-primary is-small" onClick={addToCartButtonHandler}><FontAwesomeIcon icon={faAdd} /></button>
-        <button className="button is-warning is-small" onClick={removeFromCartButtonHandler}><FontAwesomeIcon icon={faSubtract} /></button>
-        <button className="button is-danger is-small"><FontAwesomeIcon icon={faX} /></button>
-      </div>
-      <div>
-
+        <button
+          className="button is-primary is-small"
+          onClick={addToCartButtonHandler}
+        >
+          <FontAwesomeIcon icon={faAdd} />
+        </button>
+        <input
+          className="input is-small has-text-centered"
+          style={{ width: "6%" }}
+          number
+          value={props.count}
+          readOnly
+        />
+        <button
+          className="button is-warning is-small"
+          onClick={removeFromCartButtonHandler}
+        >
+          <FontAwesomeIcon icon={faSubtract} />
+        </button>
+        <button className="button is-danger is-small">
+          <FontAwesomeIcon icon={faX} />
+        </button>
       </div>
     </div>
   );

@@ -49,8 +49,6 @@ export const useCartStore = create(
         };
       }),
 
-      // TODO:  need a "removeAllThisMovie" function
-
       emptyCart: () =>
       set((state) => {
 
@@ -65,7 +63,7 @@ export const useCartStore = create(
     },
 
     cartTotalThisItem: () => {
-      console.log(`Number of this movie in cart: ${get().cart.length}`); // TODO: need proper logic here
+      console.log(`Number of this movie in cart: ${get().cart.length}`);
     },
 
     fetchMovies: async () => {

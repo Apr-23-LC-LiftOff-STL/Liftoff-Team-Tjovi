@@ -2,7 +2,7 @@ import "./Cart.css";
 import CartItem from "./CartItem.js";
 import { useCartStore } from "../../store/cartStore";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
@@ -37,44 +37,57 @@ const Cart = () => {
 
   return (
     <div>
+    <div>
       {cart.map((product) => {
         if (cart[product.id] !== 0) {
           return (
             <div>
-            <columns className="columns">
-              <column className="column">
-              <i class="fa-solid fa-user"></i>
-              <CartItem key={product.id} title={product.count} />
-              </column>
-              <column className="column">
-              <div>
-                  Movie ID: {product.id} Amount in Cart: {product.count}
-                </div>
-                <div>
-                <div className="card">
-                  <button
-                    className="button is-primary is-small"
-                    onClick={addToCartButtonHandler}
-                  >
-                    <FontAwesomeIcon icon={faAdd} />
-                  </button>
-                  <button
-                    className="button is-warning is-small"
-                    onClick={removeFromCartButtonHandler}
-                  >
-                    <FontAwesomeIcon icon={faSubtract} />
-                  </button>
-                  <button className="button is-danger is-small"><FontAwesomeIcon icon={faX} /></button>
-                </div>
-                <div></div>
-              </div>
-              </column>
-            </columns>
-
+              <columns className="columns">
+                <column className="column">
+                  <CartItem key={product.id} title={product.count} />
+                </column>
+                <column className="column">
+                  <div>(Cart component**)</div>
+                  <div>Movie ID: {product.id}</div>
+                  <div>
+                    <div className="card">
+                      <button
+                        className="button is-primary is-small"
+                        onClick={addToCartButtonHandler}
+                      >
+                        <FontAwesomeIcon icon={faAdd} />
+                      </button>
+                      <input
+                        className="input is-small has-text-centered"
+                        style={{ width: "6%" }}
+                        number
+                        value={product.count}
+                        readOnly
+                      />
+                      <button
+                        className="button is-warning is-small"
+                        onClick={removeFromCartButtonHandler}
+                      >
+                        <FontAwesomeIcon icon={faSubtract} />
+                      </button>
+                      <button className="button is-danger is-small">
+                        <FontAwesomeIcon icon={faX} />
+                      </button>
+                    </div>
+                  </div>
+                </column>
+              </columns>
             </div>
           );
         }
       })}
+    </div>
+    <button
+                            className="button is-danger is-normal is-rounded"
+                            onClick={emptyCartButtonHandler}
+                          >
+                            <FontAwesomeIcon icon={faX} />&nbsp; Empty Cart
+                          </button>
     </div>
   );
 };

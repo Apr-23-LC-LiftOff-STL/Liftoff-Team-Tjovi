@@ -109,13 +109,13 @@ export default function ProductsDetails() {
                             className="button is-normal is-primary is-rounded has-text-weight-semibold"
                             onClick={addToCartButtonHandler}
                           >
-                            <FontAwesomeIcon icon={faAdd} />&nbsp; Add to Cart
+                            <FontAwesomeIcon icon={faAdd} />&nbsp; To Cart
                           </button>
                           <button
                             className="button is-normal is-warning is-rounded"
                             onClick={removeFromCartButtonHandler}
                           >
-                            <FontAwesomeIcon icon={faSubtract} />&nbsp; Remove From Cart
+                            <FontAwesomeIcon icon={faSubtract} />&nbsp; From Cart
                           </button>
                           <button
                             className="button is-danger is-normal is-rounded"
