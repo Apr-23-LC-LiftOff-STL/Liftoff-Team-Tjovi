@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 
 export default function ProductsDetails() {
   const { id } = useParams();
@@ -13,7 +13,7 @@ export default function ProductsDetails() {
               <img
                 src={product.posterPath}
                 alt="movie poster"
-              ></img>
+              />
             </figure>
           </div>
         </div>
@@ -37,7 +37,7 @@ export default function ProductsDetails() {
 export const productsDetailsLoader = async ({ params }) => {
   const { id } = params;
 
-  const res = await fetch('http://localhost:8080/' + id);
+  const res = await fetch('http://localhost:8080/movies/' + id);
 
   if (!res.ok) {
     throw Error("Could not find that product.");
