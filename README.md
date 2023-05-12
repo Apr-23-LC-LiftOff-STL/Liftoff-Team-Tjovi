@@ -15,13 +15,13 @@ Web-based e-commerce application in which users can search/sort available produc
 ***
 
 ### Tech Stack, Front End:
-[ReactJS](https://react.dev/) (JavaScript, JSX, CSS3)  
-[React Router](https://www.npmjs.com/package/react-router-dom)  
-[Zustand](https://github.com/pmndrs/zustand)  
-[Bulma](https://bulma.io)  
-[FontAwesome Icons](https://fontawesome.com/icons)  
+[ReactJS](https://react.dev/) - JavaScript, JSX, CSS3  
+[React Router](https://www.npmjs.com/package/react-router-dom) (routing)  
+[Zustand](https://github.com/pmndrs/zustand) (state management)  
+[Bulma](https://bulma.io) (styling)  
+[FontAwesome Icons](https://fontawesome.com/icons) (styling)  
   
 ### Tech Stack, Back End:
-[Spring](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html) (Java)  
-[Spring Security](https://docs.spring.io/spring-security/reference/index.html)  
-[MySQL](https://www.mysql.com)  
+[Spring](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html)  - Java  
+[Spring Security](https://docs.spring.io/spring-security/reference/index.html)  (authentication/authorization)  
+[MySQL](https://www.mysql.com) (database)  
