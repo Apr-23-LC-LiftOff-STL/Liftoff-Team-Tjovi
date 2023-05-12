@@ -3,6 +3,8 @@
 ### Project Overview
 Web-based e-commerce application in which users can search/sort available products (digital downloads of movie titles), add products to cart, purchase items, receive "download codes" and review account history for past purchases.  Users can register an account, log in, edit profile information, log out.
 
+Project ideated and built as a group project in [LaunchCode](https://www.launchcode.org) "LiftOff" educational program, 2023/04 - 2023/06.
+
 ***
 
 ### Features:
