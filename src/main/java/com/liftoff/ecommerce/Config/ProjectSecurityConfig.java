@@ -39,12 +39,12 @@ public class ProjectSecurityConfig {
                config.setMaxAge(3L);
                return config;
             }
-        }).and().csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/register")
+        }).and().csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/register", "/login")
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
                     .requestMatchers("/movies/{id}").authenticated()
-                    .requestMatchers("/movies", "/login", "/register").permitAll()
+                    .requestMatchers("/movies","/register").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
         return http.build();
