@@ -16,7 +16,7 @@ import java.util.Optional;
 
 import static java.lang.Thread.sleep;
 
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000/products/**")
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
