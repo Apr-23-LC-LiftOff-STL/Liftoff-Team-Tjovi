@@ -2,6 +2,11 @@ import { Outlet, NavLink } from "react-router-dom";
 import "bulma/css/bulma.css";
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -14,18 +19,15 @@ const Footer = () => {
           <br />
           St. Louis, MO 63108
           <br />
-          (314) 254-0107
+          (314) 254-0107 &nbsp;
+          <FontAwesomeIcon icon={faPhone} />
         </p>
         <div class="tabs is-centered">
           <ul>
             <li>
               <NavLink className="card-footer-item" to="/">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="card-footer-item" to="help">
-                Customer Service
+              <FontAwesomeIcon icon={faHome} />
+              &nbsp; Home
               </NavLink>
             </li>
             <li>
@@ -33,6 +35,12 @@ const Footer = () => {
                 About
               </NavLink>
             </li>
+            <li>
+              <NavLink className="card-footer-item" to="help">
+                Customer Service
+              </NavLink>
+            </li>
+
           </ul>
         </div>
         <div className="content has text-centered"></div>

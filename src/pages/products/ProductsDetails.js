@@ -3,26 +3,56 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./Products.css";
 
-// https://responsive-bulma-cards.netlify.app/ - example #5
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { faSubtract } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+
+// Styling originated from:  https://responsive-bulma-cards.netlify.app/ - example #5
+
+import { useCartStore } from "../../store/cartStore";
 
 export default function ProductsDetails() {
   const { id } = useParams();
   const product = useLoaderData();
 
-  const baseImgUrl = "https://image.tmdb.org/t/p/w400";
+  const cart = useCartStore((state) => state.cart);
+  const addToCart = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const cartTotalAllItems = useCartStore((state) => state.cartTotalAllItems);
+  const cartTotalThisItem = useCartStore((state) => state.cartTotalThisItem);
+  //const moviesInCart = cart.find((f) => f.id === id)?.count || 0;
+  const emptyCart = useCartStore((state) => state.emptyCart);
 
-  const [addToCart, setAddToCart] = useState("");
-  const [addToCartButtonStyle, setAddToCartButtonStyle] = useState(
-    "button is-medium is-primary is-fullwidth is-rounded has-text-weight-semibold"
-  );
-  const [buttonDisable, setButtonDisable] = useState(false);
+  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+
+  const [cartMessage, setCartMessage] = useState("");
+  const [cartMessageStyle, setCartMessageStyle] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const addToCartButtonHandler = (e) => {
-    setAddToCart(`"${product.title}" was added to cart!`);
-    setAddToCartButtonStyle(
-      "button is-medium is-primary is-fullwidth is-rounded has-text-weight-semibold"
-    );
-    setButtonDisable(true);
+    cartTotalAllItems();
+    cartTotalThisItem();
+    console.log(JSON.stringify(cart));
+    addToCart(product.id);
+    setCartMessageStyle("is-italic is-size-6 has-text-primary pl-5");
+    setCartMessage(`"${product.title}" was added to cart! ${cartTotalThisItem}`);
+  };
+
+  const removeFromCartButtonHandler = (e) => {
+    cartTotalAllItems();
+    cartTotalThisItem();
+    console.log(JSON.stringify(cart));
+    removeFromCart(product.id);
+    setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
+    setCartMessage(`"${product.title}" was removed from cart!`);
+  };
+
+  const emptyCartButtonHandler = (e) => {
+    emptyCart();
+    setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
+    setCartMessage("Cart Emptied");
   };
 
   return (
@@ -68,24 +98,35 @@ export default function ProductsDetails() {
                           <span className="has-text-weight-semibold">
                             Price:
                           </span>{" "}
-                          ${product.price.toFixed(2)}
-                          <span className="is-italic is-size-6 has-text-danger pl-5">
-                            {addToCart}
+                          <span>${product.price.toFixed(2)}</span>
+                          <span className={cartMessageStyle}>
+                            {cartMessage}
                           </span>
                         </div>
+
                         <div>
-                          <br />
                           <button
-                            className={addToCartButtonStyle}
+                            className="button is-normal is-primary is-rounded has-text-weight-semibold"
                             onClick={addToCartButtonHandler}
-                            disabled={buttonDisable}
                           >
-                            Add to Cart
+                            <FontAwesomeIcon icon={faAdd} />&nbsp; To Cart
                           </button>
-                          <br />
+                          <button
+                            className="button is-normal is-warning is-rounded"
+                            onClick={removeFromCartButtonHandler}
+                          >
+                            <FontAwesomeIcon icon={faSubtract} />&nbsp; From Cart
+                          </button>
+                          <button
+                            className="button is-danger is-normal is-rounded"
+                            onClick={emptyCartButtonHandler}
+                            disabled={buttonDisabled}
+                          >
+                            <FontAwesomeIcon icon={faX} />&nbsp; Empty Cart
+                          </button>
                           <NavLink to="/">
-                            <button className="button is-normal is-link is-fullwidth is-rounded">
-                              Home
+                            <button className="button is-normal is-link is-rounded">
+                            <FontAwesomeIcon icon={faHome} />&nbsp; Home
                             </button>
                           </NavLink>
                         </div>
