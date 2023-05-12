@@ -5,7 +5,9 @@ Web-based e-commerce application in which users can search/sort available produc
 
 Project ideated and built as a group project in [LaunchCode](https://www.launchcode.org) "LiftOff" educational program, 2023/04 - 2023/06.
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2" "Logo Title Text 2"
+<img src="https://www.launchcode.org/assets/dabomb-562825789d0850a41ddd8ef7eb0d0222d9ef99cd54594ee5e820cb6070fb9477.svg"
+     alt="LaunchCode logo"
+     style="float: left; margin-right: 10px;" />
 
 ***
 
