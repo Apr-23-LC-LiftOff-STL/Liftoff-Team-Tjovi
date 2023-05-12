@@ -4,6 +4,7 @@ import "bulma/css/bulma.css";
 export default function Products() {
   const { id } = useParams();
   const products = useLoaderData();
+  
 
   return (
     <div className="card">
