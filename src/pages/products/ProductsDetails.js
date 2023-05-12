@@ -25,6 +25,7 @@ export default function ProductsDetails() {
     fetchProduct();
   }, [id]);
 
+
   return (
     <div className="card">
       <div class="card-content">

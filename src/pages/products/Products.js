@@ -4,7 +4,6 @@ import "bulma/css/bulma.css";
 export default function Products() {
   const { id } = useParams();
   const products = useLoaderData();
-  
 
   return (
     <div className="card">
@@ -33,10 +32,11 @@ export default function Products() {
 }
 
 // data loader
+
 export const productsLoader = async ({ params }) => {
   const { id } = params;
 
-  const res = await fetch('http://localhost:8080/movies');
+  const res = await fetch('http://localhost:8080/movies/' + + id);
 
   if (!res.ok) {
     throw Error("Could not fetch the list of products");
