@@ -33,7 +33,7 @@ export default function Login() {
     console.log("you are here");
    
     event.preventDefault();
-    if (values.password !== values.verifyPassword) {
+    if (values.email !== values.verifyPassword ) {
      
     } else {
       try {
