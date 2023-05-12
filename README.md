@@ -5,7 +5,7 @@ Web-based e-commerce application in which users can search/sort available produc
 
 ***
 
-### H3 Features:
+### Features:
 - user registration, login and profile pages
 - interaction with TMDB (The Movie Database) API
 - product browsing & product details pages per product
