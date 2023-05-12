@@ -6,7 +6,6 @@ Web-based e-commerce application in which users can search/sort available produc
 ***
 
 ### H3 Features:
-***
 - user registration, login and profile pages
 - interaction with TMDB (The Movie Database) API
 - product browsing & product details pages per product
@@ -16,7 +15,6 @@ Web-based e-commerce application in which users can search/sort available produc
 ***
 
 ### Tech Stack, Front End:
-***
 [ReactJS](https://react.dev/) (JavaScript, JSX, CSS3)
 [React Router](https://www.npmjs.com/package/react-router-dom)
 [Zustand](https://github.com/pmndrs/zustand)
@@ -24,7 +22,6 @@ Web-based e-commerce application in which users can search/sort available produc
 [FontAwesome Icons](https://fontawesome.com/icons)
   
 ### Tech Stack, Back End:
-***
 [Spring](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html) (Java)
 [Spring Security](https://docs.spring.io/spring-security/reference/index.html)
 [MySQL](https://www.mysql.com)
