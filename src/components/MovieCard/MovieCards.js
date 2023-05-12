@@ -3,14 +3,21 @@ import axios from "axios";
 //import data from "./data.js";
 import MovieCard from "./MovieCard.js";
 
+// import search term (Zustand)
+import { useSearchStore } from "../../store/searchStore.js";
+import { useGenreStore } from "../../store/genreStore.js";
+
 function MovieCards() {
   const baseProductUrl = "/products/";
 
-  const [search, setSearch] = useState("");
+  //const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
-
+ 
   const [currentPage, setCurrentPage] = useState(0);
   const resultsPerPage = 36;
+
+  const searchTerm = useSearchStore((state) => state.searchTerm);
+  const selectedGenres = (useGenreStore((state) => state.seletedGenres));
 
   // fetch movies
   useEffect(() => {
@@ -28,20 +35,20 @@ function MovieCards() {
   return (
     <div>
       <div>
-        <form>
+{/*         <form>
           <input
             onChange={(e) => setSearch(e.target.value.toLowerCase())}
             placeholder="Search Movies"
           />
-        </form>
+        </form> */}
         <div className="movie-grid">
-          {movies.slice(0,resultsPerPage)
+          {movies.slice(0,resultsPerPage).sort((a, b) => 0.5 - Math.random())
             .filter((movie) => {
-              return search.toLowerCase() === ""
+              return (searchTerm.toLowerCase() === ""
                 ? movie
-                : movie.title.toLowerCase().includes(search) ||
-                movie.genres.toLowerCase().includes(search) ||
-                movie.releaseDate.includes(search);
+                : movie.title.toLowerCase().includes(searchTerm) || movie.title.toUpperCase().includes(searchTerm.toUpperCase()) ||
+                movie.genres.toLowerCase().includes(searchTerm) ||
+                movie.releaseDate.includes(searchTerm));
             })
             .map((movie) => (
               <a href={`${baseProductUrl}${movie.id}`}>

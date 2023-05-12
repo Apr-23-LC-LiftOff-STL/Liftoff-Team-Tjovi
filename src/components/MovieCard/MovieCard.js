@@ -19,14 +19,13 @@ const MovieCard = ({ title, posterPath }) => {
 
   return (
     <div className="movie-card">
-      <div className="movie-img">
+
+      <div>
         {posterPath && (
-          <img src={`${baseImgUrl}${posterPath}`} alt={`Poster for ${title}`} />
+          <img className="movie-img" src={`${baseImgUrl}${posterPath}`} alt={`Poster for ${title}`} />
         )}
       </div>
-      <div className="movie-card-black">
-        <div className="">{createShortcut(title, 40)}</div>
-      </div>
+      <div className="movie-card-title">{createShortcut(title, 40)}</div>
     </div>
   );
 };

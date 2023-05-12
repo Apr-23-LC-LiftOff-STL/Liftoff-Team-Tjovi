@@ -1,12 +1,23 @@
 import Select from "react-select"; // npm install react-select
 import makeAnimated from 'react-select/animated';
+import { useGenreStore } from "../../../store/genreStore";
 import { useState } from "react";
 
 // Getting started with React Select
 // https://blog.logrocket.com/getting-started-react-select/
 
 const GenreSelect = () => {
-  const options = [
+
+  const setSelectedGenres = useGenreStore((state) => state.setSelectedGenres);
+
+  const handleChange = (selectedGenres) => {
+    let arrGenres = [];
+    arrGenres.push(selectedGenres);
+    setSelectedGenres(arrGenres); // logic may need to change for this
+    console.log(`Genre(s) selected:`, arrGenres);
+  };
+  
+  const genres = [
     { value: "Action", label: "Action" },
     { value: "Animation", label: "Animation" },
     { value: "Adventure", label: "Adventure" },
@@ -26,24 +37,24 @@ const GenreSelect = () => {
     { value: "War", label: "War" },
   ];
 
-  const [selectedOptions, setSelectedOptions] = useState("");
+  //const [selectedGenres, setSelectedGenres] = useState("");
 
-  var handleChange = (selectedOptions) => {
-    console.log(selectedOptions);
-    setSelectedOptions(selectedOptions.value);
-  };
+/*   const handleChange = (selectedGenres) => {
+    console.log(selectedGenres);
+    setSelectedOptions(selectedGenres.value);
+  }; */
 
   const animatedComponents = makeAnimated();
 
   return (
-    <div style={{width: '300px'}}>
+    <div className={{width: '300px'}}>
       <Select
       name="genre-select"
       placeholder="Filter by Genre"
         components={animatedComponents}
         isMulti
         onChange={handleChange}
-        options={options}
+        options={genres}
       />
     </div>
   );
