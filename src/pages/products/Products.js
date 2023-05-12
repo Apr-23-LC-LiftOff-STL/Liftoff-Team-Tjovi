@@ -21,7 +21,7 @@ export default function Products() {
           </div>
           <div class="card-content">
             <p class="title is-4">{products.title}</p>
-            <p class="subtitle is-6">({products.releaseDate.slice(0, 4)})</p>
+            
               <p>Genres: {products.genres}</p>
               <p>Runtime: {products.runtime} minutes</p>
               <p>Price: ${products.price}</p>
@@ -36,7 +36,7 @@ export default function Products() {
 export const productsLoader = async ({ params }) => {
   const { id } = params;
 
-  const res = await fetch('http://localhost:8080/movies/' + + id);
+  const res = await fetch('http://localhost:8080/movies');
 
   if (!res.ok) {
     throw Error("Could not fetch the list of products");

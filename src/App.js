@@ -18,7 +18,7 @@ import Account from './pages/Account'
 import Cart from './pages/Cart'
 import NotFound from './pages/NotFound'
 import Products, { productsLoader } from './pages/products/Products'
-import ProductsDetails, { productsDetailsLoader } from "./pages/products/ProductsDetails"
+import ProductsDetails from "./pages/products/ProductsDetails"
 import ProductsError from './pages/products/ProductsError'
 import Orders from './pages/Orders.js'
 import Profile from './pages/Profile.js'
@@ -55,7 +55,6 @@ const router = createBrowserRouter(
         <Route 
           path=":id" 
           element={<ProductsDetails />}
-          loader={productsDetailsLoader}
         />
       </Route>
 

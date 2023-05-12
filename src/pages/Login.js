@@ -36,13 +36,23 @@ import axios from "axios"
       };
       
     
-    const handleSubmit = async e => {
-      e.preventDefault();
-      const customer = { email, password };
-      const response = await axios.post(
-        'http://localhost:8080/login',
-        customer
-      );
+      
+        const handleSubmit = async e => {
+          e.preventDefault();
+          const customer = { email, password };
+          // Store the base64 encoded username:password string in localStorage
+          const credentials = btoa(`${email}:${password}`);
+          localStorage.setItem("credentials", credentials);
+      
+          const response = await axios.post(
+              'http://localhost:8080/login',
+              customer,
+              {
+                  headers: { 
+                      'Authorization': `Basic ${credentials}`
+                  }
+              }
+          );
       
       // Set the state of the customer
       setCustomer(response.data)

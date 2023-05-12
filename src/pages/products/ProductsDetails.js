@@ -1,8 +1,29 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 export default function ProductsDetails() {
   const { id } = useParams();
-  const product = useLoaderData();
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/movies/${id}`, {
+          headers: {
+            'Authorization': `Basic ${localStorage.getItem('credentials')}`,
+          },
+        });
+        if(response.data) {
+          setProduct(response.data);
+        }
+      } catch (error) {
+        console.log("Could not find that product.");
+      }
+    }
+
+    fetchProduct();
+  }, [id]);
 
   return (
     <div className="card">
@@ -20,7 +41,7 @@ export default function ProductsDetails() {
       </div>
       <div class="card-content">
         <p class="title is-4">{product.title}</p>
-        <p class="subtitle is-6">({product.releaseDate.slice(0, 4)})</p>
+      
         <div class="content">
           <p>Overview: {product.overview}</p>
           <p>Genres: {product.genres}</p>
@@ -32,16 +53,3 @@ export default function ProductsDetails() {
     </div>
   );
 }
-
-// data loader
-export const productsDetailsLoader = async ({ params }) => {
-  const { id } = params;
-
-  const res = await fetch('http://localhost:8080/movies/' + id);
-
-  if (!res.ok) {
-    throw Error("Could not find that product.");
-  }
-
-  return res.json();
-};
