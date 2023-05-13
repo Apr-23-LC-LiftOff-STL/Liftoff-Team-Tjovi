@@ -8,7 +8,7 @@ export default function Products() {
 
   return (
     <div className="container">
-      {products.map((products) => (
+      {products.content.map((products) => (
         <Link to={products.id.toString()} key={products.id}>
           <div className="card-content">
             <div class="media">
@@ -22,7 +22,7 @@ export default function Products() {
           <div class="card-content">
             <p class="title is-4">{products.title}</p>
             <p class="subtitle is-6">({products.releaseDate.slice(0, 4)})</p>
-            <p>Genres: {products.genres}</p>
+            <p>Genres: {products.genres.map((genre) => genre.name).join(', ')}</p>
             <p>Runtime: {products.runtime} minutes</p>
             <p>Price: ${products.price.toFixed(2)}</p>
           </div>

@@ -5,6 +5,7 @@ const SearchBar = () => {
   const setSearchTerm = useSearchStore((state) => state.setSearchTerm);
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
+    console.log(e.target.value);
   }
 
   return (

@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
 export const useGenreStore = create((set) => ({
-    selectedGenres: '',
+    selectedGenres: [],
     setSelectedGenres: (str) => set({selectedGenres: str}),
 }));
