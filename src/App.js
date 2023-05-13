@@ -52,7 +52,7 @@ const router = createBrowserRouter(
           index 
           element={<Products />} 
           loader={productsLoader}
-          // errorElement={<ProductsError />}
+          errorElement={<ProductsError />}
         />
         <Route 
           path=":id" 
