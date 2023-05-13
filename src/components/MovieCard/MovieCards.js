@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 //import data from "./data.js";
 import MovieCard from "./MovieCard.js";
+import { Box, Container, Grid, TextField } from "@mui/material";
+import { Pagination } from "@mui/material";
+import { Grow, Fade } from "@mui/material";
+
 
 // import search term (Zustand)
 import { useSearchStore } from "../../store/searchStore.js";
@@ -12,39 +16,69 @@ function MovieCards() {
 
   //const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
- 
-  const [currentPage, setCurrentPage] = useState(0);
-  const resultsPerPage = 36; // TEMP VARIABLE FOR TESTING 2023/05/12
+
+  const [page, setPage] = useState(0);
+  const [totalElements, setTotalElements] = useState(0);
+  const cardsPerPage = 30;
 
   const searchTerm = useSearchStore((state) => state.searchTerm);
   const selectedGenres = useGenreStore((state) => state.selectedGenres);
 
   // fetch movies
+  const fetchMovies = async (
+    query = searchTerm,
+    genres = [],
+    pageNumber = 0
+  ) => {
+    try {
+      const genreQueryParam =
+        selectedGenres.length > 0 ? selectedGenres.join(",") : "";
+      const response = await axios.get(
+        `http://localhost:8080/?title=${encodeURIComponent(
+          query
+        )}&genre=${encodeURIComponent(
+          genreQueryParam
+        )}&page=${pageNumber}&size=${cardsPerPage}&sort=title&direction=ASC`
+      );
+      setTotalElements(response.data.totalElements);
+      console.log(totalElements);
+      setMovies(response.data.content);
+    } catch (error) {
+      console.log("Error fetching movies: ", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchMovies = async (query = searchTerm, genres = []) => {
-      try {
-        const genreQueryParam = selectedGenres.length > 0 ? selectedGenres.join(',') : '';
-        const pageNumber = 0; // TEMP VARIABLE FOR TESTING 2023/05/12
-        const response = await axios.get(`http://localhost:8080/?title=${encodeURIComponent(query)}&genre=${encodeURIComponent(genreQueryParam)}&page=${pageNumber}&size=36&sort=title&direction=ASC`);
-    setMovies(response.data.content);
-      } catch (error){
-        console.log('Error fetching movies: ', error);
-      }
-    };
-    fetchMovies();
-  }, [searchTerm, selectedGenres]);
+    fetchMovies(searchTerm, selectedGenres, page);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [searchTerm, selectedGenres, page]);
+
+  const handleChangePage = (event, value) => {
+    setPage(value - 1);
+    fetchMovies(searchTerm, selectedGenres, value - 1);
+  };
 
   return (
     <div>
       <div>
-{/*         <form>
+        {/*         <form>
           <input
             onChange={(e) => setSearch(e.target.value.toLowerCase())}
             placeholder="Search Movies"
           />
         </form> */}
-        <div className="movie-grid">
-           {movies.map((movie) => (
+        <Grow
+          key={page}
+          in={true}
+          style={{ transformOrigin: '0 0 0' }}
+    {...(true ? { timeout: 1350 } : {})}
+        >
+          <div className="movie-grid">
+            {movies.map((movie) => (
               <a href={`${baseProductUrl}${movie.id}`}>
                 <MovieCard
                   key={movie.id}
@@ -53,6 +87,19 @@ function MovieCards() {
                 />
               </a>
             ))}
+          </div>
+        </Grow>
+        <div>
+          <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
+            <Pagination
+              count={Math.ceil(totalElements / cardsPerPage)}
+              page={page + 1}
+              onChange={handleChangePage}
+              siblingCount={3}
+              boundaryCount={1}
+              color="primary"
+            />
+          </Box>
         </div>
       </div>
     </div>

@@ -4,7 +4,6 @@ import SortBar from "../components/SortBar.js"
 export default function Home() {
     return (
       <div>
-      <SortBar />
         <MovieCards />
       </div>
     )
