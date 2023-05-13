@@ -89,7 +89,7 @@ export default function ProductsDetails() {
                       <span className="has-text-weight-semibold">
                         &emsp; &emsp; Genres:{" "}
                       </span>
-                      {product.genres}
+                      {product.genres.map((genre) => genre.name).join(', ')}
                     </p>
                     <p>
                       <span className="has-text-weight-semibold">
