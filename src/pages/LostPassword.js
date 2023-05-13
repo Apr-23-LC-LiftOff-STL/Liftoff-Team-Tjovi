@@ -1,5 +1,4 @@
-import { css } from "@emotion/react";
-import { faCarCrash } from "@fortawesome/free-solid-svg-icons";
+
 import { useState } from "react";
 
 export default function LostPassword() {
@@ -14,9 +13,12 @@ export default function LostPassword() {
       [e.target.name]: value,
     });
   };
+  //there should be a check to see if the user actually exists
+  //set up either emailer to send said password from the database(if possible)
+  //or set up an alert/message with the password or that the password was sent to the email with no functionality
   const saveEmailData = async () => {
     const response = await fetch("http://localhost:8080/user", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -26,7 +28,7 @@ export default function LostPassword() {
       throw new Error(`Request failed: ${response.status}`);
     }
   };
-  
+
   const onSubmit = async (event) => {
     event.preventDefault();
     

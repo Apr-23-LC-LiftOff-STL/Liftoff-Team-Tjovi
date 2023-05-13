@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { userInfo } from "os";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -34,6 +35,23 @@ export default function Register() {
 
     }
   };
+ function verifyEmailAndPassword(){
+  if (values.email!== userInfo.email ){
+    alert("This user already exists")
+  } else if (values.password !== userInfo.password){
+    alert("Passwords do NOT match!" );
+ } else {
+  return}
+ 
+   
+   }
+
+   
+   
+       
+    
+ 
+ 
 
   const handleChange = (e) => {
   
@@ -50,9 +68,12 @@ export default function Register() {
     console.log("you are here");
    
     event.preventDefault();
-    if (values.password !== values.verifyPassword) {
-      alert("Passwords do NOT match!");
-    } else {
+    //values.email should equal datapulled from database to makesure the user does not exist
+    //seperate function and variable for said data?
+    //if else statement needs to be put into a seperate function or ternary opererator to work
+    
+    verifyEmailAndPassword();
+    
       try {
          await saveFormData();
         alert("Your registration was  successfully submitted!");
@@ -241,4 +262,4 @@ export default function Register() {
       </div>
     </div>
   );
-}
+  }
