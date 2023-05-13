@@ -13,7 +13,7 @@ import Contact, { contactAction } from './pages/help/Contact'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
-
+import LostPassword from './pages/LostPassword'
 import NotFound from './pages/NotFound'
 import Products, { productsLoader } from './pages/products/Products'
 import ProductsDetails, { productsDetailsLoader } from "./pages/products/ProductsDetails"
@@ -39,6 +39,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
+      <Route path="lostPassword" element={<LostPassword />} />
       <Route path="account" element={<AccountLayout />}>
         <Route path="orders" element={<Orders />} />
         <Route path="profile" element={<Profile />} />
