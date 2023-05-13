@@ -14,23 +14,25 @@ function MovieCards() {
   const [movies, setMovies] = useState([]);
  
   const [currentPage, setCurrentPage] = useState(0);
-  const resultsPerPage = 36;
+  const resultsPerPage = 36; // TEMP VARIABLE FOR TESTING 2023/05/12
 
   const searchTerm = useSearchStore((state) => state.searchTerm);
-  const selectedGenres = (useGenreStore((state) => state.seletedGenres));
+  const selectedGenres = useGenreStore((state) => state.selectedGenres);
 
   // fetch movies
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMovies = async (query = searchTerm, genres = []) => {
       try {
-        const response = await axios.get('http://localhost:8080/');
-        setMovies(response.data);
+        const genreQueryParam = selectedGenres.length > 0 ? selectedGenres.join(',') : '';
+        const pageNumber = 0; // TEMP VARIABLE FOR TESTING 2023/05/12
+        const response = await axios.get(`http://localhost:8080/?title=${encodeURIComponent(query)}&genre=${encodeURIComponent(genreQueryParam)}&page=${pageNumber}&size=36&sort=title&direction=ASC`);
+    setMovies(response.data.content);
       } catch (error){
         console.log('Error fetching movies: ', error);
       }
     };
     fetchMovies();
-  }, []);
+  }, [searchTerm, selectedGenres]);
 
   return (
     <div>
@@ -42,15 +44,7 @@ function MovieCards() {
           />
         </form> */}
         <div className="movie-grid">
-          {movies.slice(0,resultsPerPage).sort((a, b) => 0.5 - Math.random())
-            .filter((movie) => {
-              return (searchTerm.toLowerCase() === ""
-                ? movie
-                : movie.title.toLowerCase().includes(searchTerm) || movie.title.toUpperCase().includes(searchTerm.toUpperCase()) ||
-                movie.genres.toLowerCase().includes(searchTerm) ||
-                movie.releaseDate.includes(searchTerm));
-            })
-            .map((movie) => (
+           {movies.map((movie) => (
               <a href={`${baseProductUrl}${movie.id}`}>
                 <MovieCard
                   key={movie.id}

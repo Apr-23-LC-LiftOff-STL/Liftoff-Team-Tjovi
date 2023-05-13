@@ -11,10 +11,10 @@ const GenreSelect = () => {
   const setSelectedGenres = useGenreStore((state) => state.setSelectedGenres);
 
   const handleChange = (selectedGenres) => {
-    let arrGenres = [];
-    arrGenres.push(selectedGenres);
-    setSelectedGenres(arrGenres); // logic may need to change for this
-    console.log(`Genre(s) selected:`, arrGenres);
+    const genreValues = selectedGenres ? selectedGenres.map((option) => option.value) : [];
+    //let arrGenres = selectedGenres.map(genre => genre.value);
+    setSelectedGenres(genreValues); // logic may need to change for this
+    console.log(`Genre(s) selected:`, genreValues);
   };
   
   const genres = [

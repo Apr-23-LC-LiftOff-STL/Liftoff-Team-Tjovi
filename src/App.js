@@ -20,7 +20,7 @@ import ProductsDetails, { productsDetailsLoader } from "./pages/products/Product
 import ProductsError from './pages/products/ProductsError'
 import Orders from './pages/Orders.js'
 import Profile from './pages/Profile.js'
-import CartLayout from './layouts/CartLayout'
+import Cart, { cartProductDetailsLoader } from './pages/cart/Cart.js'
 
 // layouts
 import RootLayout from './layouts/RootLayout'
@@ -43,7 +43,10 @@ const router = createBrowserRouter(
         <Route path="orders" element={<Orders />} />
         <Route path="profile" element={<Profile />} />
       </Route>
-      <Route path="cart" element={<CartLayout />} />
+      <Route path="cart"
+        element={<Cart />} 
+        loader={cartProductDetailsLoader}
+        />
       <Route path="products" element={<ProductsLayout />} errorElement={<ProductsError />}>
         <Route 
           index 
