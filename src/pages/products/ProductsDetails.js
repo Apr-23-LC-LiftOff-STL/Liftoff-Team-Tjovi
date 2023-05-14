@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./Products.css";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
@@ -14,10 +14,11 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useCartStore } from "../../store/cartStore";
 
 export default function ProductsDetails() {
-  //const { id } = useParams();
+  const { id } = useParams();
   const product = useLoaderData();
   const cart = useCartStore((state) => state.cart);
-  const thisItemInCart = cart.find(product => product.id === product.id)?.count || 0;
+
+/*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
@@ -27,9 +28,39 @@ export default function ProductsDetails() {
 
   const [cartMessage, setCartMessage] = useState("");
   const [cartMessageStyle, setCartMessageStyle] = useState("");
-  const [buttonDisabled, setButtonDisabled] = useState(thisItemInCart);
+  const [buttonDisabled, setButtonDisabled] = useState();
+
+  const [thisItemInCart, setThisItemInCart] = useState(
+    cart.find(product => product.id === id)?.count || 0
+  );
 
   const incrementCartItemButtonHandler = () => {
+    incrementCartItem(id);
+    setCartMessage(`"${product.title}" was added to cart`);
+    setThisItemInCart(prevCount => prevCount + 1);
+    console.log(JSON.stringify(cart));
+  };
+
+  const decrementCartItemButtonHandler = () => {
+    decrementCartItem(id);
+    if (thisItemInCart > 0) {
+      setThisItemInCart(prevCount => prevCount - 1);
+      setCartMessage(`"${product.title}" was removed from cart`);
+      console.log(JSON.stringify(cart));
+    }
+  };
+
+  const removeAllThisItemButtonHandler = () => {
+    removeAllThisItem(id);
+    setThisItemInCart(0);
+    setCartMessage(`"${product.title}" was removed from cart`);
+    console.log(JSON.stringify(cart));
+  };
+
+
+
+
+/*   const incrementCartItemButtonHandler = () => {
     console.log(JSON.stringify(cart));
     incrementCartItem(product.id);
     setCartMessageStyle("is-size-6");
@@ -44,7 +75,7 @@ export default function ProductsDetails() {
     setCartMessage(`"${product.title}" was removed from cart`);
     if (!thisItemInCart) {
       setButtonDisabled(true);
-    };
+    }
   };
 
   const removeAllThisItemButtonHandler = () => {
@@ -53,14 +84,9 @@ export default function ProductsDetails() {
     setCartMessage(`"${product.title}" was removed from cart`);
     if (!thisItemInCart) {
       setButtonDisabled(true);
-    };
-  }
-
-/*   const emptyCartButtonHandler = (e) => {
-    emptyCart();
-    setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
-    setCartMessage("Cart Emptied");
+    }
   }; */
+
 
   return (
     <div>
@@ -89,7 +115,7 @@ export default function ProductsDetails() {
                       <span className="has-text-weight-semibold">
                         &emsp; &emsp; Genres:{" "}
                       </span>
-                      {product.genres.map((genre) => genre.name).join(', ')}
+                      {product.genres.map((genre) => genre.name).join(", ")}
                     </p>
                     <p>
                       <span className="has-text-weight-semibold">
@@ -108,42 +134,49 @@ export default function ProductsDetails() {
                           <span>${product.price.toFixed(2)}</span>
                         </div>
                         <div>
-                        <button
-                        className="button is-primary is-small"
-                        onClick={() => incrementCartItemButtonHandler(product.id)}
-                      >
-                        <FontAwesomeIcon icon={faAdd} />
-                      </button>
-                      <input
-                        className="input is-small has-text-centered"
-                        style={{ width: "6%" }}
-                        number
-                        value={thisItemInCart}
-                        readOnly
-                      />
-                      <button
-                        className="button is-warning is-small"
-                        onClick={() => decrementCartItemButtonHandler(product.id)}
-                        disabled={buttonDisabled}
-                      >
-                        <FontAwesomeIcon icon={faSubtract} />
-                      </button>
-                      <button
-                        className="button is-danger is-small"
-                        onClick={() => removeAllThisItemButtonHandler(product.id)}
-                        disabled={buttonDisabled}
-                      >
-                        <FontAwesomeIcon icon={faX} />
-                      </button>
+                          <button
+                            className="button is-primary is-small"
+                            onClick={() =>
+                              incrementCartItemButtonHandler(product.id)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faAdd} />
+                          </button>
+                          <input
+                            className="input is-small has-text-centered"
+                            style={{ width: "6%" }}
+                            number
+                            value={cart.find(product => product.id === id)?.count || 0}
+                            readOnly
+                          />
+                          <button
+                            className="button is-warning is-small"
+                            onClick={() =>
+                              decrementCartItemButtonHandler(product.id)
+                            }
+                            disabled={buttonDisabled}
+                          >
+                            <FontAwesomeIcon icon={faSubtract} />
+                          </button>
+                          <button
+                            className="button is-danger is-small"
+                            onClick={() =>
+                              removeAllThisItemButtonHandler(product.id)
+                            }
+                            disabled={buttonDisabled}
+                          >
+                            <FontAwesomeIcon icon={faX} />
+                          </button>
                           <NavLink to="/">
                             <button className="button is-link is-small">
-                            <FontAwesomeIcon icon={faHome} />&nbsp; Home
+                              <FontAwesomeIcon icon={faHome} />
+                              &nbsp; Home
                             </button>
                           </NavLink>
                           <div>
-                          <span className={cartMessageStyle}>
-                            {cartMessage}
-                          </span>
+                            <span className={cartMessageStyle}>
+                              {cartMessage}
+                            </span>
                           </div>
                         </div>
                       </div>

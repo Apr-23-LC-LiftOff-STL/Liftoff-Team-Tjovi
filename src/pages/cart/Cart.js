@@ -13,6 +13,7 @@ export default function Cart() {
   const [thisProductId, setThisProductId] = useState();
 
   const cart = useCartStore((state) => state.cart);
+  
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
     0

@@ -9,40 +9,30 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 
 const CartItem = (props) => {
 
-  const [thisProductId, setThisProductId] = useState();
-
   const cart = useCartStore((state) => state.cart);
-
-  const totalProductsInCart = cart.reduce(
-    (prev, current) => prev + current.count,
-    0
-  );
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
-  const emptyCart = useCartStore((state) => state.emptyCart);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
+  //const emptyCart = useCartStore((state) => state.emptyCart);
 
   const incrementCartItemButtonHandler = (e) => {
-    setThisProductId(props.id);
     console.log(JSON.stringify(cart));
-    incrementCartItem(thisProductId);
+    incrementCartItem(props.id);
   };
 
   const decrementCartItemButtonHandler = (e) => {
-    setThisProductId(props.id);
     console.log(JSON.stringify(cart));
-    decrementCartItem(thisProductId);
+    decrementCartItem(props.id);
     //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
     //setCartMessage(`"${product.title}" was removed from cart!`);
   };
 
   const removeAllThisItemButtonHandler = (e) => {
-    setThisProductId(props.id);
     console.log(JSON.stringify(cart));
-    removeAllThisItem(thisProductId);
+    removeAllThisItem(props.id);
   };
 
 
