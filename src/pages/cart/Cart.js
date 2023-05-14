@@ -13,6 +13,7 @@ export default function Cart() {
   const [thisProductId, setThisProductId] = useState();
 
   const cart = useCartStore((state) => state.cart);
+  
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
     0
@@ -27,21 +28,21 @@ export default function Cart() {
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
   const incrementCartItemButtonHandler = (id) => {
-    setThisProductId(id);
+    //setThisProductId(id);
     console.log(JSON.stringify(cart));
-    incrementCartItem(thisProductId);
+    incrementCartItem(id);
   };
 
   const decrementCartItemButtonHandler = (id) => {
-    setThisProductId(id);
+    //setThisProductId(id);
     console.log(JSON.stringify(cart));
-    decrementCartItem(thisProductId);
+    decrementCartItem(id);
   };
 
   const removeAllThisItemButtonHandler = (id) => {
-    setThisProductId(id);
+    //setThisProductId(id);
     console.log(JSON.stringify(cart));
-    removeAllThisItem(thisProductId);
+    removeAllThisItem(id);
   };
 
   const emptyCartButtonHandler = (e) => {
@@ -58,7 +59,7 @@ export default function Cart() {
                 <div>
                   <columns className="columns">
                     <column className="column">
-                      <CartItem key={product.id} count={product.count} />
+                      <CartItem key={product.id} id={product.id} count={product.count} />
                     </column>
                     <column className="column">
                       <div>(Cart component**)</div>
