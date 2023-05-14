@@ -25,8 +25,6 @@ public class MovieController {
     private MovieRepository movieRepo;
 
 
-
-\
     @GetMapping("/{id}")
     public Optional<Movie> searchMovieById(@PathVariable Long id) throws Exception {
         return (movieRepo.findById(id));
