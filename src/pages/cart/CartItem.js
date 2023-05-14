@@ -8,34 +8,43 @@ import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 const CartItem = (props) => {
+
+  const [thisProductId, setThisProductId] = useState();
+
   const cart = useCartStore((state) => state.cart);
+
+  const totalProductsInCart = cart.reduce(
+    (prev, current) => prev + current.count,
+    0
+  );
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
-  const addToCart = useCartStore((state) => state.addToCart);
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const cartTotalAllItems = useCartStore((state) => state.cartTotalAllItems);
+  const incrementCartItem = useCartStore((state) => state.incrementCartItem);
+  const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const emptyCart = useCartStore((state) => state.emptyCart);
+  const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
 
-  const addToCartButtonHandler = (e) => {
-    cartTotalAllItems();
+  const incrementCartItemButtonHandler = (e) => {
+    setThisProductId(props.id);
     console.log(JSON.stringify(cart));
-    addToCart(props.id);
+    incrementCartItem(thisProductId);
   };
 
-  const removeFromCartButtonHandler = (e) => {
-    cartTotalAllItems();
+  const decrementCartItemButtonHandler = (e) => {
+    setThisProductId(props.id);
     console.log(JSON.stringify(cart));
-    removeFromCart(props.id);
+    decrementCartItem(thisProductId);
     //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
     //setCartMessage(`"${product.title}" was removed from cart!`);
   };
 
-  const emptyCartButtonHandler = (e) => {
-    emptyCart();
-    //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
-    //setCartMessage("Cart Emptied");
+  const removeAllThisItemButtonHandler = (e) => {
+    setThisProductId(props.id);
+    console.log(JSON.stringify(cart));
+    removeAllThisItem(thisProductId);
   };
+
 
   return (
     <div className="card">
@@ -48,7 +57,7 @@ const CartItem = (props) => {
       <div>
         <button
           className="button is-primary is-small"
-          onClick={addToCartButtonHandler}
+          onClick={incrementCartItemButtonHandler}
         >
           <FontAwesomeIcon icon={faAdd} />
         </button>
@@ -61,7 +70,7 @@ const CartItem = (props) => {
         />
         <button
           className="button is-warning is-small"
-          onClick={removeFromCartButtonHandler}
+          onClick={decrementCartItemButtonHandler}
         >
           <FontAwesomeIcon icon={faSubtract} />
         </button>
