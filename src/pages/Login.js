@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { async } from "q";
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,7 +16,15 @@ export default function Login() {
       [e.target.name]: value,
     });
   };
-
+  function verifyEmailAndPassword(){
+    if (values.email !== userInfo.email || values.password !== userInfo.password){
+      alert("Email or Password is incorrect!")
+    } 
+    else {return
+    }
+   
+     
+     }
   const saveLoginData = async () => {
     const response = await fetch("http://localhost:8080/user", {
       method: "GET",
@@ -37,10 +45,11 @@ export default function Login() {
     console.log("you are here");
 
     event.preventDefault();
-    if (values.email !== values.verifyPassword) {
-    } else {
+    
+   
       try {
         await saveLoginData();
+         verifyEmailAndPassword();
         alert("Your login was successful");
 
         navigate("/");
@@ -49,7 +58,7 @@ export default function Login() {
         console.log("Failed");
       }
     }
-  }
+  
 
     return (
       <div >

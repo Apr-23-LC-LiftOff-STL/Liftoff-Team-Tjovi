@@ -35,13 +35,13 @@ export default function Register() {
 
     }
   };
- function verifyEmailAndPassword(){
-  if (values.email!== userInfo.email ){
+ function verifyEmail(){
+  if (values.email== userInfo.email ){
     alert("This user already exists")
   } else if (values.password !== userInfo.password){
-    alert("Passwords do NOT match!" );
- } else {
-  return}
+    alert("Password is incorrect" )
+ } else {return
+  }
  
    
    }
@@ -72,10 +72,11 @@ export default function Register() {
     //seperate function and variable for said data?
     //if else statement needs to be put into a seperate function or ternary opererator to work
     
-    verifyEmailAndPassword();
+    
     
       try {
          await saveFormData();
+         verifyEmail();
         alert("Your registration was  successfully submitted!");
         alert("passwords matched");
         
@@ -87,7 +88,7 @@ export default function Register() {
         console.log("Failed");
       }
     }
-  };
+  
   return (
     <div>
       <h1 className="title">Register</h1>
@@ -262,4 +263,4 @@ export default function Register() {
       </div>
     </div>
   );
-  }
+  };
