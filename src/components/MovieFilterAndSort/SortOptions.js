@@ -6,7 +6,7 @@ import { FormLabel } from "@mui/material";
 import { FormGroup } from "@mui/material";
 import { Switch } from "@mui/material";
 
-const SortBar = () => {
+const SortOptions = () => {
 
   const [sort, setSort] = useState({
     title: '',
@@ -62,6 +62,15 @@ const SortBar = () => {
     console.log(sort);
   };
 
+  const handleResetButton = (e) => {
+    setSort({
+      title: '',
+      price: '',
+      year: ''
+    });
+    console.log(sort);
+  };
+
   return (
     <div>
       <div>
@@ -106,9 +115,12 @@ const SortBar = () => {
           }
           label="Old-New"
         />
+
+        <button className="button is-small is-warning" id="reset" onClick={handleResetButton}>Reset Options</button>
       </div>
+      <p>**TEMPORARY: Sort Options Selected** {JSON.stringify(sort)}</p>
     </div>
   );
 };
 
-export default SortBar;
+export default SortOptions;

@@ -60,7 +60,7 @@ function MovieCards() {
   };
 
   return (
-    <div>
+    <div className="pb-5">
       <div>
         {/*         <form>
           <input

@@ -1,8 +1,8 @@
 import Select from "react-select"; // npm install react-select
 import makeAnimated from 'react-select/animated';
-import { useGenreStore } from "../../../store/genreStore";
+import { useGenreStore } from "../../store/genreStore";
 import { useState } from "react";
-import SortBar from "../SortBar";
+import SortBar from "./SortOptions";
 
 // Getting started with React Select
 // https://blog.logrocket.com/getting-started-react-select/
@@ -53,7 +53,7 @@ const GenreSelect = () => {
   return (
     <div className="columns">
     <div className="column">
-    <div className="genre-select-main" style={{width: "25%"}}>
+    <div className="genre-select-main" style={{width: "300px"}}>
       <Select
       name="genre-select"
       placeholder="Filter by Genre"

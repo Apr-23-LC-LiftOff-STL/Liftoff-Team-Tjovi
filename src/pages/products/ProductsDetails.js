@@ -58,9 +58,6 @@ export default function ProductsDetails() {
     console.log(JSON.stringify(cart));
   };
 
-
-
-
 /*   const incrementCartItemButtonHandler = () => {
     console.log(JSON.stringify(cart));
     incrementCartItem(product.id);

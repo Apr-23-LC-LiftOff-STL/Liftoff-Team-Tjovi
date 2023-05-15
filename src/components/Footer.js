@@ -9,7 +9,7 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   return (
-    <footer className="has-text-centered is-flex-align-items-flex-end">
+    <footer className="has-text-centered is-flex-align-items-flex-end has-background-white-ter pt-5">
       <div className="content">
         <NavLink to="/">
           <img src={logo125} />

@@ -7,6 +7,8 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
+import { Fade } from "@mui/material";
+
 const CartItem = ({ title, posterPath, id, count }) => {
 
   const cart = useCartStore((state) => state.cart);
@@ -16,6 +18,7 @@ const CartItem = ({ title, posterPath, id, count }) => {
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
+  const changeItemCount = useCartStore((state) => state.changeItemCount);
   //const emptyCart = useCartStore((state) => state.emptyCart);
 
   const incrementCartItemButtonHandler = (e) => {
@@ -35,8 +38,9 @@ const CartItem = ({ title, posterPath, id, count }) => {
     removeAllThisItem(id);
   };
 
-
   return (
+    <div>
+    <Fade in timeout={500}>
     <div className="card">
       <div>Movie Image {posterPath}</div>
       <div className="is-size-5">Movie Name {title} (year)</div>
@@ -70,6 +74,8 @@ const CartItem = ({ title, posterPath, id, count }) => {
           <FontAwesomeIcon icon={faX} />
         </button>
       </div>
+    </div>
+    </Fade>
     </div>
   );
 };
