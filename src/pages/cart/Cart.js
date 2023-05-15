@@ -1,95 +1,132 @@
-import "./Cart.css";
+import { useLoaderData } from "react-router-dom";
 import CartItem from "./CartItem.js";
 import { useCartStore } from "../../store/cartStore";
+import { useState } from "react";
+import "./Cart.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
-const Cart = () => {
+export default function Cart() {
+  const [thisProductId, setThisProductId] = useState();
+
   const cart = useCartStore((state) => state.cart);
+  
+  const totalProductsInCart = cart.reduce(
+    (prev, current) => prev + current.count,
+    0
+  );
 
-  const addToCart = useCartStore((state) => state.addToCart);
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const cartTotalAllItems = useCartStore((state) => state.cartTotalAllItems);
+  const incrementCartItem = useCartStore((state) => state.incrementCartItem);
+  const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const emptyCart = useCartStore((state) => state.emptyCart);
+  const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
 
-  const addToCartButtonHandler = (e) => {
-    cartTotalAllItems();
+  const product = useLoaderData();
+  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+
+  const incrementCartItemButtonHandler = (id) => {
+    //setThisProductId(id);
     console.log(JSON.stringify(cart));
-    addToCart(cart.id);
+    incrementCartItem(id);
   };
 
-  const removeFromCartButtonHandler = (e) => {
-    cartTotalAllItems();
+  const decrementCartItemButtonHandler = (id) => {
+    //setThisProductId(id);
     console.log(JSON.stringify(cart));
-    removeFromCart(cart.id);
-    //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
-    //setCartMessage(`"${product.title}" was removed from cart!`);
+    decrementCartItem(id);
+  };
+
+  const removeAllThisItemButtonHandler = (id) => {
+    //setThisProductId(id);
+    console.log(JSON.stringify(cart));
+    removeAllThisItem(id);
   };
 
   const emptyCartButtonHandler = (e) => {
     emptyCart();
-    //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
-    //setCartMessage("Cart Emptied");
   };
 
   return (
     <div>
-    <div>
-      {cart.map((product) => {
-        if (cart[product.id] !== 0) {
-          return (
-            <div>
-              <columns className="columns">
-                <column className="column">
-                  <CartItem key={product.id} title={product.count} />
-                </column>
-                <column className="column">
-                  <div>(Cart component**)</div>
-                  <div>Movie ID: {product.id}</div>
-                  <div>
-                    <div className="card">
-                      <button
-                        className="button is-primary is-small"
-                        onClick={addToCartButtonHandler}
-                      >
-                        <FontAwesomeIcon icon={faAdd} />
-                      </button>
-                      <input
-                        className="input is-small has-text-centered"
-                        style={{ width: "6%" }}
-                        number
-                        value={product.count}
-                        readOnly
-                      />
-                      <button
-                        className="button is-warning is-small"
-                        onClick={removeFromCartButtonHandler}
-                      >
-                        <FontAwesomeIcon icon={faSubtract} />
-                      </button>
-                      <button className="button is-danger is-small">
-                        <FontAwesomeIcon icon={faX} />
-                      </button>
-                    </div>
-                  </div>
-                </column>
-              </columns>
-            </div>
-          );
-        }
-      })}
-    </div>
-    <button
-                            className="button is-danger is-normal is-rounded"
-                            onClick={emptyCartButtonHandler}
+      <div>
+        {cart.map((product) => {
+          if (cart[product.id] !== 0) {
+            return (
+              <div>
+                <div>
+                  <columns className="columns">
+                    <column className="column">
+                      <CartItem key={product.id} id={product.id} count={product.count} />
+                    </column>
+                    <column className="column">
+                      <div>(Cart component**)</div>
+                      <div>Movie ID: {product.id}</div>
+                      <div>
+                        <div className="card">
+                          <button
+                            className="button is-primary is-small"
+                            onClick={() =>
+                              incrementCartItemButtonHandler(product.id)
+                            }
                           >
-                            <FontAwesomeIcon icon={faX} />&nbsp; Empty Cart
+                            <FontAwesomeIcon icon={faAdd} />
                           </button>
+                          <input
+                            className="input is-small has-text-centered"
+                            style={{ width: "6%" }}
+                            number
+                            value={product.count}
+                            readOnly
+                          />
+                          <button
+                            className="button is-warning is-small"
+                            onClick={() =>
+                              decrementCartItemButtonHandler(product.id)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faSubtract} />
+                          </button>
+                          <button
+                            className="button is-danger is-small"
+                            onClick={() =>
+                              removeAllThisItemButtonHandler(product.id)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faX} />
+                          </button>
+                        </div>
+                      </div>
+                    </column>
+                  </columns>
+                </div>
+              </div>
+            );
+          }
+
+        })}
+        <button
+                  className="button is-danger is-normal is-rounded"
+                  visible=""
+                  onClick={emptyCartButtonHandler}
+                >
+                  <FontAwesomeIcon icon={faX} />
+                  &nbsp; Empty Cart
+                </button>
+      </div>
     </div>
   );
-};
+}
 
-export default Cart;
+// data loader
+export const cartProductDetailsLoader = async (id) => {
+  const res = await fetch("http://localhost:8080/");
+
+  if (!res.ok) {
+    throw Error("Could not find that product.");
+  }
+
+  return res.json();
+};

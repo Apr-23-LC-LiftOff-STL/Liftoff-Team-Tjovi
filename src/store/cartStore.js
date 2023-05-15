@@ -4,7 +4,8 @@ import { persist } from "zustand/middleware";
 export const useCartStore = create(
   persist((set, get) => ({
     cart:[],
-    addToCart: (id) =>
+
+    incrementCartItem: (id) =>
       set((state) => {
         const isPresent = state.cart.find((movies) => movies.id === id);
 
@@ -25,7 +26,7 @@ export const useCartStore = create(
         };
       }),
 
-    removeFromCart: (id) =>
+    decrementCartItem: (id) =>
       set((state) => {
         const isPresent = state.cart.findIndex((movies) => movies.id === id);
 
@@ -49,6 +50,31 @@ export const useCartStore = create(
         };
       }),
 
+    removeAllThisItem: (id) =>
+      set((state) => {
+        const isPresent = state.cart.findIndex((movies) => movies.id === id);
+
+        if (isPresent === -1) {
+          return {
+            ...state,
+          };
+        }
+
+        const updatedCart = state.cart
+        .map((movies) =>
+          movies.id === id
+            ? { ...movies, count: Math.max(movies.count - movies.count, 0) }
+            : movies
+        )
+        .filter((movies) => movies.count);
+
+      return {
+        ...state,
+        cart: updatedCart,
+      };
+    }),
+  
+
       emptyCart: () =>
       set((state) => {
 
@@ -57,14 +83,6 @@ export const useCartStore = create(
           cart: [],
         };
       }),
-
-    cartTotalAllItems: () => {
-      console.log(`Number of unique movies in cart: ${get().cart.length}`);
-    },
-
-    cartTotalThisItem: () => {
-      console.log(`Number of this movie in cart: ${get().cart.length}`);
-    },
 
     fetchMovies: async () => {
       await fetch("http://localhost:8080/")

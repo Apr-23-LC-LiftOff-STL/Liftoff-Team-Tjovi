@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./Products.css";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
@@ -16,44 +16,77 @@ import { useCartStore } from "../../store/cartStore";
 export default function ProductsDetails() {
   const { id } = useParams();
   const product = useLoaderData();
-
   const cart = useCartStore((state) => state.cart);
-  const addToCart = useCartStore((state) => state.addToCart);
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const cartTotalAllItems = useCartStore((state) => state.cartTotalAllItems);
-  const cartTotalThisItem = useCartStore((state) => state.cartTotalThisItem);
-  //const moviesInCart = cart.find((f) => f.id === id)?.count || 0;
-  const emptyCart = useCartStore((state) => state.emptyCart);
+
+/*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
+
+  const incrementCartItem = useCartStore((state) => state.incrementCartItem);
+  const decrementCartItem = useCartStore((state) => state.decrementCartItem);
+  const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
   const [cartMessage, setCartMessage] = useState("");
   const [cartMessageStyle, setCartMessageStyle] = useState("");
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState();
 
-  const addToCartButtonHandler = (e) => {
-    cartTotalAllItems();
-    cartTotalThisItem();
+  const [thisItemInCart, setThisItemInCart] = useState(
+    cart.find(product => product.id === id)?.count || 0
+  );
+
+  const incrementCartItemButtonHandler = () => {
+    incrementCartItem(id);
+    setCartMessage(`"${product.title}" was added to cart`);
+    setThisItemInCart(prevCount => prevCount + 1);
     console.log(JSON.stringify(cart));
-    addToCart(product.id);
-    setCartMessageStyle("is-italic is-size-6 has-text-primary pl-5");
-    setCartMessage(`"${product.title}" was added to cart! ${cartTotalThisItem}`);
   };
 
-  const removeFromCartButtonHandler = (e) => {
-    cartTotalAllItems();
-    cartTotalThisItem();
+  const decrementCartItemButtonHandler = () => {
+    decrementCartItem(id);
+    if (thisItemInCart > 0) {
+      setThisItemInCart(prevCount => prevCount - 1);
+      setCartMessage(`"${product.title}" was removed from cart`);
+      console.log(JSON.stringify(cart));
+    }
+  };
+
+  const removeAllThisItemButtonHandler = () => {
+    removeAllThisItem(id);
+    setThisItemInCart(0);
+    setCartMessage(`"${product.title}" was removed from cart`);
     console.log(JSON.stringify(cart));
-    removeFromCart(product.id);
-    setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
-    setCartMessage(`"${product.title}" was removed from cart!`);
   };
 
-  const emptyCartButtonHandler = (e) => {
-    emptyCart();
-    setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
-    setCartMessage("Cart Emptied");
+
+
+
+/*   const incrementCartItemButtonHandler = () => {
+    console.log(JSON.stringify(cart));
+    incrementCartItem(product.id);
+    setCartMessageStyle("is-size-6");
+    setCartMessage(`"${product.title}" was added to cart`);
+    setButtonDisabled(false);
   };
+
+  const decrementCartItemButtonHandler = () => {
+    console.log(JSON.stringify(cart));
+    decrementCartItem(product.id);
+    setCartMessageStyle("is-size-6 has-text-danger");
+    setCartMessage(`"${product.title}" was removed from cart`);
+    if (!thisItemInCart) {
+      setButtonDisabled(true);
+    }
+  };
+
+  const removeAllThisItemButtonHandler = () => {
+    removeAllThisItem(product.id);
+    setCartMessageStyle("is-size-6 has-text-danger");
+    setCartMessage(`"${product.title}" was removed from cart`);
+    if (!thisItemInCart) {
+      setButtonDisabled(true);
+    }
+  }; */
+
 
   return (
     <div>
@@ -82,7 +115,7 @@ export default function ProductsDetails() {
                       <span className="has-text-weight-semibold">
                         &emsp; &emsp; Genres:{" "}
                       </span>
-                      {product.genres}
+                      {product.genres.map((genre) => genre.name).join(", ")}
                     </p>
                     <p>
                       <span className="has-text-weight-semibold">
@@ -99,36 +132,52 @@ export default function ProductsDetails() {
                             Price:
                           </span>{" "}
                           <span>${product.price.toFixed(2)}</span>
-                          <span className={cartMessageStyle}>
-                            {cartMessage}
-                          </span>
                         </div>
-
                         <div>
                           <button
-                            className="button is-normal is-primary is-rounded has-text-weight-semibold"
-                            onClick={addToCartButtonHandler}
+                            className="button is-primary is-small"
+                            onClick={() =>
+                              incrementCartItemButtonHandler(product.id)
+                            }
                           >
-                            <FontAwesomeIcon icon={faAdd} />&nbsp; To Cart
+                            <FontAwesomeIcon icon={faAdd} />
                           </button>
+                          <input
+                            className="input is-small has-text-centered"
+                            style={{ width: "6%" }}
+                            number
+                            value={cart.find(product => product.id === id)?.count || 0}
+                            readOnly
+                          />
                           <button
-                            className="button is-normal is-warning is-rounded"
-                            onClick={removeFromCartButtonHandler}
-                          >
-                            <FontAwesomeIcon icon={faSubtract} />&nbsp; From Cart
-                          </button>
-                          <button
-                            className="button is-danger is-normal is-rounded"
-                            onClick={emptyCartButtonHandler}
+                            className="button is-warning is-small"
+                            onClick={() =>
+                              decrementCartItemButtonHandler(product.id)
+                            }
                             disabled={buttonDisabled}
                           >
-                            <FontAwesomeIcon icon={faX} />&nbsp; Empty Cart
+                            <FontAwesomeIcon icon={faSubtract} />
+                          </button>
+                          <button
+                            className="button is-danger is-small"
+                            onClick={() =>
+                              removeAllThisItemButtonHandler(product.id)
+                            }
+                            disabled={buttonDisabled}
+                          >
+                            <FontAwesomeIcon icon={faX} />
                           </button>
                           <NavLink to="/">
-                            <button className="button is-normal is-link is-rounded">
-                            <FontAwesomeIcon icon={faHome} />&nbsp; Home
+                            <button className="button is-link is-small">
+                              <FontAwesomeIcon icon={faHome} />
+                              &nbsp; Home
                             </button>
                           </NavLink>
+                          <div>
+                            <span className={cartMessageStyle}>
+                              {cartMessage}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>

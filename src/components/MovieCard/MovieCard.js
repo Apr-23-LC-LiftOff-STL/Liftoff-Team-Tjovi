@@ -2,7 +2,7 @@ import React from 'react';
 import "./MovieCards.css"
 
 const MovieCard = ({ title, posterPath }) => {
-  const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
+  const baseImgUrl = 'https://image.tmdb.org/t/p/w300';
 
   const expression = /\s[^\s]*$/;
 
