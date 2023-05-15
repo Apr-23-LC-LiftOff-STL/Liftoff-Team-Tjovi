@@ -63,7 +63,10 @@ const CartItem = ({ title, posterPath, id, count }) => {
         >
           <FontAwesomeIcon icon={faSubtract} />
         </button>
-        <button className="button is-danger is-small">
+        <button
+          className="button is-danger is-small"
+          onClick={removeAllThisItemButtonHandler}
+        >
           <FontAwesomeIcon icon={faX} />
         </button>
       </div>
