@@ -2,26 +2,64 @@ import { useState } from "react";
 
 import { Checkbox } from "@mui/material";
 import { FormControlLabel } from "@mui/material";
-import { FormLabel, FormGroup } from "@mui/material";
+import { FormLabel } from "@mui/material";
+import { FormGroup } from "@mui/material";
+import { Switch } from "@mui/material";
 
 const SortBar = () => {
-  const [sortTitle, setSortTitle] = useState();
-  const [sortYear, setSortYear] = useState();
-  const [sortPrice, setSortPrice] = useState();
+
+  const [sort, setSort] = useState({
+    title: '',
+    price: '',
+    year: ''
+});
+
+  const [isChecked, setIsChecked] = useState();
 
   const handleChangeSortTitle = (e) => {
-    setSortTitle(e.target.value);
-    console.log(sortTitle);
+    if (sort.title != e.currentTarget.id) {
+      setSort({
+        ...sort,
+        title: e.currentTarget.id
+      });
+    } else {
+    setSort({
+      ...sort,
+      title: ''
+    });
+  }
+    console.log(sort);
   };
 
   const handleChangeSortPrice = (e) => {
-    setSortPrice(e.target.value);
-    console.log(sortPrice);
+    if (sort.price != e.currentTarget.id) {
+      setSort({
+        ...sort,
+        price: e.currentTarget.id
+      });
+    } else {
+    setSort({
+      ...sort,
+      price: ''
+    });
+  }
+    console.log(sort);
   };
 
   const handleChangeSortYear = (e) => {
-    setSortYear(e.target.value);
-    console.log(sortYear);
+
+    if (sort.year != e.currentTarget.id) {
+      setSort({
+        ...sort,
+        year: e.currentTarget.id
+      });
+    } else {
+    setSort({
+      ...sort,
+      year: ''
+    });
+  }
+    console.log(sort);
   };
 
   return (
@@ -29,46 +67,42 @@ const SortBar = () => {
       <div>
         <FormControlLabel
           control={
-            <Checkbox
-              onChange={handleChangeSortTitle}
-              value="title-asc"
-              defaultChecked
-            />
+            <Checkbox id="title-asc" onChange={handleChangeSortTitle} value="title-asc" checked={isChecked} />
           }
           label="A-Z"
         />
 
         <FormControlLabel
           control={
-            <Checkbox onChange={handleChangeSortTitle} value="title-desc" />
+            <Checkbox id="title-desc" onChange={handleChangeSortTitle} value="title-desc" checked={isChecked} />
           }
           label="Z-A"
         />
 
-        <FormControlLabel className="is-primary"
+        <FormControlLabel
           control={
-            <Checkbox onChange={handleChangeSortPrice} value="price-asc" />
+            <Checkbox id="price-asc" onChange={handleChangeSortPrice} value="price-asc" checked={isChecked} />
           }
           label="$-$$$"
         />
 
         <FormControlLabel
           control={
-            <Checkbox onChange={handleChangeSortPrice} value="price-desc" />
+            <Checkbox id="price-desc" onChange={handleChangeSortPrice} value="price-desc" checked={isChecked} />
           }
           label="$$$-$"
         />
 
         <FormControlLabel
           control={
-            <Checkbox onChange={handleChangeSortYear} value="year-asc" />
+            <Checkbox id="year-desc" onChange={handleChangeSortYear} value="year-desc" checked={isChecked} />
           }
           label="New-Old"
         />
 
         <FormControlLabel
           control={
-            <Checkbox onChange={handleChangeSortYear} value="year-desc" />
+            <Checkbox id="year-asc" onChange={handleChangeSortYear} value="year-asc" checked={isChecked} />
           }
           label="Old-New"
         />

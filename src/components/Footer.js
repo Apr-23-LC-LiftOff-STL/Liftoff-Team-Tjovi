@@ -22,7 +22,7 @@ const Footer = () => {
           (314) 254-0107 &nbsp;
           <FontAwesomeIcon icon={faPhone} />
         </p>
-        <div class="tabs is-centered">
+        <div className="tabs is-centered">
           <ul>
             <li>
               <NavLink className="card-footer-item" to="/">

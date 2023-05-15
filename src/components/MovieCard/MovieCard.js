@@ -1,31 +1,39 @@
-import React from 'react';
-import "./MovieCards.css"
+import React from "react";
+import "./MovieCards.css";
+import { Fade } from "@mui/material";
 
 const MovieCard = ({ title, posterPath }) => {
-  const baseImgUrl = 'https://image.tmdb.org/t/p/w300';
+  const baseImgUrl = "https://image.tmdb.org/t/p/w300";
 
   const expression = /\s[^\s]*$/;
 
   const createShortcut = (text, limit) => {
-      if (text.length > limit) {
-          const part = text.slice(0, limit - 3);
-          if (part.match(expression)) {
-              return part.replace(expression, '...');
-          }
-          return part + '...';
+    if (text.length > limit) {
+      const part = text.slice(0, limit - 3);
+      if (part.match(expression)) {
+        return part.replace(expression, "...");
       }
-      return text;
+      return part + "...";
+    }
+    return text;
   };
 
   return (
-    <div className="movie-card">
-
-      <div>
-        {posterPath && (
-          <img className="movie-img" src={`${baseImgUrl}${posterPath}`} alt={`Poster for ${title}`} />
-        )}
-      </div>
-      <div className="movie-card-title">{createShortcut(title, 40)}</div>
+    <div>
+       <Fade in timeout={500}>
+        <div className="movie-card">
+          <div>
+            {posterPath && (
+              <img
+                className="movie-img"
+                src={`${baseImgUrl}${posterPath}`}
+                alt={`Poster for ${title}`}
+              />
+            )}
+          </div>
+          <div className="movie-card-title">{createShortcut(title, 40)}</div>
+        </div>
+       </Fade>
     </div>
   );
 };
