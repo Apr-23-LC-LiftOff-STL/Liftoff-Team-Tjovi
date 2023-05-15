@@ -2,7 +2,7 @@ import "bulma/css/bulma.css";
 import { useState } from "react";
 
 import SearchBar from "./SearchBar";
-import GenreSelect from "./GenreSelect/GenreSelect";
+
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,7 +22,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className="navbar is-fixed-top"
+      className="navbar"
       role="navigation"
       aria-label="main navigation"
     >
@@ -55,7 +55,6 @@ const NavBar = () => {
         <div className="navbar-start">
           <div className="navbar-item">
             <SearchBar />
-            <GenreSelect />
           </div>
         </div>
         <div className="navbar-end">
@@ -84,7 +83,7 @@ const NavBar = () => {
               </div>
               <a className="button is-light" href="/cart">
                 <FontAwesomeIcon icon={faCartShopping} />
-                &nbsp; {totalProductsInCart}
+                &nbsp; ({totalProductsInCart})
               </a>
             </div>
           </div>
