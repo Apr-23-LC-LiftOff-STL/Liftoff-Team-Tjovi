@@ -1,4 +1,47 @@
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 export default function Account() {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    role: "",
+    verifyPassword: "",
+    firstName:"",
+    lastName:"",
+    phoneNumber:"",
+    streetAddress: "",
+    suite: "",
+    city: "",
+    state: "",
+    zipCode:""
+  });
+  const saveFormData = async () => {
+    const response = await fetch("http://localhost:8080/register", {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+      
+    });
+    if (response.status !== 201) {
+      
+      throw new Error(`Request failed: ${response.status}`);
+
+    }
+  };
+  const handleChange = (e) => {
+  
+    var value = e.target.value === "" ? null : e.target.value;
+
+    setValues({
+      ...values,
+      [e.target.name]: value,
+      
+    });
+  };
+
     return (
       <div className="account">
         <h1 className="title">Account</h1>

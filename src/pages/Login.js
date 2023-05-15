@@ -8,6 +8,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const userInfo = ""
   const handleChange = (e) => {
     var value = e.target.value === "" ? null : e.target.value;
 

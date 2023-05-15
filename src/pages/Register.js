@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { userInfo } from "os";
+
+//import os from 'os-browserify/browser';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Register() {
     state: "",
     zipCode:""
   });
-
+const userInfo =""
  
   const saveFormData = async () => {
     const response = await fetch("http://localhost:8080/register", {
@@ -36,11 +37,9 @@ export default function Register() {
     }
   };
  function verifyEmail(){
-  if (values.email== userInfo.email ){
+  if (values.email==userInfo.email){
     alert("This user already exists")
-  } else if (values.password !== userInfo.password){
-    alert("Password is incorrect" )
- } else {return
+  }else {return
   }
  
    
@@ -64,31 +63,32 @@ export default function Register() {
     });
   };
 
-  const onSubmit = async (event) => {
-    console.log("you are here");
-   
-    event.preventDefault();
-    //values.email should equal datapulled from database to makesure the user does not exist
-    //seperate function and variable for said data?
-    //if else statement needs to be put into a seperate function or ternary opererator to work
-    
-    
-    
-      try {
-         await saveFormData();
-         verifyEmail();
-        alert("Your registration was  successfully submitted!");
-        alert("passwords matched");
-        
-        console.log("values")
-      console.log(values)
-        navigate("/");
-      } catch (e) {
-        alert(`Registration failed! ${e.message}`);
-        console.log("Failed");
-      }
-    }
   
+    
+    const onSubmit = async (event) => {
+      console.log("you are here");
+     
+      event.preventDefault();
+      //values.email should equal datapulled from database to makesure the user does not exist
+      //seperate function and variable for said data?
+      //if else statement needs to be put into a seperate function or ternary opererator to work
+      
+      
+      
+        try {
+           await saveFormData();
+           verifyEmail();
+          alert("Your registration was  successfully submitted!");
+          alert("passwords matched");
+          
+          console.log("values")
+        console.log(values)
+          navigate("/");
+        } catch (e) {
+          alert(`Registration failed! ${e.message}`);
+          console.log("Failed");
+        }
+      }
   return (
     <div>
       <h1 className="title">Register</h1>
