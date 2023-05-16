@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -34,14 +35,14 @@ public class EcommUsernamePwdAuthenticationProvider implements AuthenticationPro
         public Authentication authenticate(Authentication authentication) throws AuthenticationException {
             String username = authentication.getName();
             String pwd = authentication.getCredentials().toString();
-            List<User> user = userRepository.findByEmail(username);
-            if (user.size() > 0) {
-                if (passwordEncoder.matches(pwd, user.get(0).getPwd())) {
-                    return new UsernamePasswordAuthenticationToken(username, pwd, getGrantedAuthorities(user.get(0).getAuthorities()));
+            User user = userRepository.findByEmail(username);
+            if (user != null) {
+                if (passwordEncoder.matches(pwd, user.getPwd())) {
+                    return new UsernamePasswordAuthenticationToken(username, pwd, getGrantedAuthorities(user.getAuthorities()));
                 } else {
                     throw new BadCredentialsException("Invalid password!");
                 }
-            }else {
+            } else {
                 throw new BadCredentialsException("No user registered with this details!");
             }
         }
