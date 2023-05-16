@@ -5,7 +5,7 @@
   row-gap: 22px;
   margin-left: 8%;
   margin-right: 8%;
-  margin-top: 20px;
+  margin-top: 32px;
 
 }
 
@@ -18,14 +18,14 @@
 
 .movie-card-title {
   text-align: left;
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   font-size: max(1vw, 9px);
   padding-top: 2%;
   padding-left: 5%;
 }
 
 .movie-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
 }
 
 .movie-img {
@@ -36,5 +36,5 @@
 
 .movie-img:hover {
   box-shadow: 0 8px 16px 4px rgba(0, 255, 162, 0.4);
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }

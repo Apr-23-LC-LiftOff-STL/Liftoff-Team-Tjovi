@@ -30,7 +30,7 @@ import AccountLayout from './layouts/AccountLayout'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" style={{height: '100vh'}} element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
       <Route path="help" element={<HelpLayout />}>

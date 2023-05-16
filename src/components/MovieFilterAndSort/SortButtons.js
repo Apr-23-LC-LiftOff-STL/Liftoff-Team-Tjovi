@@ -29,12 +29,12 @@ const SortOptions = () => {
       <div>
       <FormControl             name="radioSort">
       <FormLabel id="radio-buttons-sort-options" style={{ color: 'gray', fontSize: '13px' }}></FormLabel>
-        <RadioGroup row>
+        <RadioGroup row defaultValue="title,ASC">
           <FormControlLabel
             name="radioSort"
             control={
               <Radio
-                id="title"
+                id="title-asc"
                 onChange={handleChange}
                 value="title,ASC"
                 size="small"
@@ -61,7 +61,7 @@ const SortOptions = () => {
             control={
               <Radio
 
-                id="price"
+                id="price-asc"
                 onChange={handleChange}
                 value="price,ASC"
                 size="small"
@@ -75,7 +75,7 @@ const SortOptions = () => {
             control={
               <Radio
 
-                id="price"
+                id="price-desc"
                 onChange={handleChange}
                 value="price,DESC"
                 size="small"
@@ -88,7 +88,7 @@ const SortOptions = () => {
             name="radioSort"
             control={
               <Radio
-                id="year"
+                id="releaseDate-desc"
                 onChange={handleChange}
                 value="releaseDate,DESC"
                 size="small"
@@ -101,7 +101,7 @@ const SortOptions = () => {
             name="radioSort"
             control={
               <Radio
-                id="year"
+                id="releaseDate-asc"
                 onChange={handleChange}
                 value="releaseDate,ASC"
                 size="small"
