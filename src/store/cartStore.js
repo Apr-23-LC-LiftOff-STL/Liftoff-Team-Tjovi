@@ -73,6 +73,24 @@ export const useCartStore = create(
         cart: updatedCart,
       };
     }),
+
+    changeItemCount: (id, num) =>
+      set((state) => {
+        const isPresent = state.cart.findIndex((movies) => movies.id === id);
+        
+        const updatedCart = state.cart
+        .map((movies) =>
+          movies.id === id
+            ? { ...movies, count: Math.max(num, 0) }
+            : movies
+        )
+        .filter((movies) => movies.count);
+
+      return {
+        ...state,
+        cart: updatedCart,
+      };
+    }),
   
 
       emptyCart: () =>

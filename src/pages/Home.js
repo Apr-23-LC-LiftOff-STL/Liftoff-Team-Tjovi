@@ -1,9 +1,12 @@
 import MovieCards from "../components/MovieCard/MovieCards"
-import SortBar from "../components/SortBar.js"
+import GenreSelect from "../components/MovieFilterAndSort/GenreSelect"
+import SortOptions from "../components/MovieFilterAndSort/SortOptions"
 
 export default function Home() {
     return (
       <div>
+        <GenreSelect />
+        <SortOptions />
         <MovieCards />
       </div>
     )

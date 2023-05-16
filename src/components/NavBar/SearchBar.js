@@ -1,4 +1,5 @@
 import { useSearchStore } from "../../store/searchStore";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const SearchBar = () => {
 
@@ -10,7 +11,9 @@ const SearchBar = () => {
 
   return (
     <div>
-      <input className="input is-success is-size-6" placeHolder="Search Movies" text onChange={handleChange} />
+    <div>
+      <input className="input is-size-6 is-primary" placeholder="Search Movies" onChange={handleChange}></input>
+      </div>
     </div>
   );
 };

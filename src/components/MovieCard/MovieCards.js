@@ -4,8 +4,6 @@ import axios from "axios";
 import MovieCard from "./MovieCard.js";
 import { Box, Container, Grid, TextField } from "@mui/material";
 import { Pagination } from "@mui/material";
-import { Grow, Fade } from "@mui/material";
-
 
 // import search term (Zustand)
 import { useSearchStore } from "../../store/searchStore.js";
@@ -41,7 +39,6 @@ function MovieCards() {
         )}&page=${pageNumber}&size=${cardsPerPage}&sort=title&direction=ASC`
       );
       setTotalElements(response.data.totalElements);
-      console.log(totalElements);
       setMovies(response.data.content);
     } catch (error) {
       console.log("Error fetching movies: ", error);
@@ -63,7 +60,7 @@ function MovieCards() {
   };
 
   return (
-    <div>
+    <div className="pb-5">
       <div>
         {/*         <form>
           <input
@@ -71,14 +68,9 @@ function MovieCards() {
             placeholder="Search Movies"
           />
         </form> */}
-        <Grow
-          key={page}
-          in={true}
-          style={{ transformOrigin: '0 0 0' }}
-    {...(true ? { timeout: 1350 } : {})}
-        >
-          <div className="movie-grid">
+        <div className="movie-grid">
             {movies.map((movie) => (
+
               <a href={`${baseProductUrl}${movie.id}`}>
                 <MovieCard
                   key={movie.id}
@@ -87,8 +79,7 @@ function MovieCards() {
                 />
               </a>
             ))}
-          </div>
-        </Grow>
+        </div>
         <div>
           <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
             <Pagination
