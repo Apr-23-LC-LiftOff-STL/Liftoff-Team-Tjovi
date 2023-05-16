@@ -8,11 +8,11 @@ import { Pagination } from "@mui/material";
 // import search term (Zustand)
 import { useSearchStore } from "../../store/searchStore.js";
 import { useGenreStore } from "../../store/genreStore.js";
+import { useSortStore } from "../../store/sortStore.js";
 
 function MovieCards() {
   const baseProductUrl = "/products/";
 
-  //const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
 
   const [page, setPage] = useState(0);
@@ -21,6 +21,7 @@ function MovieCards() {
 
   const searchTerm = useSearchStore((state) => state.searchTerm);
   const selectedGenres = useGenreStore((state) => state.selectedGenres);
+  const sortOptions = useSortStore((state) => state.sortOptions);
 
   // fetch movies
   const fetchMovies = async (
@@ -36,7 +37,7 @@ function MovieCards() {
           query
         )}&genre=${encodeURIComponent(
           genreQueryParam
-        )}&page=${pageNumber}&size=${cardsPerPage}&sort=title&direction=ASC`
+        )}&page=${pageNumber}&size=${cardsPerPage}&sort=${sortOptions[0]}&direction=${sortOptions[1]}`
       );
       setTotalElements(response.data.totalElements);
       setMovies(response.data.content);
@@ -52,7 +53,7 @@ function MovieCards() {
       left: 0,
       behavior: "instant",
     });
-  }, [searchTerm, selectedGenres, page]);
+  }, [searchTerm, selectedGenres, sortOptions, page]);
 
   const handleChangePage = (event, value) => {
     setPage(value - 1);
