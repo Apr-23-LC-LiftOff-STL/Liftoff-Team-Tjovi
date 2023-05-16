@@ -1,21 +1,24 @@
 import { useSearchStore } from "../../store/searchStore";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
+
+  const navigate = useNavigate();
 
   const setSearchTerm = useSearchStore((state) => state.setSearchTerm);
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
     console.log(e.target.value);
+    navigate('/');
   }
 
   return (
     <div>
-    <div>
-      <input className="input is-size-6 is-primary" placeholder="Search Movies" onChange={handleChange}></input>
-      </div>
+      <input className="input is-success is-size-6" placeHolder="Search Movies" text onChange={handleChange} />
     </div>
   );
 };
 
 export default SearchBar;
+
