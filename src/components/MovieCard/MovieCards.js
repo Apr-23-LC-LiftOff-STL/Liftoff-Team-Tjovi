@@ -13,7 +13,7 @@ function MovieCards() {
     const fetchMovies = async () => {
       try {
         const response = await axios.get('http://localhost:8080/movies');
-        setMovies(response.data);
+        setMovies(response.data.content);
       } catch (error){
         console.log('Error fetching movies: ', error);
       }
@@ -23,11 +23,7 @@ function MovieCards() {
   const handlePageClick = ({selected}) => {
     setCurrentPage(selected);
   }
-  const pageCount = Math.ceil(movies.length / resultsPerPage);
-  const displayedMovies = movies.slice(
-    currentPage * resultsPerPage,
-    (currentPage + 1) * resultsPerPage
-  );
+
   return (
     <div className="App">
       <header className="App-header">
