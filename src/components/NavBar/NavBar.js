@@ -34,7 +34,7 @@ const NavBar2 = () => {
   }, [totalProductsInCart]);
 
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav className="navbar pt-4 pl-4 pr-4" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           <img src={logo125} width="112" height="28" />
