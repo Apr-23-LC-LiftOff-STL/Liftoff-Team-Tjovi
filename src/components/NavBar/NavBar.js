@@ -6,11 +6,11 @@ import SearchBar from "./SearchBar";
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faUser, faRightFromBracket, faHistory } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faUser, faRightFromBracket, faHistory, faX } from "@fortawesome/free-solid-svg-icons";
 
 import { useCartStore } from "../../store/cartStore";
 
-const NavBar2 = () => {
+const NavBar = () => {
   const cart = useCartStore((state) => state.cart);
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
@@ -59,7 +59,6 @@ const NavBar2 = () => {
       <div className="navbar-item">
         <SearchBar />
       </div>
-      
 
       <div className="navbar-end">
       <div className="navbar-item">
@@ -109,4 +108,4 @@ const NavBar2 = () => {
   );
 };
 
-export default NavBar2;
+export default NavBar;
