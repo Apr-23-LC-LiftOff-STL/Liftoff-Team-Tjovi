@@ -34,6 +34,7 @@ const SortOptions = () => {
             name="radioSort"
             control={
               <Radio
+              disableRipple
                 id="title-asc"
                 onChange={handleChange}
                 value="title,ASC"
@@ -47,6 +48,7 @@ const SortOptions = () => {
             name="radioSort"
             control={
               <Radio
+              disableRipple
                 id="title-desc"
                 onChange={handleChange}
                 value="title,DESC"
@@ -60,7 +62,7 @@ const SortOptions = () => {
             name="radioSort"
             control={
               <Radio
-
+              disableRipple
                 id="price-asc"
                 onChange={handleChange}
                 value="price,ASC"
@@ -74,7 +76,7 @@ const SortOptions = () => {
             name="radioSort"
             control={
               <Radio
-
+              disableRipple
                 id="price-desc"
                 onChange={handleChange}
                 value="price,DESC"
@@ -88,6 +90,7 @@ const SortOptions = () => {
             name="radioSort"
             control={
               <Radio
+              disableRipple
                 id="releaseDate-desc"
                 onChange={handleChange}
                 value="releaseDate,DESC"
@@ -101,6 +104,7 @@ const SortOptions = () => {
             name="radioSort"
             control={
               <Radio
+              disableRipple
                 id="releaseDate-asc"
                 onChange={handleChange}
                 value="releaseDate,ASC"
