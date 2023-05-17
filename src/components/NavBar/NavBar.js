@@ -6,8 +6,7 @@ import SearchBar from "./SearchBar";
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faUser, faRightFromBracket, faHistory } from "@fortawesome/free-solid-svg-icons";
 
 import { useCartStore } from "../../store/cartStore";
 
@@ -74,16 +73,21 @@ const NavBar2 = () => {
             </a>
             <div className="navbar-dropdown is-left">
               <a className="navbar-item" href="/account/profile">
-                My Profile
+              <FontAwesomeIcon icon={faUser} />
+              &nbsp; My Profile
               </a>
               <a className="navbar-item" href="/account/orders">
-                Account History
+              <FontAwesomeIcon icon={faHistory} />
+              &nbsp; Account History
               </a>
               <hr className="navbar-divider" />
-              <div className="navbar-item">Log Out</div>
+              <div className="navbar-item has-text-danger">
+              <FontAwesomeIcon icon={faRightFromBracket} />
+              &nbsp; Log Out
+              </div>
             </div>
           </div>
-        </div>
+
 
         <div className="buttons">
           <a className="button is-primary is-primary" href="/login">
@@ -97,6 +101,7 @@ const NavBar2 = () => {
             <FontAwesomeIcon icon={faCartShopping} />
             &nbsp; ({totalProductsInCart})
           </a>
+        </div>
         </div>
       </div>
       </div>
