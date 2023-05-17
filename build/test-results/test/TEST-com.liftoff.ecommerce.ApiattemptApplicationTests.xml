@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.liftoff.ecommerce.ApiattemptApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-17T14:35:01" hostname="Geoffreys-Air.attlocal.net" time="0.31">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.liftoff.ecommerce.ApiattemptApplicationTests" time="0.31"/>
+  <system-out><![CDATA[09:34:56.388 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [ApiattemptApplicationTests]: using SpringBootContextLoader
+09:34:56.400 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+09:34:56.402 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: ApiattemptApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+09:34:56.456 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [ApiattemptApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+09:34:56.538 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/geoffreymeier/Projects/lift-off-tjovi-be/build/classes/java/main/com/liftoff/ecommerce/ECommerceApp.class]
+09:34:56.540 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.liftoff.ecommerce.ECommerceApp for test class com.liftoff.ecommerce.ApiattemptApplicationTests
+09:34:56.633 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [ApiattemptApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+09:34:56.635 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [ApiattemptApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.5)
+
+2023-05-17T09:34:57.045-05:00  WARN 37356 --- [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/Users/geoffreymeier/.gradle/caches/modules-2/files-2.1/org.json/json/20090211/c183aa3a2a6250293808bba12262c8920ce5a51c/json-20090211.jar!/org/json/JSONObject.class
+	jar:file:/Users/geoffreymeier/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2023-05-17T09:34:57.068-05:00  INFO 37356 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Starting ApiattemptApplicationTests using Java 17.0.6 with PID 37356 (started by geoffreymeier in /Users/geoffreymeier/Projects/lift-off-tjovi-be)
+2023-05-17T09:34:57.070-05:00  INFO 37356 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2023-05-17T09:34:57.888-05:00  INFO 37356 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-17T09:34:57.968-05:00  INFO 37356 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 2 JPA repository interfaces.
+2023-05-17T09:34:58.423-05:00  INFO 37356 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-17T09:34:58.459-05:00  INFO 37356 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-17T09:34:58.743-05:00  INFO 37356 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-17T09:34:59.158-05:00  INFO 37356 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e93b0e7
+2023-05-17T09:34:59.161-05:00  INFO 37356 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-17T09:34:59.180-05:00  INFO 37356 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-05-17T09:34:59.182-05:00  WARN 37356 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-05-17T09:35:00.343-05:00  INFO 37356 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-17T09:35:00.352-05:00  INFO 37356 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-17T09:35:00.856-05:00  WARN 37356 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-17T09:35:01.614-05:00  INFO 37356 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Started ApiattemptApplicationTests in 4.924 seconds (process running for 6.398)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -19,8 +19,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'mysql:mysql-connector-java:8.0.32'
-
-
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation "com.stripe:stripe-java:22.19.0"
+//    compile "com.sparkjava:spark-core:2.9.4"
 }
 
 tasks.named('test') {
