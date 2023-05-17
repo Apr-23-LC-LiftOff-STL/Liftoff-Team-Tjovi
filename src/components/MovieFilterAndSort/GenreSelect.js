@@ -87,18 +87,16 @@ const GenreSelect = () => {
   const animatedComponents = makeAnimated();
 
   return (
-    <div className="columns">
-    <div className="column">
+    <div>
     <div className="genre-select-main">
       <Select styles={styles}
       name="genre-select"
-      placeholder="Filter by Genre"
+      placeholder="Filter Genre"
         components={animatedComponents}
         isMulti
         onChange={handleChange}
         options={genres}
       />
-    </div>
     </div>
     </div>
   );
