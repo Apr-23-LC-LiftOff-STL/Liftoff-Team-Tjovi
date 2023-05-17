@@ -30,9 +30,10 @@ const SearchBar = () => {
 
   return (
     <div>
-      <div className="field">
+      <div className="navbar-item">
         <div className="control has-icons-left">
           <input
+          style={{width: '380px'}}
             className="input is-rounded has-background-white-ter"
             type="text"
             placeholder="Search Movies"
