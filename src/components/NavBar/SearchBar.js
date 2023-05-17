@@ -33,7 +33,7 @@ const SearchBar = () => {
       <div className="field">
         <div className="control has-icons-left">
           <input
-            className="input is-success is-rounded has-background-white-ter"
+            className="input is-rounded has-background-white-ter"
             type="text"
             placeholder="Search Movies"
             onChange={handleChange}
