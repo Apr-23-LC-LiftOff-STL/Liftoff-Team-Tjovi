@@ -1,12 +1,9 @@
-package com.liftoff.ecommerce.Config;
-
+package com.liftoff.ecommerce.config;
 
 import com.liftoff.ecommerce.filter.*;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -44,7 +41,7 @@ public class ProjectSecurityConfig {
                         config.setMaxAge(3600L);
                         return config;
                     }
-                }).and().csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/contact","/register", "login")
+                }).and().csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/contact","/register")
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
@@ -53,8 +50,8 @@ public class ProjectSecurityConfig {
                 .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                .requestMatchers("/movies/{id}").hasRole("USER")
-                .requestMatchers("/movies").hasAnyRole("USER","ADMIN")
+                .requestMatchers("/myAccount").hasRole("USER")
+                .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
                 .requestMatchers("/myLoans").hasRole("USER")
                 .requestMatchers("/myCards").hasRole("USER")
                 .requestMatchers("/user").authenticated()

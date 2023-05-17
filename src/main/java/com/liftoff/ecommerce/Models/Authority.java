@@ -1,11 +1,5 @@
 package com.liftoff.ecommerce.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import org.hibernate.annotations.GenericGenerator;
-
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,8 +15,8 @@ public class Authority {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "user")
-    private User user;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     public Long getId() {
         return id;
@@ -40,12 +34,12 @@ public class Authority {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomer(User user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 }
