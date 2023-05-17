@@ -1,0 +1,14 @@
+.overlay{
+    width:100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 99;
+background-color: #fff;
+opacity: .7;
+}
+
+.moonLoader{
+    top: 50%;
+    right: 50%;
+    position: absolute;
+}

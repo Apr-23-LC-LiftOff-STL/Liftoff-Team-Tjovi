@@ -27,6 +27,9 @@ import RootLayout from './layouts/RootLayout'
 import HelpLayout from './layouts/HelpLayout'
 import ProductsLayout from './layouts/ProductsLayout'
 import AccountLayout from './layouts/AccountLayout'
+import { Elements } from '@stripe/react-stripe-js'
+import {loadStripe} from '@stripe/stripe-js';
+import CheckoutSuccess from './pages/CheckoutSuccess'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +48,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="cart"
         element={<Cart />} 
+
         loader={cartProductDetailsLoader}
         />
       <Route path="products" element={<ProductsLayout />} errorElement={<ProductsError />}>
@@ -60,15 +64,22 @@ const router = createBrowserRouter(
           loader={productsDetailsLoader}
         />
       </Route>
-
+      <Route path='checkout-success' element={<CheckoutSuccess/>}/>
       <Route path="*" element={<NotFound />} />
     </Route>
   )
 )
+const stripePromise = loadStripe('pk_test_51N8n2ODvHmrdraF8Eb3aQ9m86ueHPsypNotvydB9gIsrlxlpyVbah3R3Zt0L1Al5swbbXNzkDHmUmfXuKjH70fmc00Q2jPmqAa');
 
 function App() {
+  const options = {
+    // passing the client secret obtained from the server
+   mode:"payment", currency: "usd", amount:100
+  };
   return (
-    <RouterProvider router={router} />
+    <Elements stripe={stripePromise} options={options}>
+      <RouterProvider router={router} />
+    </Elements>
   );
 }
 
