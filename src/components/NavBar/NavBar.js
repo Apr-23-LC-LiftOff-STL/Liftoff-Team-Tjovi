@@ -28,9 +28,9 @@ const NavBar2 = () => {
 
   useEffect(() => {
     if (totalProductsInCart !== 0) {
-      setCartButtonStyling("button is-warning is-rounded");
+      setCartButtonStyling("button is-warning");
     } else {
-      setCartButtonStyling("button is-light is-rounded");
+      setCartButtonStyling("button is-light");
     }
   }, [totalProductsInCart]);
 
@@ -61,11 +61,13 @@ const NavBar2 = () => {
         <SearchBar />
       </div>
       
+
+      <div className="navbar-end">
+      <div className="navbar-item">
       <div
         id="navbarBasicExample"
         className={`navbar-menu ${isActive ? "is-active" : ""}`}
       >
-        <div className="navbar-end">
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">
               <FontAwesomeIcon icon={faUser} />
@@ -84,7 +86,7 @@ const NavBar2 = () => {
         </div>
 
         <div className="buttons">
-          <a className="button is-primary is-light is-rounded" href="/login">
+          <a className="button is-primary is-primary" href="/login">
             Log in
           </a>
           <a
@@ -96,6 +98,7 @@ const NavBar2 = () => {
             &nbsp; ({totalProductsInCart})
           </a>
         </div>
+      </div>
       </div>
     </nav>
   );

@@ -36,13 +36,14 @@ const GenreSelect = () => {
     }),
     option: provided => ({
       ...provided,
-      color: 'black'
+      color: 'hsl(0, 0%, 21%)',
+      fontSize: '13px'
     }),
     placeholder: (defaultStyles) => {
       return {
           ...defaultStyles,
           color: 'hsl(0, 0%, 71%)',
-          font: 'smaller'
+          fontSize: '14px'
       }
   }
   };
