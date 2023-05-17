@@ -24,27 +24,33 @@ const SearchBar = () => {
   };
 
   const clearSearchTermStyleHandler = {
-    color: searchTerm === '' ? 'hsl(0, 0%, 86%)' : 'hsl(0, 0%, 48%)',
+    color: searchTerm === '' ? 'hsl(0, 0%, 96%)' : 'hsl(0, 0%, 48%)',
+    pointerEvents: 'auto',
+  };
+
+  const searchTermStyleHandler = {
+    color: searchTerm === '' ? 'hsl(0, 0%, 29%)' : 'hsl(171, 100%, 41%)',
     pointerEvents: 'auto',
   };
 
   return (
     <div>
       <div className="navbar-item">
-        <div className="control has-icons-left">
+        <div className="control has-icons-left has-icons-right">
           <input
-          style={{width: '380px'}}
             className="input is-rounded has-background-white-ter"
             type="text"
             placeholder="Search Movies"
             onChange={handleChange}
             value={searchTerm}
+
           />
-          <span className="icon is-small is-left has-text-primary">
+          <span className="icon is-small is-left"
+                      style={searchTermStyleHandler}>
             <FontAwesomeIcon icon={faSearch} />
           </span>
           <span
-            className="icon"
+            className="icon is-small is-right"
             style={clearSearchTermStyleHandler}
             onClick={clearSearchTermHandler}
           >
