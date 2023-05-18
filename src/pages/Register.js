@@ -98,7 +98,7 @@ const userInfo =""
             <label className="label">Email</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="email"
                 value={values.email}
                 onChange={handleChange}
@@ -114,7 +114,7 @@ const userInfo =""
             <div className="control">
               <input
                 name="password"
-                className="input"
+                className="input is-primary"
                 type="password"
                 value={values.password}
                 onChange={handleChange}
@@ -131,7 +131,7 @@ const userInfo =""
             <div className="control">
               <input
                 name="verifyPassword"
-                className="input"
+                className="input is-primary"
                 type="password"
                 value={values.verifyPassword}
                 onChange={handleChange}
@@ -145,7 +145,7 @@ const userInfo =""
             <label className="label">First Name</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
                 value={values.firstName}
                 onChange={handleChange}
@@ -159,7 +159,7 @@ const userInfo =""
             <label className="label">Last Name</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
                 value={values.lastName}
                 onChange={handleChange}
@@ -173,7 +173,7 @@ const userInfo =""
             <label className="label">Street Address</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
                 value={values.streetAddress}
                 onChange={handleChange}
@@ -187,7 +187,7 @@ const userInfo =""
             <label className="label">Suite/Apt. Number</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
                 value={values.suite}
                 onChange={handleChange}
@@ -201,7 +201,7 @@ const userInfo =""
             <label className="label">City</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
                 value={values.city}
                 onChange={handleChange}
@@ -215,7 +215,7 @@ const userInfo =""
             <label className="label">State</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
                 value={values.state}
                 onChange={handleChange}
@@ -229,7 +229,7 @@ const userInfo =""
             <label className="label">Zip Code</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
                 value={values.zipCode}
                 onChange={handleChange}
@@ -243,7 +243,7 @@ const userInfo =""
             <label className="label">Telephone</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="tel"
                 name="phoneNumber"
                 value={values.phoneNumber}
