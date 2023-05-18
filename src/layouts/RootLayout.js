@@ -4,7 +4,7 @@ import Footer from "../components/Footer"
 
 export default function RootLayout() {
   return (
-    <div class="root-layout">
+    <div className="root-layout">
       <header>
         <nav>
           <NavBar />

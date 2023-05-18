@@ -4,17 +4,15 @@ import axios from "axios";
 import MovieCard from "./MovieCard.js";
 import { Box, Container, Grid, TextField } from "@mui/material";
 import { Pagination } from "@mui/material";
-import { Grow, Fade } from "@mui/material";
-
 
 // import search term (Zustand)
 import { useSearchStore } from "../../store/searchStore.js";
 import { useGenreStore } from "../../store/genreStore.js";
+import { useSortStore } from "../../store/sortStore.js";
 
 function MovieCards() {
   const baseProductUrl = "/products/";
 
-  //const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
 
   const [page, setPage] = useState(0);
@@ -23,6 +21,7 @@ function MovieCards() {
 
   const searchTerm = useSearchStore((state) => state.searchTerm);
   const selectedGenres = useGenreStore((state) => state.selectedGenres);
+  const sortOptions = useSortStore((state) => state.sortOptions);
 
   // fetch movies
   const fetchMovies = async (
@@ -38,10 +37,9 @@ function MovieCards() {
           query
         )}&genre=${encodeURIComponent(
           genreQueryParam
-        )}&page=${pageNumber}&size=${cardsPerPage}&sort=title&direction=ASC`
+        )}&page=${pageNumber}&size=${cardsPerPage}&sort=${sortOptions[0]}&direction=${sortOptions[1]}`
       );
       setTotalElements(response.data.totalElements);
-      console.log(totalElements);
       setMovies(response.data.content);
     } catch (error) {
       console.log("Error fetching movies: ", error);
@@ -55,7 +53,7 @@ function MovieCards() {
       left: 0,
       behavior: "instant",
     });
-  }, [searchTerm, selectedGenres, page]);
+  }, [searchTerm, selectedGenres, sortOptions, page]);
 
   const handleChangePage = (event, value) => {
     setPage(value - 1);
@@ -63,7 +61,7 @@ function MovieCards() {
   };
 
   return (
-    <div>
+    <div className="pb-5">
       <div>
         {/*         <form>
           <input
@@ -71,14 +69,9 @@ function MovieCards() {
             placeholder="Search Movies"
           />
         </form> */}
-        <Grow
-          key={page}
-          in={true}
-          style={{ transformOrigin: '0 0 0' }}
-    {...(true ? { timeout: 1350 } : {})}
-        >
-          <div className="movie-grid">
+        <div className="movie-grid">
             {movies.map((movie) => (
+
               <a href={`${baseProductUrl}${movie.id}`}>
                 <MovieCard
                   key={movie.id}
@@ -87,8 +80,7 @@ function MovieCards() {
                 />
               </a>
             ))}
-          </div>
-        </Grow>
+        </div>
         <div>
           <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
             <Pagination

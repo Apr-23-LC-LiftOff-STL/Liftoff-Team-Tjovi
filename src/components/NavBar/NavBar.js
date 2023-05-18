@@ -1,7 +1,8 @@
 import "bulma/css/bulma.css";
+import { useState } from "react";
 
 import SearchBar from "./SearchBar";
-import GenreSelect from "./GenreSelect/GenreSelect";
+
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +12,8 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useCartStore } from "../../store/cartStore";
 
 const NavBar = () => {
+  const [isActive, setisActive] = useState(false);
+
   const cart = useCartStore((state) => state.cart);
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
@@ -18,15 +21,22 @@ const NavBar = () => {
   );
 
   return (
-    <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav
+      className="navbar"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           <img src={logo125} width="112" height="28" />
         </a>
 
         <a
+          onClick={() => {
+            setisActive(!isActive);
+          }}
           role="button"
-          className="navbar-burger"
+          className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -38,11 +48,13 @@ const NavBar = () => {
         </a>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div
+        id="navbarBasicExample"
+        className={`navbar-menu ${isActive ? "is-active" : ""}`}
+      >
         <div className="navbar-start">
           <div className="navbar-item">
-              <SearchBar />
-              <GenreSelect />
+            <SearchBar />
           </div>
         </div>
         <div className="navbar-end">
@@ -71,7 +83,7 @@ const NavBar = () => {
               </div>
               <a className="button is-light" href="/cart">
                 <FontAwesomeIcon icon={faCartShopping} />
-                &nbsp; {totalProductsInCart}
+                &nbsp; ({totalProductsInCart})
               </a>
             </div>
           </div>

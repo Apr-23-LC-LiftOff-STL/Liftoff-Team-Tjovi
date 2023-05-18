@@ -2,7 +2,9 @@ import { useLoaderData } from "react-router-dom";
 import CartItem from "./CartItem.js";
 import { useCartStore } from "../../store/cartStore";
 import { useState } from "react";
+import CartTotal from "./CartTotal.js";
 import "./Cart.css";
+import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
@@ -10,37 +12,29 @@ import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export default function Cart() {
-  const [thisProductId, setThisProductId] = useState();
 
   const cart = useCartStore((state) => state.cart);
-  
-  const totalProductsInCart = cart.reduce(
-    (prev, current) => prev + current.count,
-    0
-  );
+
+  const baseImgUrl = 'https://image.tmdb.org/t/p/w300';
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const emptyCart = useCartStore((state) => state.emptyCart);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
 
-  const product = useLoaderData();
-  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+  const movies = useLoaderData();
 
   const incrementCartItemButtonHandler = (id) => {
-    //setThisProductId(id);
     console.log(JSON.stringify(cart));
     incrementCartItem(id);
   };
 
   const decrementCartItemButtonHandler = (id) => {
-    //setThisProductId(id);
     console.log(JSON.stringify(cart));
     decrementCartItem(id);
   };
 
   const removeAllThisItemButtonHandler = (id) => {
-    //setThisProductId(id);
     console.log(JSON.stringify(cart));
     removeAllThisItem(id);
   };
@@ -51,71 +45,40 @@ export default function Cart() {
 
   return (
     <div>
+    <div>
       <div>
         {cart.map((product) => {
           if (cart[product.id] !== 0) {
             return (
               <div>
                 <div>
-                  <columns className="columns">
-                    <column className="column">
-                      <CartItem key={product.id} id={product.id} count={product.count} />
-                    </column>
-                    <column className="column">
-                      <div>(Cart component**)</div>
-                      <div>Movie ID: {product.id}</div>
-                      <div>
-                        <div className="card">
-                          <button
-                            className="button is-primary is-small"
-                            onClick={() =>
-                              incrementCartItemButtonHandler(product.id)
-                            }
-                          >
-                            <FontAwesomeIcon icon={faAdd} />
-                          </button>
-                          <input
-                            className="input is-small has-text-centered"
-                            style={{ width: "6%" }}
-                            number
-                            value={product.count}
-                            readOnly
-                          />
-                          <button
-                            className="button is-warning is-small"
-                            onClick={() =>
-                              decrementCartItemButtonHandler(product.id)
-                            }
-                          >
-                            <FontAwesomeIcon icon={faSubtract} />
-                          </button>
-                          <button
-                            className="button is-danger is-small"
-                            onClick={() =>
-                              removeAllThisItemButtonHandler(product.id)
-                            }
-                          >
-                            <FontAwesomeIcon icon={faX} />
-                          </button>
-                        </div>
-                      </div>
-                    </column>
-                  </columns>
+                  <CartItem
+                    key={product.id}
+                    id={product.id}
+                    count={product.count}
+                  />
                 </div>
               </div>
             );
           }
-
         })}
+        <div>{cart.length > 0 &&
         <button
-                  className="button is-danger is-normal is-rounded"
-                  visible=""
-                  onClick={emptyCartButtonHandler}
-                >
-                  <FontAwesomeIcon icon={faX} />
-                  &nbsp; Empty Cart
-                </button>
+          className="button is-danger is-normal is-rounded"
+          visible=""
+          onClick={emptyCartButtonHandler}
+        >
+          <FontAwesomeIcon icon={faX} />
+          &nbsp; Empty Cart
+        </button>
+        }
+        </div>
+        </div>
       </div>
+      {cart.length === 0 &&
+      <h1 className="is-size-3 has-text-centered">Your Cart is Empty</h1>
+    }
+    <CartTotal />
     </div>
   );
 }

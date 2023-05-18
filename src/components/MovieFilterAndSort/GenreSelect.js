@@ -1,6 +1,6 @@
 import Select from "react-select"; // npm install react-select
 import makeAnimated from 'react-select/animated';
-import { useGenreStore } from "../../../store/genreStore";
+import { useGenreStore } from "../../store/genreStore";
 import { useState } from "react";
 
 // Getting started with React Select
@@ -9,6 +9,43 @@ import { useState } from "react";
 const GenreSelect = () => {
 
   const setSelectedGenres = useGenreStore((state) => state.setSelectedGenres);
+
+  const styles = {
+    control: (base) => ({
+      ...base,
+      minHeight: 32,
+      color: 'black'
+    }),
+    control: provided => ({
+      ...provided,
+      color: 'black'
+    }),
+    dropdownIndicator: (base) => ({
+      ...base,
+      paddingTop: 0,
+      paddingBottom: 0,
+    }),
+    clearIndicator: (base) => ({
+      ...base,
+      paddingTop: 0,
+      paddingBottom: 0,
+    }),
+    singleValue: provided => ({
+      ...provided,
+      color: 'black'
+    }),
+    option: provided => ({
+      ...provided,
+      color: 'black'
+    }),
+    placeholder: (defaultStyles) => {
+      return {
+          ...defaultStyles,
+          color: 'hsl(0, 0%, 71%)',
+          font: 'smaller'
+      }
+  }
+  };
 
   const handleChange = (selectedGenres) => {
     const genreValues = selectedGenres ? selectedGenres.map((option) => option.value) : [];
@@ -50,8 +87,10 @@ const GenreSelect = () => {
   const animatedComponents = makeAnimated();
 
   return (
-    <div className={{width: '300px'}}>
-      <Select
+    <div className="columns">
+    <div className="column">
+    <div className="genre-select-main">
+      <Select styles={styles}
       name="genre-select"
       placeholder="Filter by Genre"
         components={animatedComponents}
@@ -59,6 +98,8 @@ const GenreSelect = () => {
         onChange={handleChange}
         options={genres}
       />
+    </div>
+    </div>
     </div>
   );
 };

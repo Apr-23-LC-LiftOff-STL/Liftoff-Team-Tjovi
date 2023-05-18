@@ -1,10 +1,20 @@
 import "./CartTotal.css";
 
+import { useCartStore } from "../../store/cartStore";
+
 const CartTotal = () => {
+
+  const cart = useCartStore((state) => state.cart);
+
+  const totalProductsInCart = cart.reduce(
+    (prev, current) => prev + current.count,
+    0
+  );
+
   return (
-    <div class="container">
+    <div className="container">
       <div className="cartTotal">
-        Items in Cart:
+        <span> Items in Cart:</span><span>{totalProductsInCart}</span>  
         <br />
         Subtotal: <br />
         Est. Sales Tax: <br /> <br />

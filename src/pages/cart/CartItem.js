@@ -7,7 +7,9 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
-const CartItem = (props) => {
+import { Fade } from "@mui/material";
+
+const CartItem = ({ title, posterPath, id, count }) => {
 
   const cart = useCartStore((state) => state.cart);
 
@@ -16,33 +18,34 @@ const CartItem = (props) => {
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
+  const changeItemCount = useCartStore((state) => state.changeItemCount);
   //const emptyCart = useCartStore((state) => state.emptyCart);
 
   const incrementCartItemButtonHandler = (e) => {
     console.log(JSON.stringify(cart));
-    incrementCartItem(props.id);
+    incrementCartItem(id);
   };
 
   const decrementCartItemButtonHandler = (e) => {
     console.log(JSON.stringify(cart));
-    decrementCartItem(props.id);
+    decrementCartItem(id);
     //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
     //setCartMessage(`"${product.title}" was removed from cart!`);
   };
 
   const removeAllThisItemButtonHandler = (e) => {
     console.log(JSON.stringify(cart));
-    removeAllThisItem(props.id);
+    removeAllThisItem(id);
   };
 
-
   return (
+    <div>
+    <Fade in timeout={500}>
     <div className="card">
-      <div>(CartItem component**)</div>
-      <div>Movie Image</div>
-      <div className="is-size-5">Movie Name (2009)</div>
+      <div>Movie Image {posterPath}</div>
+      <div className="is-size-5">Movie Name {title} (year)</div>
       <div>
-        Movie ID: {props.id} Count: {props.count}
+        Movie ID: {id} Count: {count}
       </div>
       <div>
         <button
@@ -55,7 +58,7 @@ const CartItem = (props) => {
           className="input is-small has-text-centered"
           style={{ width: "6%" }}
           number
-          value={props.count}
+          value={count}
           readOnly
         />
         <button
@@ -64,10 +67,15 @@ const CartItem = (props) => {
         >
           <FontAwesomeIcon icon={faSubtract} />
         </button>
-        <button className="button is-danger is-small">
+        <button
+          className="button is-danger is-small"
+          onClick={removeAllThisItemButtonHandler}
+        >
           <FontAwesomeIcon icon={faX} />
         </button>
       </div>
+    </div>
+    </Fade>
     </div>
   );
 };

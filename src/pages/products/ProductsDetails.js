@@ -2,6 +2,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./Products.css";
+import { Fade } from "@mui/material";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
@@ -57,9 +58,6 @@ export default function ProductsDetails() {
     console.log(JSON.stringify(cart));
   };
 
-
-
-
 /*   const incrementCartItemButtonHandler = () => {
     console.log(JSON.stringify(cart));
     incrementCartItem(product.id);
@@ -96,12 +94,14 @@ export default function ProductsDetails() {
             <div className="column">
               <div className="card is-horizontal shadow-xl transform is-duration-100">
                 <div className="card-image p-4">
+                <Fade in timeout={500}>
                   <figure className="image ">
                     <img
                       src={`${baseImgUrl}${product.posterPath}`}
                       alt={`Poster for ${product.title}`}
                     ></img>
                   </figure>
+                  </Fade>
                 </div>
                 <div className="card-content p-4 is-flex is-flex-direction-column">
                   <div className="content p-4 has-text-weight-normal">
