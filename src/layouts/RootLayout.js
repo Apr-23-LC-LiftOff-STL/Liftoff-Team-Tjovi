@@ -4,17 +4,14 @@ import Footer from "../components/Footer";
 
 export default function RootLayout() {
   return (
-    <div
-      className="columns is-flex-direction-column is-fullheight-100vh"
-      style={{ minHeight: "100vh" }}
-    >
-      <header className="column is-narrow">
+    <div>
+      <header>
         <NavBar />
       </header>
-      <main className="column">
+      <main>
         <Outlet />
       </main>
-      <footer className="column is-narrow">
+      <footer>
         <Footer />
       </footer>
     </div>

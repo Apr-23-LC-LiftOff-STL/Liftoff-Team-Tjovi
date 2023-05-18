@@ -34,7 +34,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div style={{maxWidth: '428px'}}>
       <div className="navbar-item">
         <div className="control has-icons-left has-icons-right">
           <input
@@ -43,7 +43,6 @@ const SearchBar = () => {
             placeholder="Search Movies"
             onChange={handleChange}
             value={searchTerm}
-
           />
           <span className="icon is-small is-left"
                       style={searchTermStyleHandler}>

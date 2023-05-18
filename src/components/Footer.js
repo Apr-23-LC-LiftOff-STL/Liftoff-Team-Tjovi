@@ -19,8 +19,7 @@ const Footer = () => {
           <br />
           St. Louis, MO 63108
           <br />
-          (314) 254-0107 &nbsp;
-          <FontAwesomeIcon icon={faPhone} />
+          (314) 254-0107
         </p>
         <div className="tabs is-centered">
           <ul>

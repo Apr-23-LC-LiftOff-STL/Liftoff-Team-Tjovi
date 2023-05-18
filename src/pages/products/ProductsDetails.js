@@ -131,7 +131,7 @@ export default function ProductsDetails() {
                           <span className="has-text-weight-semibold">
                             Price:
                           </span>{" "}
-                          <span>${product.price.toFixed(2)}</span>
+                          <span style={{color: product.price < 10 ? "hsl(348, 100%, 61%)" : ""}}>${product.price.toFixed(2)}</span>
                         </div>
                         <div>
                           <button

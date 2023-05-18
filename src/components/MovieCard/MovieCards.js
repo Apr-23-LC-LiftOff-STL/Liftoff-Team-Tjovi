@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
-//import data from "./data.js";
+
 import MovieCard from "./MovieCard.js";
-import { Box, Container, Grid, TextField } from "@mui/material";
+
+import { Box } from "@mui/material";
 import { Pagination } from "@mui/material";
 
-// import search term (Zustand)
 import { useSearchStore } from "../../store/searchStore.js";
 import { useGenreStore } from "../../store/genreStore.js";
 import { useSortStore } from "../../store/sortStore.js";
 
 function MovieCards() {
-  const baseProductUrl = "/products/";
 
   const [movies, setMovies] = useState([]);
-
   const [page, setPage] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
-  const cardsPerPage = 30;
 
   const searchTerm = useSearchStore((state) => state.searchTerm);
   const selectedGenres = useGenreStore((state) => state.selectedGenres);
   const sortOptions = useSortStore((state) => state.sortOptions);
+
+  const baseProductUrl = "/products/";
+  const cardsPerPage = 30;
 
   // fetch movies
   const fetchMovies = async (
@@ -63,12 +64,6 @@ function MovieCards() {
   return (
     <div className="pb-5">
       <div>
-        {/*         <form>
-          <input
-            onChange={(e) => setSearch(e.target.value.toLowerCase())}
-            placeholder="Search Movies"
-          />
-        </form> */}
         <div className="movie-grid">
             {movies.map((movie) => (
 
@@ -77,6 +72,7 @@ function MovieCards() {
                   key={movie.id}
                   title={movie.title}
                   posterPath={movie.posterPath}
+                  price={movie.price}
                 />
               </a>
             ))}
