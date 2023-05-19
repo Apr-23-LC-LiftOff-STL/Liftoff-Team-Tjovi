@@ -137,7 +137,7 @@ export default function ProductsDetails() {
                                 product.price < 10 ? "hsl(348, 100%, 61%)" : "",
                             }}
                           >
-                            ${product.price.toFixed(2)}
+                            ${product.price?.toFixed(2)}
                           </span>
                         </div>
                         <div>

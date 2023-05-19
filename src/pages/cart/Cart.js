@@ -15,8 +15,6 @@ export default function Cart() {
   const cart = useCartStore((state) => state.cart);
   const emptyCart = useCartStore((state) => state.emptyCart);
 
-  const [subTotalAll, setSubTotalAll] = useState();
-
   const [productData, setProductData] = useState({});
 
   useEffect(() => {
@@ -33,13 +31,13 @@ export default function Cart() {
       }
       setProductData(data);
     };
-
     fetchData();
   }, [cart]);
 
   const emptyCartButtonHandler = () => {
     emptyCart();
   };
+
 
   return (
     <div>
