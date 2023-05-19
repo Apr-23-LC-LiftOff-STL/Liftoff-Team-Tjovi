@@ -1,5 +1,6 @@
 package com.liftoff.ecommerce.Controllers;
 
+import com.liftoff.ecommerce.Models.Authority;
 import com.liftoff.ecommerce.Models.Customer;
 import com.liftoff.ecommerce.Repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,14 @@ public class LoginController {
             String hashPwd = passwordEncoder.encode(customer.getPwd());
             customer.setPwd(hashPwd);
             customer.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
+
+            Authority userAuthority = new Authority();
+            userAuthority.setName("ROLE_USER");
+            customer.addAuthority(userAuthority);
+
             savedCustomer = customerRepository.save(customer);
+
+
             if (savedCustomer.getId() > 0) {
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
