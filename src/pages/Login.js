@@ -6,7 +6,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -16,16 +16,32 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post('http://localhost:8080/login', { email, password }, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        'http://localhost:8080/user', 
+        { email, password }, 
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          maxRedirects: 0,
+          validateStatus: function (status) {
+            return status >= 200 && status < 303; // default
+          }
         }
-      });
-      
-      if (response.data.token) {
+      );
+  
+      const { location } = response.headers;
+      if (location) {
+        const responseFollowRedirect = await axios.get(location, {
+          headers: {
+            'Authorization': `Bearer ${response.data.token}`
+          }
+        });
+  
         localStorage.setItem("token", response.data.token);
+        console.log(responseFollowRedirect.data);
         navigate("/");
       } else {
         throw new Error("Login failed");
