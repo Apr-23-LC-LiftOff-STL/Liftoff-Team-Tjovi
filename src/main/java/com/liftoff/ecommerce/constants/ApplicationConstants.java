@@ -1,6 +1,5 @@
 package com.liftoff.ecommerce.constants;
 
-
 public class ApplicationConstants {
 
     public static final String ERROR_MSG = "An unknown error occured";

@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity(debug=true)
 @Configuration
 public class ProjectSecurityConfig {
 
@@ -29,18 +29,18 @@ public class ProjectSecurityConfig {
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
         requestHandler.setCsrfRequestAttributeName("_csrf");
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .cors().configurationSource(new CorsConfigurationSource() {
-                    @Override
-                    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                        CorsConfiguration config = new CorsConfiguration();
-                        config.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
-                        config.setAllowedMethods(Collections.singletonList("*"));
-                        config.setAllowCredentials(true);
-                        config.setAllowedHeaders(Collections.singletonList("*"));
-                        config.setExposedHeaders(Arrays.asList("Authorization"));
-                        config.setMaxAge(3600L);
-                        return config;
-                    }
+            .cors().configurationSource(new CorsConfigurationSource() {
+            @Override
+            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+                CorsConfiguration config = new CorsConfiguration();
+                config.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+                config.setAllowedMethods(Collections.singletonList("*"));
+                config.setAllowCredentials(true);
+                config.setAllowedHeaders(Collections.singletonList("*"));
+                config.setExposedHeaders(Arrays.asList("Authorization"));
+                config.setMaxAge(3600L);
+                return config;
+            }
                 }).and().csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/contact","/register")
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
@@ -50,12 +50,12 @@ public class ProjectSecurityConfig {
                 .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                .requestMatchers("/myAccount").hasRole("USER")
-                .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
-                .requestMatchers("/myLoans").hasRole("USER")
-                .requestMatchers("/myCards").hasRole("USER")
-                .requestMatchers("/user").authenticated()
-                .requestMatchers("/notices","/contact","/register").permitAll()
+                        .requestMatchers("/movies/{id}").hasRole("USER")
+                        .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/myLoans").hasRole("USER")
+                        .requestMatchers("/myCards").hasRole("USER")
+                        .requestMatchers("/user").authenticated()
+                        .requestMatchers("/notices","/contact","/register","/movies").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
         return http.build();

@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8308baad-0745-4f8e-b4a6-caeb82cb4e2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Repositories/CustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/EcommerceUsernamePwdAuthenticationProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
@@ -17,24 +15,22 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Config/ProjectSecurityConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Config/ProjectSecurityConfig$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Config/ProjectSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Config/ProjectSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/filter/CsrfCookieFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/filter/CsrfCookieFilter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Config/CustomUserDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Config/EcommUsernamePwdAuthenticationProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Config/ProjectSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Authority.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Authority.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Repositories/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/AuthoritiesLoggingAfterFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/AuthoritiesLoggingAfterFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Repositories/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Repositories/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/constants/ApplicationConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/constants/ApplicationConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/constants/SecurityConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/constants/SecurityConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/AuthoritiesLoggingAtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/AuthoritiesLoggingAtFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/CsrfCookieFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/CsrfCookieFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/JWTTokenGeneratorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/JWTTokenGeneratorFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/JWTTokenValidatorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/JWTTokenValidatorFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/RequestValidationBeforeFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/filter/RequestValidationBeforeFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +70,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="b111b" />
+        <entry key="$PROJECT_DIR$" value="b111g-TryingAgainIAmSoFrustrated" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,25 +86,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/grantcrawford/Documents/developer/liftoff/Liftoff-Team-Tjovi",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/grantcrawford/Documents/developer/liftoff/Liftoff-Team-Tjovi&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;3a6c104ef32302e5b80977671abbb914&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Repositories" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.ECommerceApp">
     <configuration name="ECommerceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ECommerceApp" />
@@ -160,6 +164,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ECommerceApp" />
+        <item itemvalue="Application.ECommerceApp" />
       </list>
     </recent_temporary>
   </component>
@@ -173,6 +178,9 @@
       <updated>1682186119623</updated>
       <workItem from="1682186123153" duration="401000" />
       <workItem from="1682186670654" duration="1499000" />
+      <workItem from="1684444713661" duration="1238000" />
+      <workItem from="1684445967718" duration="243000" />
+      <workItem from="1684452024283" duration="12703000" />
     </task>
     <task id="LOCAL-00001" summary="Added .gradle dir">
       <created>1682198565041</created>
@@ -202,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684278131506</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Initial JWT code">
+      <created>1684364969237</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684364969237</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,69 +287,6 @@
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/6.0.2/f73729dc88b6c0be1bbe36f83c381a704dd48eec/spring-security-core-6.0.2-sources.jar!/org/springframework/security/provisioning/InMemoryUserDetailsManager.java</url>
           <line>152</line>
           <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/config/ProjectSecurityConfig.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Repositories/CustomerRepository.java</url>
-          <line>12</line>
-          <properties class="com.liftoff.ecommerce.Repositories.CustomerRepository" method="findByEmail">
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
