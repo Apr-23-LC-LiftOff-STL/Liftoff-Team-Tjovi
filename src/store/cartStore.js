@@ -2,22 +2,22 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 export const useCartStore = create(
-  persist((set, get) => ({
+  persist((set) => ({
     cart:[],
 
-    incrementCartItem: (id) =>
+    incrementCartItem: (id, price) =>
       set((state) => {
         const isPresent = state.cart.find((movies) => movies.id === id);
 
         if (!isPresent) {
           return {
             ...state,
-            cart: [...state.cart, { id, count: 1 }],
+            cart: [...state.cart, { id, count: 1, price}],
           };
         }
 
         const updatedCart = state.cart.map((movies) =>
-          movies.id === id ? { ...movies, count: movies.count + 1 } : movies
+          movies.id === id ? { ...movies, count: movies.count + 1, price} : movies
         );
 
         return {
@@ -63,7 +63,7 @@ export const useCartStore = create(
         const updatedCart = state.cart
         .map((movies) =>
           movies.id === id
-            ? { ...movies, count: Math.max(movies.count - movies.count, 0) }
+            ? { ...movies, count: Math.max(movies.count - movies.count, 0)}
             : movies
         )
         .filter((movies) => movies.count);

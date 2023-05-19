@@ -18,14 +18,6 @@ const CartItem = ({
   releaseDate,
 }) => {
 
-  const [subtotal, setSubtotal] = useState(price*count);
-
-  useEffect(() => {
-    if (price && count) {
-      setSubtotal((price * count).toFixed(2));
-    }
-  }, [price, count]);
-
   const cart = useCartStore((state) => state.cart);
 
   const baseProductUrl = "/products/";
@@ -36,26 +28,25 @@ const CartItem = ({
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
   //const changeItemCount = useCartStore((state) => state.changeItemCount);
 
-  const incrementCartItemButtonHandler = (e) => {
-    //console.log(JSON.stringify(cart));
-    incrementCartItem(id);
+  const incrementCartItemButtonHandler = () => {
+    incrementCartItem(id, price);
+    console.log(JSON.stringify(cart));
   };
 
-  const decrementCartItemButtonHandler = (e) => {
-    //console.log(JSON.stringify(cart));
+  const decrementCartItemButtonHandler = () => {
     decrementCartItem(id);
+    console.log(JSON.stringify(cart));
   };
 
-  const removeAllThisItemButtonHandler = (e) => {
-    //console.log(JSON.stringify(cart));
+  const removeAllThisItemButtonHandler = () => {
     removeAllThisItem(id);
+    console.log(JSON.stringify(cart));
   };
 
   return (
     <div>
       <Fade in timeout={500}>
         <div className="card">
-          <Fade in timeout={500}>
             <figure className="cart-item-img">
               <a href={`${baseProductUrl}${id}`}>
                 <img
@@ -64,7 +55,6 @@ const CartItem = ({
                 ></img>
               </a>
             </figure>
-          </Fade>
           <div className="is-size-5">
             {title} ({releaseDate})
           </div>
@@ -79,7 +69,7 @@ const CartItem = ({
           >
             ${price?.toFixed(2)}
           </span>
-          <div>Item Subtotal: ${subtotal}</div>
+          <div>Item Subtotal: $**SUBTOTAL HERE**</div>
           <div>
             <button
               className="button is-primary is-small"

@@ -22,11 +22,16 @@ export default function Cart() {
       const data = {};
       for (const cartProduct of cart) {
         try {
-          const response = await axios.get(`http://localhost:8080/${cartProduct.id}`);
-          const { title, releaseDate, posterPath, price } = response.data;
-          data[cartProduct.id] = { title, releaseDate, posterPath, price };
+          const response = await axios.get(
+            `http://localhost:8080/${cartProduct.id}`
+          );
+          const { title, releaseDate, posterPath } = response.data;
+          data[cartProduct.id] = { title, releaseDate, posterPath };
         } catch (error) {
-          console.log(`Error fetching data for product with ID ${cartProduct.id}:`, error);
+          console.log(
+            `Error fetching data for product with ID ${cartProduct.id}:`,
+            error
+          );
         }
       }
       setProductData(data);
@@ -38,7 +43,6 @@ export default function Cart() {
     emptyCart();
   };
 
-
   return (
     <div>
       {cart.length > 0 ? (
@@ -49,16 +53,19 @@ export default function Cart() {
               <CartItem
                 id={cartProduct.id}
                 count={cartProduct.count}
+                price={cartProduct.price}
                 title={data.title}
                 releaseDate={data.releaseDate}
                 posterPath={data.posterPath}
-                price={data.price}
+                // PASS SUBTOTAL HERE just for representation in CartItem?  Or will this create async problems?  Lift state from CartItem instead?
               />
             </div>
           );
         })
       ) : (
-        <h1 className="is-size-3 has-text-centered">Your Cart is Empty</h1>
+        <h1 className="is-size-3 has-text-centered pt-6 pb-6 has-text-danger">
+          Your Cart is Empty
+        </h1>
       )}
       {cart.length > 0 && (
         <button
@@ -69,9 +76,7 @@ export default function Cart() {
           &nbsp; Empty Cart
         </button>
       )}
-      {cart.length > 0 && (
-      <CartTotal />
-      )}
+      {cart.length > 0 && <CartTotal />}
     </div>
   );
 }
