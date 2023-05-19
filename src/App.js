@@ -20,7 +20,7 @@ import ProductsDetails, { productsDetailsLoader } from "./pages/products/Product
 import ProductsError from './pages/products/ProductsError'
 import Orders from './pages/Orders.js'
 import Profile from './pages/Profile.js'
-import Cart, { cartProductDetailsLoader } from './pages/cart/Cart.js'
+import Cart, { cartProductsDetailsLoader } from './pages/cart/Cart.js'
 
 // layouts
 import RootLayout from './layouts/RootLayout'
@@ -45,7 +45,6 @@ const router = createBrowserRouter(
       </Route>
       <Route path="cart"
         element={<Cart />} 
-        loader={cartProductDetailsLoader}
         />
       <Route path="products" element={<ProductsLayout />} errorElement={<ProductsError />}>
         <Route 

@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import CartItem from "./CartItem.js";
 import { useCartStore } from "../../store/cartStore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CartTotal from "./CartTotal.js";
 import "./Cart.css";
 import axios from "axios";
@@ -12,84 +12,68 @@ import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export default function Cart() {
-
   const cart = useCartStore((state) => state.cart);
-
-  const baseImgUrl = 'https://image.tmdb.org/t/p/w300';
-
-  const incrementCartItem = useCartStore((state) => state.incrementCartItem);
-  const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const emptyCart = useCartStore((state) => state.emptyCart);
-  const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
 
-  const movies = useLoaderData();
+  const [subTotalAll, setSubTotalAll] = useState();
 
-  const incrementCartItemButtonHandler = (id) => {
-    console.log(JSON.stringify(cart));
-    incrementCartItem(id);
-  };
+  const [productData, setProductData] = useState({});
 
-  const decrementCartItemButtonHandler = (id) => {
-    console.log(JSON.stringify(cart));
-    decrementCartItem(id);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = {};
+      for (const cartProduct of cart) {
+        try {
+          const response = await axios.get(`http://localhost:8080/${cartProduct.id}`);
+          const { title, releaseDate, posterPath, price } = response.data;
+          data[cartProduct.id] = { title, releaseDate, posterPath, price };
+        } catch (error) {
+          console.log(`Error fetching data for product with ID ${cartProduct.id}:`, error);
+        }
+      }
+      setProductData(data);
+    };
 
-  const removeAllThisItemButtonHandler = (id) => {
-    console.log(JSON.stringify(cart));
-    removeAllThisItem(id);
-  };
+    fetchData();
+  }, [cart]);
 
-  const emptyCartButtonHandler = (e) => {
+  const emptyCartButtonHandler = () => {
     emptyCart();
   };
 
   return (
     <div>
-    <div>
-      <div>
-        {cart.map((product) => {
-          if (cart[product.id] !== 0) {
-            return (
-              <div>
-                <div>
-                  <CartItem
-                    key={product.id}
-                    id={product.id}
-                    count={product.count}
-                  />
-                </div>
-              </div>
-            );
-          }
-        })}
-        <div>{cart.length > 0 &&
+      {cart.length > 0 ? (
+        cart.map((cartProduct) => {
+          const data = productData[cartProduct.id] || {};
+          return (
+            <div key={cartProduct.id}>
+              <CartItem
+                id={cartProduct.id}
+                count={cartProduct.count}
+                title={data.title}
+                releaseDate={data.releaseDate}
+                posterPath={data.posterPath}
+                price={data.price}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <h1 className="is-size-3 has-text-centered">Your Cart is Empty</h1>
+      )}
+      {cart.length > 0 && (
         <button
           className="button is-danger is-normal is-rounded"
-          visible=""
           onClick={emptyCartButtonHandler}
         >
           <FontAwesomeIcon icon={faX} />
           &nbsp; Empty Cart
         </button>
-        }
-        </div>
-        </div>
-      </div>
-      {cart.length === 0 &&
-      <h1 className="is-size-3 has-text-centered">Your Cart is Empty</h1>
-    }
-    <CartTotal />
+      )}
+      {cart.length > 0 && (
+      <CartTotal />
+      )}
     </div>
   );
 }
-
-// data loader
-export const cartProductDetailsLoader = async (id) => {
-  const res = await fetch("http://localhost:8080/");
-
-  if (!res.ok) {
-    throw Error("Could not find that product.");
-  }
-
-  return res.json();
-};

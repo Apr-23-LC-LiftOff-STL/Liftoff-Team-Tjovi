@@ -15,11 +15,12 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useCartStore } from "../../store/cartStore";
 
 export default function ProductsDetails() {
+  
   const { id } = useParams();
   const product = useLoaderData();
   const cart = useCartStore((state) => state.cart);
 
-/*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
+  /*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
@@ -32,20 +33,20 @@ export default function ProductsDetails() {
   const [buttonDisabled, setButtonDisabled] = useState();
 
   const [thisItemInCart, setThisItemInCart] = useState(
-    cart.find(product => product.id === id)?.count || 0
+    cart.find((product) => product.id === id)?.count || 0
   );
 
   const incrementCartItemButtonHandler = () => {
     incrementCartItem(id);
     setCartMessage(`"${product.title}" was added to cart`);
-    setThisItemInCart(prevCount => prevCount + 1);
+    setThisItemInCart((prevCount) => prevCount + 1);
     console.log(JSON.stringify(cart));
   };
 
   const decrementCartItemButtonHandler = () => {
     decrementCartItem(id);
     if (thisItemInCart > 0) {
-      setThisItemInCart(prevCount => prevCount - 1);
+      setThisItemInCart((prevCount) => prevCount - 1);
       setCartMessage(`"${product.title}" was removed from cart`);
       console.log(JSON.stringify(cart));
     }
@@ -58,7 +59,7 @@ export default function ProductsDetails() {
     console.log(JSON.stringify(cart));
   };
 
-/*   const incrementCartItemButtonHandler = () => {
+  /*   const incrementCartItemButtonHandler = () => {
     console.log(JSON.stringify(cart));
     incrementCartItem(product.id);
     setCartMessageStyle("is-size-6");
@@ -85,7 +86,6 @@ export default function ProductsDetails() {
     }
   }; */
 
-
   return (
     <div>
       <section className="section">
@@ -94,13 +94,13 @@ export default function ProductsDetails() {
             <div className="column">
               <div className="card is-horizontal shadow-xl transform is-duration-100">
                 <div className="card-image p-4">
-                <Fade in timeout={500}>
-                  <figure className="image ">
-                    <img
-                      src={`${baseImgUrl}${product.posterPath}`}
-                      alt={`Poster for ${product.title}`}
-                    ></img>
-                  </figure>
+                  <Fade in timeout={500}>
+                    <figure className="image ">
+                      <img
+                        src={`${baseImgUrl}${product.posterPath}`}
+                        alt={`Poster for ${product.title}`}
+                      ></img>
+                    </figure>
                   </Fade>
                 </div>
                 <div className="card-content p-4 is-flex is-flex-direction-column">
@@ -131,7 +131,14 @@ export default function ProductsDetails() {
                           <span className="has-text-weight-semibold">
                             Price:
                           </span>{" "}
-                          <span style={{color: product.price < 10 ? "hsl(348, 100%, 61%)" : ""}}>${product.price.toFixed(2)}</span>
+                          <span
+                            style={{
+                              color:
+                                product.price < 10 ? "hsl(348, 100%, 61%)" : "",
+                            }}
+                          >
+                            ${product.price.toFixed(2)}
+                          </span>
                         </div>
                         <div>
                           <button
@@ -146,7 +153,10 @@ export default function ProductsDetails() {
                             className="input is-small has-text-centered"
                             style={{ width: "6%" }}
                             number
-                            value={cart.find(product => product.id === id)?.count || 0}
+                            value={
+                              cart.find((product) => product.id === id)
+                                ?.count || 0
+                            }
                             readOnly
                           />
                           <button
