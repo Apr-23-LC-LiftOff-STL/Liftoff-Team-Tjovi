@@ -1,3 +1,5 @@
+import MovieBar from "../components/MovieBar/MovieBar"
+
 export default function Login() {
     return (
         <div>
@@ -69,6 +71,7 @@ export default function Login() {
           <button className="button is-light">Cancel Changes</button>
         </form>
       </div>
+      <MovieBar />
       </div>
     );
   }

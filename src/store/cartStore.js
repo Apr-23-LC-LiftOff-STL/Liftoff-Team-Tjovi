@@ -2,114 +2,112 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 export const useCartStore = create(
-  persist((set) => ({
-    cart:[],
+  persist(
+    (set) => ({
+      cart: [],
 
-    incrementCartItem: (id, price) =>
-      set((state) => {
-        const isPresent = state.cart.find((movies) => movies.id === id);
+      incrementCartItem: (id) =>
+        set((state) => {
+          const isPresent = state.cart.find((movies) => movies.id === id);
 
-        if (!isPresent) {
+          if (!isPresent) {
+            return {
+              ...state,
+              cart: [...state.cart, { id, count: 1 }],
+            };
+          }
+
+          const updatedCart = state.cart.map((movies) =>
+            movies.id === id ? { ...movies, count: movies.count + 1 } : movies
+          );
+
           return {
             ...state,
-            cart: [...state.cart, { id, count: 1, price}],
+            cart: updatedCart,
           };
-        }
+        }),
 
-        const updatedCart = state.cart.map((movies) =>
-          movies.id === id ? { ...movies, count: movies.count + 1, price} : movies
-        );
+      decrementCartItem: (id) =>
+        set((state) => {
+          const isPresent = state.cart.findIndex((movies) => movies.id === id);
 
-        return {
-          ...state,
-          cart: updatedCart,
-        };
-      }),
+          if (isPresent === -1) {
+            return {
+              ...state,
+            };
+          }
 
-    decrementCartItem: (id) =>
-      set((state) => {
-        const isPresent = state.cart.findIndex((movies) => movies.id === id);
+          const updatedCart = state.cart
+            .map((movies) =>
+              movies.id === id
+                ? { ...movies, count: Math.max(movies.count - 1, 0) }
+                : movies
+            )
+            .filter((movies) => movies.count);
 
-        if (isPresent === -1) {
           return {
             ...state,
+            cart: updatedCart,
           };
-        }
+        }),
 
-        const updatedCart = state.cart
-          .map((movies) =>
-            movies.id === id
-              ? { ...movies, count: Math.max(movies.count - 1, 0) }
-              : movies
-          )
-          .filter((movies) => movies.count);
+      removeAllThisItem: (id) =>
+        set((state) => {
+          const isPresent = state.cart.findIndex((movies) => movies.id === id);
 
-        return {
-          ...state,
-          cart: updatedCart,
-        };
-      }),
+          if (isPresent === -1) {
+            return {
+              ...state,
+            };
+          }
 
-    removeAllThisItem: (id) =>
-      set((state) => {
-        const isPresent = state.cart.findIndex((movies) => movies.id === id);
+          const updatedCart = state.cart
+            .map((movies) =>
+              movies.id === id
+                ? { ...movies, count: Math.max(movies.count - movies.count, 0) }
+                : movies
+            )
+            .filter((movies) => movies.count);
 
-        if (isPresent === -1) {
           return {
             ...state,
+            cart: updatedCart,
           };
-        }
+        }),
 
-        const updatedCart = state.cart
-        .map((movies) =>
-          movies.id === id
-            ? { ...movies, count: Math.max(movies.count - movies.count, 0)}
-            : movies
-        )
-        .filter((movies) => movies.count);
+      changeItemCount: (id, num) =>
+        set((state) => {
+          const isPresent = state.cart.findIndex((movies) => movies.id === id);
 
-      return {
-        ...state,
-        cart: updatedCart,
-      };
-    }),
+          const updatedCart = state.cart
+            .map((movies) =>
+              movies.id === id ? { ...movies, count: Math.max(num, 0) } : movies
+            )
+            .filter((movies) => movies.count);
 
-    changeItemCount: (id, num) =>
-      set((state) => {
-        const isPresent = state.cart.findIndex((movies) => movies.id === id);
-        
-        const updatedCart = state.cart
-        .map((movies) =>
-          movies.id === id
-            ? { ...movies, count: Math.max(num, 0) }
-            : movies
-        )
-        .filter((movies) => movies.count);
-
-      return {
-        ...state,
-        cart: updatedCart,
-      };
-    }),
-  
+          return {
+            ...state,
+            cart: updatedCart,
+          };
+        }),
 
       emptyCart: () =>
-      set((state) => {
+        set((state) => {
+          return {
+            ...state,
+            cart: [],
+          };
+        }),
 
-        return {
-          ...state,
-          cart: [],
-        };
-      }),
-
-    fetchMovies: async () => {
-      await fetch("http://localhost:8080/")
-        .then((response) => response.json())
-        .then((data) => set({ movies: data.results }));
-    },
-  }),
-  {
-    name: 'cart-storage', // unique name
-    getStorage: () => localStorage }, // (optional) by default, 'localStorage' is used
+      fetchMovies: async () => {
+        await fetch("http://localhost:8080/")
+          .then((response) => response.json())
+          .then((data) => set({ movies: data.results }));
+      },
+    }),
+    {
+      name: "cart-storage", // unique name
+      getStorage: () => localStorage,
+    } // (optional) by default, 'localStorage' is used
   )
 );

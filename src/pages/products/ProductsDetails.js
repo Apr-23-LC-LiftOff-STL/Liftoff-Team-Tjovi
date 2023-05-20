@@ -37,7 +37,7 @@ export default function ProductsDetails() {
   );
 
   const incrementCartItemButtonHandler = () => {
-    incrementCartItem(id, product.price);
+    incrementCartItem(id);
     setCartMessage(`"${product.title}" was added to cart`);
     setThisItemInCart((prevCount) => prevCount + 1);
     console.log(JSON.stringify(cart));

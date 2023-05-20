@@ -1,3 +1,5 @@
+import MovieBar from "../components/MovieBar/MovieBar"
+
 export default function Orders() {
   return (
     <div>
@@ -19,6 +21,7 @@ export default function Orders() {
           <p>TOTAL COST</p>
         </div>
       </div>
+      <MovieBar />
     </div>
   );
 }

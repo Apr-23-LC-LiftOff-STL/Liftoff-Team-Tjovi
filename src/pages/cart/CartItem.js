@@ -9,6 +9,15 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 
 import { Fade } from "@mui/material";
 
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+import Cart from "./Cart";
+
 const CartItem = ({
   title,
   posterPath,
@@ -16,7 +25,10 @@ const CartItem = ({
   count,
   price,
   releaseDate,
+  subtotal
 }) => {
+
+  const [open, setOpen] = useState(false);
 
   const cart = useCartStore((state) => state.cart);
 
@@ -29,7 +41,7 @@ const CartItem = ({
   //const changeItemCount = useCartStore((state) => state.changeItemCount);
 
   const incrementCartItemButtonHandler = () => {
-    incrementCartItem(id, price);
+    incrementCartItem(id);
     console.log(JSON.stringify(cart));
   };
 
@@ -39,9 +51,21 @@ const CartItem = ({
   };
 
   const removeAllThisItemButtonHandler = () => {
+    setOpen(true);
+    removeAllThisItem(id);
+
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
     removeAllThisItem(id);
     console.log(JSON.stringify(cart));
+    setOpen(false);
   };
+
 
   return (
     <div>
@@ -69,7 +93,7 @@ const CartItem = ({
           >
             ${price?.toFixed(2)}
           </span>
-          <div>Item Subtotal: $**SUBTOTAL HERE**</div>
+          <div>Item Subtotal: ${subtotal}</div>
           <div>
             <button
               className="button is-primary is-small"
@@ -92,11 +116,11 @@ const CartItem = ({
             </button>
             <button
               className="button is-danger is-small"
-              onClick={removeAllThisItemButtonHandler}
+              onClick={handleClickOpen}
             >
               <FontAwesomeIcon icon={faX} />
             </button>
-          </div>
+    </div>
         </div>
       </Fade>
     </div>

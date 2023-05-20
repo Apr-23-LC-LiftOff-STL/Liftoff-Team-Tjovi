@@ -2,7 +2,7 @@ import "./CartTotal.css";
 
 import { useCartStore } from "../../store/cartStore";
 
-const CartTotal = () => {
+const CartTotal = ({allItemsSubtotal}) => {
 
   const cart = useCartStore((state) => state.cart);
 
@@ -11,17 +11,21 @@ const CartTotal = () => {
     0
   );
 
+  const checkoutButtonHandler = () => {
+    alert(JSON.stringify(cart));
+  };
+
   return (
     <div className="container">
       <div className="cartTotal">
         <span> Items in Cart:</span><span>{totalProductsInCart}</span>  
         <br />
-        Subtotal: <br />
+        Subtotal: ${allItemsSubtotal} <br />
         Est. Sales Tax: <br /> <br />
         Grand Total:
         <br/ >
         <br />
-        <button className="button is-normal is-danger">Purchase</button>
+        <button className="button is-normal is-danger" onClick={checkoutButtonHandler}>Check Out</button>
       </div>
 
     </div>
