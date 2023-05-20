@@ -1,5 +1,5 @@
 import Select from "react-select"; // npm install react-select
-import makeAnimated from 'react-select/animated';
+import makeAnimated from "react-select/animated";
 import { useGenreStore } from "../../store/genreStore";
 import { useState } from "react";
 
@@ -7,18 +7,18 @@ import { useState } from "react";
 // https://blog.logrocket.com/getting-started-react-select/
 
 const GenreSelect = () => {
-
   const setSelectedGenres = useGenreStore((state) => state.setSelectedGenres);
 
   const styles = {
     control: (base) => ({
       ...base,
       minHeight: 32,
-      color: 'black'
+      color: "black",
     }),
-    control: provided => ({
+    control: (provided) => ({
       ...provided,
-      color: 'black'
+      color: "black",
+      background: "hsl(0, 0%, 96%)",
     }),
     dropdownIndicator: (base) => ({
       ...base,
@@ -29,31 +29,31 @@ const GenreSelect = () => {
       ...base,
       paddingTop: 0,
       paddingBottom: 0,
+      color: "hsl(0, 0%, 48%)",
     }),
-    singleValue: provided => ({
+    option: (provided) => ({
       ...provided,
-      color: 'black'
-    }),
-    option: provided => ({
-      ...provided,
-      color: 'black'
+      color: "hsl(0, 0%, 21%)",
+      fontSize: "13px",
     }),
     placeholder: (defaultStyles) => {
       return {
-          ...defaultStyles,
-          color: 'hsl(0, 0%, 71%)',
-          font: 'smaller'
-      }
-  }
+        ...defaultStyles,
+        color: "hsl(0, 0%, 71%)",
+        fontSize: "14px",
+      };
+    },
   };
 
   const handleChange = (selectedGenres) => {
-    const genreValues = selectedGenres ? selectedGenres.map((option) => option.value) : [];
+    const genreValues = selectedGenres
+      ? selectedGenres.map((option) => option.value)
+      : [];
     //let arrGenres = selectedGenres.map(genre => genre.value);
     setSelectedGenres(genreValues); // logic may need to change for this
     console.log(`Genre(s) selected:`, genreValues);
   };
-  
+
   const genres = [
     { value: "Action", label: "Action" },
     { value: "Adventure", label: "Adventure" },
@@ -71,15 +71,15 @@ const GenreSelect = () => {
     { value: "Romance", label: "Romance" },
     { value: "Science Fiction", label: "Sci-Fi" },
     { value: "Spy", label: "Spy" },
-    { value: "TV Movie", label: "TV Movie"},
+    { value: "TV Movie", label: "TV Movie" },
     { value: "Thriller", label: "Thriller" },
     { value: "War", label: "War" },
-    { value: "Western", label: "Western"}
+    { value: "Western", label: "Western" },
   ];
 
   //const [selectedGenres, setSelectedGenres] = useState("");
 
-/*   const handleChange = (selectedGenres) => {
+  /*   const handleChange = (selectedGenres) => {
     console.log(selectedGenres);
     setSelectedOptions(selectedGenres.value);
   }; */
@@ -87,19 +87,19 @@ const GenreSelect = () => {
   const animatedComponents = makeAnimated();
 
   return (
-    <div className="columns">
-    <div className="column">
-    <div className="genre-select-main">
-      <Select styles={styles}
-      name="genre-select"
-      placeholder="Filter by Genre"
-        components={animatedComponents}
-        isMulti
-        onChange={handleChange}
-        options={genres}
-      />
-    </div>
-    </div>
+    <div>
+      <div className="genre-select-main" style={{width: '442px'}}>
+        <Select
+          closeMenuOnSelect={false}
+          styles={styles}
+          name="genre-select"
+          placeholder="Filter by Genre"
+          components={animatedComponents}
+          isMulti
+          onChange={handleChange}
+          options={genres}
+        />
+      </div>
     </div>
   );
 };

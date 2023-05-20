@@ -1,28 +1,48 @@
 import "bulma/css/bulma.css";
-import { useState } from "react";
+
+import { useState, useEffect, useRef } from "react";
 
 import SearchBar from "./SearchBar";
 
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartShopping,
+  faUser,
+  faRightFromBracket,
+  faHistory,
+  faRightToBracket,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { useCartStore } from "../../store/cartStore";
 
 const NavBar = () => {
-  const [isActive, setisActive] = useState(false);
-
   const cart = useCartStore((state) => state.cart);
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
     0
   );
 
+  const [isActive, setisActive] = useState(false);
+  const [cartButtonStyling, setCartButtonStyling] = useState();
+  const [cartDropdownStyling, setCartDropdownStyling] = useState();
+
+  useEffect(() => {
+    if (totalProductsInCart !== 0) {
+      setCartButtonStyling(
+        "button is-warning has-text-weight-semibold is-hidden-mobile"
+      );
+      setCartDropdownStyling("has-text-weight-semibold");
+    } else {
+      setCartButtonStyling("button is-light is-hidden-mobile");
+      setCartDropdownStyling("has-text-weight-normal");
+    }
+  }, [totalProductsInCart]);
+
   return (
     <nav
-      className="navbar"
+      className="navbar pt-1 pl-4 pr-4"
       role="navigation"
       aria-label="main navigation"
     >
@@ -40,7 +60,6 @@ const NavBar = () => {
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
-          // TODO: add functionality and styling for burger menu
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -48,44 +67,63 @@ const NavBar = () => {
         </a>
       </div>
 
-      <div
-        id="navbarBasicExample"
-        className={`navbar-menu ${isActive ? "is-active" : ""}`}
-      >
-        <div className="navbar-start">
-          <div className="navbar-item">
-            <SearchBar />
-          </div>
+        <div className="navbar-item">
+          <SearchBar />
         </div>
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <a className="button is-primary" href="/register">
-                Register
+
+      <div className="navbar-end">
+        <div
+          id="navbarBasicExample"
+          className={`navbar-menu ${isActive ? "is-active" : ""}`}
+        >
+          <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link is-hidden-mobile">
+              <FontAwesomeIcon icon={faUser} />
+            </a>
+            <div className="navbar-dropdown is-left">
+              <a className="navbar-item is-hidden-desktop" href="/login">
+                <span className="has-text-primary">
+                  <FontAwesomeIcon icon={faRightToBracket} />
+                </span>
+                &nbsp; Log In
               </a>
-              <a className="button is-light" href="/login">
-                Log in
-              </a>
-              <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">
-                  Account &nbsp; <FontAwesomeIcon icon={faUser} />
-                </a>
-                <div className="navbar-dropdown is-right">
-                  <a className="navbar-item" href="/account/profile">
-                    My Profile
-                  </a>
-                  <a className="navbar-item" href="/account/orders">
-                    Account History
-                  </a>
-                  <hr className="navbar-divider" />
-                  <div className="navbar-item">Log Out</div>
-                </div>
-              </div>
-              <a className="button is-light" href="/cart">
+              <a className="navbar-item is-hidden-desktop" href="/cart">
                 <FontAwesomeIcon icon={faCartShopping} />
-                &nbsp; ({totalProductsInCart})
+                &nbsp; Cart{" "}
+                <span className={cartDropdownStyling}>
+                  ({totalProductsInCart})
+                </span>
               </a>
+              <a className="navbar-item" href="/account/profile">
+                <FontAwesomeIcon icon={faUser} />
+                &nbsp; My Profile
+              </a>
+              <a className="navbar-item" href="/account/orders">
+                <FontAwesomeIcon icon={faHistory} />
+                &nbsp; Account History
+              </a>
+              <hr className="navbar-divider" />
+              <div className="navbar-item">
+                <span className="has-text-danger">
+                  <FontAwesomeIcon icon={faRightFromBracket} />
+                </span>
+                &nbsp; Log Out
+              </div>
             </div>
+          </div>
+
+          <div className="buttons">
+            <a className="button is-primary is-hidden-mobile" href="/login">
+              Log in
+            </a>
+            <a
+              className={cartButtonStyling}
+              style={{ width: "92px" }}
+              href="/cart"
+            >
+              <FontAwesomeIcon icon={faCartShopping} />
+              &nbsp; ({totalProductsInCart})
+            </a>
           </div>
         </div>
       </div>
