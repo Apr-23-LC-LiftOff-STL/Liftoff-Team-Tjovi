@@ -1,30 +1,32 @@
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 export default function ProductsDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
+  
+  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/movies/${id}`, {
           headers: {
-            'Authorization': `Basic ${localStorage.getItem('credentials')}`,
-            withCredentials: true,
+            'Authorization': `${localStorage.getItem("token")}`
           },
         });
         if(response.data) {
           setProduct(response.data);
         }
       } catch (error) {
-        console.log("Could not find that product.");
+        navigate("/login"); 
       }
     }
 
     fetchProduct();
-  }, [id]);
+  }, [id, navigate]);
 
 
   return (

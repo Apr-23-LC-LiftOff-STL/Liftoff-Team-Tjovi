@@ -1,8 +1,30 @@
 import "bulma/css/bulma.css";
 import GenreSelect from "./GenreSelect/GenreSelect";
 import mainLogo from "./Logo_MovieDL_20230426.png";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+const navigate = useNavigate();
+
+useEffect(() => {
+  if (localStorage.getItem("token")) {
+    setIsLoggedIn(true);
+  }
+}, []);
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  setIsLoggedIn(false);
+}
+
+
+
+
+
+
   return (
     <nav className="navbar is-" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -45,9 +67,15 @@ const NavBar = () => {
               <a className="button is-primary" href="/register">
                 Register
               </a>
-              <a className="button is-light" href="/login">
-                Log in
-              </a>
+              {isLoggedIn ? (
+  <button className="button is-light" onClick={handleLogout}>
+    Log out
+  </button>
+) : (
+  <a className="button is-light" href="/login">
+    Log in
+  </a>
+)}
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">Account</a>
                   <div className="navbar-dropdown is-right">

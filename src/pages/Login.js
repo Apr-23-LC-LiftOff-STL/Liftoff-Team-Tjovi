@@ -17,31 +17,24 @@ const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
   
+    // Base64 encode the credentials
+    const credentials = btoa(`${email}:${password}`);
+    
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         'http://localhost:8080/user', 
-        { email, password }, 
         {
           headers: {
-            'Content-Type': 'application/json'
-          },
-          maxRedirects: 0,
-          validateStatus: function (status) {
-            return status >= 200 && status < 303; // default
+            'Authorization': `Basic ${credentials}`
           }
         }
       );
-  
-      const { location } = response.headers;
-      if (location) {
-        const responseFollowRedirect = await axios.get(location, {
-          headers: {
-            'Authorization': `Bearer ${response.data.token}`
-          }
-        });
-  
-        localStorage.setItem("token", response.data.token);
-        console.log(responseFollowRedirect.data);
+    
+      const { authorization } = response.headers;
+      if (authorization) {
+        localStorage.setItem("token", authorization);
+        console.log(authorization);
+        console.log(response.data)
         navigate("/");
       } else {
         throw new Error("Login failed");
@@ -50,6 +43,8 @@ const Login = () => {
       alert(`Login failed: ${error.message}`);
     }
   };
+  
+
 
   return (
     <form onSubmit={handleSubmit}>
