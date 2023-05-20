@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function Login() {
@@ -8,6 +8,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  
   const userInfo = ""
   const handleChange = (e) => {
     var value = e.target.value === "" ? null : e.target.value;
@@ -17,6 +18,7 @@ export default function Login() {
       [e.target.name]: value,
     });
   };
+  
   function verifyEmailAndPassword(){
     if (values.email !== userInfo.email || values.password !== userInfo.password){
       alert("Email or Password is incorrect!")
@@ -43,7 +45,7 @@ export default function Login() {
     navigate("/lostPassword")
   };
   const onSubmit = async (event) => {
-    console.log("you are here");
+   // console.log("you are here");
 
     event.preventDefault();
     
