@@ -6,25 +6,27 @@ export default function Products() {
   const products = useLoaderData();
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
 
+  
+
   return (
-    <div className="card">
+    <div className="container">
       {products.content.map((products) => (
         <Link to={products.id.toString()} key={products.id}>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
+          <div className="card-content">
+            <div className="media">
+              <div className="media-left">
                 <figure>
-                  <img src={`${baseImgUrl}${products.posterPath}`} />
+                  <img src={`${`${baseImgUrl}${products.posterPath}`}`} />
                 </figure>
+              </div>
             </div>
           </div>
-          </div>
-          <div class="card-content">
-            <p class="title is-4">{products.title}</p>
-            
-              <p>Genres: {products.genres.map((genre) => genre.name).join(', ')}</p>
-              <p>Runtime: {products.runtime} minutes</p>
-              <p>Price: ${products.price}</p>
+          <div className="card-content">
+            <p className="title is-4">{products.title}</p>
+            <p className="subtitle is-6">({products.releaseDate.slice(0, 4)})</p>
+            <p>Genres: {products.genres.map((genre) => genre.name).join(', ')}</p>
+            <p>Runtime: {products.runtime} minutes</p>
+            <p>Price: ${products.price.toFixed(2)}</p>
           </div>
         </Link>
       ))}
@@ -33,11 +35,8 @@ export default function Products() {
 }
 
 // data loader
-
-export const productsLoader = async ({ params }) => {
-  const { id } = params;
-
-  const res = await fetch('http://3.17.176.143:8080/movies');
+export const productsLoader = async () => {
+  const res = await fetch("http://3.17.176.143:8080/movies");
 
   if (!res.ok) {
     throw Error("Could not fetch the list of products");
