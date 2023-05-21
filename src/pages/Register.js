@@ -13,7 +13,7 @@ export default function Register() {
   });
 
   const saveFormData = async () => {
-    const response = await fetch("http://localhost:8080/register", {
+    const response = await fetch("http://3.17.176.143:8080/register", {
       method: "POST",
       headers:{
         "Content-Type": "application/json",

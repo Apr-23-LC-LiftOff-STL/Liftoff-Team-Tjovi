@@ -12,7 +12,7 @@ export default function ProductsDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/movies/${id}`, {
+        const response = await axios.get(`http://3.17.176.143:8080/movies/${id}`, {
           headers: {
             'Authorization': `${localStorage.getItem("token")}`
           },

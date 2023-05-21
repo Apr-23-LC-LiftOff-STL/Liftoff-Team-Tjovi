@@ -12,7 +12,7 @@ function MovieCards() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/movies');
+        const response = await axios.get('http://3.17.176.143:8080/movies');
         setMovies(response.data.content);
       } catch (error){
         console.log('Error fetching movies: ', error);

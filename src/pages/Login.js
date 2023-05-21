@@ -22,7 +22,7 @@ const Login = () => {
     
     try {
       const response = await axios.get(
-        'http://localhost:8080/user', 
+        'http://3.17.176.143:8080/user', 
         {
           headers: {
             'Authorization': `Basic ${credentials}`
