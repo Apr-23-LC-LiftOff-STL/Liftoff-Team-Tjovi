@@ -5,7 +5,7 @@ export default function Contact() {
 
   return (
     <div className="contact">
-      <h3>Contact Us</h3>
+      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Contact Us</div>
       <Form method="post" action="/help/contact">
         <label>
           <span>Your email:</span>

@@ -25,7 +25,7 @@ const MovieBarCard = ({ title, posterPath, price }) => {
 
   return (
     <div>
-       <Fade in timeout={500}>
+       <Fade in timeout={2250}>
         <div>
           <div className="movie-bar-card">
             {posterPath && (

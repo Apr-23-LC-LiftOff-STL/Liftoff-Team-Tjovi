@@ -4,7 +4,7 @@ export default function Orders() {
   return (
     <div>
       <div>
-      <h1 className="title">Order History</h1>
+      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Order History</div>
         <br></br>
         <div className="box">
           <h4>Order #400055 -- Jan 1st, 2023</h4>

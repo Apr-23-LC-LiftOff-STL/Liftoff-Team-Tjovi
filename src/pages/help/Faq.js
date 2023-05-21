@@ -1,7 +1,7 @@
 export default function Faq() {
     return (
       <div className="faq">
-        <h3>Frequently Asked Questions</h3>
+      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Frequently Asked Questions</div>
   
         <div className="question">
           <p><strong>Lorem ipsum dolor sit amet.</strong></p>

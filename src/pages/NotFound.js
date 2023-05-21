@@ -5,8 +5,8 @@ export default function NotFound() {
   return (
     <div>
     <div>
-      <h1 className="title">Page Not Found!</h1>
-      <p>Nothing to see here! <NavLink to="/">Click here to return home</NavLink>.</p>
+    <div className="title is-3 ml-6 mt-4 has-text-danger">Page Not Found!</div>
+      <p className="ml-6 is-italic">Nothing to see here! <NavLink to="/">Click here to return home</NavLink>.</p>
     </div>
     <MovieBar />
     </div>

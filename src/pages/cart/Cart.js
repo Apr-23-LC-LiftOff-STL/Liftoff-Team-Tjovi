@@ -4,18 +4,15 @@ import { useCartStore } from "../../store/cartStore";
 
 import CartItem from "./CartItem.js";
 import CartTotal from "./CartTotal.js";
+import CartIsEmpty from "./CartIsEmpty";
 import MovieBar from "../../components/MovieBar/MovieBar.js";
 import "./Cart.css";
 
 import axios from "axios";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX } from "@fortawesome/free-solid-svg-icons";
-
 export default function Cart() {
 
   const cart = useCartStore((state) => state.cart);
-  const emptyCart = useCartStore((state) => state.emptyCart);
 
   const [productData, setProductData] = useState({});
 
@@ -47,12 +44,9 @@ export default function Cart() {
     fetchData();
   }, [cart]);
 
-  const emptyCartButtonHandler = () => {
-    emptyCart();
-  };
-
   return (
     <div>
+      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Shopping Cart</div>
       <div>
         {cart.length > 0 ? (
           cart.map((item) => {
@@ -75,20 +69,12 @@ export default function Cart() {
           )
         ) : (
           <div>
-          <h1 className="is-size-3 has-text-centered pt-6 pb-6 has-text-danger">
-            Your Cart is Empty
-          </h1>
+          <CartIsEmpty />
           </div>
         )}
         {cart.length > 0 && (
           <div>
-          <button
-            className="button is-danger is-normal is-rounded"
-            onClick={emptyCartButtonHandler}
-          >
-            <FontAwesomeIcon icon={faX} />
-            &nbsp; Empty Cart
-          </button>
+
           <CartTotal
         allItemsSubtotal={allItemsSubtotal.toFixed(2)}
       />

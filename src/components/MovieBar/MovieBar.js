@@ -46,7 +46,7 @@ function MovieBar() {
       <h1 className="is-size-6 has-text-centered pt-6 has-text-grey">
         Recommended Movies
       </h1>
-      <hr className="movie-bar-hr"></hr>
+      <hr className="movie-bar-hr" />
       <div>
         {movies.length > 0 ? (
           <div className="movie-bar">

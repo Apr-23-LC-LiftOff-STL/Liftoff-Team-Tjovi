@@ -3,7 +3,7 @@ import MovieBar from "../components/MovieBar/MovieBar"
 export default function Login() {
     return (
         <div>
-        <h1 className="title">My Profile</h1>
+        <div className="title is-4 ml-6 mt-4 has-text-grey-dark">My Profile</div>
       <div>
         <form className="box">
           <div className="field">

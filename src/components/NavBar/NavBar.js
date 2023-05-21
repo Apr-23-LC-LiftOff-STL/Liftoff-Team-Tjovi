@@ -1,5 +1,3 @@
-import "bulma/css/bulma.css";
-
 import { useState, useEffect, useRef } from "react";
 
 import SearchBar from "./SearchBar";

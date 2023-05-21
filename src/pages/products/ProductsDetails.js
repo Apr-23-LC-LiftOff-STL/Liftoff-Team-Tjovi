@@ -88,7 +88,7 @@ export default function ProductsDetails() {
 
   return (
     <div>
-      <section className="section">
+    <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Movie Details</div>
         <div className="container">
           <div className="columns is-centered">
             <div className="column">
@@ -151,7 +151,7 @@ export default function ProductsDetails() {
                           </button>
                           <input
                             className="input is-small has-text-centered"
-                            style={{ width: "6%" }}
+                            style={{ width: "40px" }}
                             number
                             value={
                               cart.find((product) => product.id === id)
@@ -198,7 +198,6 @@ export default function ProductsDetails() {
             </div>
           </div>
         </div>
-      </section>
     </div>
   );
 }

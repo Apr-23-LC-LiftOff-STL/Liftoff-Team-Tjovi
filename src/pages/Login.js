@@ -4,7 +4,7 @@ export default function Login() {
   return (
     <div>
       <div>
-      <h1 className="title">Log In</h1>
+      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Log In</div>
       </div>
       <form className="box">
         <div className="field">
