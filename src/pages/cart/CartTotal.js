@@ -28,7 +28,7 @@ const CartTotal = ({ allItemsSubtotal }) => {
   };
 
   return (
-    <div className="column is-two-fifths is-offset-two-fifths">
+    <div className="column is-one-quarter is-offset-half">
       <div className="card px-5 pt-5 pb-5 has-background-primary-light">
         <table className="table has-background-primary-light">
           <tr>
