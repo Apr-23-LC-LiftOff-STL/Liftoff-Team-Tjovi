@@ -1,21 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Register() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
-    pwd: "",
-    role: "",
-    verifyPwd: "",
-    name: "",
-    mobileNumber: "",
+    password: "",
+    verifyPassword: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    streetAddress: "",
+    suite: "",
+    city: "",
+    state: "",
+    zipCode: "",
   });
-
   const saveFormData = async () => {
     const response = await fetch("http://localhost:8080/register", {
       method: "POST",
-      headers:{
+      headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(values),
@@ -51,11 +55,17 @@ export default function Register() {
   const cancelRegistration = () => {
     setValues({
       email: "",
-      pwd: "",
+      password: "",
+      verifyPassword: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      streetAddress: "",
+      suite: "",
+      city: "",
+      state: "",
+      zipCode: "",
       role: "",
-      verifyPwd: "",
-      name: "",
-      mobileNumber: "",
     });
     navigate("/");
   };
@@ -86,7 +96,7 @@ export default function Register() {
                 name="pwd"
                 className="input"
                 type="password"
-                value={values.pwd}
+                value={values.password}
                 onChange={handleChange}
                 required
                 placeholder="********"
@@ -100,7 +110,7 @@ export default function Register() {
                 name="verifyPwd"
                 className="input"
                 type="password"
-                value={values.verifyPwd}
+                value={values.verifyPassword}
                 onChange={handleChange}
                 required
                 placeholder="********"
@@ -108,15 +118,28 @@ export default function Register() {
             </div>
           </div>
           <div className="field">
-            <label className="label">Name</label>
+            <label className="label">First Name: {values.firstName}</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
-                value={values.name}
+                value={values.firstName}
                 onChange={handleChange}
                 required
-                name="name"
+                name="firstName"
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Last Name: {values.lastName}</label>
+            <div className="control">
+              <input
+                className="input is-primary"
+                type="text"
+                value={values.lastName}
+                onChange={handleChange}
+                required
+                name="lastName"
               />
             </div>
           </div>
@@ -127,11 +150,78 @@ export default function Register() {
                 className="input"
                 type="tel"
                 name="mobileNumber"
-                value={values.mobileNumber}
+                value={values.phoneNumber}
                 onChange={handleChange}
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required
                 placeholder="555-555-5555"
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">
+              Street Address: {values.streetAddress}
+            </label>
+            <div className="control">
+              <input
+                className="input is-primary"
+                type="text"
+                value={values.streetAddress}
+                onChange={handleChange}
+                required
+                name="streetAddress"
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Suite/Apt. Number: {values.suite}</label>
+            <div className="control">
+              <input
+                className="input is-primary"
+                type="text"
+                value={values.suite}
+                onChange={handleChange}
+                required
+                name="suite"
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">City: {values.city}</label>
+            <div className="control">
+              <input
+                className="input is-primary"
+                type="text"
+                value={values.city}
+                onChange={handleChange}
+                required
+                name="city"
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">State: {values.state}</label>
+            <div className="control">
+              <input
+                className="input is-primary"
+                type="text"
+                value={values.state}
+                onChange={handleChange}
+                required
+                name="state"
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Zip Code: {values.zipCode}</label>
+            <div className="control">
+              <input
+                className="input is-primary"
+                type="text"
+                value={values.zipCode}
+                onChange={handleChange}
+                name="zipCode"
+                placeholder="(optional)"
               />
             </div>
           </div>
@@ -148,14 +238,15 @@ export default function Register() {
               />
             </div>
           </div>
+
           <div className="field">
             <div className="control">
               <button type="submit" className="button is-primary">
                 Register
               </button>
-              <button 
-                type="button" 
-                className="button is-light" 
+              <button
+                type="button"
+                className="button is-light"
                 onClick={cancelRegistration}
               >
                 Cancel Registration

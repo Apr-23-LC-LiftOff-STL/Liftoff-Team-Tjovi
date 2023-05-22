@@ -1,13 +1,16 @@
-
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
- export default function Login()  {
+const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const forgotPassword = async (event) => {
+    event.preventDefault();
+    navigate("/lostPassword");
+  };
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -15,21 +18,20 @@ import axios from "axios";
     }
   }, [navigate]);
 
-  
-  const forgotPassword = async(event)=>{
-    event.preventDefault();
-    navigate("/lostPassword")
-
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/login', { email, password }, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        "http://localhost:8080/login",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
-      
+      );
+
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         navigate("/");
@@ -41,8 +43,8 @@ import axios from "axios";
     }
   };
 
-  return (<div>
-    <form className = " field"onSubmit={handleSubmit}>
+  return (
+    <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email:</label>
       <input
         type="text"
@@ -60,26 +62,25 @@ import axios from "axios";
         />
       </div>
       <button type="submit">Login</button>
-
-      
+      <button className="button is-secondary" onClick={forgotPassword}>
+        Forgot Password
+      </button>
     </form>
-    </div>
-    
   );
 };
 
-}
-  
+export default Login;
+
 //     return (
 //       <div >
 //         <div className="field is-small">
 //           <p className="control is-horizontal has-icons-left has-icons-right">
-//             <input className="input " 
+//             <input className="input "
 //             type="email"
 //             value={values.email}
 //             onChange={handleChange}
 //             required
-//              placeholder="Email" 
+//              placeholder="Email"
 //              name="email"/>
 //             <span className="icon is-small is-left">
 //               <i className="fas fa-envelope"></i>
@@ -91,13 +92,13 @@ import axios from "axios";
 //         </div>
 //         <div className="field">
 //           <p className="control is-horizontal has-icons-left">
-//             <input className="input" 
-//             type="password" 
+//             <input className="input"
+//             type="password"
 //             value={values.password}
 //                 onChange={handleChange}
 //                 // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 //                 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-//             placeholder="Password" 
+//             placeholder="Password"
 //             name="password"/>
 //             <span className="icon is-small is-left">
 //               <i className="fas fa-lock"></i>
@@ -107,7 +108,7 @@ import axios from "axios";
 //         <div className="field">
 //           <p className="control">
 //             <button className="button is-primary" onClick={onSubmit}>Login</button>
-//              <button className="button is-secondary" onClick={forgotPassword}>Forgot Password</button> 
+//              <button className="button is-secondary" onClick={forgotPassword}>Forgot Password</button>
 //           </p>
 //         </div>
 //       </div>
