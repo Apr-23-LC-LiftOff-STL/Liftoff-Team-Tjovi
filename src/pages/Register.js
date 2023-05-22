@@ -5,6 +5,8 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
+import { faSignature } from "@fortawesome/free-solid-svg-icons";
+
 export default function Register() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -132,7 +134,7 @@ export default function Register() {
           </div>
           <div className="field">
             <label className="label">First Name</label>
-            <div className="control">
+            <div className="control has-icons-left">
               <input
                 className="input is-primary"
                 type="text"
@@ -140,12 +142,14 @@ export default function Register() {
                 onChange={handleChange}
                 required
                 name="firstName"
-              />
+              /><span className="icon is-small is-left">
+              <FontAwesomeIcon icon={faSignature}  style={{color: "#0ee1be",}}/>
+            </span>
             </div>
           </div>
           <div className="field">
             <label className="label">Last Name</label>
-            <div className="control">
+            <div className="control has-icons-left">
               <input
                 className="input is-primary"
                 type="text"
@@ -153,7 +157,9 @@ export default function Register() {
                 onChange={handleChange}
                 required
                 name="lastName"
-              />
+              /><span className="icon is-small is-left">
+              <FontAwesomeIcon icon={faSignature}  style={{color: "#0ee1be",}}/>
+            </span>
             </div>
           </div>
           <div className="field">
