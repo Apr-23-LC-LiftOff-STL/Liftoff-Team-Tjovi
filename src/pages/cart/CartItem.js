@@ -69,52 +69,63 @@ const CartItem = ({
                 </a>
               </figure>
             </div>
-            <div className="column">
+            <div className="column is-narrow">
               <div className="is-size-5">
-                <span className="has-text-weight-semibold">{title}</span> ({releaseDate?.slice(0,4)})
+                <span className="has-text-weight-semibold">{title}</span> (
+                {releaseDate?.slice(0, 4)})
               </div>
-{/*               <div>
+              {/*               <div>
                 Movie ID: {id} Count: {count}
               </div> */}
-              <div><span>Price:</span>{" "}
-              <span className="has-text-weight-semibold"
+            </div>
+            <div className="column is-narrow">
+              <span
+                className="has-text-weight-semibold"
                 style={{
                   color: price < 10 ? "hsl(348, 100%, 61%)" : "",
                 }}
               >
                 ${price?.toFixed(2)}
-              </span></div>
-              <div><span>Item Subtotal:  </span><span className="has-text-weight-semibold">${subtotal}</span></div>
+              </span>
+            </div>
+            <div className="column is-1">
+              <button
+                className="button is-primary is-small"
+                style={{ minWidth: "36px", maxWidth: "36px" }}
+                onClick={incrementCartItemButtonHandler}
+              >
+                <FontAwesomeIcon icon={faAdd} />
+              </button>
+              <input
+                className="input is-small has-text-centered"
+                style={{ minWidth: "36px", maxWidth: "36px" }}
+                number
+                value={count}
+                readOnly
+              />
+              <button
+                className="button is-warning is-small"
+                style={{ minWidth: "36px", maxWidth: "36px" }}
+                onClick={decrementCartItemButtonHandler}
+              >
+                <FontAwesomeIcon icon={faSubtract} />
+              </button>
+              <button
+                className="button is-danger is-small"
+                style={{ minWidth: "36px", maxWidth: "36px" }}
+                onClick={removeAllThisItemButtonHandler}
+              >
+                <FontAwesomeIcon icon={faX} />
+              </button>
+            </div>
+            <div className="column is-3">
               <div>
-                <button
-                  className="button is-primary is-small"
-                  onClick={incrementCartItemButtonHandler}
-                >
-                  <FontAwesomeIcon icon={faAdd} />
-                </button>
-                <input
-                  className="input is-small has-text-centered"
-                  style={{ width: "40px" }}
-                  number
-                  value={count}
-                  readOnly
-                />
-                <button
-                  className="button is-warning is-small"
-                  onClick={decrementCartItemButtonHandler}
-                >
-                  <FontAwesomeIcon icon={faSubtract} />
-                </button>
-                <button
-                  className="button is-danger is-small"
-                  onClick={removeAllThisItemButtonHandler}
-                >
-                  <FontAwesomeIcon icon={faX} />
-                </button>
-              </div>
+                <span>Subtotal: </span>
+                <span className="has-text-weight-semibold">${subtotal}</span>
               </div>
             </div>
           </div>
+        </div>
       </Fade>
     </div>
   );

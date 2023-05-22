@@ -5,7 +5,21 @@ export default function Contact() {
 
   return (
     <div className="contact">
-      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Contact Us</div>
+                 <nav
+        className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+        aria-label="breadcrumbs"
+      >
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Contact Us
+            </a>
+          </li>
+        </ul>
+      </nav>
       <Form method="post" action="/help/contact">
         <label>
           <span>Your email:</span>

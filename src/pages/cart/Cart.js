@@ -45,9 +45,21 @@ export default function Cart() {
 
   return (
     <div>
-      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">
-        Shopping Cart
-      </div>
+           <nav
+        className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+        aria-label="breadcrumbs"
+      >
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Shopping Cart
+            </a>
+          </li>
+        </ul>
+      </nav>
       <div className="columns">
         <div className="column">
           <div>

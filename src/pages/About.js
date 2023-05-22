@@ -4,7 +4,12 @@ export default function About() {
     return (
       <div>
       <div>
-      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">About MovieDL</div>
+      <nav className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li className="is-active"><a href="#" aria-current="page">About MovieDL</a></li>
+  </ul>
+</nav>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui provident consequuntur vel omnis quisquam rem harum, maxime expedita, ullam ut dolore! Distinctio eos minima voluptatum totam id hic! Sapiente debitis quia illum officia obcaecati provident nulla odio molestiae suscipit quasi.</p>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui provident consequuntur vel omnis quisquam rem harum, maxime expedita, ullam ut dolore! Distinctio eos minima voluptatum totam id hic! Sapiente debitis quia illum officia obcaecati provident nulla odio molestiae suscipit quasi.</p>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui provident consequuntur vel omnis quisquam rem harum, maxime expedita, ullam ut dolore! Distinctio eos minima voluptatum totam id hic! Sapiente debitis quia illum officia obcaecati provident nulla odio molestiae suscipit quasi.</p>

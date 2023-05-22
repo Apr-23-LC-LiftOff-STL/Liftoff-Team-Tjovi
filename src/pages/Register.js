@@ -3,7 +3,21 @@ import MovieBar from "../components/MovieBar/MovieBar"
 export default function Login() {
   return (
     <div>
-      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Register</div>
+           <nav
+        className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+        aria-label="breadcrumbs"
+      >
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Register
+            </a>
+          </li>
+        </ul>
+      </nav>
     <div>
       <form className="box">
         <div className="field">

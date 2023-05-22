@@ -4,7 +4,21 @@ export default function Orders() {
   return (
     <div>
       <div>
-      <div className="title is-4 ml-6 mt-4 has-text-grey-dark">Order History</div>
+      <nav
+        className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+        aria-label="breadcrumbs"
+      >
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Account History
+            </a>
+          </li>
+        </ul>
+      </nav>
         <br></br>
         <div className="box">
           <h4>Order #400055 -- Jan 1st, 2023</h4>
