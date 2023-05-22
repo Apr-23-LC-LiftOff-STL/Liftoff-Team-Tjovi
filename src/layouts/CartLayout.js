@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Cart from "../pages/cart/Cart";
-import CartTotal from "../pages/cart/CartTotal";
+import CartTotal from "../pages/cart/CartTotal-OLD";
 
 export default function CartLayout() {
   return (

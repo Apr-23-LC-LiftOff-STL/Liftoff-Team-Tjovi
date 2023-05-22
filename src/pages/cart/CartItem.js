@@ -55,9 +55,9 @@ const CartItem = ({
   };
 
   return (
-    <div>
+    <div className="mx-6">
       <Fade in timeout={500}>
-        <div className="column is-half is-offset-one-quarter is-vcentered card">
+        <div className="column is-offset-1 is-vcentered card mb-3">
           <div className="columns is-vcentered">
             <div className="column is-narrow">
               <figure className="cart-item-img">
