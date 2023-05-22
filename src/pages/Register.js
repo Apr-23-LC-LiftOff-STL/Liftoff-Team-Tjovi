@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 export default function Register() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
-    password: "",
-    verifyPassword: "",
+    pwd: "",
+    verifyPwd: "",
     firstName: "",
     lastName: "",
     phoneNumber: "",
@@ -55,11 +59,11 @@ export default function Register() {
   const cancelRegistration = () => {
     setValues({
       email: "",
-      password: "",
-      verifyPassword: "",
+      Pwd: "",
+      verifypwd: "",
       firstName: "",
       lastName: "",
-      phoneNumber: "",
+      mobileNumber: "",
       streetAddress: "",
       suite: "",
       city: "",
@@ -77,9 +81,9 @@ export default function Register() {
         <form className="box" onSubmit={onSubmit}>
           <div className="field">
             <label className="label">Email</label>
-            <div className="control">
+            <div className="control has-icons-left">
               <input
-                className="input"
+                className="input is-primary"
                 type="email"
                 value={values.email}
                 onChange={handleChange}
@@ -87,38 +91,47 @@ export default function Register() {
                 placeholder="e.g. alex@example.com"
                 name="email"
               />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faEnvelope} style={{color: "#0ee1be",}} />
+              </span>
             </div>
           </div>
           <div className="field">
             <label className="label">Password</label>
-            <div className="control">
+            <div className="control has-icons-left">
               <input
                 name="pwd"
-                className="input"
+                className="input is-primary"
                 type="password"
-                value={values.password}
+                value={values.pwd}
                 onChange={handleChange}
                 required
                 placeholder="********"
               />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faLock} style={{color: "#0ee1be",}} />
+              </span>
             </div>
           </div>
           <div className="field">
             <label className="label">Verify Password</label>
-            <div className="control">
+            <div className="control has-icons-left">
               <input
                 name="verifyPwd"
-                className="input"
+                className="input is-primary"
                 type="password"
-                value={values.verifyPassword}
+                value={values.verifyPwd}
                 onChange={handleChange}
                 required
                 placeholder="********"
               />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faLock} style={{color: "#0ee1be",}} />
+              </span>
             </div>
           </div>
           <div className="field">
-            <label className="label">First Name: {values.firstName}</label>
+            <label className="label">First Name</label>
             <div className="control">
               <input
                 className="input is-primary"
@@ -131,7 +144,7 @@ export default function Register() {
             </div>
           </div>
           <div className="field">
-            <label className="label">Last Name: {values.lastName}</label>
+            <label className="label">Last Name</label>
             <div className="control">
               <input
                 className="input is-primary"
@@ -145,24 +158,25 @@ export default function Register() {
           </div>
           <div className="field">
             <label className="label">Mobile Number</label>
-            <div className="control">
+            <div className="control has-icons-left">
               <input
-                className="input"
+                className="input is-primary"
                 type="tel"
                 name="mobileNumber"
-                value={values.phoneNumber}
+                value={values.mobileNumber}
                 onChange={handleChange}
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required
                 placeholder="555-555-5555"
               />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faPhone}  style={{color: "#0ee1be",}}/>
+              </span>
             </div>
           </div>
           <div className="field">
-            <label className="label">
-              Street Address: {values.streetAddress}
-            </label>
-            <div className="control">
+            <label className="label">Street Address</label>
+            <div className="control has-icons-left">
               <input
                 className="input is-primary"
                 type="text"
@@ -171,24 +185,29 @@ export default function Register() {
                 required
                 name="streetAddress"
               />
+              <span className="icon is-small is-left">
+              <FontAwesomeIcon icon={faAddressBook} style={{color: "#0ee1be",}} />
+              </span>
             </div>
           </div>
           <div className="field">
-            <label className="label">Suite/Apt. Number: {values.suite}</label>
-            <div className="control">
+            <label className="label">Suite/Apt. Number</label>
+            <div className="control has-icons-left">
               <input
                 className="input is-primary"
                 type="text"
                 value={values.suite}
                 onChange={handleChange}
-                required
                 name="suite"
               />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faAddressBook} style={{color: "#0ee1be",}} />
+              </span>
             </div>
           </div>
           <div className="field">
-            <label className="label">City: {values.city}</label>
-            <div className="control">
+            <label className="label">City</label>
+            <div className="control has-icons-left">
               <input
                 className="input is-primary"
                 type="text"
@@ -197,11 +216,14 @@ export default function Register() {
                 required
                 name="city"
               />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faAddressBook} style={{color: "#0ee1be",}} />
+              </span>
             </div>
           </div>
           <div className="field">
-            <label className="label">State: {values.state}</label>
-            <div className="control">
+            <label className="label">State</label>
+            <div className="control has-icons-left">
               <input
                 className="input is-primary"
                 type="text"
@@ -210,11 +232,14 @@ export default function Register() {
                 required
                 name="state"
               />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faAddressBook}  style={{color: "#0ee1be",}}/>
+              </span>
             </div>
           </div>
           <div className="field">
-            <label className="label">Zip Code: {values.zipCode}</label>
-            <div className="control">
+            <label className="label">Zip Code</label>
+            <div className="control has-icons-left">
               <input
                 className="input is-primary"
                 type="text"
@@ -223,13 +248,16 @@ export default function Register() {
                 name="zipCode"
                 placeholder="(optional)"
               />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faAddressBook} style={{color: "#0ee1be",}} />
+              </span>
             </div>
           </div>
           <div className="field">
             <label className="label">Role</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-primary"
                 type="text"
                 value={values.role}
                 onChange={handleChange}

@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "bulma/css/bulma.min.css";
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -45,30 +48,56 @@ const Login = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email:</label>
-      <input
-        type="text"
-        value={email}
-        placeholder="Enter Email"
-        onChange={({ target }) => setEmail(target.value)}
-      />
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          value={password}
-          placeholder="Enter Password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
+      <div className="field">
+        <label htmlFor="email" className="label">
+          Email:
+        </label>
+        <div className="control has-icons-left">
+          <input
+            className="input is-primary"
+            type="text"
+            value={email}
+            placeholder="Enter Email"
+            onChange={({ target }) => setEmail(target.value)}
+          />
+          <span className="icon is-small is-left">
+            <FontAwesomeIcon icon={faEnvelope} style={{color: "#0ee1be",}} />
+          </span>
+        </div>
       </div>
-      <button type="submit">Login</button>
-      <button className="button is-secondary" onClick={forgotPassword}>
-        Forgot Password
-      </button>
+
+      <div className="field">
+        <label htmlFor="password" className="label">
+          Password:
+        </label>
+        <div className="control has-icons-left">
+          <input
+            className="input is-primary "
+            type="password"
+            value={password}
+            placeholder="Enter Password"
+            onChange={({ target }) => setPassword(target.value)}
+          /><span className="icon is-small is-left">
+          <FontAwesomeIcon icon={faLock}  style={{color: "#0ee1be",}}/>
+        </span>
+        </div>
+      </div>
+
+      <div className="field is-grouped">
+        <div className="control">
+          <button className="button is-primary" type="submit">
+            Login
+          </button>
+        </div>
+        <div className="control">
+          <button className="button is-secondary" onClick={forgotPassword}>
+            Forgot Password
+          </button>
+        </div>
+      </div>
     </form>
   );
 };
-
 export default Login;
 
 //     return (
