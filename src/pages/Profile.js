@@ -47,13 +47,7 @@ export default function Profile() {
     });
   };
 
-  function verifyEmail() {
-    if (values.email == userInfo.email) {
-      alert("This user already exists");
-    } else {
-      return;
-    }
-  }
+
 
   function enableEdit() {
     setDisabled((disabled = false));
@@ -72,7 +66,7 @@ export default function Profile() {
 
     try {
       await saveFormData();
-      verifyEmail();
+     
       alert("Your profile was  successfully updated!");
     } catch (e) {
       alert(`Profile update failed! ${e.message}`);
@@ -84,8 +78,7 @@ export default function Profile() {
 
   return (
     <div>
-      <h1>Stuff</h1>
-      <h1>Stuff</h1>
+      
       <h1 className="title">Your Profile</h1>
       <button className="button is-primary is-outlined" onClick={enableEdit}>
         Edit Profile
