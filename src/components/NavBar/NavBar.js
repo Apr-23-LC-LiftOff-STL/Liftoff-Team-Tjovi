@@ -1,5 +1,3 @@
-import "bulma/css/bulma.css";
-
 import { useState, useEffect, useRef } from "react";
 
 import SearchBar from "./SearchBar";
@@ -67,9 +65,9 @@ const NavBar = () => {
         </a>
       </div>
 
-        <div className="navbar-item">
-          <SearchBar />
-        </div>
+      <div className="navbar-item">
+        <SearchBar />
+      </div>
 
       <div className="navbar-end">
         <div
@@ -113,7 +111,10 @@ const NavBar = () => {
           </div>
 
           <div className="buttons">
-            <a className="button is-primary is-hidden-mobile" href="/login">
+            <a
+              className="button is-primary is-hidden-mobile"
+              href="/login"
+            >
               Log in
             </a>
             <a

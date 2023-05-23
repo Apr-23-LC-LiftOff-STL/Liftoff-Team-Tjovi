@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
-import "bulma/css/bulma.css";
+
+import MovieBar from "../components/MovieBar/MovieBar";
 
 export default function HelpLayout() {
   return (
@@ -19,8 +20,8 @@ export default function HelpLayout() {
           Contact Us
         </NavLink>
       </nav>
-
       <Outlet />
+      <MovieBar />
     </div>
   );
 }

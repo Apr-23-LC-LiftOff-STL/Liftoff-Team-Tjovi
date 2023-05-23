@@ -1,7 +1,23 @@
+import MovieBar from "../components/MovieBar/MovieBar"
+
 export default function Login() {
     return (
         <div>
-        <h1 className="title">My Profile</h1>
+             <nav
+        className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+        aria-label="breadcrumbs"
+      >
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              My Profile
+            </a>
+          </li>
+        </ul>
+      </nav>
       <div>
         <form className="box">
           <div className="field">
@@ -69,6 +85,7 @@ export default function Login() {
           <button className="button is-light">Cancel Changes</button>
         </form>
       </div>
+      <MovieBar />
       </div>
     );
   }
