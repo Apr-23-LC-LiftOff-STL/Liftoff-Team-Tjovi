@@ -10,11 +10,26 @@ import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 // Styling originated from:  https://responsive-bulma-cards.netlify.app/ - example #5
 
 import { useCartStore } from "../../store/cartStore";
 
 export default function ProductsDetails() {
+
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   
   const { id } = useParams();
   const product = useLoaderData();
@@ -44,8 +59,10 @@ export default function ProductsDetails() {
   };
 
   const decrementCartItemButtonHandler = () => {
+    if (thisItemInCart === 1) {
+      handleClickOpen();
+    } else {
     decrementCartItem(id);
-    if (thisItemInCart > 0) {
       setThisItemInCart((prevCount) => prevCount - 1);
       setCartMessage(`"${product.title}" was removed from cart`);
       console.log(JSON.stringify(cart));
@@ -56,6 +73,7 @@ export default function ProductsDetails() {
     removeAllThisItem(id);
     setThisItemInCart(0);
     setCartMessage(`"${product.title}" was removed from cart`);
+    handleClose();
     console.log(JSON.stringify(cart));
   };
 
@@ -176,18 +194,12 @@ export default function ProductsDetails() {
                           <button
                             className="button is-danger is-small"
                             onClick={() =>
-                              removeAllThisItemButtonHandler(product.id)
+                              handleClickOpen(product.id)
                             }
                             disabled={buttonDisabled}
                           >
                             <FontAwesomeIcon icon={faX} />
                           </button>
-                          <NavLink to="/">
-                            <button className="button is-link is-small">
-                              <FontAwesomeIcon icon={faHome} />
-                              &nbsp; Home
-                            </button>
-                          </NavLink>
                           <div>
                             <span className={cartMessageStyle}>
                               {cartMessage}
@@ -203,6 +215,27 @@ export default function ProductsDetails() {
             </div>
           </div>
         </div>
+        <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Remove Item?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to remove <span className="has-text-weight-semibold">"{product.title}"</span> from cart?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        <button className="button is-small" onClick={handleClose} autoFocus>
+            Cancel
+          </button>
+          <button className="button is-danger is-light is-small" onClick={removeAllThisItemButtonHandler}>Remove Item</button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

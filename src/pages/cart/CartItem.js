@@ -9,12 +9,11 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 
 import { Fade } from "@mui/material";
 
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const CartItem = ({
   title,
@@ -26,6 +25,14 @@ const CartItem = ({
   subtotal,
 }) => {
   const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const cart = useCartStore((state) => state.cart);
 
@@ -43,12 +50,16 @@ const CartItem = ({
   };
 
   const decrementCartItemButtonHandler = () => {
+    if (count === 1) {
+      handleClickOpen();
+    } else {
     decrementCartItem(id);
+    }
     console.log(JSON.stringify(cart));
   };
 
   const removeAllThisItemButtonHandler = () => {
-    setOpen(true);
+    handleClickOpen();
     removeAllThisItem(id);
   };
 
@@ -101,7 +112,7 @@ const CartItem = ({
               <button
                 className="button is-danger is-small"
                 style={{ minWidth: "36px", maxWidth: "36px" }}
-                onClick={removeAllThisItemButtonHandler}
+                onClick={handleClickOpen}
               >
                 <FontAwesomeIcon icon={faX} />
               </button>
@@ -125,6 +136,29 @@ const CartItem = ({
           </div>
         </div>
       </Fade>
+      <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Remove Item?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to remove <span className="has-text-weight-semibold">"{title}"</span> from your cart?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        <button className="button is-small" onClick={handleClose} autoFocus>
+            Cancel
+          </button>
+          <button className="button is-danger is-light is-small" onClick={removeAllThisItemButtonHandler}>Remove Item</button>
+        </DialogActions>
+      </Dialog>
+    </div>
     </div>
   );
 };
