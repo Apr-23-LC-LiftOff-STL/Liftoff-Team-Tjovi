@@ -1,5 +1,5 @@
 import "./Cart.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCartStore } from "../../store/cartStore";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +15,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
-import Cart from "./Cart";
 
 const CartItem = ({
   title,
@@ -55,7 +53,7 @@ const CartItem = ({
   };
 
   return (
-    <div className="mx-6">
+    <div className="mx-4">
       <Fade in timeout={500}>
         <div className="column is-offset-1 is-vcentered card mb-3">
           <div className="columns is-vcentered">
@@ -77,16 +75,6 @@ const CartItem = ({
               {/*               <div>
                 Movie ID: {id} Count: {count}
               </div> */}
-            </div>
-            <div className="column is-narrow">
-              <span
-                className="has-text-weight-semibold"
-                style={{
-                  color: price < 10 ? "hsl(348, 100%, 61%)" : "",
-                }}
-              >
-                ${price?.toFixed(2)}
-              </span>
             </div>
             <div className="column is-1">
               <button
@@ -118,9 +106,19 @@ const CartItem = ({
                 <FontAwesomeIcon icon={faX} />
               </button>
             </div>
-            <div className="column is-3">
+            <div className="column">
               <div>
-                <span>Subtotal: </span>
+                <p className="menu-label has-text-weight-bold">Price</p><span
+                  style={{
+                    color: price < 10 ? "hsl(348, 100%, 61%)" : "",
+                  }}
+                >
+                  ${price?.toFixed(2)}
+                </span>
+              </div>
+              <br />
+              <div>
+              <p className="menu-label has-text-weight-bold">Subtotal</p>
                 <span className="has-text-weight-semibold">${subtotal}</span>
               </div>
             </div>
