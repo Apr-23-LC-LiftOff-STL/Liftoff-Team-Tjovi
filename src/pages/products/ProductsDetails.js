@@ -53,7 +53,7 @@ export default function ProductsDetails() {
 
   const incrementCartItemButtonHandler = () => {
     incrementCartItem(id);
-    setCartMessage(`"${product.title}" was added to cart`);
+    // setCartMessage(`"${product.title}" was added to cart`);
     setThisItemInCart((prevCount) => prevCount + 1);
     console.log(JSON.stringify(cart));
   };
@@ -64,7 +64,7 @@ export default function ProductsDetails() {
     } else {
     decrementCartItem(id);
       setThisItemInCart((prevCount) => prevCount - 1);
-      setCartMessage(`"${product.title}" was removed from cart`);
+      // setCartMessage(`"${product.title}" was removed from cart`);
       console.log(JSON.stringify(cart));
     }
   };
@@ -72,7 +72,7 @@ export default function ProductsDetails() {
   const removeAllThisItemButtonHandler = () => {
     removeAllThisItem(id);
     setThisItemInCart(0);
-    setCartMessage(`"${product.title}" was removed from cart`);
+    // setCartMessage(`"${product.title}" was removed from cart`);
     handleClose();
     console.log(JSON.stringify(cart));
   };
@@ -226,14 +226,14 @@ export default function ProductsDetails() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to remove <span className="has-text-weight-semibold">"{product.title}"</span> from cart?
+            Remove <span className="has-text-weight-semibold">"{product.title}"</span> from cart?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <button className="button is-small" onClick={handleClose} autoFocus>
+        <button className="button is-small is-primary has-text-weight-semibold" onClick={handleClose} autoFocus>
             Cancel
           </button>
-          <button className="button is-danger is-light is-small" onClick={removeAllThisItemButtonHandler}>Remove Item</button>
+          <button className="button is-small is-danger is-outlined has-text-weight-semibold" onClick={removeAllThisItemButtonHandler}>Remove Item</button>
         </DialogActions>
       </Dialog>
     </div>

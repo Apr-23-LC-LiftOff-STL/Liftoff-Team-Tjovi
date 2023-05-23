@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { useCartStore } from "../../store/cartStore";
 
@@ -10,8 +10,6 @@ import MovieBar from "../../components/MovieBar/MovieBar.js";
 import "./Cart.css";
 
 import axios from "axios";
-
-import CartDialogRemove from "./CartDialogRemove";
 
 export default function Cart() {
   const cart = useCartStore((state) => state.cart);
@@ -57,7 +55,7 @@ export default function Cart() {
         Total: allItemsSubtotal.toFixed(2),
         stripeConf: "1234ASDF",
         cart: cart,
-      })
+      })  
     );
     axios
       .post("http://localhost:8080/purchase", {

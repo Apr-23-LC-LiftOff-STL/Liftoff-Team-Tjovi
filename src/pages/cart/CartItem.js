@@ -9,11 +9,11 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 
 import { Fade } from "@mui/material";
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const CartItem = ({
   title,
@@ -53,7 +53,7 @@ const CartItem = ({
     if (count === 1) {
       handleClickOpen();
     } else {
-    decrementCartItem(id);
+      decrementCartItem(id);
     }
     console.log(JSON.stringify(cart));
   };
@@ -78,16 +78,16 @@ const CartItem = ({
                 </a>
               </figure>
             </div>
-            <div className="column is-narrow">
-              <div className="is-size-5">
-                <span className="has-text-weight-semibold">{title}</span> (
-                {releaseDate?.slice(0, 4)})
+            <div className="column">
+              <div>
+                <span className="is-size-5 has-text-weight-semibold">{title}</span>
+                <div className="is-size-6">({releaseDate?.slice(0, 4)})</div>
               </div>
               {/*               <div>
                 Movie ID: {id} Count: {count}
               </div> */}
             </div>
-            <div className="column is-1">
+            <div className="column is-1 pr-6">
               <button
                 className="button is-primary is-small"
                 style={{ minWidth: "36px", maxWidth: "36px" }}
@@ -119,7 +119,8 @@ const CartItem = ({
             </div>
             <div className="column">
               <div>
-                <p className="menu-label has-text-weight-bold">Price</p><span
+                <p className="menu-label has-text-weight-bold">Price</p>
+                <span
                   style={{
                     color: price < 10 ? "hsl(348, 100%, 61%)" : "",
                   }}
@@ -129,7 +130,7 @@ const CartItem = ({
               </div>
               <br />
               <div>
-              <p className="menu-label has-text-weight-bold">Subtotal</p>
+                <p className="menu-label has-text-weight-bold">Subtotal</p>
                 <span className="has-text-weight-semibold">${subtotal}</span>
               </div>
             </div>
@@ -137,28 +138,37 @@ const CartItem = ({
         </div>
       </Fade>
       <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Remove Item?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are you sure you want to remove <span className="has-text-weight-semibold">"{title}"</span> from your cart?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-        <button className="button is-small" onClick={handleClose} autoFocus>
-            Cancel
-          </button>
-          <button className="button is-danger is-light is-small" onClick={removeAllThisItemButtonHandler}>Remove Item</button>
-        </DialogActions>
-      </Dialog>
-    </div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Remove Item?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to remove{" "}
+              <span className="has-text-weight-semibold">"{title}"</span> from
+              your cart?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <button
+              className="button is-small is-warning has-text-weight-semibold"
+              onClick={handleClose}
+              autoFocus
+            >
+              Cancel
+            </button>
+            <button
+              className="button is-small is-danger is-outlined has-text-weight-semibold"
+              onClick={removeAllThisItemButtonHandler}
+            >
+              Remove Item
+            </button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </div>
   );
 };

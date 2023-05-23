@@ -15,7 +15,7 @@ import Faq from "./pages/help/Faq";
 import Contact, { contactAction } from "./pages/help/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Account from "./pages/Account";
+import Account from "./pages/account/Account";
 
 import NotFound from "./pages/NotFound";
 import Products, { productsLoader } from "./pages/products/Products";
@@ -23,8 +23,8 @@ import ProductsDetails, {
   productsDetailsLoader,
 } from "./pages/products/ProductsDetails";
 import ProductsError from "./pages/products/ProductsError";
-import Orders from "./pages/Orders.js";
-import Profile from "./pages/Profile.js";
+import OrderHistory from "./pages/account/OrderHistory.js";
+import Profile from "./pages/account/Profile.js";
 import Cart, { cartProductsDetailsLoader } from "./pages/cart/Cart.js";
 
 // layouts
@@ -45,7 +45,7 @@ const router = createBrowserRouter(
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="account" element={<AccountLayout />}>
-        <Route path="orders" element={<Orders />} />
+        <Route path="orders" element={<OrderHistory />} />
         <Route path="profile" element={<Profile />} />
       </Route>
       <Route path="cart" element={<Cart />} />

@@ -46,8 +46,8 @@ export default function CartSideBar({ allItemsSubtotal }) {
 
   return (
     <div className="column is-one-fifth mx-6">
-      <aside className="menu has-text-centered">
-        <div className="box p-5 has-background-grey-lighter">
+      <aside className="menu has-text-centered" style={{borderStyle: 'solid', borderColor: 'darkgray'}}>
+        <div className="p-5 has-background-grey-lighter">
           <p className="menu-label has-text-weight-bold pt-2">
             {totalProductsInCart} ITEM(S) IN CART
           </p>
@@ -99,14 +99,14 @@ export default function CartSideBar({ allItemsSubtotal }) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to remove <span className="has-text-weight-semibold">all items</span> from cart?
+          Remove <span className="has-text-weight-semibold">all items</span> from cart?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <button className="button is-small" onClick={handleClose} autoFocus>
+        <button className="button is-small is-warning has-text-weight-semibold" onClick={handleClose} autoFocus>
             Cancel
           </button>
-          <button className="button is-danger is-light is-small" onClick={emptyCartButtonHandler}>Remove Item</button>
+          <button className="button is-small is-danger is-outlined has-text-weight-semibold" onClick={emptyCartButtonHandler}>Remove All Items</button>
         </DialogActions>
       </Dialog>
     </div>

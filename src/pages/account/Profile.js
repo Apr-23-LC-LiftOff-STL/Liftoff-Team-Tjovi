@@ -1,4 +1,4 @@
-import MovieBar from "../components/MovieBar/MovieBar"
+import MovieBar from "../../components/MovieBar/MovieBar"
 
 export default function Login() {
     return (
@@ -7,16 +7,11 @@ export default function Login() {
         className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
         aria-label="breadcrumbs"
       >
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li className="is-active">
-            <a href="#" aria-current="page">
-              My Profile
-            </a>
-          </li>
-        </ul>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li className="is-active"><a href="/account/profile" aria-current="page">My Profile</a></li>
+    <li><a href="./orders" aria-current="page">Order History</a></li>
+  </ul>
       </nav>
       <div>
         <form className="box">
