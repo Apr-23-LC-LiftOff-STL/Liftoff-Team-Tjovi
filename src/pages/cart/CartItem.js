@@ -64,10 +64,10 @@ const CartItem = ({
   };
 
   return (
-    <div className="mx-4">
+    <div className="mx-4" style={{maxWidth: '1400px'}}>
       <Fade in timeout={500}>
-        <div className="column is-offset-1 is-vcentered card mb-3">
-          <div className="columns is-vcentered">
+        <div className="column is-offset-2 is-vcentered card mb-3" style={{borderStyle: 'solid', borderColor: 'lightgray', borderWidth: '1px'}}>
+          <div className="columns is-centered is-vcentered is-narrow">
             <div className="column is-narrow">
               <figure className="cart-item-img">
                 <a href={`${baseProductUrl}${id}`}>
@@ -80,7 +80,9 @@ const CartItem = ({
             </div>
             <div className="column">
               <div>
-                <span className="is-size-5 has-text-weight-semibold">{title}</span>
+                <span className="is-size-5 has-text-weight-semibold is-italic">
+                  {title}
+                </span>
                 <div className="is-size-6">({releaseDate?.slice(0, 4)})</div>
               </div>
               {/*               <div>
@@ -117,22 +119,30 @@ const CartItem = ({
                 <FontAwesomeIcon icon={faX} />
               </button>
             </div>
-            <div className="column">
-              <div>
-                <p className="menu-label has-text-weight-bold">Price</p>
-                <span
+            <div className="column is-narrow">
+            <table className="table mr-5">
+              <tr>
+                <th className="menu-label has-text-centered">
+                  Price
+                </th>
+                <th className="menu-label has-text-centered">
+                  Subtotal
+                </th>
+              </tr>
+              <tr>
+                <td
+                  className="has-text-centered"
                   style={{
                     color: price < 10 ? "hsl(348, 100%, 61%)" : "",
                   }}
                 >
                   ${price?.toFixed(2)}
-                </span>
-              </div>
-              <br />
-              <div>
-                <p className="menu-label has-text-weight-bold">Subtotal</p>
-                <span className="has-text-weight-semibold">${subtotal}</span>
-              </div>
+                </td>
+                <td className="has-text-centered has-text-weight-semibold">
+                  ${subtotal}
+                </td>
+              </tr>
+            </table>
             </div>
           </div>
         </div>

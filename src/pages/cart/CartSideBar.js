@@ -45,8 +45,8 @@ export default function CartSideBar({ allItemsSubtotal }) {
 
 
   return (
-    <div className="column is-one-fifth mx-6">
-      <aside className="menu has-text-centered" style={{borderStyle: 'solid', borderColor: 'darkgray'}}>
+    <div className="column is-one-fifth mx-4">
+      <aside className="menu has-text-centered card" style={{borderStyle: 'solid', borderColor: 'darkgray', borderWidth: '1px'}}>
         <div className="p-5 has-background-grey-lighter">
           <p className="menu-label has-text-weight-bold pt-2">
             {totalProductsInCart} ITEM(S) IN CART
@@ -76,10 +76,10 @@ export default function CartSideBar({ allItemsSubtotal }) {
       </aside>
       <div>
         <br />
-        <div>
+        <div className="has-text-centered">
           {cart.length > 0 && (
             <div
-              className="button is-danger is-small is-pulled-right is-rounded mr-4"
+              className="button is-small is-danger is-outlined is-rounded"
               onClick={handleClickOpen}
             >
               {" "}
@@ -95,7 +95,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Remove Item?"}
+          {"Empty the cart?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
