@@ -28,10 +28,11 @@ export default function CartSideBar({ allItemsSubtotal }) {
   const tokenNull = null;
 
   const checkoutButtonHandler = () => {
-    alert(JSON.stringify(cart));
     if (token) {
+      alert("** token IS present, proceeding to checkout. ** " + JSON.stringify(cart));
       navigate("/checkout");
     } else {
+      alert("** token IS NOT present, redirecting to login. **" + JSON.stringify(cart));
       navigate("/login");
     }
   };

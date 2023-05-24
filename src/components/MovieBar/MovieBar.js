@@ -8,14 +8,22 @@ function MovieBar() {
 
   const baseProductUrl = "/products/";
 
-  const randomMovieIds = Array.from({ length: 5 }, () =>
+/*     const randomMovieIds = Array.from({ length: 5 }, () =>
     Math.floor(Math.random() * 822)
-  );
+  ); */
+
+  const movieBarPicks = []
+  for (let i = 0; movieBarPicks.length < 5; i++) {
+    let newId = Math.floor(Math.random() * 822); // TODO:  update 822 to total movie count if database increases
+    if (!movieBarPicks.includes(newId)) {
+      movieBarPicks.push(newId);
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       const data = [];
-      for (const randomMovie of randomMovieIds) {
+      for (const randomMovie of movieBarPicks) {
         try {
           const response = await axios.get(
             `http://localhost:8080/${randomMovie}`
