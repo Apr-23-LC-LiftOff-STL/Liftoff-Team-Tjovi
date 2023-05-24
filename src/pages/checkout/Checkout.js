@@ -116,20 +116,18 @@ const Checkout = () => {
             <CheckoutInv />
           </div>
           <div className="column is-one-third mx-4">
-            <div>
               <form onSubmit={handleSubmit}>
                 <PaymentElement />
                 {errorMessage && <div>{errorMessage}</div>}
                 {loading && <LoadingOverlay />}
                 <br />
                 <button
-                  className="button is-normal is-danger is-pulled-right has-text-weight-semibold"
+                  className="button is-normal is-danger is-fullwidth"
                   disabled={loading}
                 >
                   Complete Purchase
                 </button>
               </form>
-            </div>
           </div>
         </div>
       </div>
