@@ -25,23 +25,16 @@ import ProductsDetails, {
 import ProductsError from "./pages/products/ProductsError";
 import Orders from "./pages/Orders.js";
 import Profile from "./pages/Profile.js";
-import Cart, { cartProductsDetailsLoader } from "./pages/cart/Cart.js";
+import Cart from "./pages/cart/Cart.js";
 
 // layouts
-<<<<<<< HEAD
 import RootLayout from './layouts/RootLayout'
 import HelpLayout from './layouts/HelpLayout'
 import ProductsLayout from './layouts/ProductsLayout'
 import AccountLayout from './layouts/AccountLayout'
 import { Elements } from '@stripe/react-stripe-js'
-import {loadStripe} from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import CheckoutSuccess from './pages/CheckoutSuccess'
-=======
-import RootLayout from "./layouts/RootLayout";
-import HelpLayout from "./layouts/HelpLayout";
-import ProductsLayout from "./layouts/ProductsLayout";
-import AccountLayout from "./layouts/AccountLayout";
->>>>>>> front-end-dev
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -58,27 +51,13 @@ const router = createBrowserRouter(
         <Route path="orders" element={<Orders />} />
         <Route path="profile" element={<Profile />} />
       </Route>
-<<<<<<< HEAD
       <Route path="cart"
         element={<Cart />} 
-
-        loader={cartProductDetailsLoader}
         />
       <Route path="products" element={<ProductsLayout />} errorElement={<ProductsError />}>
         <Route 
           index 
           element={<Products />} 
-=======
-      <Route path="cart" element={<Cart />} />
-      <Route
-        path="products"
-        element={<ProductsLayout />}
-        errorElement={<ProductsError />}
-      >
-        <Route
-          index
-          element={<Products />}
->>>>>>> front-end-dev
           loader={productsLoader}
           errorElement={<ProductsError />}
         />
@@ -92,7 +71,6 @@ const router = createBrowserRouter(
       <Route path="*" element={<NotFound />} />
     </Route>
   )
-<<<<<<< HEAD
 )
 const stripePromise = loadStripe('pk_test_51N8n2ODvHmrdraF8Eb3aQ9m86ueHPsypNotvydB9gIsrlxlpyVbah3R3Zt0L1Al5swbbXNzkDHmUmfXuKjH70fmc00Q2jPmqAa');
 
@@ -106,12 +84,6 @@ function App() {
       <RouterProvider router={router} />
     </Elements>
   );
-=======
-);
-
-function App() {
-  return <RouterProvider router={router} />;
->>>>>>> front-end-dev
 }
 
 export default App;
