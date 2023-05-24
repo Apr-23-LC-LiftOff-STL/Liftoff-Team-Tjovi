@@ -94,7 +94,10 @@ export default function Register() {
                 name="email"
               />
               <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faEnvelope} style={{color: "#0ee1be",}} />
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  style={{ color: "#0ee1be" }}
+                />
               </span>
             </div>
           </div>
@@ -111,7 +114,7 @@ export default function Register() {
                 placeholder="********"
               />
               <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faLock} style={{color: "#0ee1be",}} />
+                <FontAwesomeIcon icon={faLock} style={{ color: "#0ee1be" }} />
               </span>
             </div>
           </div>
@@ -128,7 +131,7 @@ export default function Register() {
                 placeholder="********"
               />
               <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faLock} style={{color: "#0ee1be",}} />
+                <FontAwesomeIcon icon={faLock} style={{ color: "#0ee1be" }} />
               </span>
             </div>
           </div>
@@ -142,9 +145,13 @@ export default function Register() {
                 onChange={handleChange}
                 required
                 name="firstName"
-              /><span className="icon is-small is-left">
-              <FontAwesomeIcon icon={faSignature}  style={{color: "#0ee1be",}}/>
-            </span>
+              />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon
+                  icon={faSignature}
+                  style={{ color: "#0ee1be" }}
+                />
+              </span>
             </div>
           </div>
           <div className="field">
@@ -157,9 +164,13 @@ export default function Register() {
                 onChange={handleChange}
                 required
                 name="lastName"
-              /><span className="icon is-small is-left">
-              <FontAwesomeIcon icon={faSignature}  style={{color: "#0ee1be",}}/>
-            </span>
+              />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon
+                  icon={faSignature}
+                  style={{ color: "#0ee1be" }}
+                />
+              </span>
             </div>
           </div>
           <div className="field">
@@ -176,7 +187,9 @@ export default function Register() {
                 placeholder="555-555-5555"
               />
               <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faPhone}  style={{color: "#0ee1be",}}/>
+                <FontAwesomeIcon
+                 icon={faPhone} 
+                style={{ color: "#0ee1be" }} />
               </span>
             </div>
           </div>
@@ -192,7 +205,10 @@ export default function Register() {
                 name="streetAddress"
               />
               <span className="icon is-small is-left">
-              <FontAwesomeIcon icon={faAddressBook} style={{color: "#0ee1be",}} />
+                <FontAwesomeIcon
+                  icon={faAddressBook}
+                  style={{ color: "#0ee1be" }}
+                />
               </span>
             </div>
           </div>
@@ -207,7 +223,10 @@ export default function Register() {
                 name="suite"
               />
               <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faAddressBook} style={{color: "#0ee1be",}} />
+                <FontAwesomeIcon
+                  icon={faAddressBook}
+                  style={{ color: "#0ee1be" }}
+                />
               </span>
             </div>
           </div>
@@ -223,7 +242,10 @@ export default function Register() {
                 name="city"
               />
               <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faAddressBook} style={{color: "#0ee1be",}} />
+                <FontAwesomeIcon
+                  icon={faAddressBook}
+                  style={{ color: "#0ee1be" }}
+                />
               </span>
             </div>
           </div>
@@ -239,7 +261,10 @@ export default function Register() {
                 name="state"
               />
               <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faAddressBook}  style={{color: "#0ee1be",}}/>
+                <FontAwesomeIcon
+                  icon={faAddressBook}
+                  style={{ color: "#0ee1be" }}
+                />
               </span>
             </div>
           </div>
@@ -255,7 +280,10 @@ export default function Register() {
                 placeholder="(optional)"
               />
               <span className="icon is-small is-left">
-                <FontAwesomeIcon icon={faAddressBook} style={{color: "#0ee1be",}} />
+                <FontAwesomeIcon
+                  icon={faAddressBook}
+                  style={{ color: "#0ee1be" }}
+                />
               </span>
             </div>
           </div>

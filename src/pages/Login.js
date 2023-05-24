@@ -12,7 +12,8 @@ const Login = () => {
 
   const forgotPassword = async (event) => {
     event.preventDefault();
-    navigate("/lostPassword");
+    alert("Functionality not added yet")
+    //navigate("/lostPassword");
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -24,19 +25,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const credentials = btoa(`${email}:${password}`);
     try {
-      const response = await axios.post(
-        "http://localhost:8080/login",
-        { email, password },
+      const response = await axios.get(
+        "http://localhost:8080/user",
+       
         {
           headers: {
-            "Content-Type": "application/json",
+            'Authorization': `Basic ${credentials}`
           },
         }
       );
 
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
+      const { authorization } = response.headers;
+      if (authorization) {
+        localStorage.setItem("token", authorization);
+        console.log(authorization);
+        console.log(response.data)
         navigate("/");
       } else {
         throw new Error("Login failed");
