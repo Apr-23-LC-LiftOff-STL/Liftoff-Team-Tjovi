@@ -23,6 +23,7 @@ import ProductsError from './pages/products/ProductsError'
 import Orders from './pages/Orders.js'
 import Profile from './pages/Profile.js'
 import Cart, { cartProductDetailsLoader } from './pages/cart/Cart.js'
+import AdminProductsDetails from './pages/products/AdminProductsDetails' 
 
 // layouts
 import RootLayout from './layouts/RootLayout'
@@ -61,7 +62,7 @@ const router = createBrowserRouter(
           element={<ProductsDetails />}
         />
       </Route>
-
+      <Route path="admin/productdetails/:id" element={<AdminProductsDetails />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

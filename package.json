@@ -17,6 +17,8 @@
     "bootstrap": "^5.2.3",
     "bulma": "^0.9.4",
     "himalaya": "^1.1.0",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^3.1.2",
     "multiselect-react-dropdown": "^2.0.25",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
