@@ -92,14 +92,37 @@ export default function CheckoutInv() {
               })}
               </tbody>
               <tfoot className="has-background-white-ter">
+              <tr className="has-background-white">
+                <th>
+                </th>
+                <th className="has-text-right">
+                Subtotal
+                </th>
+                <th className="has-text-centered">
+                </th>
+                <th className="has-text-right">
+                {currencySymbol}{allItemsSubtotal.toFixed(2)}
+                </th>
+              </tr>
+              <tr className="has-background-white">
+                <th>
+                </th>
+                <th className="has-text-right">
+                Sales Tax
+                </th>
+                <th className="has-text-centered">
+                </th>
+                <th className="has-text-right">
+                {currencySymbol}0.00
+                </th>
+              </tr>
               <tr>
                 <th>
                 </th>
-                <th className="has-text-centered">
-                Totals
+                <th className="has-text-right">
+                Total
                 </th>
                 <th className="has-text-centered">
-                {totalProductsInCart}
                 </th>
                 <th className="has-text-right">
                 {currencySymbol}{allItemsSubtotal.toFixed(2)}
@@ -110,9 +133,9 @@ export default function CheckoutInv() {
         </div>
       </div>
       <div
-        className="box is-shadowless has-background-white-ter px-4 py-3 mt-5 mx-4"
+        className="box is-shadowless has-background-warning-light px-4 py-3 mt-5 mx-4"
       >
-        <div className="has-text-centered is-italic is-size-7">On purchase, download codes will be made available on <NavLink to="/account/orders">Order History page.</NavLink></div>
+        <div className="has-text-centered is-italic is-size-7">On purchase, movie download codes will be made available on <NavLink to="/account/orders">Order History page.</NavLink></div>
       </div>
     </div>
   );
