@@ -51,7 +51,7 @@ export default function CheckoutInv() {
   return (
     <div>
           <div
-        className="box pl-5 py-3 my-3 has-background-warning-light"
+        className="box is-shadowless pl-5 py-3 mb-1 has-background-warning-light"
         style={{
           borderStyle: "solid",
           borderColor: "darkgray",
@@ -61,16 +61,11 @@ export default function CheckoutInv() {
         <div className="title is-5 has-text-danger has-text-left has-text-weight-bold">Order Total: &nbsp; {currencySymbol}{allItemsSubtotal.toFixed(2)}</div>
       </div>
       <div
-        className="box p-5"
-        style={{
-          borderStyle: "solid",
-          borderColor: "darkgray",
-          borderWidth: "1px",
-        }}
+        className="px-4 pt-4"
       >
         <div>
           <table className="table is-fullwidth">
-            <thead className="has-background-primary-light">
+            <thead className="has-background-white-ter">
               <tr>
                 <th className="menu-label has-text-left">Title</th>
                 <th className="menu-label has-text-centered">Price</th>
@@ -96,7 +91,7 @@ export default function CheckoutInv() {
                 );
               })}
               </tbody>
-              <tfoot className="has-background-primary-light">
+              <tfoot className="has-background-white-ter">
               <tr>
                 <th>
                 </th>
@@ -113,9 +108,9 @@ export default function CheckoutInv() {
               </tfoot>
           </table>
         </div>
-        <br />
-        <div
-        className="box mx-3 px-5 py-3 has-background-warning-light"
+      </div>
+      <div
+        className="box is-shadowless px-5 py-3 mt-4 has-background-warning-light"
         style={{
           borderStyle: "solid",
           borderColor: "darkgray",
@@ -123,7 +118,6 @@ export default function CheckoutInv() {
         }}
       >
         <div className="has-text-centered is-italic is-size-7">On purchase, download codes will be made available on <NavLink to="/account/orders">Order History page.</NavLink></div>
-      </div>
       </div>
     </div>
   );

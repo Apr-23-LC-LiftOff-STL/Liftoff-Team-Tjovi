@@ -57,7 +57,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
   return (
     <div className="column is-one-fifth mx-4">
       <aside
-        className="menu has-text-centered card"
+        className="menu has-text-centered card is-shadowless"
         style={{
           borderStyle: "solid",
           borderColor: "darkgray",
@@ -86,7 +86,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
               className="button is-centered is-normal is-fullwidth is-warning"
               onClick={checkoutButtonHandler}
             >
-              Proceed To Checkout
+              Check Out
             </div>
           </div>
         </div>

@@ -123,7 +123,7 @@ const Checkout = () => {
                 {loading && <LoadingOverlay />}
                 <br />
                 <button
-                  className="button is-normal is-danger has-text-weight-semibold"
+                  className="button is-normal is-danger is-pulled-right has-text-weight-semibold"
                   disabled={loading}
                 >
                   Complete Purchase
