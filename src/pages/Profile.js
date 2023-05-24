@@ -58,6 +58,7 @@ const [originalValues, setOriginalValues] = useState({ ...values });
     });
   }
   const saveFormData = async () => {
+    //need an endpoint for updated submitted user data
     const response = await fetch("http://localhost:8080/user", {
       method: "POST",
       headers: {
@@ -107,9 +108,6 @@ const [originalValues, setOriginalValues] = useState({ ...values });
   const onUpdate = async (event) => {
     event.preventDefault();
 
-    //values.email should equal datapulled from database to makesure the user does not exist
-    //seperate function and variable for said data?
-    //if else statement needs to be put into a seperate function or ternary opererator to work
 
     try {
       await saveFormData();
