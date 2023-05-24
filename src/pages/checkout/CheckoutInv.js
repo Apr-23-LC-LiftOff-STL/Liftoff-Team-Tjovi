@@ -63,7 +63,7 @@ export default function CheckoutInv() {
         <div className="box is-shadowless px-5 py-5 pt-4 mt-4"
                 style={{
           borderStyle: "solid",
-          borderColor: "darkgray",
+          borderColor: "lightgray",
           borderWidth: "1px",
         }}>
           <table className="table is-fullwidth">
