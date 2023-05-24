@@ -110,12 +110,7 @@ export default function CheckoutInv() {
         </div>
       </div>
       <div
-        className="box is-shadowless px-5 py-3 mt-4 has-background-warning-light"
-        style={{
-          borderStyle: "solid",
-          borderColor: "darkgray",
-          borderWidth: "1px",
-        }}
+        className="box is-shadowless has-background-white-ter px-4 py-3 mt-5 mx-4"
       >
         <div className="has-text-centered is-italic is-size-7">On purchase, download codes will be made available on <NavLink to="/account/orders">Order History page.</NavLink></div>
       </div>
