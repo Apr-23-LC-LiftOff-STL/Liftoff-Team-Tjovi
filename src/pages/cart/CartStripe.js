@@ -1,11 +1,11 @@
-import "./CartTotal.css";
+import "./Cart.css";
 
 import { useCartStore } from "../../store/cartStore";
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import LoadingOverlay from "../../components/LoadingOverlay";
 
-const CartTotal = () => {
+const CartStripe = () => {
 
   const cart = useCartStore((state) => state.cart);
 
@@ -51,25 +51,22 @@ if(error){
 }
   return (
     <div className="container">
+    <div className="columns is-centered">
+    <div className="column is-half mx-4">
       <div className="cartTotal">
-        <span> Items in Cart:</span><span>{totalProductsInCart}</span>  
-        <br />
-        Subtotal: <br />
-        Est. Sales Tax: <br /> <br />
-        Grand Total:
-        <br/ >
-        <br />
         <form onSubmit={handleSubmit}>
-          <PaymentElement/>
+          <PaymentElement disabled />
           {errorMessage && <div>{errorMessage}</div>}
           {loading && <LoadingOverlay/>}
-          
-        <button className="button is-normal is-danger" disabled={loading}>Purchase</button>
+          <br />
+        <button className="button is-normal is-danger has-text-weight-semibold is-pulled-right" disabled={loading}>Complete Purchase</button>
         </form>
+      </div>
+      </div>
       </div>
 
     </div>
   );
 };
 
-export default CartTotal;
+export default CartStripe;

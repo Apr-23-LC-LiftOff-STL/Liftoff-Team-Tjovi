@@ -6,6 +6,7 @@ import CartItem from "./CartItem";
 import CartSideBar from "./CartSideBar";
 import CartIsEmpty from "./CartIsEmpty";
 import MovieBar from "../../components/MovieBar/MovieBar.js";
+import CartStripe from "./CartStripe"
 
 import "./Cart.css";
 
@@ -123,10 +124,13 @@ export default function Cart() {
       </div>
       <div className="has-text-centered has-text-weight-semibold">
         <div
-          className="button is-primary is-normal"
+          className="button is-small is-primary is-pulled-right"
           onClick={handleCompletePurchase}
         >
-          Complete Purchase
+          Complete Purchase *NOT FINAL BUTTON
+        </div>
+        <div>
+          <CartStripe />
         </div>
       </div>
       <MovieBar />

@@ -9,7 +9,7 @@ function MovieBar() {
   const baseProductUrl = "/products/";
 
   const randomMovieIds = Array.from({ length: 5 }, () =>
-    Math.floor(Math.random() * 800)
+    Math.floor(Math.random() * 822)
   );
 
   useEffect(() => {
