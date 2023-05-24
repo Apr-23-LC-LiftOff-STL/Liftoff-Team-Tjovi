@@ -60,10 +60,12 @@ export default function CheckoutInv() {
       >
         <div className="title is-5 has-text-danger has-text-left has-text-weight-bold">Order Total: &nbsp; {currencySymbol}{allItemsSubtotal.toFixed(2)}</div>
       </div>
-      <div
-        className="px-4 pt-4"
-      >
-        <div>
+        <div className="box is-shadowless px-5 py-5 pt-4 mt-4"
+                style={{
+          borderStyle: "solid",
+          borderColor: "darkgray",
+          borderWidth: "1px",
+        }}>
           <table className="table is-fullwidth">
             <thead className="has-background-white-ter">
               <tr>
@@ -130,7 +132,6 @@ export default function CheckoutInv() {
               </tr>
               </tfoot>
           </table>
-        </div>
       </div>
       <div
         className="box is-shadowless has-background-warning-light px-4 py-3 mt-5 mx-4"
