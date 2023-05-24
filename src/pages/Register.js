@@ -15,12 +15,13 @@ export default function Register() {
     verifyPwd: "",
     firstName: "",
     lastName: "",
-    phoneNumber: "",
+    mobileNumber: "",
     streetAddress: "",
     suite: "",
     city: "",
     state: "",
     zipCode: "",
+    role:"user"
   });
   const saveFormData = async () => {
     const response = await fetch("http://localhost:8080/register", {
@@ -61,8 +62,8 @@ export default function Register() {
   const cancelRegistration = () => {
     setValues({
       email: "",
-      Pwd: "",
-      verifypwd: "",
+      pwd: "",
+      verifyPwd: "",
       firstName: "",
       lastName: "",
       mobileNumber: "",
@@ -71,7 +72,7 @@ export default function Register() {
       city: "",
       state: "",
       zipCode: "",
-      role: "",
+      
     });
     navigate("/");
   };
@@ -79,9 +80,9 @@ export default function Register() {
   return (
     <div>
       <h1 className="title">Register</h1>
-      <div>
-        <form className="box" onSubmit={onSubmit}>
-          <div className="field">
+      <div className="columns is-multiline is-centered">
+       <form className="box" onSubmit={onSubmit}>
+         <div className="column"> <div className="field">
             <label className="label">Email</label>
             <div className="control has-icons-left">
               <input
@@ -101,7 +102,9 @@ export default function Register() {
               </span>
             </div>
           </div>
-          <div className="field">
+          </div>
+        
+         <div className="column"><div className="field">
             <label className="label">Password</label>
             <div className="control has-icons-left">
               <input
@@ -117,8 +120,8 @@ export default function Register() {
                 <FontAwesomeIcon icon={faLock} style={{ color: "#0ee1be" }} />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column is-full"><div className="field">
             <label className="label">Verify Password</label>
             <div className="control has-icons-left">
               <input
@@ -134,8 +137,8 @@ export default function Register() {
                 <FontAwesomeIcon icon={faLock} style={{ color: "#0ee1be" }} />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column"><div className="field">
             <label className="label">First Name</label>
             <div className="control has-icons-left">
               <input
@@ -153,8 +156,8 @@ export default function Register() {
                 />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column"><div className="column is-full">
             <label className="label">Last Name</label>
             <div className="control has-icons-left">
               <input
@@ -172,8 +175,9 @@ export default function Register() {
                 />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column is-full"> 
+                   <div className="column is-full">
             <label className="label">Mobile Number</label>
             <div className="control has-icons-left">
               <input
@@ -192,8 +196,8 @@ export default function Register() {
                 style={{ color: "#0ee1be" }} />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column"> <div className="field">
             <label className="label">Street Address</label>
             <div className="control has-icons-left">
               <input
@@ -211,8 +215,8 @@ export default function Register() {
                 />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column"><div className="field">
             <label className="label">Suite/Apt. Number</label>
             <div className="control has-icons-left">
               <input
@@ -229,8 +233,8 @@ export default function Register() {
                 />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column"><div className="field">
             <label className="label">City</label>
             <div className="control has-icons-left">
               <input
@@ -248,8 +252,8 @@ export default function Register() {
                 />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column"><div className="field">
             <label className="label">State</label>
             <div className="control has-icons-left">
               <input
@@ -267,8 +271,8 @@ export default function Register() {
                 />
               </span>
             </div>
-          </div>
-          <div className="field">
+          </div></div>
+          <div className="column"><div className="field">
             <label className="label">Zip Code</label>
             <div className="control has-icons-left">
               <input
@@ -286,21 +290,10 @@ export default function Register() {
                 />
               </span>
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Role</label>
-            <div className="control">
-              <input
-                className="input is-primary"
-                type="text"
-                value={values.role}
-                onChange={handleChange}
-                required
-                name="role"
-              />
-            </div>
-          </div>
-
+          </div></div>
+          
+          
+          <div className="column"></div>
           <div className="field">
             <div className="control">
               <button type="submit" className="button is-primary">
