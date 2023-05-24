@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useCartStore } from "../../store/cartStore";
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 export default function CartSideBar({ allItemsSubtotal }) {
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const cart = useCartStore((state) => state.cart);
   const emptyCart = useCartStore((state) => state.emptyCart);
@@ -21,8 +24,16 @@ export default function CartSideBar({ allItemsSubtotal }) {
 
   const currencySymbol = "$";
 
+  const token = "dummy_token_in_CartSideBar";
+  const tokenNull = null;
+
   const checkoutButtonHandler = () => {
     alert(JSON.stringify(cart));
+    if (token) {
+      navigate("/checkout");
+    } else {
+      navigate("/login");
+    }
   };
 
   const emptyCartButtonHandler = () => {
@@ -43,10 +54,16 @@ export default function CartSideBar({ allItemsSubtotal }) {
     setOpen(false);
   };
 
-
   return (
     <div className="column is-one-fifth mx-4">
-      <aside className="menu has-text-centered card" style={{borderStyle: 'solid', borderColor: 'darkgray', borderWidth: '1px'}}>
+      <aside
+        className="menu has-text-centered card"
+        style={{
+          borderStyle: "solid",
+          borderColor: "darkgray",
+          borderWidth: "1px",
+        }}
+      >
         <div className="p-5 has-background-grey-lighter">
           <p className="menu-label has-text-weight-bold pt-2">
             {totalProductsInCart} ITEM(S) IN CART
@@ -69,7 +86,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
               className="button is-centered is-normal is-fullwidth is-warning"
               onClick={checkoutButtonHandler}
             >
-              Check Out
+              Proceed To Checkout
             </div>
           </div>
         </div>
@@ -94,22 +111,29 @@ export default function CartSideBar({ allItemsSubtotal }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Empty the cart?"}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Empty the cart?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-          Remove <span className="has-text-weight-semibold">all items</span> from cart?
+            Remove <span className="has-text-weight-semibold">all items</span>{" "}
+            from cart?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <button className="button is-small is-warning has-text-weight-semibold" onClick={handleClose} autoFocus>
+          <button
+            className="button is-small is-warning has-text-weight-semibold"
+            onClick={handleClose}
+            autoFocus
+          >
             Cancel
           </button>
-          <button className="button is-small is-danger is-outlined has-text-weight-semibold" onClick={emptyCartButtonHandler}>Remove All Items</button>
+          <button
+            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            onClick={emptyCartButtonHandler}
+          >
+            Remove All Items
+          </button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-

@@ -6,7 +6,6 @@ import CartItem from "./CartItem";
 import CartSideBar from "./CartSideBar";
 import CartIsEmpty from "./CartIsEmpty";
 import MovieBar from "../../components/MovieBar/MovieBar.js";
-import CartStripe from "./CartStripe"
 
 import "./Cart.css";
 
@@ -128,9 +127,6 @@ export default function Cart() {
           onClick={handleCompletePurchase}
         >
           Complete Purchase *NOT FINAL BUTTON
-        </div>
-        <div>
-          <CartStripe />
         </div>
       </div>
       <MovieBar />
