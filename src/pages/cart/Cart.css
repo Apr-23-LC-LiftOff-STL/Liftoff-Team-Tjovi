@@ -8,7 +8,7 @@
 }
 
 .cart-item-img {
-  height: 150px;
+  width: 150px;
 }
 
 .cart-item{
@@ -42,3 +42,21 @@
   font-weight: 600;
   color: #909090;
  }
+
+
+
+
+ .cart-sidebar {
+  position: sticky;
+  display: inline-block;
+  vertical-align: top;
+  max-height: 100vh;
+  overflow-y: auto;
+  width: 200px;
+  top: 0;
+  bottom: 0;
+}
+
+.cart-sidebar-content {
+  display: inline-block;
+}

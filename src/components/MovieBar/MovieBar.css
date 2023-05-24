@@ -1,0 +1,50 @@
+@media (prefers-reduced-motion) {
+    /* styles to apply if a user's device settings are set to reduced motion */
+    .movie-bar-card:hover {
+      transform: none;
+    }
+  }
+  
+  .movie-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 80px;
+  }
+  
+  .movie-bar-card {
+    width: 170px;
+    margin: 10px;
+    padding-bottom: 2%;
+    color: rgb(51, 51, 51);
+  }
+  
+  .movie-bar-card-title {
+    text-align: left;
+    color: hsl(0, 0%, 21%);
+    font-size: 14px;
+    padding-left: 11%;
+  }
+  
+  .movie-bar-img {
+    width: 140px;
+    box-shadow: 0 8px 16px 4px rgba(31, 31, 31, 0.09);
+    border: 1px solid hsl(0, 0%, 75%);
+    border-radius: 1rem;
+  }
+  
+  .movie-bar-img:hover {
+    transform: scale(1.025, 1.025) translateY(-3px);
+    box-shadow: 0 8px 16px 4px hsl(171, 100%, 41%, 0.3);
+  }
+  
+  .movie-bar-hr {
+    width: 25%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    height: 2px;
+    background-color: hsl(0, 0%, 86%);
+  }

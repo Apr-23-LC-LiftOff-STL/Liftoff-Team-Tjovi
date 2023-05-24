@@ -1,10 +1,8 @@
 import { Outlet, NavLink } from "react-router-dom";
-import "bulma/css/bulma.css";
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
 
 const Footer = () => {
@@ -19,8 +17,7 @@ const Footer = () => {
           <br />
           St. Louis, MO 63108
           <br />
-          (314) 254-0107 &nbsp;
-          <FontAwesomeIcon icon={faPhone} />
+          (314) 254-0107
         </p>
         <div className="tabs is-centered">
           <ul>
