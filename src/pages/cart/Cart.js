@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { useCartStore } from "../../store/cartStore";
 
@@ -6,6 +6,7 @@ import CartItem from "./CartItem";
 import CartSideBar from "./CartSideBar";
 import CartIsEmpty from "./CartIsEmpty";
 import MovieBar from "../../components/MovieBar/MovieBar.js";
+
 import "./Cart.css";
 
 import axios from "axios";
@@ -43,9 +44,39 @@ export default function Cart() {
     fetchData();
   }, [cart]);
 
+  const date = new Date().toJSON();
+
+  const handleCompletePurchase = (e) => {
+    e.preventDefault();
+    alert(
+      JSON.stringify({
+        user: "987JKL", // token ?
+        date: date,
+        Total: allItemsSubtotal.toFixed(2),
+        stripeConf: "1234ASDF",
+        cart: cart,
+      })  
+    );
+    axios
+      .post("http://localhost:8080/purchase", {
+        user: "987JKL", // token ?
+        date: date,
+        Total: allItemsSubtotal.toFixed(2),
+        stripeConf: "1234ASDF",
+        cart: cart,
+      })
+      .then((response) => {
+        console.log(response.data);
+        // Handle response data - Success flag, order number? download codes?
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
-           <nav
+      <nav
         className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
         aria-label="breadcrumbs"
       >
@@ -90,7 +121,16 @@ export default function Cart() {
         </div>
         <CartSideBar allItemsSubtotal={allItemsSubtotal?.toFixed(2)} />
       </div>
+      <div className="has-text-centered has-text-weight-semibold">
+        <div
+          className="button is-primary is-normal"
+          onClick={handleCompletePurchase}
+        >
+          Complete Purchase
+        </div>
+      </div>
       <MovieBar />
     </div>
   );
 }
+

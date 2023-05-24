@@ -10,12 +10,26 @@ import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
 // Styling originated from:  https://responsive-bulma-cards.netlify.app/ - example #5
 
 import { useCartStore } from "../../store/cartStore";
 
 export default function ProductsDetails() {
-  
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const { id } = useParams();
   const product = useLoaderData();
   const cart = useCartStore((state) => state.cart);
@@ -38,16 +52,18 @@ export default function ProductsDetails() {
 
   const incrementCartItemButtonHandler = () => {
     incrementCartItem(id);
-    setCartMessage(`"${product.title}" was added to cart`);
+    // setCartMessage(`"${product.title}" was added to cart`);
     setThisItemInCart((prevCount) => prevCount + 1);
     console.log(JSON.stringify(cart));
   };
 
   const decrementCartItemButtonHandler = () => {
-    decrementCartItem(id);
-    if (thisItemInCart > 0) {
+    if (thisItemInCart === 1) {
+      handleClickOpen();
+    } else {
+      decrementCartItem(id);
       setThisItemInCart((prevCount) => prevCount - 1);
-      setCartMessage(`"${product.title}" was removed from cart`);
+      // setCartMessage(`"${product.title}" was removed from cart`);
       console.log(JSON.stringify(cart));
     }
   };
@@ -55,7 +71,8 @@ export default function ProductsDetails() {
   const removeAllThisItemButtonHandler = () => {
     removeAllThisItem(id);
     setThisItemInCart(0);
-    setCartMessage(`"${product.title}" was removed from cart`);
+    // setCartMessage(`"${product.title}" was removed from cart`);
+    handleClose();
     console.log(JSON.stringify(cart));
   };
 
@@ -88,121 +105,153 @@ export default function ProductsDetails() {
 
   return (
     <div>
-    <nav className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"aria-label="breadcrumbs">
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li className="is-active"><a href="#" aria-current="page">Movie Details</a></li>
-  </ul>
-</nav>
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column">
-              <div className="card is-horizontal shadow-xl transform is-duration-100">
-                <div className="card-image p-4">
-                  <Fade in timeout={500}>
-                    <figure className="image ">
-                      <img
-                        src={`${baseImgUrl}${product.posterPath}`}
-                        alt={`Poster for ${product.title}`}
-                      ></img>
-                    </figure>
-                  </Fade>
-                </div>
-                <div className="card-content p-4 is-flex is-flex-direction-column">
-                  <div className="content p-4 has-text-weight-normal">
-                    <div className="is-size-5">
-                      <h3>{product.title}</h3>
-                    </div>
-                    <p className="is-size-6 has-text-weight-normal is-italic">
-                      {product.overview}
-                    </p>
-                    <p>
-                      <span className="has-text-weight-semibold">
-                        &emsp; &emsp; Genres:{" "}
-                      </span>
-                      {product.genres.map((genre) => genre.name).join(", ")}
-                    </p>
-                    <p>
-                      <span className="has-text-weight-semibold">
-                        &emsp; &emsp; Runtime:{" "}
-                      </span>
-                      {product.runtime} minutes
-                    </p>
+      <nav
+        className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+        aria-label="breadcrumbs"
+      >
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Movie Details
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div className="container" style={{ maxWidth: "1080px" }}>
+        <div className="columns is-centered mx-2">
+          <div className="column">
+            <div
+              className="card is-horizontal shadow-xl transform is-duration-100"
+              style={{ borderStyle: "solid", borderColor: "lightgray" }}
+            >
+              <div className="card-image p-4">
+                <Fade in timeout={500}>
+                  <figure className="card-image">
+                    <img
+                      src={`${baseImgUrl}${product.posterPath}`}
+                      alt={`Poster for ${product.title}`}
+                    ></img>
+                  </figure>
+                </Fade>
+              </div>
+              <div className="card-content p-4 is-flex is-flex-direction-column">
+                <div className="content p-4 has-text-weight-normal">
+                  <div className="is-size-5 is-italic">
+                    <h3>{product.title}</h3>
                   </div>
-                  <div className="content p-5 has-background-info-light">
-                    <div className="columns">
-                      <div className="column">
-                        <div className="is-size-4">
-                          <span className="has-text-weight-semibold">
-                            Price:
-                          </span>{" "}
-                          <span
-                            style={{
-                              color:
-                                product.price < 10 ? "hsl(348, 100%, 61%)" : "",
-                            }}
-                          >
-                            ${product.price?.toFixed(2)}
-                          </span>
-                        </div>
+                  <p className="is-size-6 has-text-weight-normal is-italic">
+                    {product.overview}
+                  </p>
+                  <p>
+                    <span className="has-text-weight-semibold">
+                      &emsp; &emsp; Genres:{" "}
+                    </span>
+                    {product.genres.map((genre) => genre.name).join(", ")}
+                  </p>
+                  <p>
+                    <span className="has-text-weight-semibold">
+                      &emsp; &emsp; Runtime:{" "}
+                    </span>
+                    {product.runtime} minutes
+                  </p>
+                </div>
+                <div className="content p-5 has-background-info-light">
+                  <div className="columns">
+                    <div className="column">
+                      <div className="is-size-5">
+                        <span className="has-text-weight-semibold">Price:</span>{" "}
+                        <span
+                          style={{
+                            color:
+                              product.price < 10 ? "hsl(348, 100%, 61%)" : "",
+                          }}
+                        >
+                          ${product.price?.toFixed(2)}
+                        </span>
+                      </div>
+                      <div>
+                        <button
+                          className="button is-primary is-small"
+                          onClick={() =>
+                            incrementCartItemButtonHandler(product.id)
+                          }
+                        >
+                          <FontAwesomeIcon icon={faAdd} />
+                        </button>
+                        <input
+                          className="input is-small has-text-centered"
+                          style={{ width: "40px" }}
+                          number
+                          value={
+                            cart.find((product) => product.id === id)?.count ||
+                            0
+                          }
+                          readOnly
+                        />
+                        <button
+                          className="button is-warning is-small"
+                          onClick={() =>
+                            decrementCartItemButtonHandler(product.id)
+                          }
+                          disabled={buttonDisabled}
+                        >
+                          <FontAwesomeIcon icon={faSubtract} />
+                        </button>
+                        <button
+                          className="button is-danger is-small"
+                          onClick={() => handleClickOpen(product.id)}
+                          disabled={buttonDisabled}
+                        >
+                          <FontAwesomeIcon icon={faX} />
+                        </button>
                         <div>
-                          <button
-                            className="button is-primary is-small"
-                            onClick={() =>
-                              incrementCartItemButtonHandler(product.id)
-                            }
-                          >
-                            <FontAwesomeIcon icon={faAdd} />
-                          </button>
-                          <input
-                            className="input is-small has-text-centered"
-                            style={{ width: "40px" }}
-                            number
-                            value={
-                              cart.find((product) => product.id === id)
-                                ?.count || 0
-                            }
-                            readOnly
-                          />
-                          <button
-                            className="button is-warning is-small"
-                            onClick={() =>
-                              decrementCartItemButtonHandler(product.id)
-                            }
-                            disabled={buttonDisabled}
-                          >
-                            <FontAwesomeIcon icon={faSubtract} />
-                          </button>
-                          <button
-                            className="button is-danger is-small"
-                            onClick={() =>
-                              removeAllThisItemButtonHandler(product.id)
-                            }
-                            disabled={buttonDisabled}
-                          >
-                            <FontAwesomeIcon icon={faX} />
-                          </button>
-                          <NavLink to="/">
-                            <button className="button is-link is-small">
-                              <FontAwesomeIcon icon={faHome} />
-                              &nbsp; Home
-                            </button>
-                          </NavLink>
-                          <div>
-                            <span className={cartMessageStyle}>
-                              {cartMessage}
-                            </span>
-                          </div>
+                          <span className={cartMessageStyle}>
+                            {cartMessage}
+                          </span>
                         </div>
                       </div>
                     </div>
-                    <p className="is-size-7"></p>
                   </div>
+                  <p className="is-size-7"></p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Remove Item?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Remove{" "}
+            <span className="has-text-weight-semibold">"{product.title}"</span>{" "}
+            from cart?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button
+            className="button is-small is-primary has-text-weight-semibold"
+            onClick={handleClose}
+            autoFocus
+          >
+            Cancel
+          </button>
+          <button
+            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            onClick={removeAllThisItemButtonHandler}
+          >
+            Remove Item
+          </button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
