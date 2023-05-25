@@ -1,11 +1,16 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenSquare } from "@fortawesome/free-solid-svg-icons";
+
+import MovieBar from "../../components/MovieBar/MovieBar";
+
 export default function Profile(props) {
   const navigate = useNavigate();
+
+  
 
   const [values, setValues] = useState({
     email: "",
@@ -139,6 +144,7 @@ export default function Profile(props) {
   findByUserName();
   return (
     <div>
+      <div>
       <div>
       <nav
           className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
@@ -339,6 +345,8 @@ export default function Profile(props) {
       <button className="button is-light" onClick={cancelEdit}>
         Cancel Changes
       </button>
+      </div>
+      <MovieBar />
     </div>
   );
 }

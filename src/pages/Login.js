@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import MovieBar from "../components/MovieBar/MovieBar";
+
 import axios from "axios";
 
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -110,6 +112,7 @@ const Login = () => {
         </div>
       </div>
     </form>
+    <MovieBar />
     </div>
   );
 };
