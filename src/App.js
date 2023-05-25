@@ -56,7 +56,7 @@ const router = createBrowserRouter(
         <Route
           path=":id"
           element={<ProductsDetails />}
-          
+          loader={productsDetailsLoader}
         />
       </Route>
       <Route path="register" element={<Register />} />

@@ -76,33 +76,6 @@ export default function ProductsDetails() {
     console.log(JSON.stringify(cart));
   };
 
-  /*   const incrementCartItemButtonHandler = () => {
-    console.log(JSON.stringify(cart));
-    incrementCartItem(product.id);
-    setCartMessageStyle("is-size-6");
-    setCartMessage(`"${product.title}" was added to cart`);
-    setButtonDisabled(false);
-  };
-
-  const decrementCartItemButtonHandler = () => {
-    console.log(JSON.stringify(cart));
-    decrementCartItem(product.id);
-    setCartMessageStyle("is-size-6 has-text-danger");
-    setCartMessage(`"${product.title}" was removed from cart`);
-    if (!thisItemInCart) {
-      setButtonDisabled(true);
-    }
-  };
-
-  const removeAllThisItemButtonHandler = () => {
-    removeAllThisItem(product.id);
-    setCartMessageStyle("is-size-6 has-text-danger");
-    setCartMessage(`"${product.title}" was removed from cart`);
-    if (!thisItemInCart) {
-      setButtonDisabled(true);
-    }
-  }; */
-
   return (
     <div>
       <nav
@@ -155,7 +128,7 @@ export default function ProductsDetails() {
                     <span className="has-text-weight-semibold">
                       &emsp; &emsp; Runtime:{" "}
                     </span>
-                    {product.runtime} minutes
+                    {product?.runtime} minutes
                   </p>
                 </div>
                 <div className="content p-5 has-background-info-light">
@@ -169,7 +142,7 @@ export default function ProductsDetails() {
                               product.price < 10 ? "hsl(348, 100%, 61%)" : "",
                           }}
                         >
-                          ${product.price?.toFixed(2)}
+                          ${product.price.toFixed(2)}
                         </span>
                       </div>
                       <div>
