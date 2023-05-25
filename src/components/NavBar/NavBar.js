@@ -27,8 +27,15 @@ const NavBar = () => {
   const [isActive, setisActive] = useState(false);
   const [cartButtonStyling, setCartButtonStyling] = useState();
   const [cartDropdownStyling, setCartDropdownStyling] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLoggedIn(true);
+    } 
+  }, [isLoggedIn]);
+  
+   useEffect(() => {
     if (totalProductsInCart !== 0) {
       setCartButtonStyling(
         "button is-warning has-text-weight-semibold is-hidden-mobile"
@@ -39,7 +46,11 @@ const NavBar = () => {
       setCartDropdownStyling("has-text-weight-normal");
     }
   }, [totalProductsInCart]);
-
+  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
   return (
     <nav
       className="navbar pt-1 pl-4 pr-4"
@@ -67,9 +78,9 @@ const NavBar = () => {
         </a>
       </div>
 
-        <div className="navbar-item">
-          <SearchBar />
-        </div>
+      <div className="navbar-item">
+        <SearchBar />
+      </div>
 
       <div className="navbar-end">
         <div
@@ -112,10 +123,20 @@ const NavBar = () => {
             </div>
           </div>
 
-          <div className="buttons">
-            <a className="button is-primary is-hidden-mobile" href="/login">
+          {isLoggedIn ? (
+            <button className="button is-light" onClick={handleLogout}>
+              Log out
+            </button>
+          ) : (
+            <a className="button is-light" href="/login">
               Log in
             </a>
+          )}
+
+          <div className="buttons">
+            {/* <a className="button is-primary is-hidden-mobile" href="/login">
+              Log in
+            </a> */}
             <a
               className={cartButtonStyling}
               style={{ width: "92px" }}
