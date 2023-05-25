@@ -25,6 +25,7 @@ const NavBar = () => {
   const [isActive, setisActive] = useState(false);
   const [cartButtonStyling, setCartButtonStyling] = useState();
   const [cartDropdownStyling, setCartDropdownStyling] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (totalProductsInCart !== 0) {
@@ -37,6 +38,11 @@ const NavBar = () => {
       setCartDropdownStyling("has-text-weight-normal");
     }
   }, [totalProductsInCart]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
 
   return (
     <nav
@@ -100,21 +106,24 @@ const NavBar = () => {
                 &nbsp; Account History
               </a>
               <hr className="navbar-divider" />
-              <div className="navbar-item">
+              <a className="navbar-item" onClick={handleLogout}>
                 <span className="has-text-danger">
                   <FontAwesomeIcon icon={faRightFromBracket} />
                 </span>
                 &nbsp; Log Out
-              </div>
+                </a>
             </div>
           </div>
-
-
-
           <div className="buttons">
+          {isLoggedIn ? (
+            <button className="button is-danger is-outlined is-hidden-mobile" onClick={handleLogout}>
+              Log out
+            </button>
+          ) : (
             <a className="button is-primary is-hidden-mobile" href="/login" >
               Log in
             </a>
+          )}
             <a
               className={cartButtonStyling}
               style={{ width: "92px" }}
