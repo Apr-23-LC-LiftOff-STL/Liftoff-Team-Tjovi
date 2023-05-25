@@ -68,7 +68,6 @@ const NavBar = () => {
       <div className="navbar-item">
         <SearchBar />
       </div>
-
       <div className="navbar-end">
         <div
           id="navbarBasicExample"
@@ -110,11 +109,10 @@ const NavBar = () => {
             </div>
           </div>
 
+
+
           <div className="buttons">
-            <a
-              className="button is-primary is-hidden-mobile"
-              href="/login"
-            >
+            <a className="button is-primary is-hidden-mobile" href="/login" >
               Log in
             </a>
             <a
