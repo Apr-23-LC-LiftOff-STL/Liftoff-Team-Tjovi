@@ -56,7 +56,7 @@ const router = createBrowserRouter(
         <Route
           path=":id"
           element={<ProductsDetails />}
-          loader={productsDetailsLoader}
+          
         />
       </Route>
       <Route path="register" element={<Register />} />
@@ -78,11 +78,10 @@ const router = createBrowserRouter(
       <Route path="*" element={<NotFound />} />
     </Route>
   )
-);
+)
 const stripePromise = loadStripe(
   "pk_test_51N8n2ODvHmrdraF8Eb3aQ9m86ueHPsypNotvydB9gIsrlxlpyVbah3R3Zt0L1Al5swbbXNzkDHmUmfXuKjH70fmc00Q2jPmqAa"
 );
-
 function App() {
   const options = {
     // passing the client secret obtained from the server
