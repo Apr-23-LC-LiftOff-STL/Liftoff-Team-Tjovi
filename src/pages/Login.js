@@ -22,13 +22,13 @@ const Login = () => {
     alert("Functionality not added yet")
     //navigate("/lostPassword");
   };
-  useEffect(() => {
+/*   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/");
     }
   }, [navigate]);
-
+ */
   const handleSubmit = async (e) => {
     e.preventDefault();
 

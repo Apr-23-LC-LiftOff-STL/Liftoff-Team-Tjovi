@@ -18,6 +18,7 @@ import {
   faRightFromBracket,
   faHistory,
   faRightToBracket,
+  faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useCartStore } from "../../store/cartStore";
@@ -40,31 +41,26 @@ const NavBar = () => {
 
   const [loginButtonStyling, setLoginButtonStyling] = useState();
   const [loginButtonText, setLoginButtonText] = useState();
-  const [loginBurgerButtonIcon, setLoginBurgerButtonIcon] = useState();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (totalProductsInCart !== 0) {
-      setCartButtonStyling(
-        "button is-warning has-text-weight-semibold is-hidden-mobile"
+      setCartButtonStyling("button is-warning has-text-weight-semibold");
+      setCartDropdownStyling(
+        "button is-small is-warning has-text-weight-normal"
       );
-      setCartDropdownStyling("has-text-weight-semibold");
     } else {
-      setCartButtonStyling("button is-light is-hidden-mobile");
-      setCartDropdownStyling("has-text-weight-normal");
+      setCartButtonStyling("button has-background-warning-light");
+      setCartDropdownStyling("button is-small has-background-warning-light has-text-weight-normal");
     }
   }, [totalProductsInCart]);
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      setLoginButtonText("Log In");
-      setLoginButtonStyling("button is-normal is-primary is-hidden-mobile");
-      setLoginBurgerButtonIcon(faRightToBracket);
-    } else if (isLoggedIn) {
+    if (isLoggedIn) {
       setLoginButtonText("Log Out");
-      setLoginButtonStyling("button is-normal is-danger is-outlined is-hidden-mobile");
-      setLoginBurgerButtonIcon(faRightFromBracket);
+    } else {
+      setLoginButtonText("Log In");
     }
   }, [isLoggedIn]);
 
@@ -125,20 +121,65 @@ const NavBar = () => {
           id="navbarBasicExample"
           className={`navbar-menu ${isActive ? "is-active" : ""}`}
         >
-          <div className="navbar-item has-dropdown is-hoverable">
-            <Link className="navbar-link is-hidden-mobile">
-              <FontAwesomeIcon icon={faUser} className="is-hidden-mobile"/>
-            </Link>
-            <div className="navbar-dropdown is-left">
-              <Link
-                className="navbar-item is-hidden-desktop"
+          <div className="navbar-item my-1">
+            <div className="buttons is-hidden-desktop">
+              <button
+                className={
+                  isLoggedIn
+                    ? "button is-small is-danger is-outlined has-text-weight-semibold is-hidden-desktop"
+                    : "button is-small is-primary has-text-weight-semibold is-hidden-desktop"
+                }
                 onClick={isLoggedIn ? handleClickOpen : handleLogInButton}
               >
-                <span>
-                  <FontAwesomeIcon icon={loginBurgerButtonIcon} />
-                </span>
-                &nbsp; {loginButtonText}
+                {loginButtonText}
+              </button>
+              <Link
+                className={cartDropdownStyling}
+                to="/cart"
+                style={{ marginLeft: "0.5rem" }}
+              >
+                <FontAwesomeIcon icon={faCartShopping} />
+                &nbsp; ({totalProductsInCart})
               </Link>
+              <Link className="button is-small has-background-primary-light" to="/account/profile">
+                <FontAwesomeIcon icon={faUser} />
+                &nbsp; Profile
+              </Link>
+              <Link className="button is-small has-background-primary-light" to="/account/orders">
+                <FontAwesomeIcon icon={faHistory} />
+                &nbsp; Orders
+              </Link>
+              <Link className="button is-small has-background-info-light" to="/help">
+                <FontAwesomeIcon icon={faQuestion} />
+                &nbsp; Service
+                </Link>
+            </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable is-hidden-touch">
+            <a class="navbar-link">
+              <FontAwesomeIcon icon={faUser} />
+            </a>
+
+            <div>
+              <div className="navbar-dropdown">
+                <Link className="navbar-item" to="/account/profile">
+                  <FontAwesomeIcon icon={faUser} /> &nbsp; Profile
+                </Link>
+                <Link className="navbar-item" to="/account/orders">
+                  <FontAwesomeIcon icon={faHistory} /> &nbsp; Orders
+                </Link>
+                <Link className="navbar-item" to="/help">
+                  <FontAwesomeIcon icon={faQuestion} /> &nbsp; Customer Service
+                </Link>
+              </div>
+
+              <button
+                className="navbar-item is-hidden-desktop"
+                onClick={!isLoggedIn ? handleLogInButton : handleClickOpen}
+              >
+                &nbsp; {loginButtonText}
+              </button>
               <Link className="navbar-item is-hidden-desktop" to="/cart">
                 <FontAwesomeIcon icon={faCartShopping} />
                 &nbsp; Cart{" "}
@@ -146,27 +187,26 @@ const NavBar = () => {
                   ({totalProductsInCart})
                 </span>
               </Link>
-              <Link className="navbar-item" to="/account/profile">
-                <FontAwesomeIcon icon={faUser} />
-                &nbsp; My Profile
-              </Link>
-              <Link className="navbar-item" to="/account/orders">
-                <FontAwesomeIcon icon={faHistory} />
-                &nbsp; Account History
-              </Link>
             </div>
           </div>
-          <div className="buttons">
+          <div className="buttons is-hidden-mobile">
             <button
-              className={loginButtonStyling}
+              className={
+                isLoggedIn
+                  ? "button is-normal is-danger is-outlined has-text-weight-semibold is-hidden-touch"
+                  : "button is-normal is-primary has-text-weight-semibold is-hidden-touch"
+              }
               onClick={isLoggedIn ? handleClickOpen : handleLogInButton}
             >
               {loginButtonText}
             </button>
             <Link
-              className={cartButtonStyling}
-              style={{ width: "92px" }}
               to="/cart"
+              className={
+                cart.length > 0
+                  ? "button is-normal is-warning is-hidden-touch"
+                  : "button is-normal has-background-warning-light is-hidden-touch"
+              }
             >
               <FontAwesomeIcon icon={faCartShopping} />
               &nbsp; ({totalProductsInCart})
@@ -180,7 +220,7 @@ const NavBar = () => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"LOGGING OUT"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Would you like to log out of your account?
