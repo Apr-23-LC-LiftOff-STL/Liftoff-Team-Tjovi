@@ -33,7 +33,7 @@ const Checkout = () => {
       for (const cartItem of cart) {
         try {
           const response = await axios.get(
-            `http://localhost:8080/${cartItem.id}`
+            `http://localhost:8080/movies/${cartItem.id}`
           );
           const { title, releaseDate, posterPath, price } = response.data;
           data[cartItem.id] = { title, releaseDate, posterPath, price };
