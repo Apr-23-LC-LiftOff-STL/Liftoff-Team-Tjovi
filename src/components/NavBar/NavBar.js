@@ -1,5 +1,3 @@
-import "bulma/css/bulma.css";
-
 import { useState, useEffect, useRef } from "react";
 
 import SearchBar from "./SearchBar";
@@ -123,12 +121,11 @@ const NavBar = () => {
             </div>
           </div>
 
-          {isLoggedIn ? (
-            <button className="button is-light" onClick={handleLogout}>
-              Log out
-            </button>
-          ) : (
-            <a className="button is-light" href="/login">
+          <div className="buttons">
+            <a
+              className="button is-primary is-hidden-mobile"
+              href="/login"
+            >
               Log in
             </a>
           )}

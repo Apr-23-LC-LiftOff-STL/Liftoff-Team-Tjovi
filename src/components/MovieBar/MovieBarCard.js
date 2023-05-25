@@ -2,11 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from 'react';
 
-import "./MovieCards.css";
+import "./MovieBar.css";
 
 import { Fade } from "@mui/material";
 
-const MovieCard = ({ title, posterPath, price }) => {
+const MovieBarCard = ({ title, posterPath, price }) => {
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
 
@@ -25,23 +25,23 @@ const MovieCard = ({ title, posterPath, price }) => {
 
   return (
     <div>
-       <Fade in timeout={500}>
-        <div className="movie-card">
-          <div>
+       <Fade in timeout={2250}>
+        <div>
+          <div className="movie-bar-card">
             {posterPath && (
               <img
-                className="movie-img"
+                className="movie-bar-img"
                 src={`${baseImgUrl}${posterPath}`}
                 alt={`Poster for ${title}`}
               />
             )}
           </div>
-          <div className="movie-card-title">{createShortcut(title, 40)}
+          <div className="movie-bar-card-title">{createShortcut(title, 30)}
           </div>
-          <div className="movie-card-title has-text-weight-semibold" style={{color: price < 10 ? "hsl(348, 100%, 61%)" : "hsl(0, 0%, 7%)"}}>${price?.toFixed(2)}</div>
+          <div className="movie-bar-card-title has-text-weight-semibold" style={{color: price < 10 ? "hsl(348, 100%, 61%)" : "hsl(0, 0%, 7%)"}}>${price?.toFixed(2)}</div>
         </div>
        </Fade>
     </div>
   );
 };
-export default MovieCard;
+export default MovieBarCard;

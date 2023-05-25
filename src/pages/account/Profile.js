@@ -6,9 +6,7 @@ import jwtDecode from "jwt-decode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPenSquare}  from "@fortawesome/free-solid-svg-icons";
 export default function Profile(props) {
-   const navigate = useNavigate();
-   
- 
+  const navigate = useNavigate();
 
   
   const [values, setValues] = useState({
@@ -40,7 +38,7 @@ const [originalValues, setOriginalValues] = useState({ ...values });
     
     axios.get("http://localhost:8080/user/" + userData.username).then((res) => {
       
-    //const userData =jwt_decode(token);
+    // const userData =jwt_decode(token);
       //console.log(userData);
 
       setValues({
@@ -122,13 +120,12 @@ const [originalValues, setOriginalValues] = useState({ ...values });
   };
 
   useEffect(() => {
-   const token = localStorage.getItem("token");
-  if (!token) {
-     alert("Please Login");
-     
-     navigate("/login"); };
-  
-      if(token){const userData = jwtDecode(token);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please Login");
+       navigate("/login");
+    } return () => {
+      const userData = jwtDecode(token);
      console.log(userData.username)
       
      setValues({
@@ -143,11 +140,10 @@ const [originalValues, setOriginalValues] = useState({ ...values });
         city: userData.city,
         state: userData.state,
         zipCode: userData.zipCode,
-     })
-    }
-   
+        
+      });
+    };
   }, []);
-      
    findByUserName()
   return (
         <div>
@@ -329,4 +325,3 @@ const [originalValues, setOriginalValues] = useState({ ...values });
         </div>
       );
   };
-

@@ -1,5 +1,4 @@
 import { Link, useLoaderData } from "react-router-dom";
-import "bulma/css/bulma.css";
 
 export default function Products() {
   const products = useLoaderData();
@@ -34,7 +33,7 @@ export default function Products() {
 
 // data loader
 export const productsLoader = async () => {
-  const res = await fetch("http://localhost:8080/");
+  const res = await fetch("http://localhost:8080/movies");
 
   if (!res.ok) {
     throw Error("Could not fetch the list of products");

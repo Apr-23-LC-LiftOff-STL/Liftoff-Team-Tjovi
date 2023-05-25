@@ -1,95 +1,136 @@
-import { useLoaderData } from "react-router-dom";
-import CartItem from "./CartItem.js";
+import { useState, useEffect, useRef } from "react";
+
 import { useCartStore } from "../../store/cartStore";
-import { useState } from "react";
-import CartTotal from "./CartTotal.js";
+
+import CartItem from "./CartItem";
+import CartSideBar from "./CartSideBar";
+import CartIsEmpty from "./CartIsEmpty";
+import MovieBar from "../../components/MovieBar/MovieBar.js";
+
 import "./Cart.css";
+
 import axios from "axios";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
-import { faSubtract } from "@fortawesome/free-solid-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
-
 export default function Cart() {
-
   const cart = useCartStore((state) => state.cart);
 
-  const baseImgUrl = 'https://image.tmdb.org/t/p/w300';
+  const [productData, setProductData] = useState({});
 
-  const incrementCartItem = useCartStore((state) => state.incrementCartItem);
-  const decrementCartItem = useCartStore((state) => state.decrementCartItem);
-  const emptyCart = useCartStore((state) => state.emptyCart);
-  const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
+  const allItemsSubtotal = cart.reduce((total, item) => {
+    const data = productData[item.id] || {};
+    const itemSubtotal = item.count * data.price;
+    return total + itemSubtotal;
+  }, 0);
 
-  const movies = useLoaderData();
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = {};
+      for (const cartItem of cart) {
+        try {
+          const response = await axios.get(
+            `http://localhost:8080/movies/${cartItem.id}`
+          );
+          const { title, releaseDate, posterPath, price } = response.data;
+          data[cartItem.id] = { title, releaseDate, posterPath, price };
+        } catch (error) {
+          console.log(
+            `Error fetching data for product with ID ${cartItem.id}:`,
+            error
+          );
+        }
+      }
+      setProductData(data);
+    };
+    fetchData();
+  }, [cart]);
 
-  const incrementCartItemButtonHandler = (id) => {
-    console.log(JSON.stringify(cart));
-    incrementCartItem(id);
-  };
+  const date = new Date().toJSON();
 
-  const decrementCartItemButtonHandler = (id) => {
-    console.log(JSON.stringify(cart));
-    decrementCartItem(id);
-  };
-
-  const removeAllThisItemButtonHandler = (id) => {
-    console.log(JSON.stringify(cart));
-    removeAllThisItem(id);
-  };
-
-  const emptyCartButtonHandler = (e) => {
-    emptyCart();
+  const handleCompletePurchase = (e) => {
+    e.preventDefault();
+    alert(
+      JSON.stringify({
+        user: "987JKL", // token ?
+        date: date,
+        Total: allItemsSubtotal.toFixed(2),
+        stripeConf: "1234ASDF",
+        cart: cart,
+      })  
+    );
+    axios
+      .post("http://localhost:8080/purchase", {
+        user: "987JKL", // token ?
+        date: date,
+        Total: allItemsSubtotal.toFixed(2),
+        stripeConf: "1234ASDF",
+        cart: cart,
+      })
+      .then((response) => {
+        console.log(response.data);
+        // Handle response data - Success flag, order number? download codes?
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <div>
-    <div>
-      <div>
-        {cart.map((product) => {
-          if (cart[product.id] !== 0) {
-            return (
+      <nav
+        className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+        aria-label="breadcrumbs"
+      >
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Shopping Cart
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div className="columns">
+        <div className="column">
+          <div>
+            {cart.length > 0 ? (
+              cart.map((item) => {
+                const data = productData[item.id] || {};
+                const itemSubtotal = item.count * data.price;
+                return (
+                  <div key={item.id}>
+                    <CartItem
+                      id={item.id}
+                      count={item.count}
+                      price={data.price}
+                      title={data.title}
+                      releaseDate={data.releaseDate}
+                      posterPath={data.posterPath}
+                      subtotal={itemSubtotal.toFixed(2)}
+                    />
+                  </div>
+                );
+              })
+            ) : (
               <div>
-                <div>
-                  <CartItem
-                    key={product.id}
-                    id={product.id}
-                    count={product.count}
-                  />
-                </div>
+                <CartIsEmpty />
               </div>
-            );
-          }
-        })}
-        <div>{cart.length > 0 &&
-        <button
-          className="button is-danger is-normal is-rounded"
-          visible=""
-          onClick={emptyCartButtonHandler}
-        >
-          <FontAwesomeIcon icon={faX} />
-          &nbsp; Empty Cart
-        </button>
-        }
+            )}
+          </div>
         </div>
-        </div>
+        <CartSideBar allItemsSubtotal={allItemsSubtotal?.toFixed(2)} />
       </div>
-      {cart.length === 0 &&
-      <h1 className="is-size-3 has-text-centered">Your Cart is Empty</h1>
-    }
-    <CartTotal />
+{/*       <div className="has-text-centered has-text-weight-semibold">
+        <div
+          className="button is-small is-primary is-pulled-right"
+          onClick={handleCompletePurchase}
+        >
+          Complete Purchase *NOT FINAL BUTTON
+        </div>
+      </div> */}
+      <MovieBar />
     </div>
   );
 }
 
-// data loader
-export const cartProductDetailsLoader = async (id) => {
-  const res = await fetch("http://localhost:8080/");
-
-  if (!res.ok) {
-    throw Error("Could not find that product.");
-  }
-
-  return res.json();
-};

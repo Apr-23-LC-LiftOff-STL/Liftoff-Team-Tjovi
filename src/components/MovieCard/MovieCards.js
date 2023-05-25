@@ -12,7 +12,6 @@ import { useGenreStore } from "../../store/genreStore.js";
 import { useSortStore } from "../../store/sortStore.js";
 
 function MovieCards() {
-
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
@@ -38,7 +37,9 @@ function MovieCards() {
           query
         )}&genre=${encodeURIComponent(
           genreQueryParam
-        )}&page=${pageNumber}&size=${cardsPerPage}&sort=${sortOptions[0]}&direction=${sortOptions[1]}`
+        )}&page=${pageNumber}&size=${cardsPerPage}&sort=${
+          sortOptions[0]
+        }&direction=${sortOptions[1]}`
       );
       setTotalElements(response.data.totalElements);
       setMovies(response.data.content);
@@ -65,17 +66,17 @@ function MovieCards() {
     <div className="pb-5">
       <div>
         <div className="movie-grid">
-            {movies.map((movie) => (
-
+          {movies.map((movie) => (
+            <div key={movie.id}>
               <a href={`${baseProductUrl}${movie.id}`}>
                 <MovieCard
-                  key={movie.id}
                   title={movie.title}
                   posterPath={movie.posterPath}
                   price={movie.price}
                 />
               </a>
-            ))}
+            </div>
+          ))}
         </div>
         <div>
           <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>

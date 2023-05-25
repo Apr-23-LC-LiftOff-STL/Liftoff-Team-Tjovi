@@ -9,73 +9,176 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 
 import { Fade } from "@mui/material";
 
-const CartItem = ({ title, posterPath, id, count }) => {
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
+const CartItem = ({
+  title,
+  posterPath,
+  id,
+  count,
+  price,
+  releaseDate,
+  subtotal,
+}) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const cart = useCartStore((state) => state.cart);
 
-  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+  const baseProductUrl = "/products/";
+  const baseImgUrl = "https://image.tmdb.org/t/p/w300";
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
-  const changeItemCount = useCartStore((state) => state.changeItemCount);
-  //const emptyCart = useCartStore((state) => state.emptyCart);
+  //const changeItemCount = useCartStore((state) => state.changeItemCount);
 
-  const incrementCartItemButtonHandler = (e) => {
-    console.log(JSON.stringify(cart));
+  const incrementCartItemButtonHandler = () => {
     incrementCartItem(id);
+    console.log(JSON.stringify(cart));
   };
 
-  const decrementCartItemButtonHandler = (e) => {
+  const decrementCartItemButtonHandler = () => {
+    if (count === 1) {
+      handleClickOpen();
+    } else {
+      decrementCartItem(id);
+    }
     console.log(JSON.stringify(cart));
-    decrementCartItem(id);
-    //setCartMessageStyle("is-italic is-size-6 has-text-danger pl-5");
-    //setCartMessage(`"${product.title}" was removed from cart!`);
   };
 
-  const removeAllThisItemButtonHandler = (e) => {
-    console.log(JSON.stringify(cart));
+  const removeAllThisItemButtonHandler = () => {
+    handleClickOpen();
     removeAllThisItem(id);
   };
 
   return (
-    <div>
-    <Fade in timeout={500}>
-    <div className="card">
-      <div>Movie Image {posterPath}</div>
-      <div className="is-size-5">Movie Name {title} (year)</div>
+    <div className="mx-4" style={{maxWidth: '1400px'}}>
+      <Fade in timeout={500}>
+        <div className="column is-offset-2 is-vcentered card mb-3" style={{borderStyle: 'solid', borderColor: 'lightgray', borderWidth: '1px'}}>
+          <div className="columns is-centered is-vcentered is-narrow">
+            <div className="column is-narrow">
+              <figure className="cart-item-img">
+                <a href={`${baseProductUrl}${id}`}>
+                  <img
+                    src={`${baseImgUrl}${posterPath}`}
+                    alt={`Poster for ${title}`}
+                  ></img>
+                </a>
+              </figure>
+            </div>
+            <div className="column">
+              <div>
+                <span className="is-size-5 has-text-weight-semibold is-italic">
+                  {title}
+                </span>
+                <div className="is-size-6">({releaseDate?.slice(0, 4)})</div>
+              </div>
+              {/*               <div>
+                Movie ID: {id} Count: {count}
+              </div> */}
+            </div>
+            <div className="column is-1 pr-6">
+              <button
+                className="button is-primary is-small"
+                style={{ minWidth: "36px", maxWidth: "36px" }}
+                onClick={incrementCartItemButtonHandler}
+              >
+                <FontAwesomeIcon icon={faAdd} />
+              </button>
+              <input
+                className="input is-small has-text-centered"
+                style={{ minWidth: "36px", maxWidth: "36px" }}
+                number
+                value={count}
+                readOnly
+              />
+              <button
+                className="button is-warning is-small"
+                style={{ minWidth: "36px", maxWidth: "36px" }}
+                onClick={decrementCartItemButtonHandler}
+              >
+                <FontAwesomeIcon icon={faSubtract} />
+              </button>
+              <button
+                className="button is-danger is-small"
+                style={{ minWidth: "36px", maxWidth: "36px" }}
+                onClick={handleClickOpen}
+              >
+                <FontAwesomeIcon icon={faX} />
+              </button>
+            </div>
+            <div className="column is-narrow">
+            <table className="table mr-5">
+              <tr>
+                <th className="menu-label has-text-centered">
+                  Price
+                </th>
+                <th className="menu-label has-text-centered">
+                  Subtotal
+                </th>
+              </tr>
+              <tr>
+                <td
+                  className="has-text-centered"
+                  style={{
+                    color: price < 10 ? "hsl(348, 100%, 61%)" : "",
+                  }}
+                >
+                  ${price?.toFixed(2)}
+                </td>
+                <td className="has-text-centered has-text-weight-semibold">
+                  ${subtotal}
+                </td>
+              </tr>
+            </table>
+            </div>
+          </div>
+        </div>
+      </Fade>
       <div>
-        Movie ID: {id} Count: {count}
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Remove Item?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to remove{" "}
+              <span className="has-text-weight-semibold">"{title}"</span> from
+              your cart?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <button
+              className="button is-small is-warning has-text-weight-semibold"
+              onClick={handleClose}
+              autoFocus
+            >
+              Cancel
+            </button>
+            <button
+              className="button is-small is-danger is-outlined has-text-weight-semibold"
+              onClick={removeAllThisItemButtonHandler}
+            >
+              Remove Item
+            </button>
+          </DialogActions>
+        </Dialog>
       </div>
-      <div>
-        <button
-          className="button is-primary is-small"
-          onClick={incrementCartItemButtonHandler}
-        >
-          <FontAwesomeIcon icon={faAdd} />
-        </button>
-        <input
-          className="input is-small has-text-centered"
-          style={{ width: "6%" }}
-          number
-          value={count}
-          readOnly
-        />
-        <button
-          className="button is-warning is-small"
-          onClick={decrementCartItemButtonHandler}
-        >
-          <FontAwesomeIcon icon={faSubtract} />
-        </button>
-        <button
-          className="button is-danger is-small"
-          onClick={removeAllThisItemButtonHandler}
-        >
-          <FontAwesomeIcon icon={faX} />
-        </button>
-      </div>
-    </div>
-    </Fade>
     </div>
   );
 };
