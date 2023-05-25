@@ -20,8 +20,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 import { useCartStore } from "../../store/cartStore";
 
+import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+
 export default function ProductsDetails() {
   const [open, setOpen] = useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -44,7 +47,6 @@ export default function ProductsDetails() {
 
   const [cartMessage, setCartMessage] = useState("");
   const [cartMessageStyle, setCartMessageStyle] = useState("");
-  const [buttonDisabled, setButtonDisabled] = useState();
 
   const [thisItemInCart, setThisItemInCart] = useState(
     cart.find((product) => product.id === id)?.count || 0
@@ -75,33 +77,6 @@ export default function ProductsDetails() {
     handleClose();
     console.log(JSON.stringify(cart));
   };
-
-  /*   const incrementCartItemButtonHandler = () => {
-    console.log(JSON.stringify(cart));
-    incrementCartItem(product.id);
-    setCartMessageStyle("is-size-6");
-    setCartMessage(`"${product.title}" was added to cart`);
-    setButtonDisabled(false);
-  };
-
-  const decrementCartItemButtonHandler = () => {
-    console.log(JSON.stringify(cart));
-    decrementCartItem(product.id);
-    setCartMessageStyle("is-size-6 has-text-danger");
-    setCartMessage(`"${product.title}" was removed from cart`);
-    if (!thisItemInCart) {
-      setButtonDisabled(true);
-    }
-  };
-
-  const removeAllThisItemButtonHandler = () => {
-    removeAllThisItem(product.id);
-    setCartMessageStyle("is-size-6 has-text-danger");
-    setCartMessage(`"${product.title}" was removed from cart`);
-    if (!thisItemInCart) {
-      setButtonDisabled(true);
-    }
-  }; */
 
   return (
     <div>
@@ -155,7 +130,7 @@ export default function ProductsDetails() {
                     <span className="has-text-weight-semibold">
                       &emsp; &emsp; Runtime:{" "}
                     </span>
-                    {product.runtime} minutes
+                    {product?.runtime} minutes
                   </p>
                 </div>
                 <div className="content p-5 has-background-info-light">
@@ -169,7 +144,7 @@ export default function ProductsDetails() {
                               product.price < 10 ? "hsl(348, 100%, 61%)" : "",
                           }}
                         >
-                          ${product.price?.toFixed(2)}
+                          ${product.price.toFixed(2)}
                         </span>
                       </div>
                       <div>
@@ -196,14 +171,14 @@ export default function ProductsDetails() {
                           onClick={() =>
                             decrementCartItemButtonHandler(product.id)
                           }
-                          disabled={buttonDisabled}
+                          disabled={!thisItemInCart}
                         >
                           <FontAwesomeIcon icon={faSubtract} />
                         </button>
                         <button
                           className="button is-danger is-small"
                           onClick={() => handleClickOpen(product.id)}
-                          disabled={buttonDisabled}
+                          disabled={!thisItemInCart}
                         >
                           <FontAwesomeIcon icon={faX} />
                         </button>
@@ -228,7 +203,7 @@ export default function ProductsDetails() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Remove Item?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Remove{" "}
@@ -238,7 +213,7 @@ export default function ProductsDetails() {
         </DialogContent>
         <DialogActions>
           <button
-            className="button is-small is-primary has-text-weight-semibold"
+            className="button is-small is-warning has-text-weight-semibold"
             onClick={handleClose}
             autoFocus
           >
