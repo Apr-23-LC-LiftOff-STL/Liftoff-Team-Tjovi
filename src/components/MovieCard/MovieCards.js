@@ -33,7 +33,7 @@ function MovieCards() {
       const genreQueryParam =
         selectedGenres.length > 0 ? selectedGenres.join(",") : "";
       const response = await axios.get(
-        `http://localhost:8080/?title=${encodeURIComponent(
+        `http://localhost:8080/movies?title=${encodeURIComponent(
           query
         )}&genre=${encodeURIComponent(
           genreQueryParam
