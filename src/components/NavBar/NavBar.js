@@ -25,6 +25,7 @@ const NavBar = () => {
   const [isActive, setisActive] = useState(false);
   const [cartButtonStyling, setCartButtonStyling] = useState();
   const [cartDropdownStyling, setCartDropdownStyling] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (totalProductsInCart !== 0) {
@@ -37,6 +38,11 @@ const NavBar = () => {
       setCartDropdownStyling("has-text-weight-normal");
     }
   }, [totalProductsInCart]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
 
   return (
     <nav
@@ -68,7 +74,6 @@ const NavBar = () => {
       <div className="navbar-item">
         <SearchBar />
       </div>
-
       <div className="navbar-end">
         <div
           id="navbarBasicExample"
@@ -111,12 +116,15 @@ const NavBar = () => {
           </div>
 
           <div className="buttons">
-            <a
-              className="button is-primary is-hidden-mobile"
-              href="/login"
-            >
+          {isLoggedIn ? (
+            <button className="button is-light" onClick={handleLogout}>
+              Log out
+            </button>
+          ) : (
+            <a className="button is-primary is-hidden-mobile" href="/login" >
               Log in
             </a>
+          )}
             <a
               className={cartButtonStyling}
               style={{ width: "92px" }}
