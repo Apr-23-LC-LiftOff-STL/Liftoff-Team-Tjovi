@@ -121,14 +121,14 @@ export default function Cart() {
         </div>
         <CartSideBar allItemsSubtotal={allItemsSubtotal?.toFixed(2)} />
       </div>
-      <div className="has-text-centered has-text-weight-semibold">
+{/*       <div className="has-text-centered has-text-weight-semibold">
         <div
-          className="button is-primary is-normal"
+          className="button is-small is-primary is-pulled-right"
           onClick={handleCompletePurchase}
         >
-          Complete Purchase
+          Complete Purchase *NOT FINAL BUTTON
         </div>
-      </div>
+      </div> */}
       <MovieBar />
     </div>
   );

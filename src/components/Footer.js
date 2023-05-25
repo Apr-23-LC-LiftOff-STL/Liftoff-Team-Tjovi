@@ -1,9 +1,8 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, Link } from "react-router-dom";
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-
 
 const Footer = () => {
   return (
@@ -19,13 +18,12 @@ const Footer = () => {
           <br />
           (314) 254-0107
         </p>
-        <div className="tabs is-centered">
+        <div className="tabs is-centered pr-5">
           <ul>
             <li>
-              <NavLink className="card-footer-item" to="/">
-              <FontAwesomeIcon icon={faHome} />
-              &nbsp; Home
-              </NavLink>
+              <Link className="card-footer-item" to="/">
+                Home
+              </Link>
             </li>
             <li>
               <NavLink className="card-footer-item" to="about">
@@ -37,7 +35,6 @@ const Footer = () => {
                 Customer Service
               </NavLink>
             </li>
-
           </ul>
         </div>
         <div className="content has text-centered"></div>
