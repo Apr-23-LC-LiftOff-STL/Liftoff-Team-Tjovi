@@ -33,7 +33,7 @@ export default function Products() {
 
 // data loader
 export const productsLoader = async () => {
-  const res = await fetch("http://localhost:8080/");
+  const res = await fetch("http://localhost:8080/movies");
 
   if (!res.ok) {
     throw Error("Could not fetch the list of products");

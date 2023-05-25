@@ -26,7 +26,7 @@ function MovieBar() {
       for (const randomMovie of movieBarPicks) {
         try {
           const response = await axios.get(
-            `http://localhost:8080/${randomMovie}`
+            `http://localhost:8080/movies/${randomMovie}`
           );
           const { title, releaseDate, posterPath, price } = response.data;
           const movieData = {

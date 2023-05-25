@@ -260,7 +260,7 @@ export default function ProductsDetails() {
 export const productsDetailsLoader = async ({ params }) => {
   const { id } = params;
 
-  const res = await fetch("http://localhost:8080/" + id);
+  const res = await fetch("http://localhost:8080/movies/" + id);
 
   if (!res.ok) {
     throw Error("Could not find that product.");
