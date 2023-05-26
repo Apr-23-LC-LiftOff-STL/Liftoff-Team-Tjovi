@@ -75,7 +75,7 @@ export const useCartStore = create(
           };
         }),
 
-      changeItemCount: (id, num) =>
+/*       changeItemCount: (id, num) =>
         set((state) => {
           const isPresent = state.cart.findIndex((movies) => movies.id === id);
 
@@ -89,7 +89,7 @@ export const useCartStore = create(
             ...state,
             cart: updatedCart,
           };
-        }),
+        }), */
 
       emptyCart: () =>
         set((state) => {
