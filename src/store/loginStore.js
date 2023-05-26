@@ -1,6 +1,11 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
-export const useLoginStore = create((set) => ({
-    loggedIn: false,
-    setLoggedIn: (bool) => set({loggedIn: bool}),
-}));
+export const useLoginStore = create((set) => {
+  const token = localStorage.getItem("token");
+  const initialState = {
+    isLoggedIn: !!token,
+    setIsLoggedIn: (bool) => set({ isLoggedIn: bool }),
+  };
+
+  return initialState;
+});

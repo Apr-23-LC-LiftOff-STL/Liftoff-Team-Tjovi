@@ -1,27 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+
+import MovieBar from "../components/MovieBar/MovieBar";
+
 import axios from "axios";
+
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "bulma/css/bulma.min.css";
+
+import { useLoginStore } from "../store/loginStore";
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
 
   const forgotPassword = async (event) => {
     event.preventDefault();
     alert("Functionality not added yet")
     //navigate("/lostPassword");
   };
-  useEffect(() => {
+/*   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/");
     }
   }, [navigate]);
-
+ */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,6 +49,7 @@ const Login = () => {
       const { authorization } = response.headers;
       if (authorization) {
         localStorage.setItem("token", authorization);
+        setIsLoggedIn(true);
         console.log(authorization);
         console.log(response.data)
         navigate("/");
@@ -52,6 +62,7 @@ const Login = () => {
   };
 
   return (
+    <div>
     <form onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="email" className="label">
@@ -90,7 +101,7 @@ const Login = () => {
 
       <div className="field is-grouped">
         <div className="control">
-          <button className="button is-primary" type="submit">
+          <button className="button is-primary" onSubmit={handleSubmit}>
             Login
           </button>
         </div>
@@ -101,6 +112,8 @@ const Login = () => {
         </div>
       </div>
     </form>
+    <MovieBar />
+    </div>
   );
 };
 export default Login;

@@ -15,6 +15,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+
 const CartItem = ({
   title,
   posterPath,
@@ -154,10 +156,10 @@ const CartItem = ({
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Remove Item?"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Are you sure you want to remove{" "}
+              Remove{" "}
               <span className="has-text-weight-semibold">"{title}"</span> from
               your cart?
             </DialogContentText>
