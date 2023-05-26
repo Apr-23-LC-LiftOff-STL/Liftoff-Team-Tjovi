@@ -5,7 +5,6 @@ export default function ProductsLayout() {
   return (
     <div>
       <Outlet />
-      <MovieBar />
     </div>
   )
 }
