@@ -1,5 +1,5 @@
 import "./Cart.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCartStore } from "../../store/cartStore";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,6 +37,12 @@ const CartItem = ({
   };
 
   const cart = useCartStore((state) => state.cart);
+  const cartUser = useCartStore((state) => state.cartUser);
+
+  useEffect(() => {
+    useCartStore.getState().initialize();
+    console.log(cartUser);
+  }, [cart]);
 
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
@@ -63,6 +69,7 @@ const CartItem = ({
   const removeAllThisItemButtonHandler = () => {
     handleClickOpen();
     removeAllThisItem(id);
+    console.log(JSON.stringify(cart));
   };
 
   return (

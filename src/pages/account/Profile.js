@@ -54,6 +54,7 @@ export default function Profile(props) {
       });
     });
   }
+
   const saveFormData = async () => {
     //need an endpoint for updated submitted user data
     const response = await fetch("http://localhost:8080/user", {
@@ -84,6 +85,7 @@ export default function Profile(props) {
   function enableEdit() {
     setDisabled((disabled = false));
   }
+
   function cancelEdit() {
     setDisabled((disabled = true));
     setValues({
@@ -101,6 +103,7 @@ export default function Profile(props) {
       role: "",
     });
   }
+
   const onUpdate = async (event) => {
     event.preventDefault();
 
@@ -114,7 +117,7 @@ export default function Profile(props) {
     }
   };
 
-   useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Please Login");
@@ -139,6 +142,7 @@ export default function Profile(props) {
       });
     };
   }, []);
+
   findByUserName();
 
   return (

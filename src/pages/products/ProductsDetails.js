@@ -1,6 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Products.css";
 import { Fade } from "@mui/material";
 
@@ -39,6 +39,14 @@ export default function ProductsDetails() {
   const product = useLoaderData();
   const cart = useCartStore((state) => state.cart);
 
+  const cartUser = useCartStore((state) => state.cartUser);
+
+  useEffect(() => {
+    useCartStore.getState().initialize();
+    console.log(cartUser);
+    console.log(cart);
+  }, [cart]);
+
   /*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
@@ -58,7 +66,6 @@ export default function ProductsDetails() {
     incrementCartItem(id);
     // setCartMessage(`"${product.title}" was added to cart`);
     setThisItemInCart((prevCount) => prevCount + 1);
-    console.log(JSON.stringify(cart));
   };
 
   const decrementCartItemButtonHandler = () => {
@@ -68,7 +75,6 @@ export default function ProductsDetails() {
       decrementCartItem(id);
       setThisItemInCart((prevCount) => prevCount - 1);
       // setCartMessage(`"${product.title}" was removed from cart`);
-      console.log(JSON.stringify(cart));
     }
   };
 
@@ -77,7 +83,6 @@ export default function ProductsDetails() {
     setThisItemInCart(0);
     // setCartMessage(`"${product.title}" was removed from cart`);
     handleClose();
-    console.log(JSON.stringify(cart));
   };
 
   /*   const incrementCartItemButtonHandler = () => {
