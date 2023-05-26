@@ -51,7 +51,7 @@ const NavBar = () => {
         "button is-small is-warning has-text-weight-normal"
       );
     } else {
-      setCartButtonStyling("button has-background-warning-light");
+      setCartButtonStyling("button has-background-warning");
       setCartDropdownStyling("button is-small has-background-warning-light has-text-weight-normal");
     }
   }, [totalProductsInCart]);
@@ -204,7 +204,7 @@ const NavBar = () => {
               to="/cart"
               className={
                 cart.length > 0
-                  ? "button is-normal is-warning is-hidden-touch"
+                  ? "button is-normal has-background-warning is-hidden-touch"
                   : "button is-normal has-background-warning-light is-hidden-touch"
               }
             >

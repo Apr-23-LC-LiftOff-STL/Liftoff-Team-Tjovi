@@ -1,10 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import jwtDecode from "jwt-decode";
 
 export const useCartStore = create(
+  
   persist(
     (set) => ({
       cart: [],
+      cartUser: null,
 
       incrementCartItem: (id) =>
         set((state) => {
@@ -24,6 +27,7 @@ export const useCartStore = create(
           return {
             ...state,
             cart: updatedCart,
+            cartUser: null,
           };
         }),
 
@@ -48,6 +52,7 @@ export const useCartStore = create(
           return {
             ...state,
             cart: updatedCart,
+            cartUser: null,
           };
         }),
 
@@ -72,10 +77,11 @@ export const useCartStore = create(
           return {
             ...state,
             cart: updatedCart,
+            cartUser: null,
           };
         }),
 
-      changeItemCount: (id, num) =>
+/*       changeItemCount: (id, num) =>
         set((state) => {
           const isPresent = state.cart.findIndex((movies) => movies.id === id);
 
@@ -89,15 +95,24 @@ export const useCartStore = create(
             ...state,
             cart: updatedCart,
           };
-        }),
+        }), */
 
       emptyCart: () =>
         set((state) => {
           return {
             ...state,
             cart: [],
+            cartUser: null,
           };
         }),
+
+        initialize: () => {
+          const token = localStorage.getItem("token");
+          if (token) {
+            const userData = jwtDecode(token);
+            set({ cartUser: userData.username });
+          }
+        },
 
       fetchMovies: async () => {
         await fetch("http://localhost:8080/")

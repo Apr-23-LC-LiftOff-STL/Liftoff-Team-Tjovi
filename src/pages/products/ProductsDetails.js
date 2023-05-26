@@ -1,6 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Products.css";
 import { Fade } from "@mui/material";
 
@@ -15,6 +15,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+
+import ProductsError from "./ProductsError";
 
 // Styling originated from:  https://responsive-bulma-cards.netlify.app/ - example #5
 
@@ -37,6 +39,14 @@ export default function ProductsDetails() {
   const product = useLoaderData();
   const cart = useCartStore((state) => state.cart);
 
+  const cartUser = useCartStore((state) => state.cartUser);
+
+  useEffect(() => {
+    useCartStore.getState().initialize();
+    console.log(cartUser);
+    console.log(cart);
+  }, [cart]);
+
   /*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
@@ -56,7 +66,6 @@ export default function ProductsDetails() {
     incrementCartItem(id);
     // setCartMessage(`"${product.title}" was added to cart`);
     setThisItemInCart((prevCount) => prevCount + 1);
-    console.log(JSON.stringify(cart));
   };
 
   const decrementCartItemButtonHandler = () => {
@@ -66,7 +75,6 @@ export default function ProductsDetails() {
       decrementCartItem(id);
       setThisItemInCart((prevCount) => prevCount - 1);
       // setCartMessage(`"${product.title}" was removed from cart`);
-      console.log(JSON.stringify(cart));
     }
   };
 
@@ -75,8 +83,38 @@ export default function ProductsDetails() {
     setThisItemInCart(0);
     // setCartMessage(`"${product.title}" was removed from cart`);
     handleClose();
-    console.log(JSON.stringify(cart));
   };
+
+  /*   const incrementCartItemButtonHandler = () => {
+    console.log(JSON.stringify(cart));
+    incrementCartItem(product.id);
+    setCartMessageStyle("is-size-6");
+    setCartMessage(`"${product.title}" was added to cart`);
+    setButtonDisabled(false);
+  };
+
+  const decrementCartItemButtonHandler = () => {
+    console.log(JSON.stringify(cart));
+    decrementCartItem(product.id);
+    setCartMessageStyle("is-size-6 has-text-danger");
+    setCartMessage(`"${product.title}" was removed from cart`);
+    if (!thisItemInCart) {
+      setButtonDisabled(true);
+    }
+  };
+
+  const removeAllThisItemButtonHandler = () => {
+    removeAllThisItem(product.id);
+    setCartMessageStyle("is-size-6 has-text-danger");
+    setCartMessage(`"${product.title}" was removed from cart`);
+    if (!thisItemInCart) {
+      setButtonDisabled(true);
+    }
+  }; */
+
+  if (!product) {
+    return <ProductsError />
+  }
 
   return (
     <div>
