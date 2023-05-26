@@ -156,8 +156,8 @@ const NavBar = () => {
             </div>
           </div>
 
-          <div class="navbar-item has-dropdown is-hoverable is-hidden-touch">
-            <a class="navbar-link">
+          <div className="navbar-item has-dropdown is-hoverable is-hidden-touch">
+            <a className="navbar-link">
               <FontAwesomeIcon icon={faUser} />
             </a>
 
