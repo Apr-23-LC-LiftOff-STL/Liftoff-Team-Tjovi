@@ -15,15 +15,13 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Type;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/initialize/true")
-public class InitializeProjectDBController {
+public class GodPrivleges {
     @Autowired
     MovieRepository movieRepo;
 

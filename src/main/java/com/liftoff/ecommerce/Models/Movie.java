@@ -101,4 +101,8 @@ public class Movie {
         this.price = Double.parseDouble(decimalFormat.format(truePrice));
 
     }
+
+    public void customSetPrice(Double newPrice){
+        this.price = newPrice;
+    }
 }
