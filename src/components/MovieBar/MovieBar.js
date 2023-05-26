@@ -49,6 +49,14 @@ function MovieBar() {
     fetchData();
   }, []);
 
+  if (!movies) {
+    return (
+      <div>
+      <div className="pt-6 mx-6">Loading movies...</div>
+      </div>
+    )
+  }
+
   return (
     <div className="pt-6">
       <h1 className="is-size-6 has-text-centered pt-6 has-text-grey">
