@@ -1,14 +1,33 @@
-import { NavLink } from "react-router-dom"
+import { useEffect } from 'react';
+import { Link, NavLink, useRouteError, useNavigate } from "react-router-dom";
 import MovieBar from "../components/MovieBar/MovieBar"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
 export default function NotFound() {
+  //const error = useRouteError();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/");
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, []);
+
+
   return (
-    <div>
-    <div>
-    <div className="title is-3 ml-6 mt-4 has-text-danger">Page Not Found!</div>
-      <p className="ml-6 is-italic">Nothing to see here! <NavLink to="/">Click here to return home</NavLink>.</p>
-    </div>
-    <MovieBar />
-    </div>
-  )
+    <div className="section">
+      <div className="title is-4 ml-6">Sorry, page not found. <span className="has-text-primary">¯\_(ツ)_/¯</span></div>
+      <div className="ml-6 is-italic">
+        Redirecting to home page in 10 seconds.
+        </div>
+        <br />
+          <div className="button is-small is-link is-outlined ml-6" to="/">
+            <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
+          </div>
+          <MovieBar />
+</div>
+  );
 }

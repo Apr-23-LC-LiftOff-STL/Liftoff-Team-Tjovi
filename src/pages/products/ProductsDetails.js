@@ -16,6 +16,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import ProductsError from "./ProductsError";
+
 // Styling originated from:  https://responsive-bulma-cards.netlify.app/ - example #5
 
 import { useCartStore } from "../../store/cartStore";
@@ -102,6 +104,10 @@ export default function ProductsDetails() {
       setButtonDisabled(true);
     }
   }; */
+
+  if (!product) {
+    return <ProductsError />
+  }
 
   return (
     <div>
