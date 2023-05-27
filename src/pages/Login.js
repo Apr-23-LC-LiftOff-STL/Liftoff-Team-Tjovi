@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import MovieBar from "../components/MovieBar/MovieBar";
@@ -66,9 +66,9 @@ const Login = () => {
           If you would like to log in as a different user, please log out first.
         </div>
         <br />
-        <div className="button is-small is-link is-outlined ml-6" to="/">
+        <NavLink className="button is-small is-link is-outlined ml-6" to="/">
           <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
-        </div>
+        </NavLink>
         <MovieBar />
       </div>
     );
