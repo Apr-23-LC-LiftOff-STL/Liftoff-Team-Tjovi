@@ -58,7 +58,9 @@ export const useCartStore = create(
             }
             // Return updated state
             console.log(cartUser);
-            console.log(updatedCart);
+            updatedCart.map((obj, i) => {
+              console.log(obj)
+            })
             return {
               ...state,
               cart: updatedCart,
@@ -115,7 +117,9 @@ export const useCartStore = create(
       
             // Return updated state
             console.log(cartUser);
-            console.log(updatedCart);
+            updatedCart.map((obj, i) => {
+              console.log(obj)
+            })
             return {
               ...state,
               cart: updatedCart,
@@ -176,7 +180,9 @@ export const useCartStore = create(
       
             // Return updated state
             console.log(cartUser);
-            console.log(updatedCart);
+            updatedCart.map((obj, i) => {
+              console.log(obj)
+            })
             return {
               ...state,
               cart: updatedCart,
@@ -242,7 +248,8 @@ export const useCartStore = create(
               }
         
               // Return updated state
-              
+              console.log(cartUser);
+              console.log(updatedCart);
               return {
                 ...state,
                 cart: updatedCart,
@@ -263,11 +270,11 @@ export const useCartStore = create(
         }
       },
 
-      fetchMovies: async () => {
+/*       fetchMovies: async () => {
         await fetch("http://localhost:8080/")
           .then((response) => response.json())
           .then((data) => set({ movies: data.results }));
-      },
+      }, */
     }),
     {
       name: "cart-storage", // unique name

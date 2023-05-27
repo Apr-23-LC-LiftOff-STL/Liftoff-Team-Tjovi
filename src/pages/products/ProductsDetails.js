@@ -10,6 +10,8 @@ import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
+import MovieBar from "../../components/MovieBar/MovieBar";
+
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -205,6 +207,7 @@ export default function ProductsDetails() {
             </div>
           </div>
         </div>
+        <MovieBar />
       </div>
       <Dialog
         open={open}

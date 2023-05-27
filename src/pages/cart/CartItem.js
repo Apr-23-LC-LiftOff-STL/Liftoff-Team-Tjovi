@@ -39,10 +39,10 @@ const CartItem = ({
   const cart = useCartStore((state) => state.cart);
   const cartUser = useCartStore((state) => state.cartUser);
 
-  useEffect(() => {
+/*   useEffect(() => {
     useCartStore.getState().initialize();
     console.log(cartUser);
-  }, [cart]);
+  }, [cart]); */
 
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
