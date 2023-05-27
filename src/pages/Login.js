@@ -8,6 +8,7 @@ import axios from "axios";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { useLoginStore } from "../store/loginStore";
 
@@ -21,16 +22,10 @@ const Login = () => {
 
   const forgotPassword = async (event) => {
     event.preventDefault();
-    alert("Functionality not added yet")
+    alert("Functionality not added yet");
     //navigate("/lostPassword");
   };
-/*   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/");
-    }
-  }, [navigate]);
- */
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,10 +33,10 @@ const Login = () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/user",
-       
+
         {
           headers: {
-            'Authorization': `Basic ${credentials}`
+            Authorization: `Basic ${credentials}`,
           },
         }
       );
@@ -51,7 +46,7 @@ const Login = () => {
         localStorage.setItem("token", authorization);
         setIsLoggedIn(true);
         console.log(authorization);
-        console.log(response.data)
+        console.log(response.data);
         navigate("/");
       } else {
         throw new Error("Login failed");
@@ -61,58 +56,77 @@ const Login = () => {
     }
   };
 
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    return (
+      <div className="section">
+        <div className="title is-4 ml-6">You are currently logged in.</div>
+        <div className="ml-6 is-italic">
+          If you would like to log in as a different user, please log out first.
+        </div>
+        <br />
+        <div className="button is-small is-link is-outlined ml-6" to="/">
+          <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
+        </div>
+        <MovieBar />
+      </div>
+    );
+  }
+
   return (
     <div>
-    <form onSubmit={handleSubmit}>
-      <div className="field">
-        <label htmlFor="email" className="label">
-          Email:
-        </label>
-        <div className="control has-icons-left">
-          <input
-            className="input is-primary"
-            type="text"
-            value={email}
-            placeholder="Enter Email"
-            onChange={({ target }) => setEmail(target.value)}
-          />
-          <span className="icon is-small is-left">
-            <FontAwesomeIcon icon={faEnvelope} style={{color: "#0ee1be",}} />
-          </span>
+      <form onSubmit={handleSubmit}>
+        <div className="field">
+          <label htmlFor="email" className="label">
+            Email:
+          </label>
+          <div className="control has-icons-left">
+            <input
+              className="input is-primary"
+              type="text"
+              value={email}
+              placeholder="Enter Email"
+              onChange={({ target }) => setEmail(target.value)}
+            />
+            <span className="icon is-small is-left">
+              <FontAwesomeIcon icon={faEnvelope} style={{ color: "#0ee1be" }} />
+            </span>
+          </div>
         </div>
-      </div>
 
-      <div className="field">
-        <label htmlFor="password" className="label">
-          Password:
-        </label>
-        <div className="control has-icons-left">
-          <input
-            className="input is-primary "
-            type="password"
-            value={password}
-            placeholder="Enter Password"
-            onChange={({ target }) => setPassword(target.value)}
-          /><span className="icon is-small is-left">
-          <FontAwesomeIcon icon={faLock}  style={{color: "#0ee1be",}}/>
-        </span>
+        <div className="field">
+          <label htmlFor="password" className="label">
+            Password:
+          </label>
+          <div className="control has-icons-left">
+            <input
+              className="input is-primary "
+              type="password"
+              value={password}
+              placeholder="Enter Password"
+              onChange={({ target }) => setPassword(target.value)}
+            />
+            <span className="icon is-small is-left">
+              <FontAwesomeIcon icon={faLock} style={{ color: "#0ee1be" }} />
+            </span>
+          </div>
         </div>
-      </div>
 
-      <div className="field is-grouped">
-        <div className="control">
-          <button className="button is-primary" onSubmit={handleSubmit}>
-            Login
-          </button>
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-primary" onSubmit={handleSubmit}>
+              Login
+            </button>
+          </div>
+          <div className="control">
+            <button className="button is-secondary" onClick={forgotPassword}>
+              Forgot Password
+            </button>
+          </div>
         </div>
-        <div className="control">
-          <button className="button is-secondary" onClick={forgotPassword}>
-            Forgot Password
-          </button>
-        </div>
-      </div>
-    </form>
-    <MovieBar />
+      </form>
+      <MovieBar />
     </div>
   );
 };
