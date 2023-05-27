@@ -41,11 +41,9 @@ export default function ProductsDetails() {
 
   const cartUser = useCartStore((state) => state.cartUser);
 
-  useEffect(() => {
+/*   useEffect(() => {
     useCartStore.getState().initialize();
-    console.log(cartUser);
-    console.log(cart);
-  }, [cart]);
+  }, [cart]); */
 
   /*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
 
@@ -84,33 +82,6 @@ export default function ProductsDetails() {
     // setCartMessage(`"${product.title}" was removed from cart`);
     handleClose();
   };
-
-  /*   const incrementCartItemButtonHandler = () => {
-    console.log(JSON.stringify(cart));
-    incrementCartItem(product.id);
-    setCartMessageStyle("is-size-6");
-    setCartMessage(`"${product.title}" was added to cart`);
-    setButtonDisabled(false);
-  };
-
-  const decrementCartItemButtonHandler = () => {
-    console.log(JSON.stringify(cart));
-    decrementCartItem(product.id);
-    setCartMessageStyle("is-size-6 has-text-danger");
-    setCartMessage(`"${product.title}" was removed from cart`);
-    if (!thisItemInCart) {
-      setButtonDisabled(true);
-    }
-  };
-
-  const removeAllThisItemButtonHandler = () => {
-    removeAllThisItem(product.id);
-    setCartMessageStyle("is-size-6 has-text-danger");
-    setCartMessage(`"${product.title}" was removed from cart`);
-    if (!thisItemInCart) {
-      setButtonDisabled(true);
-    }
-  }; */
 
   if (!product) {
     return <ProductsError />

@@ -1,5 +1,6 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+import jwtDecode from "jwt-decode";
 
 import MovieBar from "../components/MovieBar/MovieBar";
 
@@ -10,6 +11,7 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+import { useCartStore } from "../store/cartStore";
 import { useLoginStore } from "../store/loginStore";
 
 const Login = () => {
@@ -19,6 +21,7 @@ const Login = () => {
 
   const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const setCartUser = useCartStore((state) => state.setCartUser);
 
   const forgotPassword = async (event) => {
     event.preventDefault();
@@ -47,6 +50,8 @@ const Login = () => {
         setIsLoggedIn(true);
         console.log(authorization);
         console.log(response.data);
+        const userData = jwtDecode(authorization);
+        setCartUser(userData.username);
         navigate("/");
       } else {
         throw new Error("Login failed");

@@ -54,7 +54,6 @@ const CartItem = ({
 
   const incrementCartItemButtonHandler = () => {
     incrementCartItem(id);
-    console.log(JSON.stringify(cart));
   };
 
   const decrementCartItemButtonHandler = () => {
@@ -63,13 +62,11 @@ const CartItem = ({
     } else {
       decrementCartItem(id);
     }
-    console.log(JSON.stringify(cart));
   };
 
   const removeAllThisItemButtonHandler = () => {
     handleClickOpen();
     removeAllThisItem(id);
-    console.log(JSON.stringify(cart));
   };
 
   return (

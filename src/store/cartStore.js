@@ -9,6 +9,10 @@ export const useCartStore = create(
       cart: [],
       cartUser: null,
 
+      setCartUser: (user) => {
+        set({ cartUser: user });
+      },
+
       incrementCartItem: async (id) => {
         set((state) => {
           const isPresent = state.cart.find((movies) => movies.id === id);
@@ -20,7 +24,7 @@ export const useCartStore = create(
               )
             : [...state.cart, { id, count: 1 }];
 
-          const cartUser = state.cartUser; // IS THIS CORRECT ??
+          const cartUser = state.cartUser;
 
           try {
             const cartData = {
@@ -53,6 +57,8 @@ export const useCartStore = create(
               });
             }
             // Return updated state
+            console.log(cartUser);
+            console.log(updatedCart);
             return {
               ...state,
               cart: updatedCart,
@@ -108,6 +114,8 @@ export const useCartStore = create(
             }
       
             // Return updated state
+            console.log(cartUser);
+            console.log(updatedCart);
             return {
               ...state,
               cart: updatedCart,
@@ -167,6 +175,8 @@ export const useCartStore = create(
             }
       
             // Return updated state
+            console.log(cartUser);
+            console.log(updatedCart);
             return {
               ...state,
               cart: updatedCart,
@@ -232,6 +242,7 @@ export const useCartStore = create(
               }
         
               // Return updated state
+              
               return {
                 ...state,
                 cart: updatedCart,
