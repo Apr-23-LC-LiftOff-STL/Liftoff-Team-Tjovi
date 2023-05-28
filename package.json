@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -19,6 +20,7 @@
     "babel-plugin-macros": "^3.1.0",
     "bootstrap": "^5.2.3",
     "bulma": "^0.9.4",
+    "jwt-decode": "^3.1.2",
     "multiselect-react-dropdown": "^2.0.25",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "os-browserify": "^0.3.0",

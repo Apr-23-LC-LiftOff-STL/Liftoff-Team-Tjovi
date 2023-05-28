@@ -36,7 +36,7 @@ const MovieBarCard = ({ title, posterPath, price }) => {
               />
             )}
           </div>
-          <div className="movie-bar-card-title">{createShortcut(title, 30)}
+          <div className="movie-bar-card-title">{/* {createShortcut(title, 30)} */}
           </div>
           <div className="movie-bar-card-title has-text-weight-semibold" style={{color: price < 10 ? "hsl(348, 100%, 61%)" : "hsl(0, 0%, 7%)"}}>${price?.toFixed(2)}</div>
         </div>
