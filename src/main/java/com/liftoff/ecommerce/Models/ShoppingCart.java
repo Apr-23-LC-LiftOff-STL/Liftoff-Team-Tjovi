@@ -38,6 +38,8 @@ public class ShoppingCart{
         this.quantity = quantity;
     }
 
+
+
     public Long getCartId() {
         return cartId;
     }

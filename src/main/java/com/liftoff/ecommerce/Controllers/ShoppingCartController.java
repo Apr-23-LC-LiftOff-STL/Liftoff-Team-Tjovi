@@ -36,20 +36,21 @@ public class ShoppingCartController {
     @GetMapping("/returnAll/{email}")
     public ResponseEntity<?> returnCart(@PathVariable String email){
         Customer customer = shoppingCartService.findCustomer(email);
-        List<ShoppingCart> cartInstances = shoppingCartService.returnCartInstances(customer.getId());
-        if(cartInstances.size()>0){
-            return new ResponseEntity<>(cartInstances, HttpStatus.OK);
-        } else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        ResponseEntity response = shoppingCartService.returnCartInstances(customer.getId());
+        return response;
     }
-
-
 
     @PostMapping("/add/{email}")
     public ResponseEntity addToCart(@PathVariable String email, @RequestBody ShoppingCart shoppingCart) {
         Customer customer = shoppingCartService.findCustomer(email);
         ResponseEntity response = shoppingCartService.createNewShoppingCart(customer, shoppingCart);
+        return response;
+    }
+
+    @PutMapping("edit/{cartId}")
+    public ResponseEntity updateCartQuantity(@PathVariable Long cartId, @RequestBody ShoppingCart shoppingCart){
+        Long newQuantity = shoppingCart.getQuantity();
+        ResponseEntity response = shoppingCartService.updateQuantityInCart(cartId, newQuantity);
         return response;
     }
 

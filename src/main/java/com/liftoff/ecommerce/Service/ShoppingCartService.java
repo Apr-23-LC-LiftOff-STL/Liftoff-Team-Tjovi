@@ -27,11 +27,24 @@ public class ShoppingCartService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public List<ShoppingCart> returnCartInstances(Long customerId){
+    public ResponseEntity returnCartInstances(Long customerId){
         List<ShoppingCart> customerCart = shoppingCartRepository.findByCustomerId(customerId);
-        return customerCart;
+        if(customerCart.size()>0){
+            return new ResponseEntity<>(customerCart, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
+    public ResponseEntity updateQuantityInCart(Long cartId, Long updatedQuantity){
+        Optional<ShoppingCart> cartReturned = shoppingCartRepository.findById(cartId);
+        ShoppingCart cartToBeUpdated = cartReturned.get();
+        cartToBeUpdated.setQuantity(updatedQuantity);
+        cartToBeUpdated.getQuantity();
+        setTotalPrice(cartToBeUpdated);
+        shoppingCartRepository.save(cartToBeUpdated);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
 //    public void addToCart(String email, ShoppingCart shoppingCart){
 //        Long movieId = shoppingCart.getMovieId();
 //        Long quantity = shoppingCart.getQuantity();
@@ -93,12 +106,7 @@ public class ShoppingCartService {
 //        return duplicateCartId;
 //    }
 
-//    public void updateQuantityInCart(ShoppingCart currentCart, Long quantity){
-//        Long currentQuantity = currentCart.getQuantity();
-//        Long updatedQuantity = currentQuantity + quantity;
-//        currentCart.setQuantity(updatedQuantity);
-//        setTotalPrice(currentCart);
-//    }
+
 
 //    public void mergeDuplicateCarts(ShoppingCart oldCart, ShoppingCart newCart){
 //        Long mergedQuantity = oldCart.getQuantity() + newCart.getQuantity();
