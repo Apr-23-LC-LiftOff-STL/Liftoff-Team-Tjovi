@@ -166,9 +166,9 @@ const Login = () => {
 
             <div className="field is-grouped mt-5">
               <div className="control">
-                <NavLink className="button is-primary has-text-weight-semibold" onSubmit={handleSubmit}>
+                <button className="button is-primary has-text-weight-semibold" onSubmit={handleSubmit}>
                   Log In
-                </NavLink>
+                </button>
               </div>
               <div className="control">
                 <NavLink className="button is-secondary is-link" to="/register">

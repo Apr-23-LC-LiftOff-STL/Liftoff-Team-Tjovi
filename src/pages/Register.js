@@ -131,7 +131,7 @@ export default function Register() {
               Register
             </div>
             <div className="columns">
-              <div className="column is-half">
+              <div className="column">
                 <div className="field">
                   <label className="label">E-mail</label>
                   <div className="control has-icons-left">
