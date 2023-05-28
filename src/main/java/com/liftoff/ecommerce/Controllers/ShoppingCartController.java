@@ -33,21 +33,41 @@ public class ShoppingCartController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @GetMapping("/returnAll/{email}")
+    public ResponseEntity<?> returnCart(@PathVariable String email){
+        Customer customer = shoppingCartService.findCustomer(email);
+        List<ShoppingCart> cartInstances = shoppingCartService.returnCartInstances(customer.getId());
+        if(cartInstances.size()>0){
+            return new ResponseEntity<>(cartInstances, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 
     @PostMapping("/add/{email}")
     public ResponseEntity addToCart(@PathVariable String email, @RequestBody ShoppingCart shoppingCart) {
-        shoppingCartService.addToCart(email, shoppingCart);
-        return ResponseEntity.ok(HttpStatus.OK);
+        Customer customer = shoppingCartService.findCustomer(email);
+        ResponseEntity response = shoppingCartService.createNewShoppingCart(customer, shoppingCart);
+        return response;
     }
+
+//    @DeleteMapping("/delete")
+//    public ResponseEntity deleteFromCart(@RequestBody ShoppingCart shoppingCart){
+//        Long id = shoppingCart.getCartId();
+//        shoppingCartService.deleteOldDuplicateCart(id);
+//        return ResponseEntity.ok(HttpStatus.OK);
+//    }
 //    @GetMapping("/remove/{id}/{movieId}")
 //    public void removeFromCart(@PathVariable Long id,@PathVariable Long movieId){
 //        shoppingCartService.removeFromCart(id, movieId);
 //    }
 
-    @GetMapping("/cart/{id}")
-    public Optional<ShoppingCart> returnCart(@PathVariable Long id) throws Exception{
-        return shoppingCartRepository.findById(id);
-    }
+//    @GetMapping("/cart/{id}")
+//    public Optional<ShoppingCart> returnCart(@PathVariable Long id) throws Exception{
+//        return shoppingCartRepository.findById(id);
+//    }
 
 
 

@@ -30,6 +30,13 @@ public class ShoppingCart{
 
     private Double totalPrice;
 
+    public ShoppingCart() {
+    }
+
+    public ShoppingCart(Long movieId, Long quantity) {
+        this.movieId = movieId;
+        this.quantity = quantity;
+    }
 
     public Long getCartId() {
         return cartId;
