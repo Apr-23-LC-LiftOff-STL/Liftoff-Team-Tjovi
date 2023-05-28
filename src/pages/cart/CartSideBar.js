@@ -9,6 +9,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+
 export default function CartSideBar({ allItemsSubtotal }) {
   const [open, setOpen] = useState(false);
 
@@ -112,7 +114,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Empty the cart?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Remove <span className="has-text-weight-semibold">all items</span>{" "}

@@ -3,16 +3,19 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
+import { Fade } from "@mui/material";
 
 const CartIsEmpty = () => {
   return (
     <div className="mx-6">
-    <div className="column is-offset-1 is-vcentered mb-3 py-5" style={{borderStyle: 'dashed', borderColor: 'darkgray'}}>
+    <div className="column is-offset-1 is-vcentered box is-shadowless has-background-white-ter mb-3 py-5" style={{borderStyle: 'dashed', borderColor: "hsl(348, 100%, 61%)", borderWidth: "1px"}}>
         <section className="section is-medium">
         <NavLink className="is-center" to="/">
+        <Fade in timeout={800}>
         <div className="is-size-4 has-text-centered pt-2 has-text-danger has-text-weight-semibold">
           Nothing In Cart
         </div>
+        </Fade>
         <div className="has-text-centered">
             Keep Browsing
         </div>

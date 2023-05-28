@@ -131,7 +131,6 @@ const Checkout = () => {
           </div>
         </div>
       </div>
-      <MovieBar />
     </div>
   );
 };

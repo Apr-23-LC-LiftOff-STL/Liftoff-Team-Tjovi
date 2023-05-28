@@ -1,6 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Products.css";
 import { Fade } from "@mui/material";
 
@@ -16,12 +16,17 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import ProductsError from "./ProductsError";
+
 // Styling originated from:  https://responsive-bulma-cards.netlify.app/ - example #5
 
 import { useCartStore } from "../../store/cartStore";
 
+import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+
 export default function ProductsDetails() {
   const [open, setOpen] = useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -34,6 +39,14 @@ export default function ProductsDetails() {
   const product = useLoaderData();
   const cart = useCartStore((state) => state.cart);
 
+  const cartUser = useCartStore((state) => state.cartUser);
+
+  useEffect(() => {
+    useCartStore.getState().initialize();
+    console.log(cartUser);
+    console.log(cart);
+  }, [cart]);
+
   /*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
@@ -44,7 +57,6 @@ export default function ProductsDetails() {
 
   const [cartMessage, setCartMessage] = useState("");
   const [cartMessageStyle, setCartMessageStyle] = useState("");
-  const [buttonDisabled, setButtonDisabled] = useState();
 
   const [thisItemInCart, setThisItemInCart] = useState(
     cart.find((product) => product.id === id)?.count || 0
@@ -54,7 +66,6 @@ export default function ProductsDetails() {
     incrementCartItem(id);
     // setCartMessage(`"${product.title}" was added to cart`);
     setThisItemInCart((prevCount) => prevCount + 1);
-    console.log(JSON.stringify(cart));
   };
 
   const decrementCartItemButtonHandler = () => {
@@ -64,7 +75,6 @@ export default function ProductsDetails() {
       decrementCartItem(id);
       setThisItemInCart((prevCount) => prevCount - 1);
       // setCartMessage(`"${product.title}" was removed from cart`);
-      console.log(JSON.stringify(cart));
     }
   };
 
@@ -73,7 +83,6 @@ export default function ProductsDetails() {
     setThisItemInCart(0);
     // setCartMessage(`"${product.title}" was removed from cart`);
     handleClose();
-    console.log(JSON.stringify(cart));
   };
 
   /*   const incrementCartItemButtonHandler = () => {
@@ -102,6 +111,10 @@ export default function ProductsDetails() {
       setButtonDisabled(true);
     }
   }; */
+
+  if (!product) {
+    return <ProductsError />
+  }
 
   return (
     <div>
@@ -155,7 +168,7 @@ export default function ProductsDetails() {
                     <span className="has-text-weight-semibold">
                       &emsp; &emsp; Runtime:{" "}
                     </span>
-                    {product.runtime} minutes
+                    {product?.runtime} minutes
                   </p>
                 </div>
                 <div className="content p-5 has-background-info-light">
@@ -169,7 +182,7 @@ export default function ProductsDetails() {
                               product.price < 10 ? "hsl(348, 100%, 61%)" : "",
                           }}
                         >
-                          ${product.price?.toFixed(2)}
+                          ${product.price.toFixed(2)}
                         </span>
                       </div>
                       <div>
@@ -196,14 +209,14 @@ export default function ProductsDetails() {
                           onClick={() =>
                             decrementCartItemButtonHandler(product.id)
                           }
-                          disabled={buttonDisabled}
+                          disabled={!thisItemInCart}
                         >
                           <FontAwesomeIcon icon={faSubtract} />
                         </button>
                         <button
                           className="button is-danger is-small"
                           onClick={() => handleClickOpen(product.id)}
-                          disabled={buttonDisabled}
+                          disabled={!thisItemInCart}
                         >
                           <FontAwesomeIcon icon={faX} />
                         </button>
@@ -228,7 +241,7 @@ export default function ProductsDetails() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Remove Item?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Remove{" "}
@@ -238,7 +251,7 @@ export default function ProductsDetails() {
         </DialogContent>
         <DialogActions>
           <button
-            className="button is-small is-primary has-text-weight-semibold"
+            className="button is-small is-warning has-text-weight-semibold"
             onClick={handleClose}
             autoFocus
           >

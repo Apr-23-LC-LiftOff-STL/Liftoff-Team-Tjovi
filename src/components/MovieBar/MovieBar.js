@@ -8,11 +8,11 @@ function MovieBar() {
 
   const baseProductUrl = "/products/";
 
-/*     const randomMovieIds = Array.from({ length: 5 }, () =>
+  /*     const randomMovieIds = Array.from({ length: 5 }, () =>
     Math.floor(Math.random() * 822)
   ); */
 
-  const movieBarPicks = []
+  const movieBarPicks = [];
   for (let i = 0; movieBarPicks.length < 5; i++) {
     let newId = Math.floor(Math.random() * 822); // TODO:  update 822 to total movie count if database increases
     if (!movieBarPicks.includes(newId)) {
@@ -48,6 +48,14 @@ function MovieBar() {
     };
     fetchData();
   }, []);
+
+  if (!movies) {
+    return (
+      <div>
+        <div className="pt-6 mx-6">Loading movies...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-6">
