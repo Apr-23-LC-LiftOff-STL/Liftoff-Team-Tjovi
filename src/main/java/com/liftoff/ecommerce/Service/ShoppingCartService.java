@@ -25,7 +25,7 @@ public class ShoppingCartService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public ResponseEntity returnCartInstances(Long customerId){
+    public ResponseEntity<?> returnCartInstances(Long customerId){
         List<ShoppingCart> customerCart = shoppingCartRepository.findByCustomerId(customerId);
         if(customerCart.size()>0){
             return new ResponseEntity<>(customerCart, HttpStatus.OK);
@@ -34,7 +34,7 @@ public class ShoppingCartService {
         }
     }
 
-    public ResponseEntity createNewShoppingCart(Customer customer, ShoppingCart shoppingCart){
+    public ResponseEntity<?> createNewShoppingCart(Customer customer, ShoppingCart shoppingCart){
         ShoppingCart newCart = new ShoppingCart(shoppingCart.getMovieId(), shoppingCart.getQuantity());
         newCart.setCustomer(customer);
         setTotalPrice(newCart);
@@ -42,22 +42,21 @@ public class ShoppingCartService {
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    public ResponseEntity updateQuantityInCart(Long cartId, Long updatedQuantity){
+    public ResponseEntity<?> updateQuantityInCart(Long cartId, Long updatedQuantity){
         Optional<ShoppingCart> cartReturned = shoppingCartRepository.findById(cartId);
         ShoppingCart cartToBeUpdated = cartReturned.get();
         cartToBeUpdated.setQuantity(updatedQuantity);
-        cartToBeUpdated.getQuantity();
         setTotalPrice(cartToBeUpdated);
         shoppingCartRepository.save(cartToBeUpdated);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity removeItemFromCart(Long cartId){
+    public ResponseEntity<?> removeItemFromCart(Long cartId){
         shoppingCartRepository.deleteById(cartId);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity removeAllItemsFromCart(Customer customer){
+    public ResponseEntity<?> removeAllItemsFromCart(Customer customer){
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
         shoppingCartRepository.deleteAll(allCustomersCarts);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
