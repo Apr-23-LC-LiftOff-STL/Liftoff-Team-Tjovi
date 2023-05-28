@@ -1,74 +1,85 @@
 package com.liftoff.ecommerce.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import com.liftoff.ecommerce.Repositories.MovieRepository;
+import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 @Entity
-@Data
-@AllArgsConstructor
-@Builder
 public class ShoppingCart{
 
-
     @Id
-    private Long id;
+    @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
+    @GenericGenerator(name = "native",strategy = "native")
+    @Column(name = "cart_id")
+    private Long cartId;
 
-    @Column
-    private Long customerId;
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    @Column
-    private ArrayList<Long> movieIds;
+    @Column(name="movie_id")
+    private Long movieId;
 
-    public ShoppingCart(){
+    private Long quantity;
 
+    private Double totalPrice;
+
+
+    public Long getCartId() {
+        return cartId;
     }
 
-    public ShoppingCart(Long customerId,ArrayList<Long>movieIds) {
-        this.customerId = customerId;
-        this.movieIds=movieIds;
-
+    public void setCartId(Long cartId) {
+        this.cartId = cartId;
     }
 
-
-    public Long getId() {
-        return id;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Long getUserId() {
-        return customerId;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setUserId(Long userId) {
-        this.customerId = customerId;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 
-    public ArrayList<Long> getMovieIds() {
-        return movieIds;
+    public Long getQuantity() {
+        return quantity;
     }
 
-    public void setMovieIds(ArrayList<Long> movieIds) {
-        this.movieIds = movieIds;
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 
-    public void addToCart(Long movieId){
-
-        getMovieIds().add(movieId);
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void deleteFromCart(Long movieId){
-        getMovieIds().remove(movieId);
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
+
+    //
+//    public void addToCart(Long movieId){
+//
+//        getMovieIds().add(movieId);
+//    }
+//
+//    public void deleteFromCart(Long movieId){
+//        getMovieIds().remove(movieId);
+//    }
 }
 
 

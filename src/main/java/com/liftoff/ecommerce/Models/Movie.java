@@ -17,9 +17,11 @@ public class Movie {
     private String title;
 
     private String posterPath;
+
     @Lob
     @Column(name="overview", length=999)
     private String overview;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "movie_genre",

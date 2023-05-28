@@ -36,6 +36,9 @@ public class Customer {
     @OneToMany(mappedBy="customer",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Authority> authorities;
 
+    @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<ShoppingCart> shoppingCart;
+
     public Long getId() {
         return id;
     }
