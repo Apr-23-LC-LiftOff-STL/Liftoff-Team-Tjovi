@@ -3,6 +3,9 @@ import { persist } from "zustand/middleware";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 
+const apiPostEndpoint = "http://localhost:8080/cartUser"
+const apiGetEndpoint = "http://localhost:8080/cartUser"
+
 export const useCartStore = create(
   persist(
     (set) => ({
@@ -32,35 +35,35 @@ export const useCartStore = create(
               cartUser: cartUser,
             };
 
-            if (cartUser !== null)
-            { 
+            if (cartUser !== null) {
+              // TODO: need POST endpoint for CART table
               axios
-              .post("your-api-post-endpoint", cartData)
-              .then(() => {
-                // TODO:  need POST endpoint for CART table
-                axios
-                  .get("your-api-get-endpoint")
-                  .then((response) => {
-                    // TODO:  need GET endpoint for CART table
-                    set({
-                      ...state,
-                      cart: response.data.cart,
-                      cartUser: response.data.cartUser,
+                .post({apiPostEndpoint}, cartData)
+                .then(() => {
+                  // TODO: need GET endpoint for CART table
+                  axios
+                    .get({apiGetEndpoint})
+                    .then((response) => {
+                      // Update cart state with the data from the API response
+                      set({
+                        ...state,
+                        cart: response.data.cart,
+                        cartUser: response.data.cartUser,
+                      });
+                    })
+                    .catch((error) => {
+                      console.error("Error getting cart:", error);
                     });
-                  })
-                  .catch((error) => {
-                    console.error("Error getting cart:", error);
-                  });
-              })
-              .catch((error) => {
-                console.error("Error updating cart:", error);
-              });
+                })
+                .catch((error) => {
+                  console.error("Error updating cart:", error);
+                });
             }
             // Return updated state
             console.log(cartUser);
             updatedCart.map((obj, i) => {
-              console.log(obj)
-            })
+              console.log(obj);
+            });
             return {
               ...state,
               cart: updatedCart,
@@ -78,26 +81,28 @@ export const useCartStore = create(
           const isPresent = state.cart.find((movies) => movies.id === id);
           const updatedCart = isPresent
             ? state.cart.map((movies) =>
-                movies.id === id ? { ...movies, count: movies.count - 1 } : movies
+                movies.id === id
+                  ? { ...movies, count: movies.count - 1 }
+                  : movies
               )
             : [...state.cart, { id, count: 0 }];
-      
+
           const cartUser = state.cartUser;
-      
+
           try {
             const cartData = {
               cart: updatedCart,
               cartUser: cartUser,
             };
-      
+
             if (cartUser !== null) {
               // TODO: need POST endpoint for CART table
               axios
-                .post("your-api-post-endpoint", cartData)
+                .post({apiPostEndpoint}, cartData)
                 .then(() => {
                   // TODO: need GET endpoint for CART table
                   axios
-                    .get("your-api-get-endpoint")
+                    .get({apiGetEndpoint})
                     .then((response) => {
                       // Update cart state with the data from the API response
                       set({
@@ -114,12 +119,12 @@ export const useCartStore = create(
                   console.error("Error updating cart:", error);
                 });
             }
-      
+
             // Return updated state
             console.log(cartUser);
             updatedCart.map((obj, i) => {
-              console.log(obj)
-            })
+              console.log(obj);
+            });
             return {
               ...state,
               cart: updatedCart,
@@ -139,28 +144,31 @@ export const useCartStore = create(
             ? state.cart
                 .map((movies) =>
                   movies.id === id
-                    ? { ...movies, count: Math.max(movies.count - movies.count, 0) }
+                    ? {
+                        ...movies,
+                        count: Math.max(movies.count - movies.count, 0),
+                      }
                     : movies
                 )
                 .filter((movies) => movies.count)
             : state.cart;
-      
+
           const cartUser = state.cartUser;
-      
+
           try {
             const cartData = {
               cart: updatedCart,
               cartUser: cartUser,
             };
-      
+
             if (cartUser !== null) {
               // TODO: need POST endpoint for CART table
               axios
-                .post("your-api-post-endpoint", cartData)
+                .post({apiPostEndpoint}, cartData)
                 .then(() => {
                   // TODO: need GET endpoint for CART table
                   axios
-                    .get("your-api-get-endpoint")
+                    .get({apiGetEndpoint})
                     .then((response) => {
                       // Update cart state with the data from the API response
                       set({
@@ -177,12 +185,12 @@ export const useCartStore = create(
                   console.error("Error updating cart:", error);
                 });
             }
-      
+
             // Return updated state
             console.log(cartUser);
             updatedCart.map((obj, i) => {
-              console.log(obj)
-            })
+              console.log(obj);
+            });
             return {
               ...state,
               cart: updatedCart,
@@ -211,56 +219,56 @@ export const useCartStore = create(
           };
         }), */
 
-        emptyCart: async () => {
-          set((state) => {
-            const updatedCart = [];
-            const cartUser = null;
-        
-            try {
-              const cartData = {
-                cart: updatedCart,
-                cartUser: cartUser,
-              };
-        
-              if (cartUser !== null) {
-                // TODO: need POST endpoint for CART table
-                axios
-                  .post("your-api-post-endpoint", cartData)
-                  .then(() => {
-                    // TODO: need GET endpoint from CART table
-                    axios
-                      .get("your-api-get-endpoint")
-                      .then((response) => {
-                        // Update cart state with the data from the API response
-                        set({
-                          ...state,
-                          cart: response.data.cart,
-                          cartUser: response.data.cartUser,
-                        });
-                      })
-                      .catch((error) => {
-                        console.error("Error getting cart:", error);
+      emptyCart: async () => {
+        set((state) => {
+          const updatedCart = [];
+          const cartUser = null;
+
+          try {
+            const cartData = {
+              cart: updatedCart,
+              cartUser: cartUser,
+            };
+
+            if (cartUser !== null) {
+              // TODO: need POST endpoint for CART table
+              axios
+                .post({apiPostEndpoint}, cartData)
+                .then(() => {
+                  // TODO: need GET endpoint for CART table
+                  axios
+                    .get({apiGetEndpoint})
+                    .then((response) => {
+                      // Update cart state with the data from the API response
+                      set({
+                        ...state,
+                        cart: response.data.cart,
+                        cartUser: response.data.cartUser,
                       });
-                  })
-                  .catch((error) => {
-                    console.error("Error updating cart:", error);
-                  });
-              }
-        
-              // Return updated state
-              console.log(cartUser);
-              console.log(updatedCart);
-              return {
-                ...state,
-                cart: updatedCart,
-                cartUser: cartUser,
-              };
-            } catch (error) {
-              console.error("Error updating cart:", error);
-              return state;
+                    })
+                    .catch((error) => {
+                      console.error("Error getting cart:", error);
+                    });
+                })
+                .catch((error) => {
+                  console.error("Error updating cart:", error);
+                });
             }
-          });
-        },
+
+            // Return updated state
+            console.log(cartUser);
+            console.log(updatedCart);
+            return {
+              ...state,
+              cart: updatedCart,
+              cartUser: cartUser,
+            };
+          } catch (error) {
+            console.error("Error updating cart:", error);
+            return state;
+          }
+        });
+      },
 
       initialize: () => {
         const token = localStorage.getItem("token");
@@ -270,7 +278,7 @@ export const useCartStore = create(
         }
       },
 
-/*       fetchMovies: async () => {
+      /*       fetchMovies: async () => {
         await fetch("http://localhost:8080/")
           .then((response) => response.json())
           .then((data) => set({ movies: data.results }));

@@ -18,6 +18,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [randomQuote, setRandomQuote] = useState("");
+  const [randomMovie, setRandomMovie] = useState("");
 
   const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
@@ -25,7 +27,7 @@ const Login = () => {
 
   const forgotPassword = async (event) => {
     event.preventDefault();
-    alert("Functionality not added yet");
+    alert("Lost password feature under construction. Please contact your network administrator.");
     //navigate("/lostPassword");
   };
 
@@ -65,72 +67,126 @@ const Login = () => {
 
   if (token) {
     return (
-      <div className="section">
-        <div className="title is-4 ml-6">You are currently logged in.</div>
-        <div className="ml-6 is-italic">
-          If you would like to log in as a different user, please log out first.
+      <div>
+        <nav
+          className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+          aria-label="breadcrumbs"
+        >
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li className="is-active">
+              <a href="#" aria-current="page">
+                Log In
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div className="section">
+          <div className="title is-4 ml-6">You are currently logged in.</div>
+          <div className="ml-6 is-italic">
+            If you would like to log in as a different user, please log out
+            first.
+          </div>
+          <br />
+          <NavLink className="button is-small is-link is-outlined ml-6" to="/">
+            <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
+          </NavLink>
+          <MovieBar />
         </div>
-        <br />
-        <NavLink className="button is-small is-link is-outlined ml-6" to="/">
-          <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
-        </NavLink>
-        <MovieBar />
       </div>
     );
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="field">
-          <label htmlFor="email" className="label">
-            Email:
-          </label>
-          <div className="control has-icons-left">
-            <input
-              className="input is-primary"
-              type="text"
-              value={email}
-              placeholder="Enter Email"
-              onChange={({ target }) => setEmail(target.value)}
-            />
-            <span className="icon is-small is-left">
-              <FontAwesomeIcon icon={faEnvelope} style={{ color: "#0ee1be" }} />
-            </span>
-          </div>
-        </div>
+      <nav
+        className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
+        aria-label="breadcrumbs"
+      >
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li className="is-active">
+            <a href="#" aria-current="page">
+              Log In
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div className="columns is-centered">
+        <div className="column is-5 mx-6">
+          <form
+            className="box px-6 pb-6"
+            style={{
+              borderStyle: "solid",
+              borderColor: "lightgray",
+              borderWidth: "1px",
+            }}
+            onSubmit={handleSubmit}
+          >
+            <div className="title is-3 mt-5 has-text-weight-semibold">Log In</div>
+            <div className="field">
+              <label htmlFor="email" className="label">
+                E-mail
+              </label>
+              <div className="control has-icons-left">
+                <input
+                  className="input"
+                  type="text"
+                  value={email}
+                  placeholder="E-mail"
+                  onChange={({ target }) => setEmail(target.value)}
+                />
+                <span className="icon is-small is-left">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </span>
+              </div>
+            </div>
 
-        <div className="field">
-          <label htmlFor="password" className="label">
-            Password:
-          </label>
-          <div className="control has-icons-left">
-            <input
-              className="input is-primary "
-              type="password"
-              value={password}
-              placeholder="Enter Password"
-              onChange={({ target }) => setPassword(target.value)}
-            />
-            <span className="icon is-small is-left">
-              <FontAwesomeIcon icon={faLock} style={{ color: "#0ee1be" }} />
-            </span>
-          </div>
-        </div>
+            <div className="field">
+              <label htmlFor="password" className="label">
+                Password
+              </label>
+              <div className="control has-icons-left">
+                <input
+                  className="input"
+                  type="password"
+                  value={password}
+                  placeholder="*********"
+                  onChange={({ target }) => setPassword(target.value)}
+                />
+                <span className="icon is-small is-left">
+                  <FontAwesomeIcon icon={faLock} />
+                </span>
+              </div>
+            </div>
 
-        <div className="field is-grouped">
-          <div className="control">
-            <button className="button is-primary" onSubmit={handleSubmit}>
-              Login
-            </button>
-          </div>
-          <div className="control">
-            <button className="button is-secondary" onClick={forgotPassword}>
-              Forgot Password
-            </button>
+            <div className="field is-grouped mt-5">
+              <div className="control">
+                <NavLink className="button is-primary has-text-weight-semibold" onSubmit={handleSubmit}>
+                  Log In
+                </NavLink>
+              </div>
+              <div className="control">
+                <NavLink className="button is-secondary is-link" to="/register">
+                  Register
+                </NavLink>
+              </div>
+            </div>
+          </form>
+          <div className="has-text-right pr-5">
+            <NavLink
+              className="has-text-link is-italic is-size-6"
+              onClick={forgotPassword}
+            >
+              Lost Password?
+            </NavLink>
           </div>
         </div>
-      </form>
+      </div>
       <MovieBar />
     </div>
   );
