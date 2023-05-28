@@ -19,7 +19,7 @@ public class ShoppingCart{
     @Column(name = "cart_id")
     private Long cartId;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

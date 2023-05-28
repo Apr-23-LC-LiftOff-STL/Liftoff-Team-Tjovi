@@ -3,17 +3,15 @@ package com.liftoff.ecommerce.Service;
 import com.liftoff.ecommerce.Models.Customer;
 import com.liftoff.ecommerce.Models.Movie;
 import com.liftoff.ecommerce.Models.ShoppingCart;
+import com.liftoff.ecommerce.Repositories.CustomerRepository;
 import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
-import com.liftoff.ecommerce.Repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -36,6 +34,14 @@ public class ShoppingCartService {
         }
     }
 
+    public ResponseEntity createNewShoppingCart(Customer customer, ShoppingCart shoppingCart){
+        ShoppingCart newCart = new ShoppingCart(shoppingCart.getMovieId(), shoppingCart.getQuantity());
+        newCart.setCustomer(customer);
+        setTotalPrice(newCart);
+        shoppingCartRepository.save(newCart);
+        return ResponseEntity.ok(HttpStatus.CREATED);
+    }
+
     public ResponseEntity updateQuantityInCart(Long cartId, Long updatedQuantity){
         Optional<ShoppingCart> cartReturned = shoppingCartRepository.findById(cartId);
         ShoppingCart cartToBeUpdated = cartReturned.get();
@@ -45,6 +51,72 @@ public class ShoppingCartService {
         shoppingCartRepository.save(cartToBeUpdated);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
+
+    public ResponseEntity removeItemFromCart(Long cartId){
+        shoppingCartRepository.deleteById(cartId);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity removeAllItemsFromCart(Customer customer){
+        List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
+        shoppingCartRepository.deleteAll(allCustomersCarts);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    public Customer findCustomer(String email){
+        List<Customer> customer = customerRepository.findByEmail(email);
+        return customer.get(0);
+    }
+
+    public void setTotalPrice(ShoppingCart shoppingCart){
+        Long movieId = shoppingCart.getMovieId();
+        Long quantity = shoppingCart.getQuantity();
+        Optional<Movie> movie = movieRepository.findById(movieId);
+        Double individualPrice = movie.get().getPrice();
+        Double totalPrice = individualPrice * quantity;
+        shoppingCart.setTotalPrice(totalPrice);
+    }
+}
+//            ShoppingCart shoppingCart = new ShoppingCart(customer.get(0),new ArrayList<>());
+//            shoppingCart.setMovieIds(new ArrayList<>());
+//            shoppingCartRepository.save(shoppingCart);
+
+
+// Geoff's original code
+//    public void createShoppingCartClass(Long customerId){
+//        if (customerRepository.existsById(customerId)){
+//            ShoppingCart shoppingCart = new ShoppingCart(customerId,new ArrayList<>());
+//            shoppingCart.setMovieIds(new ArrayList<>());
+//            shoppingCart.setId(customerId);
+//            shoppingCartRepository.save(shoppingCart);
+//        }
+
+
+//    public ArrayList<Long> createCart(int userId) {
+//
+//        if (shoppingCartRepository.existsById(userId)){
+//            movies = new ArrayList<>();
+//            return movies;
+//
+//    }
+//        return null;
+//    }
+
+//    public void addToCart(Long id, Long movieId){
+//
+//        if (movieRepository.existsById(movieId) && shoppingCartRepository.existsById(id)){
+//
+//            shoppingCartRepository.findById(id).get().addToCart(movieId);
+//            shoppingCartRepository.save(shoppingCartRepository.findById(id).get());
+//
+//        }
+//    }
+//    public void removeFromCart(Long id, Long movieId){
+//        if (movieRepository.existsById(movieId) && shoppingCartRepository.existsById(id)){
+//            shoppingCartRepository.findById(id).get().deleteFromCart(movieId);
+//            shoppingCartRepository.save(shoppingCartRepository.findById(id).get());
+//        }
+//    }
 //    public void addToCart(String email, ShoppingCart shoppingCart){
 //        Long movieId = shoppingCart.getMovieId();
 //        Long quantity = shoppingCart.getQuantity();
@@ -121,71 +193,3 @@ public class ShoppingCartService {
 //        deleteOldDuplicateCart(oldCart.getCartId());
 //    }
 
-    public void deleteOldDuplicateCart(Long cartId){
-        shoppingCartRepository.deleteById(cartId);
-    }
-
-    public Customer findCustomer(String email){
-        List<Customer> customer = customerRepository.findByEmail(email);
-        return customer.get(0);
-    }
-
-    public void setTotalPrice(ShoppingCart shoppingCart){
-        Long movieId = shoppingCart.getMovieId();
-        Long quantity = shoppingCart.getQuantity();
-        Optional<Movie> movie = movieRepository.findById(movieId);
-        Double individualPrice = movie.get().getPrice();
-        Double totalPrice = individualPrice * quantity;
-        shoppingCart.setTotalPrice(totalPrice);
-    }
-
-    public ResponseEntity createNewShoppingCart(Customer customer, ShoppingCart shoppingCart){
-        ShoppingCart newCart = new ShoppingCart(shoppingCart.getMovieId(), shoppingCart.getQuantity());
-        newCart.setCustomer(customer);
-        setTotalPrice(newCart);
-        shoppingCartRepository.save(newCart);
-        return ResponseEntity.ok(HttpStatus.CREATED);
-    }
-
-//            ShoppingCart shoppingCart = new ShoppingCart(customer.get(0),new ArrayList<>());
-//            shoppingCart.setMovieIds(new ArrayList<>());
-//            shoppingCartRepository.save(shoppingCart);
-
-
-    // Geoff's original code
-//    public void createShoppingCartClass(Long customerId){
-//        if (customerRepository.existsById(customerId)){
-//            ShoppingCart shoppingCart = new ShoppingCart(customerId,new ArrayList<>());
-//            shoppingCart.setMovieIds(new ArrayList<>());
-//            shoppingCart.setId(customerId);
-//            shoppingCartRepository.save(shoppingCart);
-//        }
-
-
-//    public ArrayList<Long> createCart(int userId) {
-//
-//        if (shoppingCartRepository.existsById(userId)){
-//            movies = new ArrayList<>();
-//            return movies;
-//
-//    }
-//        return null;
-//    }
-
-//    public void addToCart(Long id, Long movieId){
-//
-//        if (movieRepository.existsById(movieId) && shoppingCartRepository.existsById(id)){
-//
-//            shoppingCartRepository.findById(id).get().addToCart(movieId);
-//            shoppingCartRepository.save(shoppingCartRepository.findById(id).get());
-//
-//        }
-//    }
-//    public void removeFromCart(Long id, Long movieId){
-//        if (movieRepository.existsById(movieId) && shoppingCartRepository.existsById(id)){
-//            shoppingCartRepository.findById(id).get().deleteFromCart(movieId);
-//            shoppingCartRepository.save(shoppingCartRepository.findById(id).get());
-//        }
-//    }
-
-}

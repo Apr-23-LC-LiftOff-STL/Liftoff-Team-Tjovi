@@ -1,20 +1,14 @@
 package com.liftoff.ecommerce.Controllers;
 
-import com.liftoff.ecommerce.Models.ShoppingCart;
 import com.liftoff.ecommerce.Models.Customer;
+import com.liftoff.ecommerce.Models.ShoppingCart;
+import com.liftoff.ecommerce.Repositories.CustomerRepository;
 import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
-import com.liftoff.ecommerce.Models.Movie;
-import com.liftoff.ecommerce.Repositories.CustomerRepository;
 import com.liftoff.ecommerce.Service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -47,6 +41,8 @@ public class ShoppingCartController {
         return response;
     }
 
+    // This is assuming Front End is doing the quantity math and sending the new quantity total
+    // and not just the quantity to be added to the old quantity. Can do either way though.
     @PutMapping("edit/{cartId}")
     public ResponseEntity updateCartQuantity(@PathVariable Long cartId, @RequestBody ShoppingCart shoppingCart){
         Long newQuantity = shoppingCart.getQuantity();
@@ -54,12 +50,20 @@ public class ShoppingCartController {
         return response;
     }
 
-//    @DeleteMapping("/delete")
-//    public ResponseEntity deleteFromCart(@RequestBody ShoppingCart shoppingCart){
-//        Long id = shoppingCart.getCartId();
-//        shoppingCartService.deleteOldDuplicateCart(id);
-//        return ResponseEntity.ok(HttpStatus.OK);
-//    }
+    @DeleteMapping("/delete/{cartId}")
+    public ResponseEntity removeItemFromCart(@PathVariable Long cartId){
+        ResponseEntity response = shoppingCartService.removeItemFromCart(cartId);
+        return response;
+    }
+
+    @DeleteMapping("/deleteAll/{email}")
+    public ResponseEntity removeAllItemsFromCart(@PathVariable String email){
+        Customer customer = shoppingCartService.findCustomer(email);
+        ResponseEntity response = shoppingCartService.removeAllItemsFromCart(customer);
+        return response;
+    }
+}
+
 //    @GetMapping("/remove/{id}/{movieId}")
 //    public void removeFromCart(@PathVariable Long id,@PathVariable Long movieId){
 //        shoppingCartService.removeFromCart(id, movieId);
@@ -72,7 +76,7 @@ public class ShoppingCartController {
 
 
 
-    // Geoff's original code
+// Geoff's original code
 //
 //    @GetMapping("/createCart/{email}")
 //    public void createCartForUser(@PathVariable String email){
@@ -95,6 +99,3 @@ public class ShoppingCartController {
 //    public Optional<ShoppingCart> seeCart(@PathVariable int id) throws Exception{
 //        return shoppingCartRepository.findById(id);
 //    }
-
-}
-
