@@ -30,15 +30,13 @@ public class ShoppingCartController {
     @GetMapping("/returnAll/{email}")
     public ResponseEntity<?> returnCart(@PathVariable String email){
         Customer customer = shoppingCartService.findCustomer(email);
-        ResponseEntity response = shoppingCartService.returnCartInstances(customer.getId());
-        return response;
+        return shoppingCartService.returnCartInstances(customer.getId());
     }
 
     @PostMapping("/add/{email}")
     public ResponseEntity addToCart(@PathVariable String email, @RequestBody ShoppingCart shoppingCart) {
         Customer customer = shoppingCartService.findCustomer(email);
-        ResponseEntity response = shoppingCartService.createNewShoppingCart(customer, shoppingCart);
-        return response;
+        return shoppingCartService.createNewShoppingCart(customer, shoppingCart);
     }
 
     // This is assuming Front End is doing the quantity math and sending the new quantity total
@@ -46,21 +44,18 @@ public class ShoppingCartController {
     @PutMapping("edit/{cartId}")
     public ResponseEntity updateCartQuantity(@PathVariable Long cartId, @RequestBody ShoppingCart shoppingCart){
         Long newQuantity = shoppingCart.getQuantity();
-        ResponseEntity response = shoppingCartService.updateQuantityInCart(cartId, newQuantity);
-        return response;
+        return shoppingCartService.updateQuantityInCart(cartId, newQuantity);
     }
 
     @DeleteMapping("/delete/{cartId}")
     public ResponseEntity removeItemFromCart(@PathVariable Long cartId){
-        ResponseEntity response = shoppingCartService.removeItemFromCart(cartId);
-        return response;
+        return shoppingCartService.removeItemFromCart(cartId);
     }
 
     @DeleteMapping("/deleteAll/{email}")
     public ResponseEntity removeAllItemsFromCart(@PathVariable String email){
         Customer customer = shoppingCartService.findCustomer(email);
-        ResponseEntity response = shoppingCartService.removeAllItemsFromCart(customer);
-        return response;
+        return shoppingCartService.removeAllItemsFromCart(customer);
     }
 }
 
