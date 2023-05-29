@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 import MovieCard from "./MovieCard.js";
-import MovieCardsNoneFound from "./MovieCardsNoneFound.js"
+import MovieCardsNoneFound from "./MovieCardsNoneFound.js";
 
 import { Box } from "@mui/material";
 import { Pagination } from "@mui/material";
@@ -57,6 +57,7 @@ function MovieCards() {
       left: 0,
       behavior: "instant",
     });
+    setPage(0);
   }, [searchTerm, selectedGenres, sortOptions, page]);
 
   const handleChangePage = (event, value) => {
@@ -65,9 +66,7 @@ function MovieCards() {
   };
 
   if (movies.length === 0) {
-    return (
-      <MovieCardsNoneFound />
-    );
+    return <MovieCardsNoneFound />;
   }
 
   return (

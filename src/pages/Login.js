@@ -22,7 +22,7 @@ const Login = () => {
   const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const setCartUser = useCartStore((state) => state.setCartUser);
-  const loginCart = useCartStore((state) => state.loginCart);
+  const getCart = useCartStore((state) => state.getCart);
 
   const forgotPassword = async (event) => {
     event.preventDefault();
@@ -53,7 +53,7 @@ const Login = () => {
         console.log(response.data);
         const userData = jwtDecode(authorization);
         setCartUser(userData.username);
-        loginCart();
+        getCart(userData.username);
         navigate("/");
       } else {
         throw new Error("Login failed");
