@@ -7,7 +7,8 @@ import { useCartStore } from "../../store/cartStore";
 import CheckoutInv from "./CheckoutInv";
 import CheckoutInvItem from "./CheckoutInvItem";
 import MovieBar from "../../components/MovieBar/MovieBar";
-
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   PaymentElement,
   useElements,
@@ -15,7 +16,9 @@ import {
 } from "@stripe/react-stripe-js";
 
 import LoadingOverlay from "./LoadingOverlay";
-
+const stripePromise = loadStripe(
+  "pk_test_51N8n2ODvHmrdraF8Eb3aQ9m86ueHPsypNotvydB9gIsrlxlpyVbah3R3Zt0L1Al5swbbXNzkDHmUmfXuKjH70fmc00Q2jPmqAa"
+);
 const Checkout = () => {
   const cart = useCartStore((state) => state.cart);
 
@@ -49,45 +52,7 @@ const Checkout = () => {
     fetchData();
   }, [cart]);
 
-  const stripe = useStripe();
-  const elements = useElements();
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState();
-
-  const handleError = (error) => {
-    setLoading(false);
-    setErrorMessage(error.message);
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!stripe) {
-      return;
-    }
-    setLoading(true);
-    const { error: submitError } = await elements.submit();
-    if (submitError) {
-      handleError(submitError);
-      return;
-    }
-    const response = await fetch("http://localhost:8080/checkout", {
-      method: "POST",
-    });
-    const { client_secret: clientSecret } = await response.json();
-    const { error } = await stripe.confirmPayment({
-      elements,
-      clientSecret,
-      confirmParams: { return_url: "http://localhost:3000/checkout-success" },
-    });
-    if (error) {
-      handleError(error);
-    } else {
-      setLoading(false);
-
-      // redirect here
-      // can call elements.update to update amount
-    }
-  };
+  
   return (
     <div>
       <nav
@@ -116,7 +81,84 @@ const Checkout = () => {
             <CheckoutInv />
           </div>
           <div className="column is-one-third mx-4">
-              <form onSubmit={handleSubmit}>
+          {/* {
+             cartResults &&
+             cartResults.every(({status})=> status==="success" ) &&
+              cartResults.length > 0
+             && */}
+
+
+         
+         <Elements stripe={stripePromise} options={  {
+   // passing the client secret obtained from the server
+   mode: "payment",
+   currency: "usd",
+    amount: 100
+    // cartResults.reduce((total,item)=> {
+// return total + item.data.price
+//    },0) *100,
+ }}>
+<StripeCheckout/>
+              
+              </Elements>  
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+function StripeCheckout(){
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
+ 
+ 
+  const handleError = (error) => {
+    setLoading(false);
+    setErrorMessage(error.message);
+  };
+   const handleSubmit = async (event) => {
+    event.preventDefault();
+ 
+ 
+    if (!stripe) {
+      return;
+    }
+    setLoading(true);
+    const { error: submitError } = await elements.submit();
+    if (submitError) {
+      handleError(submitError);
+      return;
+    }
+    //ammount needs to go here
+    //create pending order where you end product ids
+    //when hits checkout success put query params
+    const response = await axios("http://localhost:8080/checkout", {
+
+      method: "GET",
+      // headers: {
+      //   'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNb3ZpZURMIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJnbTJAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE2ODUzOTQ5MjYsImV4cCI6MTY4NTY5NDkyNn0.UYFYfIgFDKMMNpBWopw7MuU6Z3Q6X8TQ4N7qtyrz-DY`
+      // }
+    });
+    const { client_secret: clientSecret } =  await response.data;
+    const { error } = await stripe.confirmPayment({
+      elements,
+      clientSecret,
+      confirmParams: { return_url: "http://localhost:3000/success" },
+    });
+    if (error) {
+      handleError(error);
+    } else {
+      setLoading(false);
+ 
+ 
+      // redirect here
+      // can call elements.update to update amount
+    }
+  };
+  return (
+ <form onSubmit={handleSubmit}>
                 <PaymentElement />
                 {errorMessage && <div>{errorMessage}</div>}
                 {loading && <LoadingOverlay />}
@@ -128,11 +170,7 @@ const Checkout = () => {
                   Complete Purchase
                 </button>
               </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
+  )
+ }
+ 
 export default Checkout;
