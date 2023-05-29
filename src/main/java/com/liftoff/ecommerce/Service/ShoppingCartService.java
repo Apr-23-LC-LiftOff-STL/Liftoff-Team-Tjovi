@@ -42,17 +42,33 @@ public class ShoppingCartService {
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    public ResponseEntity<?> updateQuantityInCart(Long cartId, Long updatedQuantity){
-        Optional<ShoppingCart> cartReturned = shoppingCartRepository.findById(cartId);
-        ShoppingCart cartToBeUpdated = cartReturned.get();
-        cartToBeUpdated.setQuantity(updatedQuantity);
-        setTotalPrice(cartToBeUpdated);
-        shoppingCartRepository.save(cartToBeUpdated);
+    public ResponseEntity<?> updateQuantityInCart(Customer customer, ShoppingCart shoppingCart) {
+        Long customerId = customer.getId();
+        Long movieIdToUpdate = shoppingCart.getMovieId();
+        Long newQuantity = shoppingCart.getQuantity();
+        List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customerId);
+        for (ShoppingCart currentCart : allCustomersCarts) {
+            if (currentCart.getMovieId().equals(movieIdToUpdate)) {
+                currentCart.setQuantity(newQuantity);
+                setTotalPrice(currentCart);
+                shoppingCartRepository.save(currentCart);
+                break;
+            }
+        }
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity<?> removeItemFromCart(Long cartId){
-        shoppingCartRepository.deleteById(cartId);
+    public ResponseEntity<?> removeItemFromCart(Customer customer, ShoppingCart shoppingCart){
+        Long customerId = customer.getId();
+        Long movieIdToRemove = shoppingCart.getMovieId();
+        List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customerId);
+        for(ShoppingCart currentCart:allCustomersCarts){
+            if(currentCart.getMovieId().equals(movieIdToRemove)){
+                Long cartId = currentCart.getCartId();
+                shoppingCartRepository.deleteById(cartId);
+                break;
+            }
+        }
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 

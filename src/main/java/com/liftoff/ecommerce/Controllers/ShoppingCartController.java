@@ -39,17 +39,17 @@ public class ShoppingCartController {
         return shoppingCartService.createNewShoppingCart(customer, shoppingCart);
     }
 
-    // This is assuming Front End is doing the quantity math and sending the new quantity total
-    // and not just the quantity to be added to the old quantity. Can do either way though.
-    @PutMapping("edit/{cartId}")
-    public ResponseEntity<?> updateCartQuantity(@PathVariable Long cartId, @RequestBody ShoppingCart shoppingCart){
-        Long newQuantity = shoppingCart.getQuantity();
-        return shoppingCartService.updateQuantityInCart(cartId, newQuantity);
+    // This is assuming Front End is sending the total count and not just the new movies needing to be added
+    @PutMapping("/edit/{email}")
+    public ResponseEntity<?> updateCartQuantity(@PathVariable String email, @RequestBody ShoppingCart shoppingCart){
+        Customer customer = shoppingCartService.findCustomer(email);
+        return shoppingCartService.updateQuantityInCart(customer, shoppingCart);
     }
 
-    @DeleteMapping("/delete/{cartId}")
-    public ResponseEntity<?> removeItemFromCart(@PathVariable Long cartId){
-        return shoppingCartService.removeItemFromCart(cartId);
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<?> removeItemFromCart(@PathVariable String email, @RequestBody ShoppingCart shoppingCart){
+        Customer customer = shoppingCartService.findCustomer(email);
+        return shoppingCartService.removeItemFromCart(customer, shoppingCart);
     }
 
     @DeleteMapping("/deleteAll/{email}")

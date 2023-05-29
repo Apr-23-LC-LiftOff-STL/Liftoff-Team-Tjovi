@@ -41,9 +41,10 @@ public class ProjectSecurityConfig {
                 config.setMaxAge(3600L);
                 return config;
             }
-                }).and().csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/register", "/cart/**")
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+                }).and().csrf().disable()
+//                .csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/register")
+//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+//                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
 //                .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
                 .addFilterAt(new AuthoritiesLoggingAtFilter(),BasicAuthenticationFilter.class)
                 .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
@@ -51,7 +52,7 @@ public class ProjectSecurityConfig {
                 .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
                         .requestMatchers("/user").authenticated()
-                        .requestMatchers("/register","/movies", "/*", "/initialize/**", "/cart/**", "/movies/{id}").permitAll()
+                        .requestMatchers("/register", "/movies", "/*", "/initialize/**","/cart/**", "/cart/**/**", "/movies/{id}").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
         return http.build();
