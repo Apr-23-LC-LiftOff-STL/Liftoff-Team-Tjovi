@@ -42,8 +42,10 @@ const NavBar = () => {
   const [loginButtonStyling, setLoginButtonStyling] = useState();
   const [loginButtonText, setLoginButtonText] = useState();
 
+  const logoutCart = useCartStore((state) => state.logoutCart);
   const cartUser = useCartStore((state) => state.cartUser);
   const setCartUser = useCartStore((state) => state.setCartUser);
+
 
   const navigate = useNavigate();
 
@@ -77,7 +79,7 @@ const NavBar = () => {
     setLoginButtonText("Log In");
     setLoginButtonStyling("button is-normal is-primary");
     setIsLoggedIn(false);
-    setCartUser(null);
+    logoutCart();
     navigate("/");
   };
 

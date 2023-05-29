@@ -270,13 +270,28 @@ export const useCartStore = create(
         });
       },
 
-      initialize: () => {
+      loginCart: async () => {
         const token = localStorage.getItem("token");
         if (token) {
           const userData = jwtDecode(token);
           set({ cartUser: userData.username });
+      
+          try {
+            const response = await axios.get(apiGetEndpoint);
+            const { cart } = response.data;
+      
+            set({ cart: cart || [] });
+          } catch (error) {
+            console.error("Error initializing cart:", error);
+          }
         }
       },
+
+      logoutCart: async () => {
+
+            set({ cart: [], cartUser: null });
+
+        },
 
       /*       fetchMovies: async () => {
         await fetch("http://localhost:8080/")

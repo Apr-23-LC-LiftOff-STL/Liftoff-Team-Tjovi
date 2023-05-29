@@ -18,12 +18,11 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [randomQuote, setRandomQuote] = useState("");
-  const [randomMovie, setRandomMovie] = useState("");
 
   const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const setCartUser = useCartStore((state) => state.setCartUser);
+  const loginCart = useCartStore((state) => state.loginCart);
 
   const forgotPassword = async (event) => {
     event.preventDefault();
@@ -54,6 +53,7 @@ const Login = () => {
         console.log(response.data);
         const userData = jwtDecode(authorization);
         setCartUser(userData.username);
+        loginCart();
         navigate("/");
       } else {
         throw new Error("Login failed");
