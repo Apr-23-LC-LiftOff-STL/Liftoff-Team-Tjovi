@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 import { useState } from 'react';
 export default function Contact(){
   const [values, setValues] = useState({
-    email: "tevrese12@gmail.com",
+    email: "",
   name:"",
 })
 

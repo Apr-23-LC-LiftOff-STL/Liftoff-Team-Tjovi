@@ -37,6 +37,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Checkout from "./pages/checkout/Checkout";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import CheckoutFailure from "./pages/checkout/CheckoutSuccess";
+import LostPassword from "./pages/LostPassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -62,6 +63,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
+      <Route path="lostPassword" element={<LostPassword />} />
       <Route path="account" element={<AccountLayout />}>
         <Route path="orders" element={<OrderHistory />} />
         <Route path="profile" element={<Profile />} />

@@ -150,6 +150,7 @@ export default function Register() {
                   onChange={handleChange}
                   required
                   placeholder="********"
+                  
                 />
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faLock} style={{ color: "#0ee1be" }} />

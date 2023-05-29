@@ -21,8 +21,8 @@ const Login = () => {
 
   const forgotPassword = async (event) => {
     event.preventDefault();
-    alert("Functionality not added yet")
-    //navigate("/lostPassword");
+    //alert("Functionality not added yet")
+    navigate("/lostPassword");
   };
 /*   useEffect(() => {
     const token = localStorage.getItem("token");
