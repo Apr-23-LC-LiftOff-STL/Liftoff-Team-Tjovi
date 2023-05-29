@@ -4,6 +4,14 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenSquare } from "@fortawesome/free-solid-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faLockOpen } from "@fortawesome/free-solid-svg-icons";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import MovieBar from "../../components/MovieBar/MovieBar";
 
@@ -27,7 +35,7 @@ export default function Profile(props) {
   const userData = {};
   const [originalValues, setOriginalValues] = useState({ ...values });
 
-  var [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(true);
 
   // useEffect(async () => {
   //    userData = await fetch("http://localhost:8080/register");
@@ -82,12 +90,17 @@ export default function Profile(props) {
     }));
   };
 
-  function enableEdit() {
-    setDisabled((disabled = false));
+  function enableEdit(e) {
+    e.preventDefault();
+    if (disabled) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   }
 
   function cancelEdit() {
-    setDisabled((disabled = true));
+    setDisabled(true);
     setValues({
       email: "",
       // pwd: "",
@@ -162,195 +175,271 @@ export default function Profile(props) {
                   My Profile
                 </a>
               </li>
-              <li>
-                <a href="./orders">Order History</a>
-              </li>
             </ul>
           </nav>
         </div>
-        <i>
-          <button
-            className="button is-primary is-outlined"
-            onClick={enableEdit}
-          >
-            Edit Profile
-          </button>
-          <span className="icon is-small is-left">
-            <FontAwesomeIcon icon={faPenSquare} style={{ color: "#0ee1be" }} />
-          </span>
-        </i>
-        <form className="box">
-          <fieldset disabled={disabled}>
-            <div className="field">
-              <label className="label">Email: {originalValues.email}</label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  required
-                  placeholder={userData.user}
-                  name="email"
-                />
+        <div className="columns is-centered pt-4">
+          <div className="column is-7 mx-6">
+            <form
+              className="box px-6 pb-6"
+              style={{
+                borderStyle: "solid",
+                borderColor: "lightgray",
+                borderWidth: "1px",
+              }}
+            >
+              <div className="title is-3 mt-5 has-text-weight-semibold">
+                My Profile
+                <i>
+                  <button
+                    className={
+                      disabled
+                        ? "button is-small is-outlined is-pulled-right has-text-weight-bold"
+                        : "button is-small is-warning is-pulled-right has-text-weight-bold"
+                    }
+                    onClick={enableEdit}
+                  >
+                    {disabled ? "Unlock Fields" : "Lock Fields"} &nbsp; &nbsp;
+                    <span className="icon is-pulled-right">
+                      <FontAwesomeIcon
+                        icon={disabled ? faLock : faLockOpen}
+                      />
+                    </span>
+                  </button>
+                </i>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Password:</label>
-              <div className="control">
-                <input
-                  name="pwd"
-                  className="input is-primary"
-                  type="password"
-                  value={values.pwd}
-                  onChange={handleChange}
-                  // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                  title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-                  required
-                  placeholder="********"
-                />
+
+              <div className="columns">
+                <div className="column">
+                  <div>
+                    <fieldset disabled={disabled}>
+                      <div className="field">
+                        <label className="label">
+                          E-Mail {originalValues.email}
+                        </label>
+                        <div className="control">
+                          <input
+                            className="input"
+                            type="email"
+                            value={values.email}
+                            onChange={handleChange}
+                            required
+                            placeholder={userData.user}
+                            name="email"
+                          />
+                        </div>
+                      </div>
+                      <div className="column is-half"></div>
+                      <div className="columns">
+                        <div className="column is-half">
+                          <div className="field">
+                            <label className="label">New Password</label>
+                            <div className="control">
+                              <input
+                                name="pwd"
+                                className="input"
+                                type="password"
+                                value={values.pwd}
+                                onChange={handleChange}
+                                // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                required
+                                placeholder="********"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="column is-half">
+                          <div className="field">
+                            <label className="label">Verify New Password</label>
+                            <div className="control">
+                              <input
+                                name="verifyPwd"
+                                className="input"
+                                type="password"
+                                value={values.verifyPwd}
+                                onChange={handleChange}
+                                required
+                                placeholder="********"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="columns">
+                        <div className="column is-half">
+                          <div className="field">
+                            <label className="label">
+                              First Name: {originalValues.firstName}
+                            </label>
+                            <div className="control">
+                              <input
+                                className="input"
+                                type="text"
+                                value={values.firstName}
+                                onChange={handleChange}
+                                required
+                                name="firstName"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="column is-half">
+                          <div className="field">
+                            <label className="label">
+                              Last Name {originalValues.lastName}
+                            </label>
+                            <div className="control">
+                              <input
+                                className="input"
+                                type="text"
+                                value={values.lastName}
+                                onChange={handleChange}
+                                required
+                                name="lastName"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="columns">
+                        <div className="column is-half">
+                          <div className="field">
+                            <label className="label">
+                              Mobile Number {originalValues.mobileNumber}
+                            </label>
+                            <div className="control">
+                              <input
+                                className="input"
+                                type="tel"
+                                name="mobileNumber"
+                                value={values.mobileNumber}
+                                onChange={handleChange}
+                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                required
+                                placeholder="555-555-5555"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="columns">
+                        <div className="column is-half">
+                          <div className="field">
+                            <label className="label">
+                              Street Address {originalValues.streetAddress}
+                            </label>
+                            <div className="control">
+                              <input
+                                className="input"
+                                type="text"
+                                value={values.streetAddress}
+                                onChange={handleChange}
+                                required
+                                name="streetAddress"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="column is-half">
+                          <div className="field">
+                            <label className="label">
+                              Suite/Apt. Number {originalValues.suite}
+                            </label>
+                            <div className="control">
+                              <input
+                                className="input"
+                                type="text"
+                                value={values.suite}
+                                onChange={handleChange}
+                                required
+                                name="suite"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="columns">
+                        <div className="column is-half">
+                          <div className="field">
+                            <label className="label">
+                              City {originalValues.city}
+                            </label>
+                            <div className="control">
+                              <input
+                                className="input"
+                                type="text"
+                                value={values.city}
+                                onChange={handleChange}
+                                required
+                                name="city"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="column is-one-quarter">
+                          <div className="field">
+                            <label className="label">
+                              State: {originalValues.state}
+                            </label>
+                            <div className="control">
+                              <input
+                                className="input"
+                                type="text"
+                                value={values.state}
+                                onChange={handleChange}
+                                required
+                                name="state"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="column is-one-quarter">
+                          <div className="field">
+                            <label className="label">
+                              Zip {originalValues.zipCode}
+                            </label>
+                            <div className="control">
+                              <input
+                                className="input"
+                                type="text"
+                                value={values.zipCode}
+                                onChange={handleChange}
+                                name="zipCode"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <br />
+                  <div className="field is-grouped">
+                    <div className="control">
+                      <button
+                        className="button is-primary has-text-weight-semibold"
+                        onClick={onUpdate}
+                      >
+                        Update Profile
+                      </button>
+                    </div>
+                    <div className="control">
+                      <button
+                        type="button"
+                        className="button is-secondary is-light"
+                        onClick={cancelEdit}
+                      >
+                        Cancel Changes
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Verify Password:</label>
-              <div className="control">
-                <input
-                  name="verifyPwd"
-                  className="input is-primary"
-                  type="password"
-                  value={values.verifyPwd}
-                  onChange={handleChange}
-                  required
-                  placeholder="********"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">
-                First Name: {originalValues.firstName}
-              </label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="text"
-                  value={values.firstName}
-                  onChange={handleChange}
-                  required
-                  name="firstName"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">
-                Last Name: {originalValues.lastName}
-              </label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="text"
-                  value={values.lastName}
-                  onChange={handleChange}
-                  required
-                  name="lastName"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">
-                Street Address: {originalValues.streetAddress}
-              </label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="text"
-                  value={values.streetAddress}
-                  onChange={handleChange}
-                  required
-                  name="streetAddress"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">
-                Suite/Apt. Number: {originalValues.suite}
-              </label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="text"
-                  value={values.suite}
-                  onChange={handleChange}
-                  required
-                  name="suite"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">City: {originalValues.city}</label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="text"
-                  value={values.city}
-                  onChange={handleChange}
-                  required
-                  name="city"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">State: {originalValues.state}</label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="text"
-                  value={values.state}
-                  onChange={handleChange}
-                  required
-                  name="state"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">
-                Zip Code: {originalValues.zipCode}
-              </label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="text"
-                  value={values.zipCode}
-                  onChange={handleChange}
-                  name="zipCode"
-                  placeholder="(optional)"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">
-                Telephone: {originalValues.mobileNumber}
-              </label>
-              <div className="control">
-                <input
-                  className="input is-primary"
-                  type="tel"
-                  name="mobileNumber"
-                  value={values.mobileNumber}
-                  onChange={handleChange}
-                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                  required
-                  placeholder="555-555-5555"
-                />
-              </div>
-            </div>
-          </fieldset>
-        </form>
-        <button className="button is-primary" onClick={onUpdate}>
-          Update Profile
-        </button>
-        <button className="button is-light" onClick={cancelEdit}>
-          Cancel Changes
-        </button>
+            </form>
+          </div>
+        </div>
       </div>
       <MovieBar />
     </div>

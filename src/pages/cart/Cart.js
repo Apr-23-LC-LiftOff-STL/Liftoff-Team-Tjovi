@@ -129,6 +129,7 @@ export default function Cart() {
           Complete Purchase *NOT FINAL BUTTON
         </div>
       </div> */}
+      <MovieBar />
     </div>
   );
 }

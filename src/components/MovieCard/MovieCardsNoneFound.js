@@ -3,22 +3,22 @@ import { Fade } from "@mui/material";
 const MovieCardsNoneFound = () => {
   return (
     <div>
+    <Fade in timeout={2500}>
       <section
-        className="section box is-shadowless is-medium my-6 mx-6 has-background-white-ter"
+        className="section box is-shadowless is-medium my-6 mx-6"
         style={{
           borderStyle: "dashed",
-          borderColor: "hsl(348, 100%, 61%)",
-          borderWidth: "1px",
+          borderColor: "lightgrey"
         }}
       >
-        <Fade in timeout={800}>
-          <div className="is-size-4 has-text-centered pt-2 has-text-danger has-text-weight-semibold">
+        
+          <div className="is-size-5 has-text-centered pt-2 has-text-danger has-text-weight-semibold">
             No Movies Found
           </div>
-          </Fade>
-          <p className="has-text-centered is-italic">Try another search</p>
 
+          <p className="has-text-centered is-italic">Try another search</p>
       </section>
+      </Fade>
     </div>
   );
 };

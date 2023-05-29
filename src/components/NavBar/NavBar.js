@@ -42,6 +42,9 @@ const NavBar = () => {
   const [loginButtonStyling, setLoginButtonStyling] = useState();
   const [loginButtonText, setLoginButtonText] = useState();
 
+  const cartUser = useCartStore((state) => state.cartUser);
+  const setCartUser = useCartStore((state) => state.setCartUser);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,6 +77,7 @@ const NavBar = () => {
     setLoginButtonText("Log In");
     setLoginButtonStyling("button is-normal is-primary");
     setIsLoggedIn(false);
+    setCartUser(null);
     navigate("/");
   };
 

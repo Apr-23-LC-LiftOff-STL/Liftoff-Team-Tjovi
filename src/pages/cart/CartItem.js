@@ -39,10 +39,10 @@ const CartItem = ({
   const cart = useCartStore((state) => state.cart);
   const cartUser = useCartStore((state) => state.cartUser);
 
-  useEffect(() => {
+/*   useEffect(() => {
     useCartStore.getState().initialize();
     console.log(cartUser);
-  }, [cart]);
+  }, [cart]); */
 
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
@@ -54,7 +54,6 @@ const CartItem = ({
 
   const incrementCartItemButtonHandler = () => {
     incrementCartItem(id);
-    console.log(JSON.stringify(cart));
   };
 
   const decrementCartItemButtonHandler = () => {
@@ -63,13 +62,11 @@ const CartItem = ({
     } else {
       decrementCartItem(id);
     }
-    console.log(JSON.stringify(cart));
   };
 
   const removeAllThisItemButtonHandler = () => {
     handleClickOpen();
     removeAllThisItem(id);
-    console.log(JSON.stringify(cart));
   };
 
   return (

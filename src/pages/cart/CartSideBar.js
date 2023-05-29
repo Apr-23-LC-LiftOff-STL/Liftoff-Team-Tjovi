@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useCartStore } from "../../store/cartStore";
+import { useLoginStore } from "../../store/loginStore";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -12,11 +13,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
 
 export default function CartSideBar({ allItemsSubtotal }) {
-  const [open, setOpen] = useState(false);
+  const [openCheckout, setOpenCheckout] = useState(false);
+  const [openEmptyCart, setOpenEmptyCart] = useState(false);
 
   const navigate = useNavigate();
 
   const cart = useCartStore((state) => state.cart);
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const emptyCart = useCartStore((state) => state.emptyCart);
 
   const totalProductsInCart = cart.reduce(
@@ -26,16 +29,11 @@ export default function CartSideBar({ allItemsSubtotal }) {
 
   const currencySymbol = "$";
 
-  const token = "dummy_token_in_CartSideBar";
-  const tokenNull = null;
-
   const checkoutButtonHandler = () => {
-    if (token) {
-      alert("** token IS present, proceeding to checkout. ** " + JSON.stringify(cart));
-      navigate("/checkout");
+    if (!isLoggedIn) {
+      handleClickOpenCheckout();
     } else {
-      alert("** token IS NOT present, redirecting to login. **" + JSON.stringify(cart));
-      navigate("/login");
+      navigate("/checkout");
     }
   };
 
@@ -49,12 +47,25 @@ export default function CartSideBar({ allItemsSubtotal }) {
     });
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const navToLoginButtonHandler = () => {
+    navigate("/login");
+  }
+
+  const navToCheckoutButtonHandler = () => {
+    navigate("/checkout");
+  }
+
+  const handleClickOpenEmptyCartDialog = () => {
+    setOpenEmptyCart(true);
+  }
+
+  const handleClickOpenCheckout = () => {
+    setOpenCheckout(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenCheckout(false);
+    setOpenEmptyCart(false);
   };
 
   return (
@@ -100,7 +111,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
           {cart.length > 0 && (
             <div
               className="button is-small is-danger is-outlined is-rounded"
-              onClick={handleClickOpen}
+              onClick={handleClickOpenEmptyCartDialog}
             >
               {" "}
               Empty Cart
@@ -109,7 +120,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
         </div>
       </div>
       <Dialog
-        open={open}
+        open={openEmptyCart}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -135,6 +146,36 @@ export default function CartSideBar({ allItemsSubtotal }) {
           >
             Remove All Items
           </button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openCheckout}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Order history is only available to logged in users. <span className="has-text-weight-semibold">Would you like to log in?</span>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        <button
+            className="button is-small is-warning has-text-weight-semibold"
+            onClick={navToCheckoutButtonHandler}
+          >
+            Check Out
+          </button>
+          <button
+            className="button is-small is-primary has-text-weight-semibold"
+            onClick={navToLoginButtonHandler}
+            autoFocus
+          >
+            Log In
+          </button>
+
         </DialogActions>
       </Dialog>
     </div>

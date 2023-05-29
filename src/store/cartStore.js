@@ -1,87 +1,209 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
+
+const apiPostEndpoint = "http://localhost:8080/cartUser"
+const apiGetEndpoint = "http://localhost:8080/cartUser"
 
 export const useCartStore = create(
-  
   persist(
     (set) => ({
       cart: [],
       cartUser: null,
 
-      incrementCartItem: (id) =>
+      setCartUser: (user) => {
+        set({ cartUser: user });
+      },
+
+      incrementCartItem: async (id) => {
         set((state) => {
           const isPresent = state.cart.find((movies) => movies.id === id);
+          const updatedCart = isPresent
+            ? state.cart.map((movies) =>
+                movies.id === id
+                  ? { ...movies, count: movies.count + 1 }
+                  : movies
+              )
+            : [...state.cart, { id, count: 1 }];
 
-          if (!isPresent) {
+          const cartUser = state.cartUser;
+
+          try {
+            const cartData = {
+              cart: updatedCart,
+              cartUser: cartUser,
+            };
+
+            if (cartUser !== null) {
+              // TODO: need POST endpoint for CART table
+              axios
+                .post({apiPostEndpoint}, cartData)
+                .then(() => {
+                  // TODO: need GET endpoint for CART table
+                  axios
+                    .get({apiGetEndpoint})
+                    .then((response) => {
+                      // Update cart state with the data from the API response
+                      set({
+                        ...state,
+                        cart: response.data.cart,
+                        cartUser: response.data.cartUser,
+                      });
+                    })
+                    .catch((error) => {
+                      console.error("Error getting cart:", error);
+                    });
+                })
+                .catch((error) => {
+                  console.error("Error updating cart:", error);
+                });
+            }
+            // Return updated state
+            console.log(cartUser);
+            updatedCart.map((obj, i) => {
+              console.log(obj);
+            });
             return {
               ...state,
-              cart: [...state.cart, { id, count: 1 }],
+              cart: updatedCart,
+              cartUser: cartUser,
             };
+          } catch (error) {
+            console.error("Error updating cart:", error);
+            return state;
           }
+        });
+      },
 
-          const updatedCart = state.cart.map((movies) =>
-            movies.id === id ? { ...movies, count: movies.count + 1 } : movies
-          );
-
-          return {
-            ...state,
-            cart: updatedCart,
-            cartUser: null,
-          };
-        }),
-
-      decrementCartItem: (id) =>
+      decrementCartItem: async (id) => {
         set((state) => {
-          const isPresent = state.cart.findIndex((movies) => movies.id === id);
+          const isPresent = state.cart.find((movies) => movies.id === id);
+          const updatedCart = isPresent
+            ? state.cart.map((movies) =>
+                movies.id === id
+                  ? { ...movies, count: movies.count - 1 }
+                  : movies
+              )
+            : [...state.cart, { id, count: 0 }];
 
-          if (isPresent === -1) {
+          const cartUser = state.cartUser;
+
+          try {
+            const cartData = {
+              cart: updatedCart,
+              cartUser: cartUser,
+            };
+
+            if (cartUser !== null) {
+              // TODO: need POST endpoint for CART table
+              axios
+                .post({apiPostEndpoint}, cartData)
+                .then(() => {
+                  // TODO: need GET endpoint for CART table
+                  axios
+                    .get({apiGetEndpoint})
+                    .then((response) => {
+                      // Update cart state with the data from the API response
+                      set({
+                        ...state,
+                        cart: response.data.cart,
+                        cartUser: response.data.cartUser,
+                      });
+                    })
+                    .catch((error) => {
+                      console.error("Error getting cart:", error);
+                    });
+                })
+                .catch((error) => {
+                  console.error("Error updating cart:", error);
+                });
+            }
+
+            // Return updated state
+            console.log(cartUser);
+            updatedCart.map((obj, i) => {
+              console.log(obj);
+            });
             return {
               ...state,
+              cart: updatedCart,
+              cartUser: cartUser,
             };
+          } catch (error) {
+            console.error("Error updating cart:", error);
+            return state;
           }
+        });
+      },
 
-          const updatedCart = state.cart
-            .map((movies) =>
-              movies.id === id
-                ? { ...movies, count: Math.max(movies.count - 1, 0) }
-                : movies
-            )
-            .filter((movies) => movies.count);
-
-          return {
-            ...state,
-            cart: updatedCart,
-            cartUser: null,
-          };
-        }),
-
-      removeAllThisItem: (id) =>
+      removeAllThisItem: async (id) => {
         set((state) => {
-          const isPresent = state.cart.findIndex((movies) => movies.id === id);
+          const isPresent = state.cart.find((movies) => movies.id === id);
+          const updatedCart = isPresent
+            ? state.cart
+                .map((movies) =>
+                  movies.id === id
+                    ? {
+                        ...movies,
+                        count: Math.max(movies.count - movies.count, 0),
+                      }
+                    : movies
+                )
+                .filter((movies) => movies.count)
+            : state.cart;
 
-          if (isPresent === -1) {
+          const cartUser = state.cartUser;
+
+          try {
+            const cartData = {
+              cart: updatedCart,
+              cartUser: cartUser,
+            };
+
+            if (cartUser !== null) {
+              // TODO: need POST endpoint for CART table
+              axios
+                .post({apiPostEndpoint}, cartData)
+                .then(() => {
+                  // TODO: need GET endpoint for CART table
+                  axios
+                    .get({apiGetEndpoint})
+                    .then((response) => {
+                      // Update cart state with the data from the API response
+                      set({
+                        ...state,
+                        cart: response.data.cart,
+                        cartUser: response.data.cartUser,
+                      });
+                    })
+                    .catch((error) => {
+                      console.error("Error getting cart:", error);
+                    });
+                })
+                .catch((error) => {
+                  console.error("Error updating cart:", error);
+                });
+            }
+
+            // Return updated state
+            console.log(cartUser);
+            updatedCart.map((obj, i) => {
+              console.log(obj);
+            });
             return {
               ...state,
+              cart: updatedCart,
+              cartUser: cartUser,
             };
+          } catch (error) {
+            console.error("Error updating cart:", error);
+            return state;
           }
+        });
+      },
 
-          const updatedCart = state.cart
-            .map((movies) =>
-              movies.id === id
-                ? { ...movies, count: Math.max(movies.count - movies.count, 0) }
-                : movies
-            )
-            .filter((movies) => movies.count);
-
-          return {
-            ...state,
-            cart: updatedCart,
-            cartUser: null,
-          };
-        }),
-
-/*       changeItemCount: (id, num) =>
+      /*       changeItemCount: (id, num) =>
         set((state) => {
           const isPresent = state.cart.findIndex((movies) => movies.id === id);
 
@@ -97,28 +219,70 @@ export const useCartStore = create(
           };
         }), */
 
-      emptyCart: () =>
+      emptyCart: async () => {
         set((state) => {
-          return {
-            ...state,
-            cart: [],
-            cartUser: null,
-          };
-        }),
+          const updatedCart = [];
+          const cartUser = null;
 
-        initialize: () => {
-          const token = localStorage.getItem("token");
-          if (token) {
-            const userData = jwtDecode(token);
-            set({ cartUser: userData.username });
+          try {
+            const cartData = {
+              cart: updatedCart,
+              cartUser: cartUser,
+            };
+
+            if (cartUser !== null) {
+              // TODO: need POST endpoint for CART table
+              axios
+                .post({apiPostEndpoint}, cartData)
+                .then(() => {
+                  // TODO: need GET endpoint for CART table
+                  axios
+                    .get({apiGetEndpoint})
+                    .then((response) => {
+                      // Update cart state with the data from the API response
+                      set({
+                        ...state,
+                        cart: response.data.cart,
+                        cartUser: response.data.cartUser,
+                      });
+                    })
+                    .catch((error) => {
+                      console.error("Error getting cart:", error);
+                    });
+                })
+                .catch((error) => {
+                  console.error("Error updating cart:", error);
+                });
+            }
+
+            // Return updated state
+            console.log(cartUser);
+            console.log(updatedCart);
+            return {
+              ...state,
+              cart: updatedCart,
+              cartUser: cartUser,
+            };
+          } catch (error) {
+            console.error("Error updating cart:", error);
+            return state;
           }
-        },
+        });
+      },
 
-      fetchMovies: async () => {
+      initialize: () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const userData = jwtDecode(token);
+          set({ cartUser: userData.username });
+        }
+      },
+
+      /*       fetchMovies: async () => {
         await fetch("http://localhost:8080/")
           .then((response) => response.json())
           .then((data) => set({ movies: data.results }));
-      },
+      }, */
     }),
     {
       name: "cart-storage", // unique name
