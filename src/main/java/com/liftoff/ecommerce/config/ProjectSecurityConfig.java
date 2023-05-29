@@ -52,7 +52,7 @@ public class ProjectSecurityConfig {
                 .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
                         .requestMatchers("/user").authenticated()
-                        .requestMatchers("/register", "/movies", "/*", "/initialize/**","/cart/**", "/cart/**/**", "/movies/{id}").permitAll()
+                        .requestMatchers("/register", "/movies", "/*", "/initialize/**", "/cart/**", "/movies/{id}").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
         return http.build();

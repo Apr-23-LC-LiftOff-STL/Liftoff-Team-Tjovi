@@ -21,12 +21,6 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
 
-    @Autowired
-    private MovieRepository movieRepository;
-
-    @Autowired
-    private CustomerRepository customerRepository;
-
     @GetMapping("/returnAll/{email}")
     public ResponseEntity<?> returnCart(@PathVariable String email){
         Customer customer = shoppingCartService.findCustomer(email);
