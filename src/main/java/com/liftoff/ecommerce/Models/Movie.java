@@ -2,9 +2,11 @@ package com.liftoff.ecommerce.Models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 @Entity
 public class Movie {

@@ -16,7 +16,6 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class ShoppingCartService {
@@ -94,9 +93,8 @@ public class ShoppingCartService {
         Double individualPrice = movie.get().getPrice();
         Double totalPrice = individualPrice * quantity;
 
-        Locale usa = new Locale("en", "US");
-        NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
-        String convertedPrice = dollarFormat.format(totalPrice);
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        String convertedPrice = decimalFormat.format(totalPrice);
 
         shoppingCart.setTotalPrice(convertedPrice);
     }

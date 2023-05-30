@@ -1,13 +1,7 @@
 package com.liftoff.ecommerce.Models;
 
-import com.liftoff.ecommerce.Repositories.MovieRepository;
-import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 
 @Entity
