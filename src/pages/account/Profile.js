@@ -129,17 +129,15 @@ export default function Profile(props) {
       console.log("Failed");
     }
   };
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Please Login");
       navigate("/login");
-    }
-    return () => {
+    } else {
       const userData = jwtDecode(token);
       console.log(userData.username);
-
+  
       setValues({
         email: userData.username,
         // pwd: userData.pwd,
@@ -153,7 +151,7 @@ export default function Profile(props) {
         state: userData.state,
         zipCode: userData.zipCode,
       });
-    };
+    }
   }, []);
 
   findByUserName();
