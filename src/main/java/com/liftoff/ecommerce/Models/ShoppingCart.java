@@ -28,7 +28,7 @@ public class ShoppingCart{
 
     private Long quantity;
 
-    private Double totalPrice;
+    private String  totalPrice;
 
     public ShoppingCart() {
     }
@@ -70,11 +70,11 @@ public class ShoppingCart{
         this.quantity = quantity;
     }
 
-    public Double getTotalPrice() {
+    public String getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Double totalPrice) {
+    public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
 

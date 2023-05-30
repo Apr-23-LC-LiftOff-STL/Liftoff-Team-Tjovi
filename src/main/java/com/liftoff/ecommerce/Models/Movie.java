@@ -3,10 +3,8 @@ package com.liftoff.ecommerce.Models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.text.DecimalFormat;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.text.NumberFormat;
+import java.util.*;
 
 @Entity
 public class Movie {
@@ -35,6 +33,8 @@ public class Movie {
     private String runtime;
 
     private Double price;
+
+
 
     public Long getId() {
         return id;
@@ -101,6 +101,5 @@ public class Movie {
         Double truePrice = new Random().nextDouble(9, 20);
 
         this.price = Double.parseDouble(decimalFormat.format(truePrice));
-
     }
 }

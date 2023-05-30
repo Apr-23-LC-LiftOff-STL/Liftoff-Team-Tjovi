@@ -11,8 +11,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class ShoppingCartService {
@@ -89,7 +93,12 @@ public class ShoppingCartService {
         Optional<Movie> movie = movieRepository.findById(movieId);
         Double individualPrice = movie.get().getPrice();
         Double totalPrice = individualPrice * quantity;
-        shoppingCart.setTotalPrice(totalPrice);
+
+        Locale usa = new Locale("en", "US");
+        NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
+        String convertedPrice = dollarFormat.format(totalPrice);
+
+        shoppingCart.setTotalPrice(convertedPrice);
     }
 }
 //            ShoppingCart shoppingCart = new ShoppingCart(customer.get(0),new ArrayList<>());
