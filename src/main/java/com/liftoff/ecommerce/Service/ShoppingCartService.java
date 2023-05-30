@@ -94,9 +94,8 @@ public class ShoppingCartService {
         Double totalPrice = individualPrice * quantity;
 
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        String convertedPrice = decimalFormat.format(totalPrice);
+        shoppingCart.setTotalPrice(Double.parseDouble(decimalFormat.format(totalPrice)));
 
-        shoppingCart.setTotalPrice(convertedPrice);
     }
 }
 //            ShoppingCart shoppingCart = new ShoppingCart(customer.get(0),new ArrayList<>());

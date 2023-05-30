@@ -22,7 +22,7 @@ public class ShoppingCart{
 
     private Long quantity;
 
-    private String  totalPrice;
+    private Double  totalPrice;
 
     public ShoppingCart() {
     }
@@ -64,11 +64,11 @@ public class ShoppingCart{
         this.quantity = quantity;
     }
 
-    public String getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(String totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
