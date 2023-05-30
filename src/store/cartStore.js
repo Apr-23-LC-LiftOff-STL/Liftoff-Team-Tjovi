@@ -24,23 +24,58 @@ export const useCartStore = create(
 
           let cartData = [];
 
+          console.log("getCart");
+          console.log(userData.username);
+
+          const feCart = [];
+
+          console.log("feCart");
+          console.log(feCart);
+
           try {
             const response = await axios.get(
               "http://localhost:8080/cart/returnAll/" + userData.username
             );
             cartData = response.data;
-            console.log("getCart");
-            console.log(userData.username);
 
-            const cart = cartData.map(({ movieId, quantity }) => ({
+            const dbCart = cartData.map(({ movieId, quantity }) => ({
               id: movieId,
-              count: quantity
+              count: quantity,
             }));
 
-            console.log(cart);
+            console.log("dbCart");
+            console.log(dbCart);
+
+            const combinedCart = [];
+
+            for (let i = 0; i < dbCart.length; i++) {
+              for (let j = 0; j < feCart.length; j++) {
+                // find and push shared ids and summed counts to new Array
+                if (feCart[j].id === dbCart[i].id) {
+                  let summedCount = 0;
+                  summedCount = dbCart[i].count + feCart[j].count;
+                  combinedCart.push({ id: dbCart[i].id, count: summedCount });
+                }
+              }
+            }
+            // if other objects in feCart do not match existing IDs in combinedCart, push those objects to combinedCart
+            for (let k = 0; k < feCart.length; k++) {
+              if (!combinedCart.some((obj) => obj.id === feCart[k].id)) {
+                combinedCart.push(feCart[k]);
+              }
+            }
+            // if other objects in dbCart do not match existing IDs in combinedCart, push those objects to combinedCart
+            for (let l = 0; l < dbCart.length; l++) {
+              if (!combinedCart.some((obj) => obj.id === dbCart[l].id)) {
+                combinedCart.push(dbCart[l]);
+              }
+            }
+
+            console.log("Combined Cart");
+            console.log(combinedCart);
 
             set((state) => ({
-              cart: cart,
+              cart: combinedCart,
               cartUser: state.cartUser, // Preserve the existing value of cartUser
             }));
           } catch (error) {
