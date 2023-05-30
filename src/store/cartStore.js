@@ -17,11 +17,12 @@ export const useCartStore = create(
       },
 
       getCart: async () => {
-        let cartData = [];
         const token = localStorage.getItem("token");
         if (token) {
           const userData = jwtDecode(token);
           set({ cartUser: userData.username });
+
+          let cartData = [];
 
           try {
             const response = await axios.get(
@@ -30,12 +31,13 @@ export const useCartStore = create(
             cartData = response.data;
             console.log("getCart");
             console.log(userData.username);
-            console.log(cart);
 
             const cart = cartData.map(({ movieId, quantity }) => ({
-              movieId,
-              quantity
+              id: movieId,
+              count: quantity
             }));
+
+            console.log(cart);
 
             set((state) => ({
               cart: cart,
