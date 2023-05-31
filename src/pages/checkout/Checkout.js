@@ -4,6 +4,8 @@ import axios from "axios";
 
 import { useCartStore } from "../../store/cartStore";
 
+import { useNavigate } from "react-router-dom";
+
 import CheckoutInv from "./CheckoutInv";
 import CheckoutInvItem from "./CheckoutInvItem";
 import MovieBar from "../../components/MovieBar/MovieBar";
@@ -17,15 +19,27 @@ import {
 import LoadingOverlay from "./LoadingOverlay";
 
 const Checkout = () => {
-  const cart = useCartStore((state) => state.cart);
 
+  const cart = useCartStore((state) => state.cart);
   const [productData, setProductData] = useState({});
+  const navigate = useNavigate();
+
+  const totalProductsInCart = cart.reduce(
+    (prev, current) => prev + current.count,
+    0
+  );
+
+  if (totalProductsInCart < 1) {
+    navigate("/");
+  }
 
   const allItemsSubtotal = cart.reduce((total, item) => {
     const data = productData[item.id] || {};
     const itemSubtotal = item.count * data.price;
     return total + itemSubtotal;
   }, 0);
+
+
 
   useEffect(() => {
     const fetchData = async () => {
