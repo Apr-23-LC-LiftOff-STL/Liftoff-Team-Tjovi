@@ -72,10 +72,10 @@ const router = createBrowserRouter(
         <Route path="contact" element={<Contact />} action={contactAction} />
       </Route>
       <Route path="cart" element={<Cart />} />
-      <Route path="checkout" element={<Checkout />}>
+      <Route path="checkout" element={<Checkout />}></Route>
         <Route path="success" element={<CheckoutSuccess />} />
         <Route path="failure" element={<CheckoutFailure />} />
-      </Route>
+      
       <Route path="*" element={<NotFound />} />
     </Route>
   )
