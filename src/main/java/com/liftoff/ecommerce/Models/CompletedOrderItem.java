@@ -11,11 +11,11 @@ public class CompletedOrderItem {
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
     @GenericGenerator(name = "native",strategy = "native")
     @Column(name = "order_item_id")
-    private Long completedOrderItemId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name="order_id")
-    private CompletedOrder completedOrderId;
+    private CompletedOrder completedOrder;
 
     @Column(name="movie_id")
     private Long movieId;
@@ -24,16 +24,26 @@ public class CompletedOrderItem {
 
     private Double totalPrice;
 
+    public CompletedOrderItem() {
+    }
+
+    public CompletedOrderItem(CompletedOrder completedOrder, Long movieId, Long quantity, Double totalPrice) {
+        this.completedOrder = completedOrder;
+        this.movieId = movieId;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+    }
+
     public Long getOrderedItemId() {
-        return completedOrderItemId;
+        return id;
     }
 
-    public CompletedOrder getCompletedOrderId() {
-        return completedOrderId;
+    public CompletedOrder getCompletedOrder() {
+        return completedOrder;
     }
 
-    public void setCompletedOrderId(CompletedOrder completedOrderId) {
-        this.completedOrderId = completedOrderId;
+    public void setCompletedOrder(CompletedOrder completedOrderId) {
+        this.completedOrder = completedOrder;
     }
 
     public Long getMovieId() {

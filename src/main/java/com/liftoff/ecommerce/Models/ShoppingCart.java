@@ -21,7 +21,7 @@ public class ShoppingCart{
 
     private Long quantity;
 
-    private Double  totalPrice;
+    private Double totalPrice;
 
     public ShoppingCart() {
     }
@@ -70,16 +70,6 @@ public class ShoppingCart{
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
-    //
-//    public void addToCart(Long movieId){
-//
-//        getMovieIds().add(movieId);
-//    }
-//
-//    public void deleteFromCart(Long movieId){
-//        getMovieIds().remove(movieId);
-//    }
 }
 
 

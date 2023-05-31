@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface OrderedItemRepository extends CrudRepository<CompletedOrderItem, Long> {
+public interface CompletedOrderedItemRepository extends CrudRepository<CompletedOrderItem, Long> {
 
-    List<CompletedOrderItem> findByCompletedOrderId(Long completedOrderId);
+    List<CompletedOrderItem> findByCompletedOrderId(Long id);
 }

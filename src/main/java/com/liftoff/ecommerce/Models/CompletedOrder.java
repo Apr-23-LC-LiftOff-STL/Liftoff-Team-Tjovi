@@ -13,7 +13,7 @@ public class CompletedOrder {
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
     @GenericGenerator(name = "native",strategy = "native")
     @Column(name = "order_id")
-    private Long completedOrderId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -22,13 +22,20 @@ public class CompletedOrder {
     @Column(name = "date_created")
     private String createDt;
 
-    private Long totalOrderPrice;
+    private Double totalOrderPrice;
 
-    @OneToMany(mappedBy="completedOrderId", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="completedOrder", fetch=FetchType.EAGER)
     private Set<CompletedOrderItem> completedOrderItems;
 
+    public CompletedOrder() {
+    }
+
+    public CompletedOrder(Customer customer) {
+        this.customer = customer;
+    }
+
     public Long getCompletedOrderId() {
-        return completedOrderId;
+        return id;
     }
 
     public Customer getCustomer() {
@@ -47,11 +54,11 @@ public class CompletedOrder {
         this.createDt = createDt;
     }
 
-    public Long getTotalOrderPrice() {
+    public Double getTotalOrderPrice() {
         return totalOrderPrice;
     }
 
-    public void setTotalOrderPrice(Long totalOrderPrice) {
+    public void setTotalOrderPrice(Double totalOrderPrice) {
         this.totalOrderPrice = totalOrderPrice;
     }
 }
