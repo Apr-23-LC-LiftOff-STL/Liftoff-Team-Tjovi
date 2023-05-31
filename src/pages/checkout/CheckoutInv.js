@@ -184,9 +184,6 @@ export default function CheckoutInv() {
           users on <NavLink to="/account/orders">Order History page.</NavLink>
         </div>
       </div>
-      <div className="button is-danger" onClick={handleTestPaymentButton}>
-        TEST PAYMENT BUTTON
-      </div>
     </div>
   );
 }
