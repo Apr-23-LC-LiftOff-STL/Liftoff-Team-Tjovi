@@ -2,9 +2,9 @@ package com.liftoff.ecommerce.Models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
 import java.text.DecimalFormat;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -17,9 +17,11 @@ public class Movie {
     private String title;
 
     private String posterPath;
+
     @Lob
     @Column(name="overview", length=999)
     private String overview;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "movie_genre",
@@ -33,6 +35,8 @@ public class Movie {
     private String runtime;
 
     private Double price;
+
+
 
     public Long getId() {
         return id;
@@ -99,6 +103,5 @@ public class Movie {
         Double truePrice = new Random().nextDouble(9, 20);
 
         this.price = Double.parseDouble(decimalFormat.format(truePrice));
-
     }
 }
