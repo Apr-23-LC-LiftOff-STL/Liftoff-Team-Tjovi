@@ -31,7 +31,15 @@ export default function Profile(props) {
     state: "",
     zipCode: "",
   });
+  const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const userData = {};
   const [originalValues, setOriginalValues] = useState({ ...values });
 
@@ -317,6 +325,7 @@ export default function Profile(props) {
                                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                 required
                                 placeholder="555-555-5555"
+                                title="Please enter your 10 digit phone number"
                               />
                             </div>
                           </div>
@@ -402,10 +411,12 @@ export default function Profile(props) {
                             <div className="control">
                               <input
                                 className="input"
-                                type="text"
+                                type="text"   
+                                pattern="[0-9]{5}"
                                 value={values.zipCode}
                                 onChange={handleChange}
                                 name="zipCode"
+                                title="Please enter your 5 digit zipcode"
                               />
                             </div>
                           </div>

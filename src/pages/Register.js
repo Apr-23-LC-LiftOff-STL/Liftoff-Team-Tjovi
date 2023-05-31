@@ -6,7 +6,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 import { faSignature } from "@fortawesome/free-solid-svg-icons";
-
+import Alert from '@mui/material/Alert';
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -60,7 +60,7 @@ export default function Register() {
     } else {
       try {
         await saveFormData();
-        alert("Your registration was successfully submitted!");
+        
         navigate("/");
       } catch (e) {
         alert(`Registration failed! ${e.message}`);
@@ -116,6 +116,7 @@ export default function Register() {
           </li>
         </ul>
       </nav>
+     
       <div className="columns is-centered">
         <div className="column is-7 mx-6">
           <form
@@ -164,6 +165,8 @@ export default function Register() {
                       onChange={handleChange}
                       required
                       placeholder="********"
+                      title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                     />
                     <span className="icon is-small is-left">
                       <FontAwesomeIcon icon={faLock} />
@@ -234,6 +237,7 @@ export default function Register() {
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     required
                     placeholder="555-555-5555"
+                    title="Please enter your 10 digit phone number"
                   />
                   <span className="icon is-small is-left">
                     <FontAwesomeIcon icon={faPhone} />
@@ -287,6 +291,7 @@ export default function Register() {
                       value={values.city}
                       onChange={handleChange}
                       required
+
                       name="city"
                     />
                   </div>
@@ -314,8 +319,11 @@ export default function Register() {
                     <input
                       className="input"
                       type="text"
+                      pattern="[0-9]{5}"
                       value={values.zipCode}
                       onChange={handleChange}
+                      title="Please enter your 5 digit zipcode"
+                      required
                       name="zipCode"
                     />
                   </div>
@@ -330,6 +338,7 @@ export default function Register() {
                 >
                   Register
                 </button>
+                
               </div>
               <div className="control">
                 <button
