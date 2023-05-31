@@ -4,47 +4,36 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class ShoppingCart{
+@Table(name="completed_order_items")
+public class CompletedOrderItem {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
     @GenericGenerator(name = "native",strategy = "native")
-    @Column(name = "cart_id")
-    private Long cartId;
+    @Column(name = "order_item_id")
+    private Long completedOrderItemId;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name="order_id")
+    private CompletedOrder completedOrderId;
 
     @Column(name="movie_id")
     private Long movieId;
 
     private Long quantity;
 
-    private Double  totalPrice;
+    private Double totalPrice;
 
-    public ShoppingCart() {
+    public Long getOrderedItemId() {
+        return completedOrderItemId;
     }
 
-    public ShoppingCart(Long movieId, Long quantity) {
-        this.movieId = movieId;
-        this.quantity = quantity;
+    public CompletedOrder getCompletedOrderId() {
+        return completedOrderId;
     }
 
-    public Long getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(Long cartId) {
-        this.cartId = cartId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCompletedOrderId(CompletedOrder completedOrderId) {
+        this.completedOrderId = completedOrderId;
     }
 
     public Long getMovieId() {
@@ -70,18 +59,4 @@ public class ShoppingCart{
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
-    //
-//    public void addToCart(Long movieId){
-//
-//        getMovieIds().add(movieId);
-//    }
-//
-//    public void deleteFromCart(Long movieId){
-//        getMovieIds().remove(movieId);
-//    }
 }
-
-
-
-

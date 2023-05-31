@@ -39,6 +39,9 @@ public class Customer {
     @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
     private Set<ShoppingCart> shoppingCart;
 
+    @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
+    private Set<CompletedOrder> completedOrders;
+
     public Long getId() {
         return id;
     }
@@ -109,5 +112,21 @@ public class Customer {
         }
         this.authorities.add(authority);
         authority.setCustomer(this);
+    }
+
+    public Set<ShoppingCart> getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public Set<CompletedOrder> getCompletedOrders() {
+        return completedOrders;
+    }
+
+    public void setCompletedOrders(Set<CompletedOrder> completedOrders) {
+        this.completedOrders = completedOrders;
     }
 }
