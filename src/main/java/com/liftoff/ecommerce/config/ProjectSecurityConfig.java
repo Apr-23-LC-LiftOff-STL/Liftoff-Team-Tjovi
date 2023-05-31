@@ -50,12 +50,13 @@ public class ProjectSecurityConfig {
                 .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                        .requestMatchers("/movies/{id}").hasRole("USER")
+//                        .requestMatchers("/movies/{id}").hasRole("USER")
+//                .requestMatchers("/checkout").authenticated()
                         .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/myLoans").hasRole("USER")
                         .requestMatchers("/myCards").hasRole("USER")
                         .requestMatchers("/user").authenticated()
-                        .requestMatchers("/notices","/contact","/register","/movies").permitAll()
+                .requestMatchers("/notices","/contact","/register","/movies/**","/checkout").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
         return http.build();
