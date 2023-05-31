@@ -170,7 +170,12 @@ function StripeCheckout(){
                   Complete Purchase
                 </button>
               </form>
-  )
- }
- 
+         
+       
+      
+      
+    
+  );
+};
+
 export default Checkout;
