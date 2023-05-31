@@ -187,6 +187,7 @@ export const useCartStore = create(
         });
       },
 
+
       removeAllThisItem: async (id) => {
         set((state) => {
           const updatedCart = state.cart.filter((movies) => movies.id !== id);

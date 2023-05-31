@@ -37,10 +37,10 @@ const MovieCard = ({ title, posterPath, price }) => {
             )}
           </div>
           <div>
-              {!posterPath && (
-                <img className="movie-img" src={posterNA} alt="no image" />
-              )}
-            </div>
+            {!posterPath && (
+              <img className="movie-img" src={posterNA} alt={`no poster image available for ${title}`} />
+            )}
+          </div>
           <div className="movie-card-title">{createShortcut(title, 40)}</div>
           <div
             className="movie-card-title has-text-weight-semibold"
