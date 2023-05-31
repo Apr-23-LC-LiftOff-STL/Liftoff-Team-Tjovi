@@ -1,0 +1,167 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"8308baad-0745-4f8e-b4a6-caeb82cb4e2d\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/checksums/md5-checksums.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.gradle/file-system.probe\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/CheckOutController.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/InitializeProjectDBController$1.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/InitializeProjectDBController.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/MovieController.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/ECommerceApp.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Genre.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Movie.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Repositories/GenreRepository.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Repositories/MovieRepository.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Specifications/MovieSpecification.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/ApiattemptApplicationTests.class\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/libs/ecommerce-0.0.1-SNAPSHOT-plain.jar\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/libs/ecommerce-0.0.1-SNAPSHOT.jar\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/reports/tests/test/classes/com.liftoff.ecommerce.ApiattemptApplicationTests.html\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/reports/tests/test/css/base-style.css\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/reports/tests/test/css/style.css\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/reports/tests/test/index.html\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/reports/tests/test/js/report.js\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/reports/tests/test/packages/com.liftoff.ecommerce.html\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/resolvedMainClassName\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/test-results/test/TEST-com.liftoff.ecommerce.ApiattemptApplicationTests.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/test-results/test/binary/output.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/test-results/test/binary/results.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/tmp/bootJar/MANIFEST.MF\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CheckOutController.class.uniqueId0\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/CheckOutController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/build.gradle\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build.gradle\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/ECommerceApp.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/ECommerceApp.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"ExternalProjectsManager\">\n    <system id=\"GRADLE\">\n      <state>\n        <task path=\"$PROJECT_DIR$\">\n          <activation />\n        </task>\n        <projects_view>\n          <tree_state>\n            <expand>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"ecommerce\" type=\"f1a62948:ProjectNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"ecommerce\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"ecommerce\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n                <item name=\"application\" type=\"c8890929:TasksNode$1\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"ecommerce\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n                <item name=\"build\" type=\"c8890929:TasksNode$1\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"ecommerce\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n                <item name=\"build setup\" type=\"c8890929:TasksNode$1\" />\n              </path>\n            </expand>\n            <select />\n          </tree_state>\n        </projects_view>\n      </state>\n    </system>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Merge.Settings\">\n    <option name=\"BRANCH\" value=\"back-end-dev\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"back-end-dev\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n    <option name=\"showPreview\" value=\"true\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2OnAkz6xUF4jr7LCvAvu0E5AU8F\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Git.Branch.Popup.ShowAllRemotes\": \"true\",\n    \"RequestMappingsPanelOrder0\": \"0\",\n    \"RequestMappingsPanelOrder1\": \"1\",\n    \"RequestMappingsPanelWidth0\": \"75\",\n    \"RequestMappingsPanelWidth1\": \"75\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"WebServerToolWindowFactoryState\": \"false\",\n    \"last_opened_file_path\": \"/Users/grantcrawford/Documents/developer/liftoff/Liftoff-Team-Tjovi\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"project.structure.last.edited\": \"SDKs\",\n    \"project.structure.proportion\": \"0.17\",\n    \"project.structure.side.proportion\": \"0.2\",\n    \"settings.editor.selected.configurable\": \"android.project.structure\",\n    \"spring.configuration.checksum\": \"3a6c104ef32302e5b80977671abbb914\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  },\n  \"keyToStringList\": {\n    \"DatabaseDriversLRU\": [\n      \"mysql\"\n    ]\n  }\n}]]></component>\n  <component name=\"RunManager\" selected=\"Gradle.lift-off-tjovi-be [bootRun]\">\n    <configuration name=\"lift-off-tjovi-be [bootRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\"bootRun\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"lift-off-tjovi-be [build]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\"build\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"lift-off-tjovi-be [clean]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\"clean\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"lift-off-tjovi-be [jar]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\"jar\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\n      <DebugAllEnabled>false</DebugAllEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"ECommerceApp (1)\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\n      <module name=\"apiattempt.main\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.liftoff.ecommerce.ECommerceApp\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"ECommerceApp (2)\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\n      <module name=\"ecommerce.main\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.liftoff.ecommerce.ECommerceApp\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"ECommerceApp\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\n      <module name=\"apiattempt.main\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.example.apiattempt.ECommerceApp\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Gradle.lift-off-tjovi-be [bootRun]\" />\n        <item itemvalue=\"Gradle.lift-off-tjovi-be [build]\" />\n        <item itemvalue=\"Gradle.lift-off-tjovi-be [clean]\" />\n        <item itemvalue=\"Gradle.lift-off-tjovi-be [jar]\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"8308baad-0745-4f8e-b4a6-caeb82cb4e2d\" name=\"Changes\" comment=\"\" />\n      <created>1682186119623</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1682186119623</updated>\n      <workItem from=\"1682186123153\" duration=\"401000\" />\n      <workItem from=\"1682186670654\" duration=\"1499000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Added .gradle dir\">\n      <created>1682198565041</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1682198565041</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Added limited genre sort and search by title\">\n      <created>1682549932724</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1682549932724</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Added sort by genre name\">\n      <created>1683172626255</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1683172626256</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Added sort by mulitple genres.\">\n      <created>1683178621284</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1683178621284</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Added .gradle dir\" />\n    <MESSAGE value=\"Changed from apiattempt to ecommerce\" />\n    <MESSAGE value=\"Added limited genre sort and search by title\" />\n    <MESSAGE value=\"Added sort by genre name\" />\n    <MESSAGE value=\"Added sort by mulitple genres.\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Added sort by mulitple genres.\" />\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e4bd1c031e7134b03851ddd8ae6a7818e9f6bb60)
++++ b/.idea/workspace.xml	(date 1685118113865)
+@@ -4,52 +4,18 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="8308baad-0745-4f8e-b4a6-caeb82cb4e2d" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/md5-checksums.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/CheckOutController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/InitializeProjectDBController$1.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/InitializeProjectDBController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/MovieController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/ECommerceApp.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Genre.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Movie.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Repositories/GenreRepository.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Repositories/MovieRepository.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Specifications/MovieSpecification.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/ApiattemptApplicationTests.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/libs/ecommerce-0.0.1-SNAPSHOT-plain.jar" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/libs/ecommerce-0.0.1-SNAPSHOT.jar" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/com.liftoff.ecommerce.ApiattemptApplicationTests.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/css/base-style.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/css/style.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/js/report.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/com.liftoff.ecommerce.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/resolvedMainClassName" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/test-results/test/TEST-com.liftoff.ecommerce.ApiattemptApplicationTests.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/tmp/bootJar/MANIFEST.MF" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CheckOutController.class.uniqueId0" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/CheckOutController.java" afterDir="false" />
++    <list default="true" id="8c611373-4c9c-4b21-827d-f52a4bf4fd75" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/ECommerceApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/ECommerceApp.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -69,35 +35,7 @@
+         </task>
+         <projects_view>
+           <tree_state>
+-            <expand>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="ecommerce" type="f1a62948:ProjectNode" />
+-              </path>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="ecommerce" type="f1a62948:ProjectNode" />
+-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+-              </path>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="ecommerce" type="f1a62948:ProjectNode" />
+-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+-                <item name="application" type="c8890929:TasksNode$1" />
+-              </path>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="ecommerce" type="f1a62948:ProjectNode" />
+-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+-                <item name="build" type="c8890929:TasksNode$1" />
+-              </path>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="ecommerce" type="f1a62948:ProjectNode" />
+-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+-                <item name="build setup" type="c8890929:TasksNode$1" />
+-              </path>
+-            </expand>
++            <expand />
+             <select />
+           </tree_state>
+         </projects_view>
+@@ -138,35 +76,35 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Git.Branch.Popup.ShowAllRemotes": "true",
+-    "RequestMappingsPanelOrder0": "0",
+-    "RequestMappingsPanelOrder1": "1",
+-    "RequestMappingsPanelWidth0": "75",
+-    "RequestMappingsPanelWidth1": "75",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "last_opened_file_path": "/Users/grantcrawford/Documents/developer/liftoff/Liftoff-Team-Tjovi",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "project.structure.last.edited": "SDKs",
+-    "project.structure.proportion": "0.17",
+-    "project.structure.side.proportion": "0.2",
+-    "settings.editor.selected.configurable": "android.project.structure",
+-    "spring.configuration.checksum": "3a6c104ef32302e5b80977671abbb914",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
++    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
++    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
++    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
++    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/grantcrawford/Documents/developer/liftoff/Liftoff-Team-Tjovi&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;android.project.structure&quot;,
++    &quot;spring.configuration.checksum&quot;: &quot;3a6c104ef32302e5b80977671abbb914&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   },
+-  "keyToStringList": {
+-    "DatabaseDriversLRU": [
+-      "mysql"
++  &quot;keyToStringList&quot;: {
++    &quot;DatabaseDriversLRU&quot;: [
++      &quot;mysql&quot;
+     ]
+   }
+-}]]></component>
++}</component>
+   <component name="RunManager" selected="Gradle.lift-off-tjovi-be [bootRun]">
+     <configuration name="lift-off-tjovi-be [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>

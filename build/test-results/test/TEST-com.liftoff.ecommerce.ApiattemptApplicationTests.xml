@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.liftoff.ecommerce.ApiattemptApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-31T18:12:26" hostname="Geoffreys-Air.attlocal.net" time="0.606">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.liftoff.ecommerce.ApiattemptApplicationTests" time="0.606"/>
+  <system-out><![CDATA[13:12:09.091 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [ApiattemptApplicationTests]: using SpringBootContextLoader
+13:12:09.113 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+13:12:09.116 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.liftoff.ecommerce.ApiattemptApplicationTests]: ApiattemptApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:12:09.206 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [ApiattemptApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+13:12:09.517 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/geoffreymeier/Projects/liftoff-team-tjovi-be/build/classes/java/main/com/liftoff/ecommerce/ECommerceApp.class]
+13:12:09.523 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.liftoff.ecommerce.ECommerceApp for test class com.liftoff.ecommerce.ApiattemptApplicationTests
+13:12:09.864 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [ApiattemptApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, WithSecurityContextTestExecutionListener, EventPublishingTestExecutionListener, ReactorContextTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+13:12:09.869 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [ApiattemptApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.5)
+
+2023-05-31T13:12:10.900-05:00  INFO 9927 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Starting ApiattemptApplicationTests using Java 17.0.6 with PID 9927 (started by geoffreymeier in /Users/geoffreymeier/Projects/liftoff-team-tjovi-be)
+2023-05-31T13:12:10.907-05:00  INFO 9927 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2023-05-31T13:12:13.932-05:00  INFO 9927 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-05-31T13:12:13.940-05:00  INFO 9927 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-05-31T13:12:14.073-05:00  INFO 9927 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.liftoff.ecommerce.Repositories.CustomerRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-31T13:12:14.077-05:00  INFO 9927 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.liftoff.ecommerce.Repositories.GenreRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-31T13:12:14.080-05:00  INFO 9927 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.liftoff.ecommerce.Repositories.MovieRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-05-31T13:12:14.082-05:00  INFO 9927 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 0 JDBC repository interfaces.
+2023-05-31T13:12:14.119-05:00  INFO 9927 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-05-31T13:12:14.122-05:00  INFO 9927 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-31T13:12:14.237-05:00  INFO 9927 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 102 ms. Found 3 JPA repository interfaces.
+2023-05-31T13:12:15.722-05:00  INFO 9927 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-31T13:12:15.825-05:00  INFO 9927 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-31T13:12:17.113-05:00  INFO 9927 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-31T13:12:18.325-05:00  INFO 9927 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@74ebd159
+2023-05-31T13:12:18.332-05:00  INFO 9927 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-31T13:12:18.393-05:00  INFO 9927 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-05-31T13:12:18.400-05:00  WARN 9927 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-05-31T13:12:22.678-05:00  INFO 9927 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-31T13:12:22.704-05:00  INFO 9927 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-31T13:12:24.218-05:00  WARN 9927 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-31T13:12:25.352-05:00  INFO 9927 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@255b84a9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a286095, org.springframework.security.web.context.SecurityContextHolderFilter@2cdd156b, org.springframework.security.web.header.HeaderWriterFilter@5ff8d76f, org.springframework.web.filter.CorsFilter@26723525, org.springframework.security.web.csrf.CsrfFilter@6f53295e, org.springframework.security.web.authentication.logout.LogoutFilter@4e3c0627, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@30bfdcc5, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6bc8d8bd, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@11c40a65, com.liftoff.ecommerce.filter.RequestValidationBeforeFilter@68c3aa38, com.liftoff.ecommerce.filter.JWTTokenValidatorFilter@1196537d, com.liftoff.ecommerce.filter.AuthoritiesLoggingAtFilter@267a8777, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5dc8448b, com.liftoff.ecommerce.filter.CsrfCookieFilter@175c26ff, com.liftoff.ecommerce.filter.AuthoritiesLoggingAfterFilter@623bdc46, com.liftoff.ecommerce.filter.JWTTokenGeneratorFilter@411576c7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58038583, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@106ac5f4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@332610ad, org.springframework.security.web.session.SessionManagementFilter@5746609e, org.springframework.security.web.access.ExceptionTranslationFilter@1a82453, org.springframework.security.web.access.intercept.AuthorizationFilter@11a0c708]
+2023-05-31T13:12:25.379-05:00  WARN 9927 --- [    Test worker] o.s.s.c.a.web.builders.WebSecurity       : 
+
+********************************************************************
+**********        Security debugging is enabled.       *************
+**********    This may include sensitive information.  *************
+**********      Do not use in a production system!     *************
+********************************************************************
+
+
+2023-05-31T13:12:26.789-05:00  INFO 9927 --- [    Test worker] c.l.e.ApiattemptApplicationTests         : Started ApiattemptApplicationTests in 16.757 seconds (process running for 20.766)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
