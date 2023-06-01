@@ -1,4 +1,4 @@
 .env
-.gradle
-build
+.gradle/*
+build/*
 application-dev.properties
