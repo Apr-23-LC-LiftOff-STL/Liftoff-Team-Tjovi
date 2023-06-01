@@ -132,25 +132,26 @@ export default function Profile(props) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Please Login");
       navigate("/login");
     } else {
-      const userData = jwtDecode(token);
-      console.log(userData.username);
-  
-      setValues({
-        email: userData.username,
-        // pwd: userData.pwd,
-        // verifyPwd: userData.verifyPwd,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        phoneNumber: userData.mobileNumber,
-        streetAddress: userData.streetAddress,
-        suite: userData.suite,
-        city: userData.city,
-        state: userData.state,
-        zipCode: userData.zipCode,
-      });
+      return () => {
+        const userData = jwtDecode(token);
+        console.log(userData.username);
+
+        setValues({
+          email: userData.username,
+          // pwd: userData.pwd,
+          // verifyPwd: userData.verifyPwd,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          phoneNumber: userData.mobileNumber,
+          streetAddress: userData.streetAddress,
+          suite: userData.suite,
+          city: userData.city,
+          state: userData.state,
+          zipCode: userData.zipCode,
+        });
+      };
     }
   }, []);
 
@@ -199,9 +200,7 @@ export default function Profile(props) {
                   >
                     {disabled ? "Unlock Fields" : "Lock Fields"} &nbsp; &nbsp;
                     <span className="icon is-pulled-right">
-                      <FontAwesomeIcon
-                        icon={disabled ? faLock : faLockOpen}
-                      />
+                      <FontAwesomeIcon icon={disabled ? faLock : faLockOpen} />
                     </span>
                   </button>
                 </i>
