@@ -36,7 +36,7 @@ public class OrderService {
 
         List<ShoppingCart> cartItemsToOrder = shoppingCartRepository.findByCustomerId(customer.getId());
         for(ShoppingCart currentCart:cartItemsToOrder){
-            CompletedOrderItem orderItem = new CompletedOrderItem(newOrder,currentCart.getMovieId(),
+            CompletedOrderItem orderItem = new CompletedOrderItem(newOrder, currentCart.getMovieId(),
                     currentCart.getQuantity(), currentCart.getTotalPrice());
             completedOrderedItemRepository.save(orderItem);
         }
@@ -47,10 +47,19 @@ public class OrderService {
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
+    public ResponseEntity<?> returnAllCompletedOrders(Long customerId){
+        List<CompletedOrder> completedOrders = completedOrderRepository.findByCustomerId(customerId);
+        if(completedOrders.size()>0){
+            return new ResponseEntity<>(completedOrders, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     public void setTotalOrderPrice(CompletedOrder completedOrder){
         Double totalOrderPrice=0.0;
 
-        List<CompletedOrderItem> orderItems = completedOrderedItemRepository.findByCompletedOrderId(completedOrder.getCompletedOrderId());
+        List<CompletedOrderItem> orderItems = completedOrderedItemRepository.findByCompletedOrderId(completedOrder.getId());
 
         for(CompletedOrderItem currentItem:orderItems){
             totalOrderPrice += currentItem.getTotalPrice();

@@ -36,9 +36,11 @@ public class Customer {
     @OneToMany(mappedBy="customer",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Authority> authorities;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
     private Set<ShoppingCart> shoppingCart;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
     private Set<CompletedOrder> completedOrders;
 

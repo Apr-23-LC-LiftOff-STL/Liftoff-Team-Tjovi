@@ -1,5 +1,6 @@
 package com.liftoff.ecommerce.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,6 +16,7 @@ public class CompletedOrder {
     @Column(name = "order_id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -34,7 +36,7 @@ public class CompletedOrder {
         this.customer = customer;
     }
 
-    public Long getCompletedOrderId() {
+    public Long getId() {
         return id;
     }
 
@@ -60,5 +62,13 @@ public class CompletedOrder {
 
     public void setTotalOrderPrice(Double totalOrderPrice) {
         this.totalOrderPrice = totalOrderPrice;
+    }
+
+    public Set<CompletedOrderItem> getCompletedOrderItems() {
+        return completedOrderItems;
+    }
+
+    public void setCompletedOrderItems(Set<CompletedOrderItem> completedOrderItems) {
+        this.completedOrderItems = completedOrderItems;
     }
 }

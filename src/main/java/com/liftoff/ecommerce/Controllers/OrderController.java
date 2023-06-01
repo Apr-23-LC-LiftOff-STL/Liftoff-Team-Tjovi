@@ -5,10 +5,7 @@ import com.liftoff.ecommerce.Service.OrderService;
 import com.liftoff.ecommerce.Service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/order")
@@ -24,7 +21,11 @@ public class OrderController {
     public ResponseEntity<?> createNewOrder(@PathVariable String email){
         Customer customer = shoppingCartService.findCustomer(email);
         return orderService.createNewOrder(customer);
-
     }
 
+    @GetMapping("/history/{email}")
+    public ResponseEntity<?> returnAllCompletedOrders(@PathVariable String email){
+        Customer customer = shoppingCartService.findCustomer(email);
+        return orderService.returnAllCompletedOrders(customer.getId());
+    }
 }

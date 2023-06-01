@@ -1,5 +1,6 @@
 package com.liftoff.ecommerce.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
