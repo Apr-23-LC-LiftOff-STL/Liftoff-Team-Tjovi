@@ -17,16 +17,29 @@ public class Customer {
     @Column(name = "customer_id")
     private Long id;
 
-    private String name;
+    private String firstName;
+
+    private String lastName;
 
     private String email;
 
     @Column(name = "mobile_number")
     private String mobileNumber;
 
+    private String streetAddress;
+
+    private String suiteNumber;
+
+    private String city;
+
+    private String state;
+
+    private Long zipCode;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String pwd;
 
+    @JsonIgnore
     private String role;
 
     @Column(name = "create_dt")
@@ -36,6 +49,7 @@ public class Customer {
     @OneToMany(mappedBy="customer",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Authority> authorities;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
     private Set<ShoppingCart> shoppingCart;
 
@@ -47,12 +61,20 @@ public class Customer {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -69,6 +91,46 @@ public class Customer {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public String getSuiteNumber() {
+        return suiteNumber;
+    }
+
+    public void setSuiteNumber(String suiteNumber) {
+        this.suiteNumber = suiteNumber;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Long getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(Long zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getPwd() {
@@ -109,5 +171,13 @@ public class Customer {
         }
         this.authorities.add(authority);
         authority.setCustomer(this);
+    }
+
+    public Set<ShoppingCart> getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }
