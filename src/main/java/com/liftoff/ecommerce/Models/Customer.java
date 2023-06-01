@@ -15,7 +15,7 @@ public class Customer {
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
     @GenericGenerator(name = "native",strategy = "native")
     @Column(name = "customer_id")
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -36,11 +36,14 @@ public class Customer {
     @OneToMany(mappedBy="customer",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Authority> authorities;
 
-    public int getId() {
+    @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
+    private Set<ShoppingCart> shoppingCart;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
