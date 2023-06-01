@@ -16,8 +16,30 @@ export default function CheckoutSuccess() {
   // MW - how to get total, cart etc if emptyCart() triggers on component mount after post req?
   // POSSIBLE SOLUTION:  consider POST then GET from DB order table.  Likely!
 
+  // Make a GET request to retrieve order history
+
+const searchQuery = "amount[gte]=5000"
+
   useEffect(() => {
-    const sendCartData = async () => {
+    axios
+      .get("https://api.stripe.com/v1/charges?" + searchQuery, {
+        headers: {
+          Authorization:
+            "Bearer sk_test_51N8n2ODvHmrdraF8ov56fzzBxwokVlEvCMG8tHuBBZZCdWZT39hK9QYonV7aHiT0UwOUgsBgWTJOe97UgHBwxEoH000oqXg4Qu",
+        },
+      })
+      .then((response) => {
+        // Handle the successful response
+        const search_result = response.data.data;
+        console.log("Stripe data:")
+        console.log(search_result);
+        // Process or display the order history as needed
+      })
+      .catch((error) => {
+        // Handle the error
+        console.error("Error retrieving order history:", error);
+      });
+    /*     const sendCartData = async () => {
       try {
         await axios.post("http://localhost:8080/newOrder/" + cartUser);
         console.log(cartUser);
@@ -27,7 +49,7 @@ export default function CheckoutSuccess() {
         console.error("Error posting purchase to DB");
       }
     };
-    sendCartData();
+    sendCartData(); */
   }, []);
 
   return (
