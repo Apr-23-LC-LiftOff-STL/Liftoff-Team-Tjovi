@@ -244,24 +244,26 @@ export const useCartStore = create(
           };
         }), */
 
-      emptyCart: async () => {
-        const token = localStorage.getItem("token");
-        if (token) {
-          const userData = jwtDecode(token);
-          set({ cartUser: userData.username });
-
-          try {
-            await axios.delete(
-              "http://localhost:8080/cart/deleteAll/" + userData.username
-            );
-            set({ cart: [] });
-          } catch (error) {
-            console.error("Error emptying cart:", error);
+        emptyCart: async () => {
+          const token = localStorage.getItem("token");
+          if (token) {
+            const userData = jwtDecode(token);
+            set((state) => ({
+              cartUser: userData.username,
+              cart: [],
+            }));
+        
+            try {
+              await axios.delete(
+                "http://localhost:8080/cart/deleteAll/" + userData.username
+              );
+            } catch (error) {
+              console.error("Error emptying cart:", error);
+            }
+            console.log("emptyCart");
+            console.log(userData.username);
           }
-          console.log("emptyCart");
-          console.log(userData.username);
-        }
-      },
+        },
 
       /*       fetchMovies: async () => {
         await fetch("http://localhost:8080/")

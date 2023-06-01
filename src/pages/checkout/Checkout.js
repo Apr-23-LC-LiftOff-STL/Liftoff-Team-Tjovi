@@ -7,7 +7,6 @@ import { useCartStore } from "../../store/cartStore";
 import { useNavigate } from "react-router-dom";
 
 import CheckoutInv from "./CheckoutInv";
-import CheckoutInvItem from "./CheckoutInvItem";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -34,6 +33,7 @@ const Checkout = () => {
   if (totalProductsInCart < 1) {
     navigate("/");
   }
+
 
   const allItemsSubtotal = cart.reduce((total, item) => {
     const data = productData[item.id] || {};
