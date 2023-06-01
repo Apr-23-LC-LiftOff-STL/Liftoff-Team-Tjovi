@@ -21,6 +21,24 @@ import LoadingOverlay from "./LoadingOverlay";
 const stripePromise = loadStripe(
   "pk_test_51N8n2ODvHmrdraF8Eb3aQ9m86ueHPsypNotvydB9gIsrlxlpyVbah3R3Zt0L1Al5swbbXNzkDHmUmfXuKjH70fmc00Q2jPmqAa"
 );
+let amount
+function renderStripe(total){
+  if(total > 0){
+    return ( <Elements stripe={stripePromise} options={  {
+      // passing the client secret obtained from the server
+      mode: "payment",
+      currency: "usd",
+       amount: total
+       // cartResults.reduce((total,item)=> {
+   // return total + item.data.price
+   //    },0) *100,
+    }}>
+   <StripeCheckout/>
+                 
+                 </Elements>  )
+  }
+}
+
 const Checkout = () => {
 
   const cart = useCartStore((state) => state.cart);
@@ -36,13 +54,18 @@ const Checkout = () => {
     navigate("/");
   }
 
-  const allItemsSubtotal = cart.reduce((total, item) => {
+
+   const allItemsSubtotal = cart.reduce((total, item) => {
     const data = productData[item.id] || {};
     const itemSubtotal = item.count * data.price;
-    return total + itemSubtotal;
+    const finalPrice = total + itemSubtotal * 100
+
+
+    return isNaN(finalPrice) ? 0 : finalPrice 
+   
   }, 0);
-
-
+  amount=allItemsSubtotal
+console.log(allItemsSubtotal)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,8 +75,8 @@ const Checkout = () => {
           const response = await axios.get(
             `http://localhost:8080/movies/${cartItem.id}`
           );
-          const { title, releaseDate, posterPath, price } = response.data;
-          data[cartItem.id] = { title, releaseDate, posterPath, price };
+          const {  price } = response.data;
+          data[cartItem.id] = {  price };
         } catch (error) {
           console.log(
             `Error fetching data for product with ID ${cartItem.id}:`,
@@ -66,7 +89,7 @@ const Checkout = () => {
     fetchData();
   }, [cart]);
 
-  
+ 
   return (
     <div>
       <nav
@@ -101,20 +124,9 @@ const Checkout = () => {
               cartResults.length > 0
              && */}
 
-
+             {renderStripe(allItemsSubtotal)}
          
-         <Elements stripe={stripePromise} options={  {
-   // passing the client secret obtained from the server
-   mode: "payment",
-   currency: "usd",
-    amount: 100
-    // cartResults.reduce((total,item)=> {
-// return total + item.data.price
-//    },0) *100,
- }}>
-<StripeCheckout/>
-              
-              </Elements>  
+        
           </div>
         </div>
       </div>
@@ -145,10 +157,11 @@ function StripeCheckout(){
       handleError(submitError);
       return;
     }
+    const checkoutBackEnd = "http://localhost:8080/checkout?amount=" + amount 
     //ammount needs to go here
     //create pending order where you end product ids
     //when hits checkout success put query params
-    const response = await axios("http://localhost:8080/checkout", {
+    const response = await axios(checkoutBackEnd, {
 
       method: "GET",
       // headers: {
