@@ -1,4 +1,4 @@
-import MovieBar from "../../components/MovieBar/MovieBar";
+
 import OrderHistoryItem from "./OrderHistoryItem";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -69,7 +69,6 @@ export default function OrderHistory() {
           ))}
         </div>
       </div>
-      <MovieBar />
     </div>
   );
 }

@@ -13,8 +13,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import MovieBar from "../components/MovieBar/MovieBar";
-import logo125 from "../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -445,7 +444,6 @@ export default function Register() {
           </DialogActions>
         </Dialog>
       </div>
-      <MovieBar />
     </div>
   );
 }

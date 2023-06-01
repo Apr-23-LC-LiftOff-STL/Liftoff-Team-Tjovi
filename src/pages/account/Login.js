@@ -2,8 +2,6 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 
-import MovieBar from "../components/MovieBar/MovieBar";
-
 import axios from "axios";
 
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +9,8 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-import { useCartStore } from "../store/cartStore";
-import { useLoginStore } from "../store/loginStore";
+import { useCartStore } from "../../store/cartStore";
+import { useLoginStore } from "../../store/loginStore";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -93,7 +91,6 @@ const Login = () => {
           <NavLink className="button is-small is-link is-outlined ml-6" to="/">
             <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
           </NavLink>
-          <MovieBar />
         </div>
       </div>
     );
@@ -187,7 +184,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <MovieBar />
     </div>
   );
 };

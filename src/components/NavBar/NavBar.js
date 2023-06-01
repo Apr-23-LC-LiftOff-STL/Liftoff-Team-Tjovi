@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 import SearchBar from "./SearchBar";
 
-import logo125 from "./Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

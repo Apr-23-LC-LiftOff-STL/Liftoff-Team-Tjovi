@@ -10,8 +10,6 @@ import { faSubtract } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
-import MovieBar from "../../components/MovieBar/MovieBar";
-
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -24,7 +22,7 @@ import ProductsError from "./ProductsError";
 
 import { useCartStore } from "../../store/cartStore";
 
-import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function ProductsDetails() {
   const [open, setOpen] = useState(false);
@@ -241,7 +239,6 @@ export default function ProductsDetails() {
             </div>
           </div>
         </div>
-        <MovieBar />
       </div>
       <Dialog
         open={open}

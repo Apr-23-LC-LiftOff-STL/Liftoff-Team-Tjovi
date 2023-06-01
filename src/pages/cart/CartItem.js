@@ -15,7 +15,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 const CartItem = ({
   title,

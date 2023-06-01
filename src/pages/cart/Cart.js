@@ -5,7 +5,6 @@ import { useCartStore } from "../../store/cartStore";
 import CartItem from "./CartItem";
 import CartSideBar from "./CartSideBar";
 import CartIsEmpty from "./CartIsEmpty";
-import MovieBar from "../../components/MovieBar/MovieBar.js";
 
 import "./Cart.css";
 
@@ -129,7 +128,6 @@ export default function Cart() {
           Complete Purchase *NOT FINAL BUTTON
         </div>
       </div> */}
-      <MovieBar />
     </div>
   );
 }

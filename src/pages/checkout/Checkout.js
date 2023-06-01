@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 import CheckoutInv from "./CheckoutInv";
 import CheckoutInvItem from "./CheckoutInvItem";
-import MovieBar from "../../components/MovieBar/MovieBar";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import {
