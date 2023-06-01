@@ -51,11 +51,6 @@ export default function CheckoutInv() {
 
   const cartUser = useCartStore((state) => state.cartUser);
 
-  console.log(cartUser);
-  cart.map((obj, i) => {
-    console.log(obj);
-  });
-
   const handleTestPaymentButton = () => {
       const checkoutData = {
         cartUser: cartUser,

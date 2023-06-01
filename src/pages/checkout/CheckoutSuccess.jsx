@@ -9,6 +9,7 @@ export default function CheckoutSuccess() {
   const cartUser = useCartStore((state) => state.cartUser);
   const cart = useCartStore((state) => state.cart);
   const emptyCart = useCartStore((state) => state.emptyCart);
+  const [loaded, setLoaded] = useState(false);
 
   let date = new Date();
 
@@ -16,21 +17,17 @@ export default function CheckoutSuccess() {
   // POSSIBLE SOLUTION:  consider POST then GET from DB order table.  Likely!
 
   useEffect(() => {
-    try {
-      const cartData = {
-        cartUser,
-        cart,
-        date: date,
-      };
-      axios.post("http://localhost:8080/checkout/" + cartUser, {
-        data: cartData,
-      });
-      console.log(cartUser);
-      console.log(cart);
-      emptyCart();
-    } catch (error) {
-      console.error("Error posting purchase to DB");
-    }
+    const sendCartData = async () => {
+      try {
+        await axios.post("http://localhost:8080/newOrder/" + cartUser);
+        console.log(cartUser);
+        console.log(cart);
+        emptyCart();
+      } catch (error) {
+        console.error("Error posting purchase to DB");
+      }
+    };
+    sendCartData();
   }, []);
 
   return (
@@ -63,7 +60,10 @@ export default function CheckoutSuccess() {
           >
             <div className="title is-3 mt-5 has-text-weight-semibold">
               Purchase Confirmation
-            <span className="is-pulled-right"><img src={logo125}></img></span></div>
+              <span className="is-pulled-right">
+                <img src={logo125}></img>
+              </span>
+            </div>
             <div>{cartUser ? cartUser : "GUEST"}</div>
             <div>{date.toLocaleString()}</div>
             <div>$ *** purchaseTotal ***</div>
