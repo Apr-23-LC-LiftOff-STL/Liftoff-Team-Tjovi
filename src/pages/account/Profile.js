@@ -221,7 +221,7 @@ export default function Profile(props) {
                     <fieldset disabled={disabled}>
                       <div className="field">
                         <label className="label">
-                          E-Mail {originalValues.email}
+                          E-Mail 
                         </label>
                         <div className="control">
                           <input
@@ -276,7 +276,7 @@ export default function Profile(props) {
                         <div className="column is-half">
                           <div className="field">
                             <label className="label">
-                              First Name: {originalValues.firstName}
+                              First Name 
                             </label>
                             <div className="control">
                               <input
@@ -286,6 +286,7 @@ export default function Profile(props) {
                                 onChange={handleChange}
                                 required
                                 name="firstName"
+                                placeholder={userData.firstName}
                               />
                             </div>
                           </div>
@@ -294,7 +295,7 @@ export default function Profile(props) {
                         <div className="column is-half">
                           <div className="field">
                             <label className="label">
-                              Last Name {originalValues.lastName}
+                              Last Name 
                             </label>
                             <div className="control">
                               <input
@@ -304,6 +305,7 @@ export default function Profile(props) {
                                 onChange={handleChange}
                                 required
                                 name="lastName"
+                                placeholder={userData.lastName}
                               />
                             </div>
                           </div>
@@ -324,8 +326,8 @@ export default function Profile(props) {
                                 onChange={handleChange}
                                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                 required
-                                placeholder="555-555-5555"
-                                title="Please enter your 10 digit phone number"
+                                placeholder={userData.mobileNumber}
+                                title="Please enter your 10 digit phone number in this format '555-555-5555'"
                               />
                             </div>
                           </div>
@@ -344,6 +346,7 @@ export default function Profile(props) {
                                 value={values.streetAddress}
                                 onChange={handleChange}
                                 required
+                                placeholder={userData.streetAddress}
                                 name="streetAddress"
                               />
                             </div>
@@ -362,6 +365,7 @@ export default function Profile(props) {
                                 onChange={handleChange}
                                 required
                                 name="suite"
+                                placeholder={userData.suite}
                               />
                             </div>
                           </div>
@@ -381,6 +385,7 @@ export default function Profile(props) {
                                 onChange={handleChange}
                                 required
                                 name="city"
+                                placeholder={userData.city}
                               />
                             </div>
                           </div>
@@ -416,6 +421,7 @@ export default function Profile(props) {
                                 value={values.zipCode}
                                 onChange={handleChange}
                                 name="zipCode"
+                                placeholder={userData.zipCode}
                                 title="Please enter your 5 digit zipcode"
                               />
                             </div>
