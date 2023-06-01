@@ -54,7 +54,7 @@ export default function Cart() {
         Total: allItemsSubtotal.toFixed(2),
         stripeConf: "1234ASDF",
         cart: cart,
-      })  
+      })
     );
     axios
       .post("http://localhost:8080/purchase", {
@@ -120,7 +120,7 @@ export default function Cart() {
         </div>
         <CartSideBar allItemsSubtotal={allItemsSubtotal?.toFixed(2)} />
       </div>
-{/*       <div className="has-text-centered has-text-weight-semibold">
+      {/*       <div className="has-text-centered has-text-weight-semibold">
         <div
           className="button is-small is-primary is-pulled-right"
           onClick={handleCompletePurchase}
@@ -131,4 +131,3 @@ export default function Cart() {
     </div>
   );
 }
-

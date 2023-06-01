@@ -68,12 +68,12 @@ export default function CartSideBar({ allItemsSubtotal }) {
     setOpenEmptyCart(false);
   };
 
-/*   const handleHover = () => {
+  /*   const handleHover = () => {
     alert("hi");
   } */
 
   return (
-    <div className="column is-one-fifth mx-4">
+    <div className="column is-one-quarter mx-6">
       <aside
         className="menu has-text-centered card is-shadowless"
         style={{
@@ -104,7 +104,6 @@ export default function CartSideBar({ allItemsSubtotal }) {
               className="button is-centered is-normal is-fullwidth is-warning"
               disabled={totalProductsInCart < 1}
               onClick={checkoutButtonHandler}
-
             >
               Check Out
             </button>

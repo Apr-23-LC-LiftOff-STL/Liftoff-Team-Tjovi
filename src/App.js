@@ -28,8 +28,9 @@ import Cart, { cartProductsDetailsLoader } from "./pages/cart/Cart.js";
 
 // layouts
 import RootLayout from "./layouts/RootLayout";
-import HelpLayout from "./layouts/HelpLayout";
 import GeneralLayout from "./layouts/GeneralLayout";
+import CartLayout from "./layouts/CartLayout";
+import HelpLayout from "./layouts/HelpLayout";
 
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
@@ -59,15 +60,17 @@ const router = createBrowserRouter(
           errorElement={<ProductsError />}
         />
       </Route>
-      <Route element={<GeneralLayout />}>
-        <Route path="about" element={<About />} />
+      <Route element={<CartLayout />}>
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
         <Route path="success" element={<CheckoutSuccess />} />
         <Route path="failure" element={<CheckoutFailure />} />
+      </Route>
+      <Route element={<GeneralLayout />}>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="about" element={<About />} />
       </Route>
       <Route path="account" element={<GeneralLayout />}>
         <Route path="orders" element={<OrderHistory />} />
