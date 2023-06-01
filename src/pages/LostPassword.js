@@ -1,12 +1,12 @@
-import { useState } from "react";
-import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
+
+import React, { useState, useRef } from "react";
+import emailjs from "emailjs-com";
 
 export default function LostPassword() {
   const [values, setValues] = useState({
     name: "",
     email: "",
-    pwd:"This password",
+    pwd:"",
   });
   const generateRandomPassword = (length) => {
     const charset =
@@ -86,23 +86,24 @@ export default function LostPassword() {
     // console.log(newPassword)
     
     // console.log(newPassword)
-    // console.log(values.pwd)
-    const templateParams = {
-      to_email: values.email,
-    pwd: values.password,
-      to_name: values.name,
-    };
+     console.log(values.pwd)
+    
     e.preventDefault();
     setValues({ pwd: newPassword });
     // console.log(values.email)
     // console.log(values.pwd)
+    const templateParams = {
+      to_email: values.email,
+    pwd: newPassword,
+      to_name: values.name,
+    };
     emailjs
       .sendForm(
         "service_i7rn969",
         "template_2v6984n",
         form.current,
         "Cy7tiuWbCkBC_n4MB", 
-           templateParams
+           
        
       )
       .then(
