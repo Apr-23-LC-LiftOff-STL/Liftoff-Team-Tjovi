@@ -49,15 +49,15 @@ export default function CartSideBar({ allItemsSubtotal }) {
 
   const navToLoginButtonHandler = () => {
     navigate("/login");
-  }
+  };
 
   const navToCheckoutButtonHandler = () => {
     navigate("/checkout");
-  }
+  };
 
   const handleClickOpenEmptyCartDialog = () => {
     setOpenEmptyCart(true);
-  }
+  };
 
   const handleClickOpenCheckout = () => {
     setOpenCheckout(true);
@@ -67,6 +67,10 @@ export default function CartSideBar({ allItemsSubtotal }) {
     setOpenCheckout(false);
     setOpenEmptyCart(false);
   };
+
+/*   const handleHover = () => {
+    alert("hi");
+  } */
 
   return (
     <div className="column is-one-fifth mx-4">
@@ -96,12 +100,14 @@ export default function CartSideBar({ allItemsSubtotal }) {
           </p>
           <br />
           <div className="has-text-centered has-text-weight-semibold">
-            <div
+            <button
               className="button is-centered is-normal is-fullwidth is-warning"
+              disabled={totalProductsInCart < 1}
               onClick={checkoutButtonHandler}
+
             >
               Check Out
-            </div>
+            </button>
           </div>
         </div>
       </aside>
@@ -125,7 +131,9 @@ export default function CartSideBar({ allItemsSubtotal }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          <img src={logo125} width="112" height="28" />
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Remove <span className="has-text-weight-semibold">all items</span>{" "}
@@ -155,14 +163,19 @@ export default function CartSideBar({ allItemsSubtotal }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          <img src={logo125} width="112" height="28" />
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Order history is only available to logged in users. <span className="has-text-weight-semibold">Would you like to log in?</span>
+            Order history is only available to logged in users.{" "}
+            <span className="has-text-weight-semibold">
+              Would you like to log in?
+            </span>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <button
+          <button
             className="button is-small is-warning has-text-weight-semibold"
             onClick={navToCheckoutButtonHandler}
           >
@@ -175,7 +188,71 @@ export default function CartSideBar({ allItemsSubtotal }) {
           >
             Log In
           </button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={openEmptyCart}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Remove <span className="has-text-weight-semibold">all items</span>{" "}
+            from cart?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button
+            className="button is-small is-warning has-text-weight-semibold"
+            onClick={handleClose}
+            autoFocus
+          >
+            Cancel
+          </button>
+          <button
+            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            onClick={emptyCartButtonHandler}
+          >
+            Remove All Items
+          </button>
+        </DialogActions>
+      </Dialog>
 
+      <Dialog
+        open={openCheckout}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Order history is only available to logged in users.{" "}
+            <span className="has-text-weight-semibold">
+              Would you like to log in?
+            </span>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button
+            className="button is-small is-warning has-text-weight-semibold"
+            onClick={navToCheckoutButtonHandler}
+          >
+            Check Out
+          </button>
+          <button
+            className="button is-small is-primary has-text-weight-semibold"
+            onClick={navToLoginButtonHandler}
+            autoFocus
+          >
+            Log In
+          </button>
         </DialogActions>
       </Dialog>
     </div>

@@ -1,10 +1,22 @@
 import MovieBar from "../../components/MovieBar/MovieBar";
 import OrderHistoryItem from "./OrderHistoryItem";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import jwtDecode from "jwt-decode";
 
 export default function OrderHistory() {
   
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
 
   const orders = [
     {

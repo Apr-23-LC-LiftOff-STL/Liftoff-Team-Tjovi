@@ -39,7 +39,7 @@ const CartItem = ({
   const cart = useCartStore((state) => state.cart);
   const cartUser = useCartStore((state) => state.cartUser);
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     useCartStore.getState().initialize();
     console.log(cartUser);
   }, [cart]); */
@@ -70,9 +70,16 @@ const CartItem = ({
   };
 
   return (
-    <div className="mx-4" style={{maxWidth: '1400px'}}>
+    <div className="mx-4" style={{ maxWidth: "1400px" }}>
       <Fade in timeout={500}>
-        <div className="column is-offset-2 is-vcentered card mb-3" style={{borderStyle: 'solid', borderColor: 'lightgray', borderWidth: '1px'}}>
+        <div
+          className="column is-offset-2 is-vcentered card mb-3"
+          style={{
+            borderStyle: "solid",
+            borderColor: "lightgray",
+            borderWidth: "1px",
+          }}
+        >
           <div className="columns is-centered is-vcentered is-narrow">
             <div className="column is-narrow">
               <figure className="cart-item-img">
@@ -126,29 +133,25 @@ const CartItem = ({
               </button>
             </div>
             <div className="column is-narrow">
-            <table className="table mr-5">
-              <tr>
-                <th className="menu-label has-text-centered">
-                  Price
-                </th>
-                <th className="menu-label has-text-centered">
-                  Subtotal
-                </th>
-              </tr>
-              <tr>
-                <td
-                  className="has-text-centered"
-                  style={{
-                    color: price < 10 ? "hsl(348, 100%, 61%)" : "",
-                  }}
-                >
-                  ${price?.toFixed(2)}
-                </td>
-                <td className="has-text-centered has-text-weight-semibold">
-                  ${subtotal}
-                </td>
-              </tr>
-            </table>
+              <table className="table mr-5">
+                <tr>
+                  <th className="menu-label has-text-centered">Price</th>
+                  <th className="menu-label has-text-centered">Subtotal</th>
+                </tr>
+                <tr>
+                  <td
+                    className="has-text-centered"
+                    style={{
+                      color: price < 10 ? "hsl(348, 100%, 61%)" : "",
+                    }}
+                  >
+                    ${price?.toFixed(2)}
+                  </td>
+                  <td className="has-text-centered has-text-weight-semibold">
+                    ${subtotal}
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
@@ -160,12 +163,13 @@ const CartItem = ({
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            <img src={logo125} width="112" height="28" />
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Remove{" "}
-              <span className="has-text-weight-semibold">"{title}"</span> from
-              your cart?
+              Remove <span className="has-text-weight-semibold">"{title}"</span>{" "}
+              from your cart?
             </DialogContentText>
           </DialogContent>
           <DialogActions>

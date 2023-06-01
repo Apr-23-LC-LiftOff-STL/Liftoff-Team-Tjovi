@@ -56,9 +56,35 @@ export default function CheckoutInv() {
     console.log(obj);
   });
 
+  const handleTestPaymentButton = () => {
+      const checkoutData = {
+        cartUser: cartUser,
+        date: new Date(),
+        cardNumber: "",
+        expDate: "",
+        cvc: "",
+        amount: allItemsSubtotal,
+        currency: 'usd',
+        payment_method_types: ['card'],
+        cartItems: cart
+      }
+
+      console.log(checkoutData);
+
+        axios
+          .post("http://localhost:8080/cart/checkout/" + cartUser, {
+            data: checkoutData
+          })
+          .catch((error) => {
+            console.error(
+              "Error sending checkout data",
+              error
+            );
+          })
+  };
+
   return (
     <div>
-
       <div
         className="box is-shadowless pl-5 py-3 mb-1 has-background-warning-light"
         style={{
@@ -69,8 +95,11 @@ export default function CheckoutInv() {
       >
         <div className="title is-5 has-text-danger has-text-centered">
           <span>ORDER TOTAL: &nbsp;</span>
-          <span className="has-text-weight-bold"> {currencySymbol}
-          {allItemsSubtotal?.toFixed(2)}</span>
+          <span className="has-text-weight-bold">
+            {" "}
+            {currencySymbol}
+            {allItemsSubtotal?.toFixed(2)}
+          </span>
         </div>
       </div>
       <div

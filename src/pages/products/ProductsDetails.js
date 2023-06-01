@@ -52,6 +52,7 @@ export default function ProductsDetails() {
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
+  const changeCartItem = useCartStore((state => state.changeCartItem));
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
@@ -84,6 +85,10 @@ export default function ProductsDetails() {
     // setCartMessage(`"${product.title}" was removed from cart`);
     handleClose();
   };
+
+/*   const handleCartItemCountChange = (e) => {
+    changeCartItem(id, e.target.value);
+  } */
 
   if (!product) {
     return <ProductsError />;
@@ -147,6 +152,20 @@ export default function ProductsDetails() {
                 >
                   <div className="columns pl-3">
                     <div className="column is-4">
+{/*                       <div className="select" onChange={handleCartItemCountChange}>
+                        <select>
+                          <option>0</option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                        </select>
+                      </div> */}
                       <div className="is-size-5 has-text-weight-semibold">
                         In Cart &nbsp;
                         <input
