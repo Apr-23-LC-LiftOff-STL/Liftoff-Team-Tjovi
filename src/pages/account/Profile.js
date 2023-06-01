@@ -129,7 +129,6 @@ export default function Profile(props) {
       console.log("Failed");
     }
   };
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
