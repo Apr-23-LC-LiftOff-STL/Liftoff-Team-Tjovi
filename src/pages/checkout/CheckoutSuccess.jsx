@@ -18,7 +18,7 @@ export default function CheckoutSuccess() {
 
   // Make a GET request to retrieve order history
 
-const searchQuery = "amount[gte]=5000"
+  const searchQuery = "amount[gte]=5000";
 
   useEffect(() => {
     axios
@@ -31,7 +31,7 @@ const searchQuery = "amount[gte]=5000"
       .then((response) => {
         // Handle the successful response
         const search_result = response.data.data;
-        console.log("Stripe data:")
+        console.log("Stripe data:");
         console.log(search_result);
         // Process or display the order history as needed
       })
@@ -39,9 +39,9 @@ const searchQuery = "amount[gte]=5000"
         // Handle the error
         console.error("Error retrieving order history:", error);
       });
-    /*     const sendCartData = async () => {
+    const sendCartData = async () => {
       try {
-        await axios.post("http://localhost:8080/newOrder/" + cartUser);
+        await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
         console.log(cartUser);
         console.log(cart);
         emptyCart();
@@ -49,7 +49,7 @@ const searchQuery = "amount[gte]=5000"
         console.error("Error posting purchase to DB");
       }
     };
-    sendCartData(); */
+    sendCartData();
   }, []);
 
   return (

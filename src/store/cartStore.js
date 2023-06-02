@@ -16,74 +16,6 @@ export const useCartStore = create(
         set({ cartUser: user });
       },
 
-      getCart: async () => {
-        const token = localStorage.getItem("token");
-        if (token) {
-          const userData = jwtDecode(token);
-          set({ cartUser: userData.username });
-
-          let cartData = [];
-
-          console.log("getCart");
-          console.log(userData.username);
-
-          const feCart = [];
-
-          console.log("feCart");
-          console.log(feCart);
-
-          try {
-            const response = await axios.get(
-              "http://localhost:8080/cart/returnAll/" + userData.username
-            );
-            cartData = response.data;
-
-            const dbCart = cartData.map(({ movieId, quantity }) => ({
-              id: movieId,
-              count: quantity,
-            }));
-
-            console.log("dbCart");
-            console.log(dbCart);
-
-            const combinedCart = [];
-
-            for (let i = 0; i < dbCart.length; i++) {
-              for (let j = 0; j < feCart.length; j++) {
-                // find and push shared ids and summed counts to new Array
-                if (feCart[j].id === dbCart[i].id) {
-                  let summedCount = 0;
-                  summedCount = dbCart[i].count + feCart[j].count;
-                  combinedCart.push({ id: dbCart[i].id, count: summedCount });
-                }
-              }
-            }
-            // if other objects in feCart do not match existing IDs in combinedCart, push those objects to combinedCart
-            for (let k = 0; k < feCart.length; k++) {
-              if (!combinedCart.some((obj) => obj.id === feCart[k].id)) {
-                combinedCart.push(feCart[k]);
-              }
-            }
-            // if other objects in dbCart do not match existing IDs in combinedCart, push those objects to combinedCart
-            for (let l = 0; l < dbCart.length; l++) {
-              if (!combinedCart.some((obj) => obj.id === dbCart[l].id)) {
-                combinedCart.push(dbCart[l]);
-              }
-            }
-
-            console.log("Combined Cart");
-            console.log(combinedCart);
-
-            set((state) => ({
-              cart: combinedCart,
-              cartUser: state.cartUser, // Preserve the existing value of cartUser
-            }));
-          } catch (error) {
-            console.error("Error getting cart:", error);
-          }
-        }
-      },
-
       logoutCart: async () => {
         set({ cart: [], cartUser: null });
         // add a final save of cart to DB?
@@ -187,7 +119,6 @@ export const useCartStore = create(
         });
       },
 
-
       removeAllThisItem: async (id) => {
         set((state) => {
           const updatedCart = state.cart.filter((movies) => movies.id !== id);
@@ -223,6 +154,11 @@ export const useCartStore = create(
             };
           } catch (error) {
             console.error("Error updating cart state (decItem):", error);
+            try {
+              axios.post();
+            } catch (error) {
+              console.error("Error merging cart in DB:", error);
+            }
             return state;
           }
         });
@@ -244,27 +180,114 @@ export const useCartStore = create(
           };
         }), */
 
-        emptyCart: async () => {
-          const token = localStorage.getItem("token");
-          if (token) {
-            const userData = jwtDecode(token);
-            set((state) => ({
-              cartUser: userData.username,
-              cart: [],
-            }));
-        
-            try {
-              await axios.delete(
-                "http://localhost:8080/cart/deleteAll/" + userData.username
-              );
-            } catch (error) {
-              console.error("Error emptying cart:", error);
-            }
-            console.log("emptyCart");
-            console.log(userData.username);
-          }
-        },
+      emptyCart: async () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const userData = jwtDecode(token);
+          set((state) => ({
+            cartUser: userData.username,
+            cart: [],
+          }));
 
+          try {
+            await axios.delete(
+              "http://localhost:8080/cart/deleteAll/" + userData.username
+            );
+          } catch (error) {
+            console.error("Error emptying cart:", error);
+          }
+          console.log("emptyCart");
+          console.log(userData.username);
+        }
+      },
+
+      getCart: async () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const userData = jwtDecode(token);
+          const cartUser = userData.username;
+
+          try {
+            const response = await axios.get(
+              "http://localhost:8080/cart/returnAll/" + cartUser
+            );
+            const cartData = response.data;
+
+            const dbCart = cartData.map(({ movieId, quantity }) => ({
+              id: movieId,
+              count: quantity,
+            }));
+
+            let combinedCart = [...dbCart];
+            combinedCart.sort((a, b) => a.id - b.id); // Sort combinedCart by id
+
+            const { cart } = useCartStore.getState();
+            const feCart = [...cart];
+            feCart.sort((a, b) => a.id - b.id); // Sort feCart by id
+
+            if (feCart.length !== 0) {
+              if (combinedCart.length !== 0) {
+                alert("Your cart from a previous session also held products. Now merging your cart.");
+              }
+
+              for (let i = 0; i < combinedCart.length; i++) {
+                let found = false; // Flag to check if a match is found
+
+                for (let j = 0; j < feCart.length; j++) {
+                  if (combinedCart[i].id === feCart[j].id) {
+                    found = true;
+                    if (feCart[j.count > combinedCart[i].count]) {
+                      // Update quantity in the database if count is different in frontend cart
+                      await axios.put(
+                        "http://localhost:8080/cart/edit/" + cartUser,
+                        {
+                          movieId: feCart[j].id,
+                          quantity: feCart[j].count,
+                        }
+                      );
+                    }
+
+                    break; // Break the inner loop if a match is found
+                  }
+                }
+
+                if (!found) {
+                  // Add missing items from the frontend cart to the database
+                  await axios.post(
+                    "http://localhost:8080/cart/add/" + cartUser,
+                    {
+                      movieId: feCart[i].id,
+                      quantity: feCart[i].count,
+                    }
+                  );
+                }
+              }
+            }
+          } catch (error) {
+            console.error("Error getting cart:", error);
+          }
+
+          try {
+            const response = await axios.get(
+              "http://localhost:8080/cart/returnAll/" + cartUser
+            );
+            const cartData = response.data;
+
+            const mergedCart = cartData.map(({ movieId, quantity }) => ({
+              id: movieId,
+              count: quantity,
+            }));
+
+            // Update the state immediately
+            set({
+              cart: mergedCart,
+              cartUser: useCartStore.getState().cartUser,
+            });
+          } catch (error) {
+            console.error("Error getting cart:", error);
+          }
+        }
+      },
       /*       fetchMovies: async () => {
         await fetch("http://localhost:8080/")
           .then((response) => response.json())
