@@ -29,12 +29,13 @@ public class LoginController {
     public ResponseEntity<String> registerUser(@RequestBody Customer customer) {
         Customer savedCustomer = null;
         ResponseEntity response = null;
-//        List<Customer> duplicateEmailCheck = customerRepository.findByEmail(customer.getEmail());
-//        if(duplicateEmailCheck.size()>0){
-//            response = ResponseEntity
-//                    .status(HttpStatus.NOT_ACCEPTABLE)
-//                    .body("An account is already registered with this email");
-//        } else {
+        List<Customer> duplicateEmailCheck = customerRepository.findByEmail(customer.getEmail());
+
+        if(duplicateEmailCheck.size()>0){
+            response = ResponseEntity
+                    .status(HttpStatus.NOT_ACCEPTABLE)
+                    .body("An account is already registered with this email");
+        } else {
             try {
                 String hashPwd = passwordEncoder.encode(customer.getPwd());
                 customer.setPwd(hashPwd);
@@ -57,7 +58,7 @@ public class LoginController {
                         .status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body("An exception occured due to " + ex.getMessage());
             }
-//        }
+        }
         return response;
     }
 
