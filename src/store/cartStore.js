@@ -207,8 +207,8 @@ export const useCartStore = create(
           const userData = jwtDecode(token);
           const cartUser = userData.username;
 
-          try {
-            const response = await axios.get(
+      /*       try {
+          const response = await axios.get(
               "http://localhost:8080/cart/returnAll/" + cartUser
             );
             const cartData = response.data;
@@ -232,7 +232,6 @@ export const useCartStore = create(
 
               for (let i = 0; i < combinedCart.length; i++) {
                 let found = false; // Flag to check if a match is found
-
                 for (let j = 0; j < feCart.length; j++) {
                   if (combinedCart[i].id === feCart[j].id) {
                     found = true;
@@ -265,7 +264,7 @@ export const useCartStore = create(
             }
           } catch (error) {
             console.error("Error getting cart:", error);
-          }
+          } */
 
           try {
             const response = await axios.get(
