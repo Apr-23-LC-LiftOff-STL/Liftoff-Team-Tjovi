@@ -206,9 +206,8 @@ export const useCartStore = create(
         const feCart = [...cart];
 
         const token = localStorage.getItem("token");
-        if (token) {
-          const userData = jwtDecode(token);
-          const cartUser = userData.username;
+        const userData = token ? jwtDecode(token) : null;
+        const cartUser = userData?.username || useCartStore.getState().cartUser;
 
           let combinedCart = [];
           console.log(JSON.stringify(combinedCart));
@@ -258,7 +257,6 @@ export const useCartStore = create(
           } catch (error) {
             console.error("Error setting cart state:", error);
           }
-        }
       },
     }),
     /*       fetchMovies: async () => {

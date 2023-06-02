@@ -9,18 +9,26 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function CartSideBar({ allItemsSubtotal }) {
   const [openCheckout, setOpenCheckout] = useState(false);
   const [openEmptyCart, setOpenEmptyCart] = useState(false);
+  const [openEmail, setOpenEmail] = useState(false);
+  const [dialogFormValue, setDialogFormValue] = useState("");
+
+  const cartUser = useCartStore((state) => state.cartUser);
+  const setCartUser = useCartStore((state) => state.setCartUser);
 
   const navigate = useNavigate();
 
   const cart = useCartStore((state) => state.cart);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const emptyCart = useCartStore((state) => state.emptyCart);
+  const getCart = useCartStore((state) => state.getCart);
 
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
@@ -66,6 +74,16 @@ export default function CartSideBar({ allItemsSubtotal }) {
   const handleClose = () => {
     setOpenCheckout(false);
     setOpenEmptyCart(false);
+  };
+
+  const handleOpenEmail = () => {
+    setOpenEmail(true);
+  }
+
+  const handleCloseEmail = () => {
+    setCartUser(dialogFormValue);
+    getCart();
+    navigate("/checkout");
   };
 
   /*   const handleHover = () => {
@@ -241,7 +259,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
         <DialogActions>
           <button
             className="button is-small is-warning has-text-weight-semibold"
-            onClick={navToCheckoutButtonHandler}
+            onClick={handleOpenEmail}
           >
             Check Out
           </button>
@@ -252,6 +270,28 @@ export default function CartSideBar({ allItemsSubtotal }) {
           >
             Log In
           </button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={openEmail} onClose={handleCloseEmail}>
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You are continuing as a guest user.  Please enter your email so we can send a receipt on purchase.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+            onChange={(e) => setDialogFormValue(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseEmail}>Submit E-mail</Button>
         </DialogActions>
       </Dialog>
     </div>
