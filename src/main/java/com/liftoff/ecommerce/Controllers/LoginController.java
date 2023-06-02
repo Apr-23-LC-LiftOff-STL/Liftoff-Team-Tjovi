@@ -29,28 +29,35 @@ public class LoginController {
     public ResponseEntity<String> registerUser(@RequestBody Customer customer) {
         Customer savedCustomer = null;
         ResponseEntity response = null;
-        try {
-            String hashPwd = passwordEncoder.encode(customer.getPwd());
-            customer.setPwd(hashPwd);
-            customer.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
+//        List<Customer> duplicateEmailCheck = customerRepository.findByEmail(customer.getEmail());
+//        if(duplicateEmailCheck.size()>0){
+//            response = ResponseEntity
+//                    .status(HttpStatus.NOT_ACCEPTABLE)
+//                    .body("An account is already registered with this email");
+//        } else {
+            try {
+                String hashPwd = passwordEncoder.encode(customer.getPwd());
+                customer.setPwd(hashPwd);
+                customer.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
 
-            Authority userAuthority = new Authority();
-            userAuthority.setName("ROLE_USER");
-            customer.addAuthority(userAuthority);
+                Authority userAuthority = new Authority();
+                userAuthority.setName("ROLE_USER");
+                customer.addAuthority(userAuthority);
 
-            savedCustomer = customerRepository.save(customer);
+                savedCustomer = customerRepository.save(customer);
 
 
-            if (savedCustomer.getId() > 0) {
+                if (savedCustomer.getId() > 0) {
+                    response = ResponseEntity
+                            .status(HttpStatus.CREATED)
+                            .body("Given user details are successfully registered");
+                }
+            } catch (Exception ex) {
                 response = ResponseEntity
-                        .status(HttpStatus.CREATED)
-                        .body("Given user details are successfully registered");
+                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("An exception occured due to " + ex.getMessage());
             }
-        } catch (Exception ex) {
-            response = ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An exception occured due to " + ex.getMessage());
-        }
+//        }
         return response;
     }
 
