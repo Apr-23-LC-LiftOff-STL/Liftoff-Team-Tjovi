@@ -73,7 +73,7 @@ export default function Profile(props) {
 
   const saveFormData = async () => {
     //need an endpoint for updated submitted user data
-    const response = await fetch("http://localhost:8080/user", {
+    const response = await fetch("http://localhost:8080/edit/"+ userData.username, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -122,6 +122,7 @@ export default function Profile(props) {
       state: "",
       zipCode: "",
       role: "",
+
     });
   }
 
@@ -144,7 +145,7 @@ export default function Profile(props) {
       navigate("/login");
     } else {
       const userData = jwtDecode(token);
-      console.log(userData.username);
+      //console.log(userData.username);
   
       setValues({
         email: userData.username,
@@ -315,7 +316,7 @@ export default function Profile(props) {
                         <div className="column is-half">
                           <div className="field">
                             <label className="label">
-                              Mobile Number {originalValues.mobileNumber}
+                              Mobile Number 
                             </label>
                             <div className="control">
                               <input
@@ -337,7 +338,7 @@ export default function Profile(props) {
                         <div className="column is-half">
                           <div className="field">
                             <label className="label">
-                              Street Address {originalValues.streetAddress}
+                              Street Address 
                             </label>
                             <div className="control">
                               <input
@@ -355,7 +356,7 @@ export default function Profile(props) {
                         <div className="column is-half">
                           <div className="field">
                             <label className="label">
-                              Suite/Apt. Number {originalValues.suite}
+                              Suite/Apt. Number 
                             </label>
                             <div className="control">
                               <input
@@ -375,7 +376,7 @@ export default function Profile(props) {
                         <div className="column is-half">
                           <div className="field">
                             <label className="label">
-                              City {originalValues.city}
+                              City 
                             </label>
                             <div className="control">
                               <input
@@ -394,7 +395,7 @@ export default function Profile(props) {
                         <div className="column is-one-quarter">
                           <div className="field">
                             <label className="label">
-                              State: {originalValues.state}
+                              State: 
                             </label>
                             <div className="control">
                               <input
@@ -403,6 +404,7 @@ export default function Profile(props) {
                                 value={values.state}
                                 onChange={handleChange}
                                 required
+                                placeholder={userData.state}
                                 name="state"
                               />
                             </div>
@@ -411,7 +413,7 @@ export default function Profile(props) {
                         <div className="column is-one-quarter">
                           <div className="field">
                             <label className="label">
-                              Zip {originalValues.zipCode}
+                              Zip 
                             </label>
                             <div className="control">
                               <input
