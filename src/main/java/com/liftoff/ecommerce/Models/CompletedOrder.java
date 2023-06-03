@@ -24,6 +24,8 @@ public class CompletedOrder {
     @Column(name = "date_created")
     private String createDt;
 
+    private Long totalOrderQuantity;
+
     private Double totalOrderPrice;
 
     @OneToMany(mappedBy="completedOrder", fetch=FetchType.EAGER)
@@ -32,9 +34,12 @@ public class CompletedOrder {
     public CompletedOrder() {
     }
 
-    public CompletedOrder(Customer customer) {
+    public CompletedOrder(Customer customer, String email) {
         this.customer = customer;
+        this.email = email;
     }
+
+    public String email;
 
     public Long getId() {
         return id;
@@ -48,12 +53,28 @@ public class CompletedOrder {
         this.customer = customer;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getCreateDt() {
         return createDt;
     }
 
     public void setCreateDt(String createDt) {
         this.createDt = createDt;
+    }
+
+    public Long getTotalOrderQuantity() {
+        return totalOrderQuantity;
+    }
+
+    public void setTotalOrderQuantity(Long totalOrderQuantity) {
+        this.totalOrderQuantity = totalOrderQuantity;
     }
 
     public Double getTotalOrderPrice() {

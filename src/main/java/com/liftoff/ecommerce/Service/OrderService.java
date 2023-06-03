@@ -1,12 +1,10 @@
 package com.liftoff.ecommerce.Service;
 
 
-import com.liftoff.ecommerce.Models.CompletedOrder;
-import com.liftoff.ecommerce.Models.CompletedOrderItem;
-import com.liftoff.ecommerce.Models.Customer;
-import com.liftoff.ecommerce.Models.ShoppingCart;
+import com.liftoff.ecommerce.Models.*;
 import com.liftoff.ecommerce.Repositories.CompletedOrderRepository;
 import com.liftoff.ecommerce.Repositories.CompletedOrderedItemRepository;
+import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -29,18 +28,25 @@ public class OrderService {
     @Autowired
     private CompletedOrderedItemRepository completedOrderedItemRepository;
 
+    @Autowired
+    private MovieRepository movieRepository;
+
     public ResponseEntity<?> createNewOrder(Customer customer){
-        CompletedOrder newOrder = new CompletedOrder(customer);
+        CompletedOrder newOrder = new CompletedOrder(customer, customer.getEmail());
         newOrder.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
         completedOrderRepository.save(newOrder);
+        long totalOrderQuantity = 0;
 
         List<ShoppingCart> cartItemsToOrder = shoppingCartRepository.findByCustomerId(customer.getId());
         for(ShoppingCart currentCart:cartItemsToOrder){
             CompletedOrderItem orderItem = new CompletedOrderItem(newOrder, currentCart.getMovieId(),
+                    movieRepository.findById(currentCart.getMovieId()).get().getTitle(),
                     currentCart.getQuantity(), currentCart.getTotalPrice());
+            totalOrderQuantity += currentCart.getQuantity();
             completedOrderedItemRepository.save(orderItem);
         }
 
+        newOrder.setTotalOrderQuantity(totalOrderQuantity);
         setTotalOrderPrice(newOrder);
         completedOrderRepository.save(newOrder);
 
@@ -58,6 +64,7 @@ public class OrderService {
 
     public void setTotalOrderPrice(CompletedOrder completedOrder){
         Double totalOrderPrice=0.0;
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
         List<CompletedOrderItem> orderItems = completedOrderedItemRepository.findByCompletedOrderId(completedOrder.getId());
 
@@ -65,6 +72,7 @@ public class OrderService {
             totalOrderPrice += currentItem.getTotalPrice();
         }
 
-        completedOrder.setTotalOrderPrice(totalOrderPrice);
+        Double finalPrice = Double.parseDouble(decimalFormat.format(totalOrderPrice));
+        completedOrder.setTotalOrderPrice(finalPrice);
     }
 }

@@ -24,6 +24,9 @@ public class CompletedOrderItem {
     @Column(name="movie_id")
     private Long movieId;
 
+    @Column(name="movie_title")
+    private String movieTitle;
+
     private Long quantity;
 
     private Double totalPrice;
@@ -31,9 +34,10 @@ public class CompletedOrderItem {
     public CompletedOrderItem() {
     }
 
-    public CompletedOrderItem(CompletedOrder completedOrder, Long movieId, Long quantity, Double totalPrice) {
+    public CompletedOrderItem(CompletedOrder completedOrder, Long movieId, String movieTitle, Long quantity, Double totalPrice) {
         this.completedOrder = completedOrder;
         this.movieId = movieId;
+        this.movieTitle = movieTitle;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
@@ -56,6 +60,14 @@ public class CompletedOrderItem {
 
     public void setMovieId(Long movieId) {
         this.movieId = movieId;
+    }
+
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public Long getQuantity() {
