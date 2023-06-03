@@ -53,6 +53,8 @@ public class Customer {
     @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
     private Set<ShoppingCart> shoppingCart;
 
+    private Boolean isGuest = false;
+
     public Long getId() {
         return id;
     }
@@ -179,5 +181,13 @@ public class Customer {
 
     public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    public Boolean getGuest() {
+        return isGuest;
+    }
+
+    public void setGuest(Boolean guest) {
+        isGuest = guest;
     }
 }

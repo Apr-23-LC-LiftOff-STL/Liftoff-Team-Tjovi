@@ -82,7 +82,15 @@ public class ShoppingCartService {
 
     public Customer findCustomer(String email){
         List<Customer> customer = customerRepository.findByEmail(email);
-        return customer.get(0);
+        if(customer.isEmpty()){
+            Customer guestUser = new Customer();
+            guestUser.setEmail(email);
+            guestUser.setGuest(true);
+            customerRepository.save(guestUser);
+            return customerRepository.findByEmail(email).get(0);
+        }else {
+            return customer.get(0);
+        }
     }
 
     public void setTotalPrice(ShoppingCart shoppingCart){
