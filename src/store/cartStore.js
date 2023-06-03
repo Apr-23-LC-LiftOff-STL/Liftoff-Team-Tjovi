@@ -210,7 +210,6 @@ export const useCartStore = create(
         const cartUser = userData?.username || useCartStore.getState().cartUser;
 
           let combinedCart = [];
-          console.log(JSON.stringify(combinedCart));
 
           if (feCart.length > 0) {
             combinedCart = feCart;
@@ -225,6 +224,8 @@ export const useCartStore = create(
                       "http://localhost:8080/cart/add/" + cartUser,
                       { movieId: cartItem.id, quantity: cartItem.count }
                     );
+                    console.log(cartItem.id);
+                    console.log(cartItem.count);
                   } catch (error) {
                     console.error("Error posting cart item:", error);
                   }

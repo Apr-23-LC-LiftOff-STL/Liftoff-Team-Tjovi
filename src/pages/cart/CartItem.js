@@ -122,8 +122,8 @@ const CartItem = ({
                     readOnly
                   />
                   &nbsp; <span className="menu-label">IN CART</span>
-                  </div>
-                  <div className="pb-4">
+                </div>
+                <div className="pb-4">
                   <button
                     className="button is-primary is-small"
                     style={{ minWidth: "36px", maxWidth: "36px" }}
@@ -153,14 +153,18 @@ const CartItem = ({
                       color: price < 10 ? "hsl(348, 100%, 61%)" : "",
                     }}
                   >
-                    <span className="menu-label">Item Price: &nbsp;</span>{currencySymbol}
+                    <span className="menu-label">Item Price: &nbsp;</span>
+                    {currencySymbol}
                     {price?.toFixed(2)}
                   </p>
                   <p className="p-2">
                     <span className="menu-label has-text-centered has-text-weight-semibold">
                       Subtotal:{" "}
-                    </span>{" "}<span className="has-text-weight-semibold">
-                    {currencySymbol}{subtotal}</span>
+                    </span>{" "}
+                    <span className="has-text-weight-semibold">
+                      {currencySymbol}
+                      {subtotal}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -176,7 +180,7 @@ const CartItem = ({
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            <img src={logo125} width="112" height="28" />
+            <img className="mt-4" src={logo125} width="112" height="28" />
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -186,14 +190,14 @@ const CartItem = ({
           </DialogContent>
           <DialogActions>
             <button
-              className="button is-small is-warning has-text-weight-semibold"
+              className="button is-warning"
               onClick={handleClose}
               autoFocus
             >
               Cancel
             </button>
             <button
-              className="button is-small is-danger is-outlined has-text-weight-semibold"
+              className="button is-danger is-outlined m-2"
               onClick={removeAllThisItemButtonHandler}
             >
               Remove Item

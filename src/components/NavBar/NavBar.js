@@ -234,14 +234,14 @@ const NavBar = () => {
         </DialogContent>
         <DialogActions>
           <button
-            className="button is-small is-primary has-text-weight-semibold"
+            className="button is-primary"
             onClick={handleClose}
             autoFocus
           >
             Cancel
           </button>
           <button
-            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            className="button is-danger is-outlined m-2"
             onClick={handleLogOutButton}
           >
             Log Out

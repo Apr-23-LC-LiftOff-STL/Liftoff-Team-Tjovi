@@ -39,7 +39,7 @@ const Login = () => {
 
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -137,7 +137,9 @@ const Login = () => {
             }}
             onSubmit={handleSubmit}
           >
-            <div className="title is-3 mt-5 has-text-weight-semibold">Log In</div>
+            <div className="title is-3 mt-5 has-text-weight-semibold">
+              Log In
+            </div>
             <div className="field">
               <label htmlFor="email" className="label">
                 E-mail
@@ -176,7 +178,10 @@ const Login = () => {
 
             <div className="field is-grouped mt-5">
               <div className="control">
-                <button className="button is-primary has-text-weight-semibold" onSubmit={handleSubmit}>
+                <button
+                  className="button is-primary has-text-weight-semibold"
+                  onSubmit={handleSubmit}
+                >
                   Log In
                 </button>
               </div>
@@ -198,30 +203,31 @@ const Login = () => {
         </div>
       </div>
       <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            <img src={logo125} width="112" height="28" />
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-            Lost password feature under construction. Please contact your network administrator.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <button
-              className="button is-small is-primary is-primary has-text-weight-semibold"
-              onClick={handleClose}
-              autoFocus
-            >
-              Close
-            </button>
-          </DialogActions>
-        </Dialog>
-      </div>
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Lost password feature under construction. Please contact your
+            network administrator.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button
+            className="button is-primary is-primary m-2"
+            onClick={handleClose}
+            autoFocus
+          >
+            Close
+          </button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 export default Login;
