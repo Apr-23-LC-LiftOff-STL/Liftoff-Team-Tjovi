@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faRobot } from "@fortawesome/free-solid-svg-icons";
+
 
 function ChatBot() {
     const [userInput, setUserInput] = useState('');
@@ -39,25 +40,30 @@ function ChatBot() {
     };
 
     return (
-        <div style={{width: '100%'}}>
-            <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div>
+        <div>
+            <form onSubmit={handleSubmit}>
                 <div className="chat-item">
-                    <div className="control has-icons-left has-icons-right">
+                    <div className="control">
+                    <span className="icon is-small is-left">
+          </span>
                         <input
-                            className="input is-rounded has-background-white-ter"
+                            className="input has-background-white-ter"
                             type="text" 
-                            placeholder="What are some movies like...?"
+                            placeholder="Example: What are some movies like 'The Hudsucker Proxy'?"
                             value={userInput} 
                             onChange={handleInputChange}
                             style={inputStyleHandler}
                         />
                     </div>
+                    <button className="button is-link is-light" type="submit" style={{marginTop: '10px'}}><span>Submit &nbsp;</span><span><FontAwesomeIcon icon={faRobot} />
+                    </span></button>
+                <br></br>
                 </div>
-                <button type="submit" style={{marginTop: '10px'}}>
-                    <FontAwesomeIcon icon={faPaperPlane} />
-                </button>
+
             </form>
-            {response && <div>{response}</div>}
+            {response && <div className="box is-shadowless is-italic">{response}</div>}
+        </div>
         </div>
     );
     }

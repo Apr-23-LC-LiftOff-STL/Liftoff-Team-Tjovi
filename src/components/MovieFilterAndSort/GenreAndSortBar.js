@@ -1,18 +1,14 @@
 import SortButtons from "./SortButtons";
 import GenreSelect from "./GenreSelect";
+import ChatBotDialog from "./ChatBotDialog"
 
 const GenreAndSortBar = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "left",
-        paddingLeft: "25px",
-      }}
+    <div className="mx-5"
     >
       <SortButtons />
       <GenreSelect />
+      <ChatBotDialog />
     </div>
   );
 };

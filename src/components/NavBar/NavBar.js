@@ -8,6 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import SearchBar from "./SearchBar";
+import ChatBotDialog from "../Chat/ChatBot";
 
 import logo125 from "./Logo_MovieDL_20230426_125x22.png";
 
