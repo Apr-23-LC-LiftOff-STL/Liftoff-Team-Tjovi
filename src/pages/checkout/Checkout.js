@@ -134,11 +134,31 @@ const Checkout = () => {
     </div>
   );
 };
+
 function StripeCheckout() {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
+  const emptyCart = useCartStore((state) => state.emptyCart);
+
+  const navigate = useNavigate();
+  const cart = useCartStore((state) => state.cart);
+  const cartUser = useCartStore((state) => state.cartUser);
+  
+  const handleTestCheckout = async () => {
+    try {
+      await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
+      console.log("POSTING NEW ORDER")
+      console.log(cartUser);
+      console.log(cart);
+      console.log("EMPTYING CART")
+      emptyCart();
+      navigate("../success");
+    } catch (error) {
+      console.error("Error posting purchase to DB");
+    }
+  };
 
   const handleError = (error) => {
     setLoading(false);
@@ -171,11 +191,13 @@ function StripeCheckout() {
       clientSecret,
       confirmParams: { return_url: "http://localhost:3000/success" },
     });
+
+    handleTestCheckout(); // posts order to DB, empties cart, redirects to CheckoutSuccess component
+
     if (error) {
       handleError(error);
     } else {
       setLoading(false);
-
       // redirect here
       // can call elements.update to update amount
     }

@@ -26,7 +26,7 @@ export default function CheckoutSuccess() {
 
   // Make a GET request to retrieve order history
 
-  useEffect(() => {
+/*   useEffect(() => {
     const fetchData = async () => {
       const data = {};
       for (const cartItem of cart) {
@@ -46,7 +46,7 @@ export default function CheckoutSuccess() {
       setProductData(data);
     };
     fetchData();
-  }, [cart]);
+  }, [cart]); */
 
   const allItemsSubtotal = cart.reduce((total, item) => {
     const data = productData[item.id] || {};
@@ -57,7 +57,7 @@ export default function CheckoutSuccess() {
   const searchQuery = "amount[gte]=5000";
 
   useEffect(() => {
-    const sendOrderData = async () => {
+/*     const sendOrderData = async () => {
       try {
         await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
         console.log(cartUser);
@@ -66,7 +66,7 @@ export default function CheckoutSuccess() {
       } catch (error) {
         console.error("Error posting purchase to DB");
       }
-    };
+    }; */
   
     const getOrderData = async () => {
       try {
