@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-
-import { useCartStore } from "../../store/cartStore";
-
-import { useNavigate } from "react-router-dom";
 
 import CheckoutInv from "./CheckoutInv";
 import { Elements } from "@stripe/react-stripe-js";
@@ -15,14 +12,21 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 
+import { useCartStore } from "../../store/cartStore";
+
 import LoadingOverlay from "./LoadingOverlay";
 const stripePromise = loadStripe(
   "pk_test_51N8n2ODvHmrdraF8Eb3aQ9m86ueHPsypNotvydB9gIsrlxlpyVbah3R3Zt0L1Al5swbbXNzkDHmUmfXuKjH70fmc00Q2jPmqAa"
 );
+
 const Checkout = () => {
-  const cart = useCartStore((state) => state.cart);
-  const [productData, setProductData] = useState({});
   const navigate = useNavigate();
+
+  const cart = useCartStore((state) => state.cart);
+  const cartUser = useCartStore((state) => state.cartUser);
+  const emptyCart = useCartStore((state) => state.emptyCart);
+
+  const [productData, setProductData] = useState({});
 
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
@@ -60,6 +64,20 @@ const Checkout = () => {
     };
     fetchData();
   }, [cart]);
+
+  const handleTestCheckout = async () => {
+    try {
+      await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
+      console.log("POSTING NEW ORDER")
+      console.log(cartUser);
+      console.log(cart);
+      console.log("EMPTYING CART")
+      emptyCart();
+      navigate("../success");
+    } catch (error) {
+      console.error("Error posting purchase to DB");
+    }
+  };
 
   return (
     <div>
@@ -109,6 +127,7 @@ const Checkout = () => {
             >
               <StripeCheckout />
             </Elements>
+            <button className="button is-fullwidth is-danger" onClick={handleTestCheckout}>Complete Purchase TEST</button>
           </div>
         </div>
       </div>
@@ -162,18 +181,20 @@ function StripeCheckout() {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <PaymentElement />
-      {errorMessage && <div>{errorMessage}</div>}
-      {loading && <LoadingOverlay />}
-      <br />
-      <button
-        className="button is-normal is-danger is-fullwidth"
-        disabled={loading}
-      >
-        Complete Purchase
-      </button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <PaymentElement />
+        {errorMessage && <div>{errorMessage}</div>}
+        {loading && <LoadingOverlay />}
+        <br />
+        <button
+          className="button is-normal is-danger is-fullwidth"
+          disabled={loading}
+        >
+          Complete Purchase
+        </button>
+      </form>
+    </div>
   );
 }
 

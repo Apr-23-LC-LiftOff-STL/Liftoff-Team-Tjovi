@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useCartStore } from "../../store/cartStore";
 import axios from "axios";
 
@@ -9,19 +9,78 @@ export default function CheckoutSuccess() {
   const cartUser = useCartStore((state) => state.cartUser);
   const cart = useCartStore((state) => state.cart);
   const emptyCart = useCartStore((state) => state.emptyCart);
-  const [loaded, setLoaded] = useState(false);
 
-  let date = new Date();
+  //let date = new Date();
+  // {date.toLocaleString()}
+
+  const [productData, setProductData] = useState({});
+  const navigate = useNavigate();
+
+  const totalProductsInCart = cart.reduce(
+    (prev, current) => prev + current.count,
+    0
+  );
 
   // MW - how to get total, cart etc if emptyCart() triggers on component mount after post req?
   // POSSIBLE SOLUTION:  consider POST then GET from DB order table.  Likely!
 
   // Make a GET request to retrieve order history
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = {};
+      for (const cartItem of cart) {
+        try {
+          const response = await axios.get(
+            `http://localhost:8080/movies/${cartItem.id}`
+          );
+          const { title, releaseDate, posterPath, price } = response.data;
+          data[cartItem.id] = { title, releaseDate, posterPath, price };
+        } catch (error) {
+          console.log(
+            `Error fetching data for product with ID ${cartItem.id}:`,
+            error
+          );
+        }
+      }
+      setProductData(data);
+    };
+    fetchData();
+  }, [cart]);
+
+  const allItemsSubtotal = cart.reduce((total, item) => {
+    const data = productData[item.id] || {};
+    const itemSubtotal = item.count * data.price;
+    return total + itemSubtotal;
+  }, 0);
+
   const searchQuery = "amount[gte]=5000";
 
   useEffect(() => {
-    axios
+    const sendOrderData = async () => {
+      try {
+        await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
+        console.log(cartUser);
+        console.log(cart);
+        console.log("POSTING ORDER DATA")
+      } catch (error) {
+        console.error("Error posting purchase to DB");
+      }
+    };
+  
+    const getOrderData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/order/history/" + cartUser
+        );
+        const orderData = response.data;
+        console.log("GETTING ORDER DATA")
+        console.log(JSON.stringify(orderData));
+      } catch (error) {
+        console.error("Error getting order history");
+      }
+    };
+    /*     axios
       .get("https://api.stripe.com/v1/charges?" + searchQuery, {
         headers: {
           Authorization:
@@ -38,19 +97,11 @@ export default function CheckoutSuccess() {
       .catch((error) => {
         // Handle the error
         console.error("Error retrieving order history:", error);
-      });
-    const sendCartData = async () => {
-      try {
-        await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
-        console.log(cartUser);
-        console.log(cart);
-        emptyCart();
-      } catch (error) {
-        console.error("Error posting purchase to DB");
-      }
-    };
-    sendCartData();
-  }, []);
+      }); */
+/*       sendOrderData();
+      emptyCart(); */
+      getOrderData();
+    }, []);
 
   return (
     <div>
@@ -86,8 +137,54 @@ export default function CheckoutSuccess() {
                 <img src={logo125}></img>
               </span>
             </div>
-            <div>{cartUser ? cartUser : "GUEST"}</div>
-            <div>{date.toLocaleString()}</div>
+            <div className="pt-4 mb-6">
+              <div
+                className="columns mx-1"
+                style={{
+                  borderStyle: "solid",
+                  borderColor: "darkgray",
+                  borderWidth: "1px",
+                }}
+              >
+                <div className="column is-5 has-background-grey has-text-white pl-4">
+                  <div>
+                    <span className="has-text-weight-bold">User: </span>
+                    {cartUser ? cartUser : "GUEST"}
+                  </div>
+                  <div>
+                    <span className="has-text-weight-bold">Order #:</span>{" "}
+                  </div>
+                  <div>
+                    <span className="has-text-weight-bold">Date:</span>{" "}
+
+                  </div>
+                </div>
+                <div className="column has-background-white-ter pl-4">
+                  <div>
+                    <span className="has-text-weight-bold">Invoice Total:</span>{" "}
+                    ${allItemsSubtotal}
+                  </div>
+                  <div>
+                    <span className="has-text-weight-bold">
+                      Payment Reference:
+                    </span>{" "}
+                  </div>
+                </div>
+              </div>
+              <div
+                className="columns mx-4 pl-1"
+                style={{
+                  borderStyle: "solid",
+                  borderColor: "darkgray",
+                  borderWidth: "1px",
+                }}
+              >
+                <div className="column">Movie 1</div>
+                <div className="column">Movie 2</div>
+                <div className="column">Movie 3</div>
+              </div>
+            </div>
+
             <div>$ *** purchaseTotal ***</div>
             <br />
             <hr></hr>
