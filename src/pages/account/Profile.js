@@ -20,8 +20,8 @@ export default function Profile(props) {
 
   const [values, setValues] = useState({
     email: "",
-    password: "",
-    verifyPassword: "",
+    // password: "",
+    // verifyPassword: "",
     firstName: "",
     lastName: "",
     mobileNumber: "",
@@ -50,36 +50,44 @@ export default function Profile(props) {
   //   setValues(data);
   // });
 
-  function findByUserName() {
-    axios.get("http://localhost:8080/user/" + userData.username).then((res) => {
-      // const userData =jwt_decode(token);
-      //console.log(userData);
-
-      setValues({
-        email: userData.email,
-        // pwd: userData.pwd,
-        // verifyPwd: userData.verifyPwd,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        mobileNumber: userData.mobileNumber,
-        streetAddress: userData.streetAddress,
-        suite: userData.suite,
-        city: userData.city,
-        state: userData.state,
-        zipCode: userData.zipCode,
-      });
-    });
-  }
+  //   function findByUserName() {
+  //     axios.get("http://localhost:8080/profile/" + userData.username).then((res) => {
+  //       // const userData =jwt_decode(token);
+  //       //console.log(userData);
+  //       console.log(res.data)
+  // //const userInfo = res.data
+  // //console.log(userInfo)
+  //       // setValues({
+  //       //   email: userData.email,
+  //       //   // pwd: userData.pwd,
+  //       //   // verifyPwd: userData.verifyPwd,
+  //       //   firstName: userData.firstName,
+  //       //   lastName: userData.lastName,
+  //       //   mobileNumber: userData.mobileNumber,
+  //       //   streetAddress: userData.streetAddress,
+  //       //   suite: userData.suite,
+  //       //   city: userData.city,
+  //       //   state: userData.state,
+  //       //   zipCode: userData.zipCode,
+  //       // });
+  //     });
+  //   }
 
   const saveFormData = async () => {
     //need an endpoint for updated submitted user data
-    const response = await fetch("http://localhost:8080/edit/"+ userData.username, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
+    const token = localStorage.getItem("token");
+    const userData = jwtDecode(token);
+    const username = userData.username;
+    const response = await fetch(
+      `http://localhost:8080/profile/edit/${username}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
     if (response.status !== 201) {
       throw new Error(`Request failed: ${response.status}`);
     }
@@ -110,19 +118,15 @@ export default function Profile(props) {
   function cancelEdit() {
     setDisabled(true);
     setValues({
-      email: "",
-      // pwd: "",
-      // verifyPwd: "",
-      firstName: "",
-      lastName: "",
-      mobileNumber: "",
-      streetAddress: "",
-      suite: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      role: "",
-
+      email: userData.email , 
+      firstName: userData.firstName ,
+      lastName: userData.lastName ,
+      mobileNumber: userData.mobileNumber ,
+      streetAddress: userData.streetAddress ,
+      suite: userData.suite ,
+      city: userData.city ,
+      state: userData.state,
+      zipCode: userData.zipCode,
     });
   }
 
@@ -143,27 +147,27 @@ export default function Profile(props) {
     if (!token) {
       alert("Please Login");
       navigate("/login");
+      return;
     } else {
       const userData = jwtDecode(token);
-      //console.log(userData.username);
-  
-      setValues({
-        email: userData.username,
-        // pwd: userData.pwd,
-        // verifyPwd: userData.verifyPwd,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        phoneNumber: userData.mobileNumber,
-        streetAddress: userData.streetAddress,
-        suite: userData.suite,
-        city: userData.city,
-        state: userData.state,
-        zipCode: userData.zipCode,
+      const username = userData.username;
+      axios.get(`http://localhost:8080/profile/${username}`).then((res) => {
+        const userInfo = res.data;
+        console.log(userInfo);
+        setValues({
+          email: userInfo.email,
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          mobileNumber: userInfo.mobileNumber,
+          streetAddress: userInfo.streetAddress,
+          suite: userInfo.suite,
+          city: userInfo.city,
+          state: userInfo.state,
+          zipCode: userInfo.zipCode,
+        });
       });
     }
   }, []);
-
-  findByUserName();
 
   return (
     <div>
@@ -208,9 +212,7 @@ export default function Profile(props) {
                   >
                     {disabled ? "Unlock Fields" : "Lock Fields"} &nbsp; &nbsp;
                     <span className="icon is-pulled-right">
-                      <FontAwesomeIcon
-                        icon={disabled ? faLock : faLockOpen}
-                      />
+                      <FontAwesomeIcon icon={disabled ? faLock : faLockOpen} />
                     </span>
                   </button>
                 </i>
@@ -221,9 +223,7 @@ export default function Profile(props) {
                   <div>
                     <fieldset disabled={disabled}>
                       <div className="field">
-                        <label className="label">
-                          E-Mail 
-                        </label>
+                        <label className="label">E-Mail</label>
                         <div className="control">
                           <input
                             className="input"
@@ -231,7 +231,7 @@ export default function Profile(props) {
                             value={values.email}
                             onChange={handleChange}
                             required
-                            placeholder={userData.user}
+                            placeholder={userData.email}
                             name="email"
                           />
                         </div>
@@ -246,7 +246,6 @@ export default function Profile(props) {
                                 name="pwd"
                                 className="input"
                                 type="password"
-                                value={values.pwd}
                                 onChange={handleChange}
                                 // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
@@ -264,7 +263,6 @@ export default function Profile(props) {
                                 name="verifyPwd"
                                 className="input"
                                 type="password"
-                                value={values.verifyPwd}
                                 onChange={handleChange}
                                 required
                                 placeholder="********"
@@ -276,9 +274,7 @@ export default function Profile(props) {
                       <div className="columns">
                         <div className="column is-half">
                           <div className="field">
-                            <label className="label">
-                              First Name 
-                            </label>
+                            <label className="label">First Name</label>
                             <div className="control">
                               <input
                                 className="input"
@@ -295,9 +291,7 @@ export default function Profile(props) {
 
                         <div className="column is-half">
                           <div className="field">
-                            <label className="label">
-                              Last Name 
-                            </label>
+                            <label className="label">Last Name</label>
                             <div className="control">
                               <input
                                 className="input"
@@ -315,9 +309,7 @@ export default function Profile(props) {
                       <div className="columns">
                         <div className="column is-half">
                           <div className="field">
-                            <label className="label">
-                              Mobile Number 
-                            </label>
+                            <label className="label">Mobile Number</label>
                             <div className="control">
                               <input
                                 className="input"
@@ -337,9 +329,7 @@ export default function Profile(props) {
                       <div className="columns">
                         <div className="column is-half">
                           <div className="field">
-                            <label className="label">
-                              Street Address 
-                            </label>
+                            <label className="label">Street Address</label>
                             <div className="control">
                               <input
                                 className="input"
@@ -355,9 +345,7 @@ export default function Profile(props) {
                         </div>
                         <div className="column is-half">
                           <div className="field">
-                            <label className="label">
-                              Suite/Apt. Number 
-                            </label>
+                            <label className="label">Suite/Apt. Number</label>
                             <div className="control">
                               <input
                                 className="input"
@@ -375,9 +363,7 @@ export default function Profile(props) {
                       <div className="columns">
                         <div className="column is-half">
                           <div className="field">
-                            <label className="label">
-                              City 
-                            </label>
+                            <label className="label">City</label>
                             <div className="control">
                               <input
                                 className="input"
@@ -394,9 +380,7 @@ export default function Profile(props) {
 
                         <div className="column is-one-quarter">
                           <div className="field">
-                            <label className="label">
-                              State: 
-                            </label>
+                            <label className="label">State:</label>
                             <div className="control">
                               <input
                                 className="input"
@@ -412,13 +396,11 @@ export default function Profile(props) {
                         </div>
                         <div className="column is-one-quarter">
                           <div className="field">
-                            <label className="label">
-                              Zip 
-                            </label>
+                            <label className="label">Zip</label>
                             <div className="control">
                               <input
                                 className="input"
-                                type="text"   
+                                type="text"
                                 pattern="[0-9]{5}"
                                 value={values.zipCode}
                                 onChange={handleChange}
