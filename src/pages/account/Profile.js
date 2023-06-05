@@ -78,18 +78,20 @@ export default function Profile(props) {
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     const username = userData.username;
-    const response = await fetch(
-      `http://localhost:8080/profile/edit/${username}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/profile/edit/${username}`,
+        values
+      );
+  
+      if (response.status === 201) {
+        alert("Your profile was successfully updated!");
+      } else {
+        throw new Error(`Request failed: ${response.status}`);
       }
-    );
-    if (response.status !== 201) {
-      throw new Error(`Request failed: ${response.status}`);
+    } catch (error) {
+      alert(`Profile update failed! ${error.message}`);
+      console.log("Failed");
     }
   };
 
