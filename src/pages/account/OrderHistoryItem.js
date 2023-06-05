@@ -1,4 +1,12 @@
-const OrderHistoryItem = ({ date, orderNumber, totalPrice, stripeRef }) => {
+import OrderHistorySubItem from "./OrderHistorySubItem";
+
+const OrderHistoryItem = ({
+  orderId,
+  createDt,
+  totalOrderPrice,
+  completedOrderItems,
+  // stripeRef,
+}) => {
   const expression = /\s[^\s]*$/;
 
   const createShortcut = (text, limit) => {
@@ -12,38 +20,62 @@ const OrderHistoryItem = ({ date, orderNumber, totalPrice, stripeRef }) => {
     return text;
   };
 
+  console.log(JSON.stringify(completedOrderItems));
+
   return (
-    <div className="pt-4 mb-6">
+    <div className="column pt-4 mb-3">
       <div
-        className="columns mx-4 mb-5"
-        style={{ borderStyle: "solid", borderColor: "darkgray", borderWidth: '1px'}}
+        className="columns is-vcentered has-background-primary-light card px-4 mx-4 mb-5"
+        style={{
+          borderStyle: "solid",
+          borderColor: "darkgray",
+          borderWidth: "1px",
+        }}
       >
-        <div className="column is-2 has-background-grey has-text-white pl-4">
-          <div>
-            <span className="has-text-weight-bold">Order #:</span> {orderNumber}{" "}
+        <div className="column">
+          <div className="has-text-weight-bold is-size-6">Order #&nbsp; 
+            {orderId}
           </div>
           <div>
-            <span className="has-text-weight-bold">Date:</span> {date}
+            <span className="has-text-weight-bold"></span> {createDt}
           </div>
         </div>
-        <div className="column has-background-white-ter pl-4">
-          <div>
-            <span className="has-text-weight-bold">Invoice Total:</span> $
-            {totalPrice}
-          </div>
-          <div>
-            <span className="has-text-weight-bold">Payment Reference:</span>{" "}
-            {stripeRef}
+
+        <div className="column has-text-right">
+          <div className="has-text-weight-bold">Invoice Total</div>
+          <div>$
+          {totalOrderPrice?.toFixed(2)}
           </div>
         </div>
       </div>
+
       <div
-        className="columns mx-4 pl-1"
-        style={{ borderStyle: "solid", borderColor: "darkgray", borderWidth: '1px' }}
+        className="columns mx-4 pl-1 card"
+        style={{
+          borderStyle: "solid",
+          borderColor: "darkgray",
+          borderWidth: "1px",
+        }}
       >
-        <div className="column">Movie 1</div>
-        <div className="column">Movie 2</div>
-        <div className="column">Movie 3</div>
+        <table className="table is-fullwidth mx-5 my-2">
+          <thead>
+            <tr>
+              <th className="has-text-centered"></th>
+              <th className="has-text-left">Title</th>
+              <th className="has-text-right">Price</th>
+              <th className="has-text-centered">Count</th>
+              <th className="has-text-right">Subtotal</th>
+            </tr>
+          </thead>
+          {completedOrderItems.map((orderItem) => (
+            <OrderHistorySubItem
+              key={orderItem.orderedItemId}
+              movieId={orderItem.movieId}
+              count={orderItem.quantity}
+              totalPrice={orderItem.totalPrice}
+            />
+          ))}
+        </table>
       </div>
     </div>
   );
