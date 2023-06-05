@@ -81,7 +81,9 @@ export default function OrderHistory() {
           </ul>
         </nav>
         
-        <div className="columns is-centered pt-4">
+        <div className="columns is-centered pt-4 mx-4">
+        <div className="column"></div>
+        <div className="column is-6">
           <div>
             {orderData.map((order) => (
               <div key={order.id}>
@@ -94,6 +96,9 @@ export default function OrderHistory() {
               </div>
             ))}
           </div>
+
+        </div>
+        <div className="column"></div>
         </div>
       </div>
     </div>

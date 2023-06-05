@@ -41,40 +41,56 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
   };
 
   return (
-        <tr>
-          <td>
-            {" "}
-            <a href={`${baseProductUrl}${movieId}`}>
-            <div style={{width: '30px', marginLeft: 'auto', marginRight: 'auto'}}>
-              {productData?.posterPath && (
-                <img
-                  className="image"
-                  src={`${baseImgUrl}${productData?.posterPath}`}
-                  alt={`Poster for ${productData?.title}`}
-                />
-              )}
-            </div>
-            <div>
-              {!productData?.posterPath && (
-                <img
-                  className="movie-img"
-                  src={posterNA}
-                  alt={`no poster image available for ${productData?.title}`}
-                />
-              )}
-            </div>
-            </a>
-          </td>
-          
-          <td className="has-text-left"><a href={`${baseProductUrl}${movieId}`}>{createShortcut(productData?.title, 50)}</a></td>
-          
-          <td className="has-text-right">
-            {currencySymbol}
-            {productData?.price.toFixed(2)}
-          </td>
-          <td className="has-text-centered">{count}</td>
-          <td className="has-text-right">${totalPrice?.toFixed(2)}</td>
-        </tr>
+    <tr>
+      <td>
+        {" "}
+        <a href={`${baseProductUrl}${movieId}`}>
+          <div
+            style={{ width: "30px", marginLeft: "auto", marginRight: "auto" }}
+          >
+            {productData?.posterPath && (
+              <img
+                className="image"
+                src={`${baseImgUrl}${productData?.posterPath}`}
+                alt={`Poster for ${productData?.title}`}
+                style={{
+                  borderStyle: "solid",
+                  borderColor: "darkgray",
+                  borderWidth: "1px",
+                }}
+              />
+            )}
+          </div>
+          <div>
+            {!productData?.posterPath && (
+              <img
+                className="movie-img"
+                src={posterNA}
+                alt={`no poster image available for ${productData?.title}`}
+                style={{
+                  borderStyle: "solid",
+                  borderColor: "darkgray",
+                  borderWidth: "1px",
+                }}
+              />
+            )}
+          </div>
+        </a>
+      </td>
+
+      <td className="has-text-left">
+        <a href={`${baseProductUrl}${movieId}`}>
+          {createShortcut(productData?.title, 50)}
+        </a>
+      </td>
+
+      <td className="has-text-right">
+        {currencySymbol}
+        {productData?.price.toFixed(2)}
+      </td>
+      <td className="has-text-centered">{count}</td>
+      <td className="has-text-right">${totalPrice?.toFixed(2)}</td>
+    </tr>
   );
 };
 

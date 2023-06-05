@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
+import jwtDecode from "jwt-decode";
+
 import CheckoutInv from "./CheckoutInv";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -18,15 +20,14 @@ import LoadingOverlay from "./LoadingOverlay";
 const stripePromise = loadStripe(
   "pk_test_51N8n2ODvHmrdraF8Eb3aQ9m86ueHPsypNotvydB9gIsrlxlpyVbah3R3Zt0L1Al5swbbXNzkDHmUmfXuKjH70fmc00Q2jPmqAa"
 );
-
 const Checkout = () => {
+  const cart = useCartStore((state) => state.cart);
+  const [productData, setProductData] = useState({});
   const navigate = useNavigate();
 
-  const cart = useCartStore((state) => state.cart);
-  const cartUser = useCartStore((state) => state.cartUser);
-  const emptyCart = useCartStore((state) => state.emptyCart);
-
-  const [productData, setProductData] = useState({});
+  const token = localStorage.getItem("token");
+  const userData = token ? jwtDecode(token) : null;
+  const cartUser = userData?.username;
 
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
@@ -64,20 +65,6 @@ const Checkout = () => {
     };
     fetchData();
   }, [cart]);
-
-  const handleTestCheckout = async () => {
-    try {
-      await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
-      console.log("POSTING NEW ORDER")
-      console.log(cartUser);
-      console.log(cart);
-      console.log("EMPTYING CART")
-      emptyCart();
-      navigate("../success");
-    } catch (error) {
-      console.error("Error posting purchase to DB");
-    }
-  };
 
   return (
     <div>
@@ -127,38 +114,36 @@ const Checkout = () => {
             >
               <StripeCheckout />
             </Elements>
-            <button className="button is-fullwidth is-danger" onClick={handleTestCheckout}>Complete Purchase TEST</button>
           </div>
         </div>
       </div>
     </div>
   );
 };
-
 function StripeCheckout() {
   const stripe = useStripe();
   const elements = useElements();
+  const cart = useCartStore((state) => state.cart);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-  const emptyCart = useCartStore((state) => state.emptyCart);
 
-  const navigate = useNavigate();
-  const cart = useCartStore((state) => state.cart);
-  const cartUser = useCartStore((state) => state.cartUser);
-  
-  const handleTestCheckout = async () => {
+  const token = localStorage.getItem("token");
+  const userData = token ? jwtDecode(token) : null;
+  const cartUser = userData?.username;
+
+  const handleTestCheckout = () => {
+    sendOrderData();
+  }
+
+  const sendOrderData = async () => {
     try {
       await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
-      console.log("POSTING NEW ORDER")
       console.log(cartUser);
       console.log(cart);
-      console.log("EMPTYING CART")
-      emptyCart();
-      navigate("../success");
     } catch (error) {
       console.error("Error posting purchase to DB");
     }
-  };
+  }
 
   const handleError = (error) => {
     setLoading(false);
@@ -185,37 +170,36 @@ function StripeCheckout() {
       //   'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNb3ZpZURMIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJnbTJAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE2ODUzOTQ5MjYsImV4cCI6MTY4NTY5NDkyNn0.UYFYfIgFDKMMNpBWopw7MuU6Z3Q6X8TQ4N7qtyrz-DY`
       // }
     });
+    sendOrderData(); // POST ORDER TO DB, ORDER DOES NOT GO ALL THE WAY UP TO STRIPE BEFORE SUBSEQUENT GET REQ
     const { client_secret: clientSecret } = await response.data;
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret,
       confirmParams: { return_url: "http://localhost:3000/success" },
     });
-
-    handleTestCheckout(); // posts order to DB, empties cart, redirects to CheckoutSuccess component
-
     if (error) {
       handleError(error);
     } else {
       setLoading(false);
+
       // redirect here
       // can call elements.update to update amount
     }
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <PaymentElement />
-        {errorMessage && <div>{errorMessage}</div>}
-        {loading && <LoadingOverlay />}
-        <br />
-        <button
-          className="button is-normal is-danger is-fullwidth"
-          disabled={loading}
-        >
-          Complete Purchase
-        </button>
-      </form>
+    <form onSubmit={handleSubmit}>
+      <PaymentElement />
+      {errorMessage && <div>{errorMessage}</div>}
+      {loading && <LoadingOverlay />}
+      <br />
+      <button
+        className="button is-normal is-danger is-fullwidth"
+        disabled={loading}
+      >
+        Complete Purchase
+      </button>
+    </form>
     </div>
   );
 }

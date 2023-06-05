@@ -100,7 +100,7 @@ export default function CheckoutSuccess() {
         </ul>
       </nav>
       <div className="columns is-centered">
-        <div className="column is-8 mx-6">
+        <div className="column is-6 mx-6">
           <div
             className="box px-6 pb-6"
             style={{
@@ -112,13 +112,13 @@ export default function CheckoutSuccess() {
             <div className="title is-3 mt-5 has-text-weight-semibold">
               Purchase Confirmation
               <span className="is-pulled-right">
-                <img src={logo125}></img>
+                <img className="px-5" src={logo125}></img>
               </span>
             </div>
             <div>
               <div>
                 <div className="columns is-centered pt-4">
-                  <div>
+                  <div className="column is-fullwidth">
                     {orderData.length > 0 && (
                       <div key={orderData[0].id}>
                         <OrderHistoryItem
