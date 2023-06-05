@@ -52,66 +52,58 @@ export default function CheckoutInv() {
   const cartUser = useCartStore((state) => state.cartUser);
 
   const handleTestPaymentButton = () => {
-      const checkoutData = {
-        cartUser: cartUser,
-        date: new Date(),
-        cardNumber: "",
-        expDate: "",
-        cvc: "",
-        amount: allItemsSubtotal,
-        currency: 'usd',
-        payment_method_types: ['card'],
-        cartItems: cart
-      }
+    const checkoutData = {
+      cartUser: cartUser,
+      date: new Date(),
+      cardNumber: "",
+      expDate: "",
+      cvc: "",
+      amount: allItemsSubtotal,
+      currency: "usd",
+      payment_method_types: ["card"],
+      cartItems: cart,
+    };
 
-      console.log(checkoutData);
+    console.log(checkoutData);
 
-        axios
-          .post("http://localhost:8080/cart/checkout/" + cartUser, {
-            data: checkoutData
-          })
-          .catch((error) => {
-            console.error(
-              "Error sending checkout data",
-              error
-            );
-          })
+    axios
+      .post("http://localhost:8080/cart/checkout/" + cartUser, {
+        data: checkoutData,
+      })
+      .catch((error) => {
+        console.error("Error sending checkout data", error);
+      });
   };
 
   return (
     <div>
       <div
-        className="box is-shadowless pl-5 py-3 mb-1 has-background-warning-light"
+        className="box is-shadowless px-4 py-3 mb-1 has-background-primary-light"
         style={{
           borderStyle: "solid",
           borderColor: "lightgray",
           borderWidth: "1px",
         }}
       >
-        <div className="title is-5 has-text-danger has-text-centered">
-          <span>ORDER TOTAL: &nbsp;</span>
-          <span className="has-text-weight-bold">
-            {" "}
-            {currencySymbol}
-            {allItemsSubtotal?.toFixed(2)}
-          </span>
-        </div>
-      </div>
-      <div
-        className="box is-shadowless pl-5 mb-1 py-2 has-background-primary-light"
-        style={{
-          borderStyle: "solid",
-          borderColor: "lightgray",
-          borderWidth: "1px",
-        }}
-      >
-        <div className="has-text-centered is-size-7 is-italic">
-          {cartUser ? "USER: " + cartUser : "GUEST"}
-        </div>
-      </div>
+      <div className="columns is-vcentered">
+            <div className="column">
+            <div className="is-size-6">
+              {cartUser ? "User: " + cartUser : "GUEST"}
+            </div>
+            </div>
+            <div className="column has-text-right">
+              <span className="is-size-5">Order Total: &nbsp;</span>
+              <span className="is-size-5 has-text-weight-bold">
+                {" "}
+                {currencySymbol}
+                {allItemsSubtotal?.toFixed(2)}
+              </span>
+            </div>
+          </div>
+</div>
 
       <div
-        className="box is-shadowless px-5 py-5 pt-4"
+        className="card"
         style={{
           borderStyle: "solid",
           borderColor: "lightgray",
@@ -145,26 +137,26 @@ export default function CheckoutInv() {
               );
             })}
           </tbody>
-          <tfoot className="has-background-white-ter">
-            <tr className="has-background-white">
+          <tfoot className="has-background-primary-light">
+            <tr className="has-background-white-ter">
               <th></th>
-              <th className="has-text-right">Subtotal</th>
-              <th className="has-text-centered"></th>
-              <th className="has-text-right">
+              <th></th>
+              <th className="menu-label has-text-right pt-3">Subtotal</th>
+              <th className="has-text-right has-text-weight-normal">
                 {currencySymbol}
                 {allItemsSubtotal?.toFixed(2)}
               </th>
             </tr>
-            <tr className="has-background-white">
+            <tr className="has-background-white-ter">
               <th></th>
-              <th className="has-text-right">Sales Tax</th>
-              <th className="has-text-centered"></th>
-              <th className="has-text-right">{currencySymbol}0.00</th>
+              <th></th>
+              <th className="menu-label has-text-right pt-3">Sales Tax</th>
+              <th className="has-text-right has-text-weight-normal">{currencySymbol}0.00</th>
             </tr>
             <tr>
               <th></th>
-              <th className="has-text-right">Total</th>
-              <th className="has-text-centered"></th>
+              <th></th>
+              <th className="menu-label has-text-right pt-3">Total</th>
               <th className="has-text-right">
                 {currencySymbol}
                 {allItemsSubtotal?.toFixed(2)}

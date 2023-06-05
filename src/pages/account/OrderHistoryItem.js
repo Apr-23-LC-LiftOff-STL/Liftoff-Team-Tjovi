@@ -23,9 +23,9 @@ const OrderHistoryItem = ({
   console.log(JSON.stringify(completedOrderItems));
 
   return (
-    <div className="column pt-4 mb-3">
+    <div className="column mb-5">
       <div
-        className="columns is-vcentered has-background-primary-light card px-4 mx-4 mb-5"
+        className="columns is-vcentered has-background-primary-light card"
         style={{
           borderStyle: "solid",
           borderColor: "darkgray",
@@ -33,7 +33,7 @@ const OrderHistoryItem = ({
         }}
       >
         <div className="column">
-          <div className="has-text-weight-bold is-size-6">Order #&nbsp; 
+          <div className="is-size-5 has-text-weight-semibold">Order #&nbsp; 
             {orderId}
           </div>
           <div>
@@ -42,7 +42,7 @@ const OrderHistoryItem = ({
         </div>
 
         <div className="column has-text-right">
-          <div className="has-text-weight-bold">Invoice Total</div>
+          <div className="is-size-5 has-text-weight-semibold">Invoice Total</div>
           <div>$
           {totalOrderPrice?.toFixed(2)}
           </div>
@@ -50,21 +50,21 @@ const OrderHistoryItem = ({
       </div>
 
       <div
-        className="columns mx-4 pl-1 card"
+        className="columns card is-centered has-background-white-ter pt-3"
         style={{
           borderStyle: "solid",
           borderColor: "darkgray",
           borderWidth: "1px",
         }}
       >
-        <table className="table is-fullwidth mx-5 my-2">
-          <thead>
+        <table className="table is-fullwidth">
+          <thead className="has-background-white-ter">
             <tr>
-              <th className="has-text-centered"></th>
-              <th className="has-text-left">Title</th>
-              <th className="has-text-right">Price</th>
-              <th className="has-text-centered">Count</th>
-              <th className="has-text-right">Subtotal</th>
+              <th className="has-text-left menu-label">Items</th>
+              <th className="has-text-left menu-label">Title</th>
+              <th className="has-text-right menu-label">Price</th>
+              <th className="has-text-centered menu-label">Count</th>
+              <th className="has-text-right menu-label">Subtotal</th>
             </tr>
           </thead>
           {completedOrderItems.map((orderItem) => (

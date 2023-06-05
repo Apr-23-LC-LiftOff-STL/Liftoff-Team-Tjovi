@@ -46,6 +46,9 @@ export default function OrderHistory() {
         );
         console.log(cartUser);
         const orderData = response.data;
+        orderData.sort((b, a) => {
+          return a.id - b.id;
+        });
         setOrderData(orderData);
       } catch (error) {
         console.error("Error getting order history:", error);
@@ -77,7 +80,8 @@ export default function OrderHistory() {
             </li>
           </ul>
         </nav>
-        <div className="columns is-centered">
+        
+        <div className="columns is-centered pt-4">
           <div>
             {orderData.map((order) => (
               <div key={order.id}>
