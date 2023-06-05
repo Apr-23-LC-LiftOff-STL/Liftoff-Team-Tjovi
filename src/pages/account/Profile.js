@@ -84,7 +84,7 @@ export default function Profile(props) {
         values
       );
   
-      if (response.status === 201) {
+      if (response.status === 200 || response.status === 201) {
         alert("Your profile was successfully updated!");
       } else {
         throw new Error(`Request failed: ${response.status}`);
@@ -132,18 +132,23 @@ export default function Profile(props) {
     });
   }
 
-  const onUpdate = async (event) => {
-    event.preventDefault();
+  // const onUpdate = async (event) => {
+  //   event.preventDefault();
 
-    try {
-      await saveFormData();
+  //   try {
+  //     event.target.disabled = true;
+  //     if (!disabled) {
+  //     await saveFormData();
 
-      alert("Your profile was  successfully updated!");
-    } catch (e) {
-      alert(`Profile update failed! ${e.message}`);
-      console.log("Failed");
-    }
-  };
+  //     alert("Your profile was  successfully updated!");
+  //   }} catch (e) {
+  //     alert(`Profile update failed! ${e.message}`);
+  //     console.log("Failed");
+  //   }finally {
+      
+  //     event.target.disabled = false;
+  //   }
+  // };
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -421,7 +426,7 @@ export default function Profile(props) {
                     <div className="control">
                       <button
                         className="button is-primary has-text-weight-semibold"
-                        onClick={onUpdate}
+                        onClick={saveFormData}
                       >
                         Update Profile
                       </button>

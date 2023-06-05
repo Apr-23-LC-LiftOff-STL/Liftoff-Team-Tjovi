@@ -165,8 +165,8 @@ export default function Register() {
                       onChange={handleChange}
                       required
                       placeholder="********"
-                      title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
-                      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                      //title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                      //pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                     />
                     <span className="icon is-small is-left">
                       <FontAwesomeIcon icon={faLock} />
