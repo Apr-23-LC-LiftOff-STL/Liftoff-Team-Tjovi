@@ -4,11 +4,10 @@ import ChatBotDialog from "./ChatBotDialog"
 
 const GenreAndSortBar = () => {
   return (
-    <div className="mx-5"
+    <div className="ml-5"
     >
       <SortButtons />
       <GenreSelect />
-      <ChatBotDialog />
     </div>
   );
 };
