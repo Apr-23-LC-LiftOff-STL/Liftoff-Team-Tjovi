@@ -5,6 +5,7 @@ import com.liftoff.ecommerce.Models.ShoppingCart;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import com.liftoff.ecommerce.Service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,11 @@ public class ShoppingCartController {
     public ResponseEntity<?> removeAllItemsFromCart(@PathVariable String email){
         Customer customer = shoppingCartService.findCustomer(email);
         return shoppingCartService.removeAllItemsFromCart(customer);
+    }
+
+    @GetMapping("/returnAllCarts")
+    public ResponseEntity<?> returnAllCarts(){
+        return shoppingCartService.returnAllCarts();
     }
 }
 

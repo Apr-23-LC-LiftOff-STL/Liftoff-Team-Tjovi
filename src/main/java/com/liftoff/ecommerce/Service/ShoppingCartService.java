@@ -9,6 +9,7 @@ import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Component
 public class ShoppingCartService {
 
     @Autowired
@@ -94,5 +96,10 @@ public class ShoppingCartService {
 
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         shoppingCart.setTotalPrice(Double.parseDouble(decimalFormat.format(totalPrice)));
+    }
+
+    public ResponseEntity<?> returnAllCarts(){
+        List<ShoppingCart> shoppingCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
+        return new ResponseEntity<>(shoppingCarts, HttpStatus.OK);
     }
 }

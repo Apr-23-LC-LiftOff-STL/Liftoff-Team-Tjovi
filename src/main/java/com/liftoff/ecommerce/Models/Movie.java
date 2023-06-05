@@ -39,8 +39,11 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, Double price) {
+    public Movie(String title, String overview, String releaseDate, String runtime, Double price) {
         this.title = title;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+        this.runtime = runtime;
         this.price = price;
     }
 
