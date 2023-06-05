@@ -6,7 +6,7 @@ export default function LostPassword() {
   const [values, setValues] = useState({
     name: "",
     email: "",
-    pwd:"",
+    
   });
   const generateRandomPassword = (length) => {
     const charset =
@@ -86,7 +86,7 @@ export default function LostPassword() {
     // console.log(newPassword)
     
     // console.log(newPassword)
-     console.log(values.pwd)
+    
     
     e.preventDefault();
     setValues({ pwd: newPassword });
@@ -97,6 +97,7 @@ export default function LostPassword() {
     pwd: newPassword,
       to_name: values.name,
     };
+
     emailjs
       .sendForm(
         "service_i7rn969",
@@ -134,6 +135,7 @@ export default function LostPassword() {
         onChange={handleChange}
         required
       />
+ 
 
       <input type="submit" value="Send" />
     </form>
