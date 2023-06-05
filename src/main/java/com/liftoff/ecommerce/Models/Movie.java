@@ -36,7 +36,13 @@ public class Movie {
 
     private Double price;
 
+    public Movie() {
+    }
 
+    public Movie(String title, Double price) {
+        this.title = title;
+        this.price = price;
+    }
 
     public Long getId() {
         return id;
