@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Link, NavLink, useRouteError, useNavigate } from "react-router-dom";
-import MovieBar from "../components/MovieBar/MovieBar"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -27,7 +26,6 @@ export default function NotFound() {
           <div className="button is-small is-link is-outlined ml-6" to="/">
             <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
           </div>
-          <MovieBar />
 </div>
   );
 }

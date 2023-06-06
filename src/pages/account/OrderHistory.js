@@ -1,10 +1,23 @@
-import MovieBar from "../../components/MovieBar/MovieBar";
 import OrderHistoryItem from "./OrderHistoryItem";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import jwtDecode from "jwt-decode";
+import axios from "axios";
 
 export default function OrderHistory() {
-  
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
+
+  const navigate = useNavigate();
+  const [orderData, setOrderData] = useState([]);
+  console.log(JSON.stringify(orderData));
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
 
   const orders = [
     {
@@ -18,8 +31,31 @@ export default function OrderHistory() {
       orderNumber: "QB-234s",
       totalPrice: "15.00",
       stripeRef: "=$sdf234S",
-    }
+    },
   ];
+
+  const token = localStorage.getItem("token");
+  const userData = token ? jwtDecode(token) : null;
+  const cartUser = userData?.username;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/order/history/" + cartUser
+        );
+        console.log(cartUser);
+        const orderData = response.data;
+        orderData.sort((b, a) => {
+          return a.id - b.id;
+        });
+        setOrderData(orderData);
+      } catch (error) {
+        console.error("Error getting order history:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -44,20 +80,27 @@ export default function OrderHistory() {
             </li>
           </ul>
         </nav>
-        <div>
-          {orders.map((order) => (
-            <div key={order.id}>
-              <OrderHistoryItem
-                orderNumber={order.orderNumber}
-                date={order.date}
-                totalPrice={order.totalPrice}
-                stripeRef={order.stripeRef}
-              />
-            </div>
-          ))}
+        
+        <div className="columns is-centered pt-4 mx-4">
+        <div className="column"></div>
+        <div className="column is-6">
+          <div>
+            {orderData.map((order) => (
+              <div key={order.id}>
+                <OrderHistoryItem
+                  orderId={order.id}
+                  createDt={order.createDt}
+                  totalOrderPrice={order.totalOrderPrice}
+                  completedOrderItems={order.completedOrderItems}
+                />
+              </div>
+            ))}
+          </div>
+
+        </div>
+        <div className="column"></div>
         </div>
       </div>
-      <MovieBar />
     </div>
   );
 }

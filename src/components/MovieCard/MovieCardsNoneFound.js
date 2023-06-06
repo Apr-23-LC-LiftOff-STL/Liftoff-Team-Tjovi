@@ -8,7 +8,7 @@ const MovieCardsNoneFound = () => {
         className="section box is-shadowless is-medium my-6 mx-6"
         style={{
           borderStyle: "dashed",
-          borderColor: "lightgrey"
+          borderColor: "hsl(0, 0%, 71%)"
         }}
       >
         

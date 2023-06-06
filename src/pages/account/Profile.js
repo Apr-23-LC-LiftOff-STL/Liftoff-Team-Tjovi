@@ -13,8 +13,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import MovieBar from "../../components/MovieBar/MovieBar";
-
 export default function Profile(props) {
   const navigate = useNavigate();
 
@@ -152,7 +150,6 @@ export default function Profile(props) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Please Login");
       navigate("/login");
       return;
     } else {
@@ -447,7 +444,6 @@ export default function Profile(props) {
           </div>
         </div>
       </div>
-      <MovieBar />
     </div>
   );
 }

@@ -7,8 +7,11 @@
 
 }
 
+
+
+
 .cart-item-img {
-  width: 110px;
+  max-width: 120px;
 }
 
  .cart-item-title{

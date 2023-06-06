@@ -9,18 +9,26 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
-import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function CartSideBar({ allItemsSubtotal }) {
   const [openCheckout, setOpenCheckout] = useState(false);
   const [openEmptyCart, setOpenEmptyCart] = useState(false);
+  const [openEmail, setOpenEmail] = useState(false);
+  const [dialogFormValue, setDialogFormValue] = useState("");
+
+  const cartUser = useCartStore((state) => state.cartUser);
+  const setCartUser = useCartStore((state) => state.setCartUser);
 
   const navigate = useNavigate();
 
   const cart = useCartStore((state) => state.cart);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const emptyCart = useCartStore((state) => state.emptyCart);
+  const getCart = useCartStore((state) => state.getCart);
 
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
@@ -49,15 +57,15 @@ export default function CartSideBar({ allItemsSubtotal }) {
 
   const navToLoginButtonHandler = () => {
     navigate("/login");
-  }
+  };
 
   const navToCheckoutButtonHandler = () => {
     navigate("/checkout");
-  }
+  };
 
   const handleClickOpenEmptyCartDialog = () => {
     setOpenEmptyCart(true);
-  }
+  };
 
   const handleClickOpenCheckout = () => {
     setOpenCheckout(true);
@@ -68,8 +76,27 @@ export default function CartSideBar({ allItemsSubtotal }) {
     setOpenEmptyCart(false);
   };
 
+  const handleOpenEmail = () => {
+    setOpenEmail(true);
+    setOpenCheckout(false);
+  };
+
+  const handleCloseEmail = () => {
+    setOpenEmail(false);
+  };
+
+  const handleGuestEmail = () => {
+    setCartUser(dialogFormValue);
+    getCart();
+    navigate("/checkout");
+  };
+
+  /*   const handleHover = () => {
+    alert("hi");
+  } */
+
   return (
-    <div className="column is-one-fifth mx-4">
+    <div className="column is-one-quarter mx-6">
       <aside
         className="menu has-text-centered card is-shadowless"
         style={{
@@ -96,12 +123,13 @@ export default function CartSideBar({ allItemsSubtotal }) {
           </p>
           <br />
           <div className="has-text-centered has-text-weight-semibold">
-            <div
+            <button
               className="button is-centered is-normal is-fullwidth is-warning"
+              disabled={totalProductsInCart < 1}
               onClick={checkoutButtonHandler}
             >
               Check Out
-            </div>
+            </button>
           </div>
         </div>
       </aside>
@@ -125,7 +153,9 @@ export default function CartSideBar({ allItemsSubtotal }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Remove <span className="has-text-weight-semibold">all items</span>{" "}
@@ -133,15 +163,11 @@ export default function CartSideBar({ allItemsSubtotal }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <button
-            className="button is-small is-warning has-text-weight-semibold"
-            onClick={handleClose}
-            autoFocus
-          >
+          <button className="button is-warning" onClick={handleClose} autoFocus>
             Cancel
           </button>
           <button
-            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            className="button is-danger is-outlined m-2"
             onClick={emptyCartButtonHandler}
           >
             Remove All Items
@@ -155,27 +181,116 @@ export default function CartSideBar({ allItemsSubtotal }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Order history is only available to logged in users. <span className="has-text-weight-semibold">Would you like to log in?</span>
+            Order history is only available to logged in users.{" "}
+            <span className="has-text-weight-semibold">
+              Would you like to log in?
+            </span>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <button
-            className="button is-small is-warning has-text-weight-semibold"
+          <button
+            className="button is-warning"
             onClick={navToCheckoutButtonHandler}
           >
             Check Out
           </button>
           <button
-            className="button is-small is-primary has-text-weight-semibold"
+            className="button is-primary m-2"
             onClick={navToLoginButtonHandler}
             autoFocus
           >
             Log In
           </button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={openEmptyCart}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Remove <span className="has-text-weight-semibold">all items</span>{" "}
+            from cart?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button className="button is-warning" onClick={handleClose} autoFocus>
+            Cancel
+          </button>
+          <button
+            className="button is-danger is-outlined m-2"
+            onClick={emptyCartButtonHandler}
+          >
+            Remove All Items
+          </button>
+        </DialogActions>
+      </Dialog>
 
+      <Dialog
+        open={openCheckout}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Order history is only available to logged in users.{" "}
+            <span className="has-text-weight-semibold">
+              Would you like to log in?
+            </span>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button className="button is-warning" onClick={handleOpenEmail}>
+            Continue As Guest
+          </button>
+          <button
+            className="button is-primary has-text-weight-semibold m-2"
+            onClick={navToLoginButtonHandler}
+            autoFocus
+          >
+            Log In
+          </button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={openEmail} onClose={handleCloseEmail}>
+        <DialogTitle>
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <span className="has-text-weight-semibold has-text-danger">You are continuing to checkout as a guest user.</span>
+            <br/>Please enter your email so we can send a receipt on purchase.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+            onChange={(e) => setDialogFormValue(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <div className="button is-primary m-2" onClick={handleGuestEmail}>
+            Submit
+          </div>
         </DialogActions>
       </Dialog>
     </div>
