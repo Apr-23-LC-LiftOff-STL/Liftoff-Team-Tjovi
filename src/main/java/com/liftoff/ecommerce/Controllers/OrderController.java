@@ -28,4 +28,10 @@ public class OrderController {
         Customer customer = shoppingCartService.findCustomer(email);
         return orderService.returnAllCompletedOrders(customer.getId());
     }
+
+    @GetMapping("/currentPurchase/{email}")
+    public ResponseEntity<?> returnMostRecentCompletedOrder(@PathVariable String email){
+        Customer customer = shoppingCartService.findCustomer(email);
+        return orderService.returnMostRecentCompletedOrder(customer.getId());
+    }
 }
