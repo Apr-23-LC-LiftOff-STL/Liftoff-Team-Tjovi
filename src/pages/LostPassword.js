@@ -87,14 +87,14 @@ export default function LostPassword() {
     
     // console.log(newPassword)
     
-    
+    generateRandomPassword(10)
     e.preventDefault();
-    setValues({ pwd: newPassword });
+    setValues({pwd: newPassword })
     // console.log(values.email)
-    // console.log(values.pwd)
+     console.log(values.pwd)
     const templateParams = {
       to_email: values.email,
-    pwd: newPassword,
+    pwd: values.pwd,
       to_name: values.name,
     };
 
@@ -135,7 +135,14 @@ export default function LostPassword() {
         onChange={handleChange}
         required
       />
- 
+  <label>Password</label>
+      <input
+        type="radio"
+        name="pwd"
+        value={values.pwd}
+        onChange={handleChange}
+        required
+      />
 
       <input type="submit" value="Send" />
     </form>
