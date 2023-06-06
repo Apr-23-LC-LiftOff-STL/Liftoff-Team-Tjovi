@@ -36,7 +36,7 @@ dependencies {
     implementation 'com.auth0:java-jwt:4.4.0'
     implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
     implementation 'io.swagger.core.v3:swagger-annotations:2.2.10'
-
+    implementation "com.stripe:stripe-java:22.19.0"
 }
 
 tasks.named('test') {
