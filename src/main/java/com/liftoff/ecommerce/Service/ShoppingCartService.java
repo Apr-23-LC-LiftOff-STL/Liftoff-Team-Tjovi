@@ -26,9 +26,6 @@ public class ShoppingCartService {
     @Autowired
     private MovieRepository movieRepository;
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
     public ResponseEntity<?> returnCartInstances(Long customerId){
         List<ShoppingCart> customerCart = shoppingCartRepository.findByCustomerId(customerId);
         if(customerCart.size()>0){
@@ -80,11 +77,6 @@ public class ShoppingCartService {
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
         shoppingCartRepository.deleteAll(allCustomersCarts);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
-    }
-
-    public Customer findCustomer(String email){
-        List<Customer> customer = customerRepository.findByEmail(email);
-        return customer.get(0);
     }
 
     public void setTotalPrice(ShoppingCart shoppingCart){

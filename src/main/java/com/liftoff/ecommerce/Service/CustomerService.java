@@ -19,12 +19,12 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     public ResponseEntity<?> returnCustomerInformation(String email){
-        Customer customer = shoppingCartService.findCustomer(email);
+        Customer customer = findCustomer(email);
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
     public ResponseEntity<?> editCustomerInformation(String email, Customer customer){
-        Customer customerInformationToBeEdited = shoppingCartService.findCustomer(email);
+        Customer customerInformationToBeEdited = findCustomer(email);
 
         customerInformationToBeEdited.setEmail(customer.getEmail());
         customerInformationToBeEdited.setFirstName(customer.getFirstName());
@@ -38,5 +38,10 @@ public class CustomerService {
 
         customerRepository.save(customerInformationToBeEdited);
         return ResponseEntity.ok(HttpStatus.CREATED);
+    }
+
+    public Customer findCustomer(String email){
+        List<Customer> customer = customerRepository.findByEmail(email);
+        return customer.get(0);
     }
 }
