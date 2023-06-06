@@ -45,9 +45,11 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
       <td>
         {" "}
         <a href={`${baseProductUrl}${movieId}`}>
+        <Fade in timeout={500}>
           <div
             style={{ width: "30px", marginLeft: "auto", marginRight: "auto" }}
           >
+
             {productData?.posterPath && (
               <img
                 className="image"
@@ -61,12 +63,13 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
               />
             )}
           </div>
+          </Fade>
           <div>
             {!productData?.posterPath && (
               <img
-                className="movie-img"
+                className="image"
                 src={posterNA}
-                alt={`no poster image available for ${productData?.title}`}
+                alt={`no poster available for ${productData?.title}`}
                 style={{
                   borderStyle: "solid",
                   borderColor: "darkgray",
@@ -86,7 +89,7 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
 
       <td className="has-text-right">
         {currencySymbol}
-        {productData?.price.toFixed(2)}
+        {(totalPrice/count).toFixed(2)}
       </td>
       <td className="has-text-centered">{count}</td>
       <td className="has-text-right">${totalPrice?.toFixed(2)}</td>
