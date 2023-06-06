@@ -12,7 +12,7 @@ function MovieBar() {
     Math.floor(Math.random() * 822)
   ); */
 
-  const totalMoviesInDb = 5000;  // consider making this a global via Zustand
+  const totalMoviesInDb = 822;  // consider making this a global via Zustand
 
   const movieBarPicks = [];
   for (let i = 0; movieBarPicks.length < 5; i++) {
