@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +59,15 @@ public class OrderService {
         List<CompletedOrder> completedOrders = completedOrderRepository.findByCustomerId(customerId);
         if(completedOrders.size()>0){
             return new ResponseEntity<>(completedOrders, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<?> returnMostRecentCompletedOrder(Long customerId){
+        List<CompletedOrder> completedOrders = completedOrderRepository.findByCustomerId(customerId);
+        if(completedOrders.size()>0){
+            return new ResponseEntity<>(completedOrders.get(completedOrders.size()-1), HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
