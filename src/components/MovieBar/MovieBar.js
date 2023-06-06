@@ -12,9 +12,11 @@ function MovieBar() {
     Math.floor(Math.random() * 822)
   ); */
 
+  const totalMoviesInDb = 5000;  // consider making this a global via Zustand
+
   const movieBarPicks = [];
   for (let i = 0; movieBarPicks.length < 5; i++) {
-    let newId = Math.floor(Math.random() * 822); // TODO:  update 822 to total movie count if database increases
+    let newId = Math.floor(Math.random() * totalMoviesInDb);
     if (!movieBarPicks.includes(newId)) {
       movieBarPicks.push(newId);
     }
