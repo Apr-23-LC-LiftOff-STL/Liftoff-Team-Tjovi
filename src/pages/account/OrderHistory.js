@@ -1,5 +1,6 @@
 import OrderHistoryItem from "./OrderHistoryItem";
-import { useNavigate } from "react-router-dom";
+import OrderHistoryNoneFound from "./OrderHistoryNoneFound";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
@@ -80,25 +81,28 @@ export default function OrderHistory() {
             </li>
           </ul>
         </nav>
-        
-        <div className="columns is-centered pt-4 mx-4">
-        <div className="column"></div>
-        <div className="column is-6">
-          <div>
-            {orderData.map((order) => (
-              <div key={order.id}>
-                <OrderHistoryItem
-                  orderId={order.id}
-                  createDt={order.createDt}
-                  totalOrderPrice={order.totalOrderPrice}
-                  completedOrderItems={order.completedOrderItems}
-                />
-              </div>
-            ))}
-          </div>
 
-        </div>
-        <div className="column"></div>
+        <div className="columns is-centered pt-4 mx-4">
+          <div className="column"></div>
+          <div className="column is-6">
+            <div>
+              {orderData.length > 0 ? (
+                orderData.map((order) => (
+                  <div key={order.id}>
+                    <OrderHistoryItem
+                      orderId={order.id}
+                      createDt={order.createDt}
+                      totalOrderPrice={order.totalOrderPrice}
+                      completedOrderItems={order.completedOrderItems}
+                    />
+                  </div>
+                ))
+              ) : (
+                <OrderHistoryNoneFound />
+              )}
+            </div>
+          </div>
+          <div className="column"></div>
         </div>
       </div>
     </div>
