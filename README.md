@@ -11,7 +11,7 @@ Web-based e-commerce application in which users can search/sort available produc
 - product browsing & product details pages per product
 - product search, product sort
 - shopping cart (add products to cart, remove items from cart, empty cart, complete purchase)
-
+- chatbot recomendations
 ***
 
 ### Tech Stack, Front End:
