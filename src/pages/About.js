@@ -1,5 +1,3 @@
-import MovieBar from "../components/MovieBar/MovieBar";
-
 export default function About() {
   return (
     <div>
@@ -47,7 +45,6 @@ export default function About() {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full"
         ></iframe>
       </div>
-      <MovieBar />
     </div>
   );
 }

@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 import SearchBar from "./SearchBar";
 
-import logo125 from "./Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -234,14 +234,14 @@ const NavBar = () => {
         </DialogContent>
         <DialogActions>
           <button
-            className="button is-small is-primary has-text-weight-semibold"
+            className="button is-primary"
             onClick={handleClose}
             autoFocus
           >
             Cancel
           </button>
           <button
-            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            className="button is-danger is-outlined m-2"
             onClick={handleLogOutButton}
           >
             Log Out

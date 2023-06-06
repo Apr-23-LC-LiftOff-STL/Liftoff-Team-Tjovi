@@ -2,8 +2,6 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 
-import MovieBar from "../components/MovieBar/MovieBar";
-
 import axios from "axios";
 
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +9,16 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-import { useCartStore } from "../store/cartStore";
-import { useLoginStore } from "../store/loginStore";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
+import { useCartStore } from "../../store/cartStore";
+import { useLoginStore } from "../../store/loginStore";
+
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,10 +30,15 @@ const Login = () => {
   const setCartUser = useCartStore((state) => state.setCartUser);
   const getCart = useCartStore((state) => state.getCart);
 
-  const forgotPassword = async (event) => {
-    event.preventDefault();
-    alert("Lost password feature under construction. Please contact your network administrator.");
+  const [open, setOpen] = useState(false);
+
+  const forgotPassword = () => {
+    setOpen(true);
     //navigate("/lostPassword");
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleSubmit = async (e) => {
@@ -93,7 +104,6 @@ const Login = () => {
           <NavLink className="button is-small is-link is-outlined ml-6" to="/">
             <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
           </NavLink>
-          <MovieBar />
         </div>
       </div>
     );
@@ -127,7 +137,9 @@ const Login = () => {
             }}
             onSubmit={handleSubmit}
           >
-            <div className="title is-3 mt-5 has-text-weight-semibold">Log In</div>
+            <div className="title is-3 mt-5 has-text-weight-semibold">
+              Log In
+            </div>
             <div className="field">
               <label htmlFor="email" className="label">
                 E-mail
@@ -166,7 +178,10 @@ const Login = () => {
 
             <div className="field is-grouped mt-5">
               <div className="control">
-                <button className="button is-primary has-text-weight-semibold" onSubmit={handleSubmit}>
+                <button
+                  className="button is-primary has-text-weight-semibold"
+                  onSubmit={handleSubmit}
+                >
                   Log In
                 </button>
               </div>
@@ -187,7 +202,31 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <MovieBar />
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Lost password feature under construction. Please contact your
+            network administrator.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button
+            className="button is-primary is-primary m-2"
+            onClick={handleClose}
+            autoFocus
+          >
+            Close
+          </button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

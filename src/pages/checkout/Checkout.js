@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-import { useCartStore } from "../../store/cartStore";
-
-import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 import CheckoutInv from "./CheckoutInv";
-import CheckoutInvItem from "./CheckoutInvItem";
-import MovieBar from "../../components/MovieBar/MovieBar";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -17,7 +14,10 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 
+import { useCartStore } from "../../store/cartStore";
+
 import LoadingOverlay from "./LoadingOverlay";
+
 const stripePromise = loadStripe(
   "pk_test_51N8n2ODvHmrdraF8Eb3aQ9m86ueHPsypNotvydB9gIsrlxlpyVbah3R3Zt0L1Al5swbbXNzkDHmUmfXuKjH70fmc00Q2jPmqAa"
 );
@@ -40,10 +40,13 @@ function renderStripe(total){
 }
 
 const Checkout = () => {
-
   const cart = useCartStore((state) => state.cart);
   const [productData, setProductData] = useState({});
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+  const userData = token ? jwtDecode(token) : null;
+  const cartUser = userData?.username;
 
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,
@@ -64,6 +67,7 @@ const Checkout = () => {
     return isNaN(finalPrice) ? 0 : finalPrice 
    
   }, 0);
+
   amount=allItemsSubtotal
 console.log(allItemsSubtotal)
 
@@ -88,8 +92,7 @@ console.log(allItemsSubtotal)
     };
     fetchData();
   }, [cart]);
-
- 
+  
   return (
     <div>
       <nav
@@ -114,40 +117,54 @@ console.log(allItemsSubtotal)
       </nav>
       <div className="container">
         <div className="columns is-centered">
-        <div className="column is-6 mx-4">
+          <div className="column is-6 mx-4">
             <CheckoutInv />
           </div>
           <div className="column is-one-third mx-4">
-          {/* {
+            {/* {
              cartResults &&
              cartResults.every(({status})=> status==="success" ) &&
               cartResults.length > 0
              && */}
-
              {renderStripe(allItemsSubtotal)}
-         
-        
           </div>
         </div>
       </div>
     </div>
   );
 };
-function StripeCheckout(){
+function StripeCheckout() {
   const stripe = useStripe();
   const elements = useElements();
+  const cart = useCartStore((state) => state.cart);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
- 
- 
+
+  const token = localStorage.getItem("token");
+  const userData = token ? jwtDecode(token) : null;
+  const cartUser = userData?.username;
+
+  const handleTestCheckout = () => {
+    sendOrderData();
+  }
+
+  const sendOrderData = async () => {
+    try {
+      await axios.post("http://localhost:8080/order/newOrder/" + cartUser);
+      console.log(cartUser);
+      console.log(cart);
+    } catch (error) {
+      console.error("Error posting purchase to DB");
+    }
+  }
+
   const handleError = (error) => {
     setLoading(false);
     setErrorMessage(error.message);
   };
-   const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
- 
- 
+
     if (!stripe) {
       return;
     }
@@ -168,7 +185,8 @@ function StripeCheckout(){
       //   'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNb3ZpZURMIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJnbTJAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE2ODUzOTQ5MjYsImV4cCI6MTY4NTY5NDkyNn0.UYFYfIgFDKMMNpBWopw7MuU6Z3Q6X8TQ4N7qtyrz-DY`
       // }
     });
-    const { client_secret: clientSecret } =  await response.data;
+    sendOrderData(); // POST ORDER TO DB, ORDER DOES NOT GO ALL THE WAY UP TO STRIPE BEFORE SUBSEQUENT GET REQ
+    const { client_secret: clientSecret } = await response.data;
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret,
@@ -178,31 +196,27 @@ function StripeCheckout(){
       handleError(error);
     } else {
       setLoading(false);
- 
- 
+
       // redirect here
       // can call elements.update to update amount
     }
   };
   return (
- <form onSubmit={handleSubmit}>
-                <PaymentElement />
-                {errorMessage && <div>{errorMessage}</div>}
-                {loading && <LoadingOverlay />}
-                <br />
-                <button
-                  className="button is-normal is-danger is-fullwidth"
-                  disabled={loading}
-                >
-                  Complete Purchase
-                </button>
-              </form>
-         
-       
-      
-      
-    
+    <div>
+    <form onSubmit={handleSubmit}>
+      <PaymentElement />
+      {errorMessage && <div>{errorMessage}</div>}
+      {loading && <LoadingOverlay />}
+      <br />
+      <button
+        className="button is-normal is-danger is-fullwidth"
+        disabled={loading}
+      >
+        Complete Purchase
+      </button>
+    </form>
+    </div>
   );
-};
+}
 
 export default Checkout;
