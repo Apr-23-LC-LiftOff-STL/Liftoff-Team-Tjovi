@@ -5,10 +5,7 @@ import "./Products.css";
 import { Fade } from "@mui/material";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
-import { faSubtract } from "@fortawesome/free-solid-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faSubtract, faX, faHome, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -223,7 +220,7 @@ export default function ProductsDetails() {
                           onClick={() => handleClickOpen(product.id)}
                           disabled={!thisItemInCart}
                         >
-                          <FontAwesomeIcon icon={faX} />
+                          <FontAwesomeIcon icon={faTrash} />
                           &nbsp; Remove All From Cart
                         </button>
                         <div>
