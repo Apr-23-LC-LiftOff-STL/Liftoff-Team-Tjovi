@@ -5,6 +5,11 @@ import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+
 export default function OrderHistory() {
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
@@ -81,11 +86,10 @@ export default function OrderHistory() {
             </li>
           </ul>
         </nav>
-
-        <div className="columns is-centered pt-4 mx-4">
+        <div className="title ml-6">Order History</div>
+        <div className="columns">
           <div className="column"></div>
-          <div className="column is-6">
-            <div>
+            <div className="column is-two-thirds mx-4">
               {orderData.length > 0 ? (
                 orderData.map((order) => (
                   <div key={order.id}>
@@ -101,10 +105,9 @@ export default function OrderHistory() {
                 <OrderHistoryNoneFound />
               )}
             </div>
+            <div className="column"></div>
           </div>
-          <div className="column"></div>
         </div>
       </div>
-    </div>
   );
 }
