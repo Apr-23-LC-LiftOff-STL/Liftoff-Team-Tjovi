@@ -102,7 +102,11 @@ export default function CheckoutSuccess() {
           </li>
         </ul>
       </nav>
-      <div className="title ml-6">Purchase Confirmation!</div>
+      <div className="title is-3 ml-6">Purchase Confirmation</div>
+      <div className="subtitle is-6 is-italic ml-6 pt-1">
+        Thank you for your order! Please download your selections via the
+        link(s) below.
+      </div>
       <div>
         <div className="columns is-centered">
           <div className="column is-two-thirds mx-4">
@@ -114,24 +118,25 @@ export default function CheckoutSuccess() {
                   totalOrderPrice={orderData[0].totalOrderPrice}
                   completedOrderItems={orderData[0].completedOrderItems}
                 />
-              </div>
-            )}
-          </div>
-        </div>
-        <br />
-        <hr></hr>
-        {cartUser ? (
-          <div className="has-text-centered is-italic">
+                      {cartUser ? (
+          <div className="has-text-right is-italic pr-5">
             View your <NavLink to="../account/orders">Order History</NavLink>
           </div>
         ) : (
-          <div className="has-text-centered is-danger">
+          <div className="has-text-right is-danger">
             Please print this page for your records!
             <div>Guest users do not have access to account history.</div>
           </div>
         )}
+              </div>
+            )}
+          </div>
+        </div>
+
       </div>
+
       <div className="column is-1"></div>
+
     </div>
   );
 }

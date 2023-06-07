@@ -15,10 +15,11 @@ import TextField from "@mui/material/TextField";
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function CartSideBar({ allItemsSubtotal }) {
-  const [openCheckout, setOpenCheckout] = useState(false);
+  // const [openCheckout, setOpenCheckout] = useState(false);
   const [openEmptyCart, setOpenEmptyCart] = useState(false);
-  const [openEmail, setOpenEmail] = useState(false);
-  const [dialogFormValue, setDialogFormValue] = useState("");
+  const [openCheckoutLogin, setOpenCheckoutLogin] = useState(false);
+  // const [openEmail, setOpenEmail] = useState(false);
+  // const [dialogFormValue, setDialogFormValue] = useState("");
 
   const cartUser = useCartStore((state) => state.cartUser);
   const setCartUser = useCartStore((state) => state.setCartUser);
@@ -39,7 +40,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
 
   const checkoutButtonHandler = () => {
     if (!isLoggedIn) {
-      handleClickOpenCheckout();
+      handleClickOpenCheckoutLogin();
     } else {
       navigate("/checkout");
     }
@@ -59,6 +60,10 @@ export default function CartSideBar({ allItemsSubtotal }) {
     navigate("/login");
   };
 
+  const navToRegisterButtonHandler = () => {
+    navigate("/register");
+  };
+
   const navToCheckoutButtonHandler = () => {
     navigate("/checkout");
   };
@@ -67,16 +72,21 @@ export default function CartSideBar({ allItemsSubtotal }) {
     setOpenEmptyCart(true);
   };
 
-  const handleClickOpenCheckout = () => {
+/*   const handleClickOpenCheckout = () => {
     setOpenCheckout(true);
-  };
+  }; */
+
+  const handleClickOpenCheckoutLogin = () => {
+    setOpenCheckoutLogin(true);
+  }
 
   const handleClose = () => {
-    setOpenCheckout(false);
+    // setOpenCheckout(false);
     setOpenEmptyCart(false);
+    setOpenCheckoutLogin(false);
   };
 
-  const handleOpenEmail = () => {
+/*   const handleOpenEmail = () => {
     setOpenEmail(true);
     setOpenCheckout(false);
   };
@@ -89,11 +99,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
     setCartUser(dialogFormValue);
     getCart();
     navigate("/checkout");
-  };
-
-  /*   const handleHover = () => {
-    alert("hi");
-  } */
+  }; */
 
   return (
     <div className="column is-one-quarter mx-6">
@@ -175,8 +181,8 @@ export default function CartSideBar({ allItemsSubtotal }) {
         </DialogActions>
       </Dialog>
 
-      <Dialog
-        open={openCheckout}
+      {/* <Dialog
+        open={openCheckoutLogin}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -207,7 +213,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
             Log In
           </button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
       <Dialog
         open={openEmptyCart}
         onClose={handleClose}
@@ -237,6 +243,34 @@ export default function CartSideBar({ allItemsSubtotal }) {
       </Dialog>
 
       <Dialog
+        open={openCheckoutLogin}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Please log in before continuing to checkout.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button className="button is-link" onClick={navToRegisterButtonHandler}>
+            Register
+          </button>
+          <button
+            className="button is-primary has-text-weight-semibold m-2"
+            onClick={navToLoginButtonHandler}
+            autoFocus
+          >
+            Log In
+          </button>
+        </DialogActions>
+      </Dialog>
+
+{/*       <Dialog
         open={openCheckout}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -265,9 +299,9 @@ export default function CartSideBar({ allItemsSubtotal }) {
             Log In
           </button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
 
-      <Dialog open={openEmail} onClose={handleCloseEmail}>
+{/*       <Dialog open={openEmail} onClose={handleCloseEmail}>
         <DialogTitle>
           <img className="mt-4" src={logo125} width="112" height="28" />
         </DialogTitle>
@@ -292,7 +326,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
             Submit
           </div>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 }

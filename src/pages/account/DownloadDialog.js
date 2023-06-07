@@ -10,7 +10,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileArrowDown, faX } from "@fortawesome/free-solid-svg-icons";
+import { faFileArrowDown, faCircleDown, faX } from "@fortawesome/free-solid-svg-icons";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 import logoLaunchCode from "./Logo_LaunchCode.svg";
@@ -28,8 +28,8 @@ export default function DownloadDialog() {
 
   return (
     <div>
-      <button className="button is-link is-light is-outlined is-normal" onClick={handleClickOpen}>
-        <FontAwesomeIcon icon={faFileArrowDown} />
+      <button className="button is-ghost" onClick={handleClickOpen}>
+        <FontAwesomeIcon icon={faCircleDown} className="icon is-normal"/>
       </button>
       <Dialog
         open={open}
@@ -60,7 +60,7 @@ export default function DownloadDialog() {
         </DialogContent>
         <DialogActions>
           <div
-            className="button is-primary is-light is-outlined mb-2 mr-2"
+            className="button is-info is-light is-outlined mb-2 mr-2"
             onClick={handleClose}
             autoFocus
           >

@@ -184,7 +184,8 @@ function StripeCheckout() {
       //   'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNb3ZpZURMIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJnbTJAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE2ODUzOTQ5MjYsImV4cCI6MTY4NTY5NDkyNn0.UYFYfIgFDKMMNpBWopw7MuU6Z3Q6X8TQ4N7qtyrz-DY`
       // }
     });
-    sendOrderData(); // POST ORDER TO DB, ORDER DOES NOT GO ALL THE WAY UP TO STRIPE BEFORE SUBSEQUENT GET REQ
+    sendOrderData() // POST ORDER TO DB, ORDER DOES NOT GO ALL THE WAY UP TO STRIPE BEFORE SUBSEQUENT GET REQ
+
     const { client_secret: clientSecret } = await response.data;
     const { error } = await stripe.confirmPayment({
       elements,
@@ -195,8 +196,6 @@ function StripeCheckout() {
       handleError(error);
     } else {
       setLoading(false);
-      emptyCart();
-
       // redirect here
       // can call elements.update to update amount
     }
