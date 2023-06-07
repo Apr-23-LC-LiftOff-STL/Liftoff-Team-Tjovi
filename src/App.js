@@ -37,7 +37,7 @@ import HelpLayout from "./layouts/HelpLayout";
 import Checkout from "./pages/checkout/Checkout";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import CheckoutFailure from "./pages/checkout/CheckoutSuccess";
-import LostPassword from "./pages/LostPassword";
+import LostPassword from "./pages/account/LostPassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -76,6 +76,7 @@ const router = createBrowserRouter(
       <Route path="account" element={<GeneralLayout />}>
         <Route path="orders" element={<OrderHistory />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="lostPassword" element={<LostPassword />} />
       </Route>
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />

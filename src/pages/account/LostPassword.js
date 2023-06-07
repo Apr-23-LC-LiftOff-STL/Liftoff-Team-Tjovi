@@ -8,18 +8,6 @@ export default function LostPassword() {
     email: "",
     
   });
-  const generateRandomPassword = (length) => {
-    const charset =
-      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-=_+";
-
-    let password = "";
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      password += charset[randomIndex];
-    }
-
-    return password;
-  };
 
   const handleChange = (e) => {
     var value = e.target.value === "" ? null : e.target.value;
@@ -30,95 +18,82 @@ export default function LostPassword() {
     });
   };
 
-  //there should be a check to see if the user actually exists
-  //set up either emailer to send said password from the database(if possible)
-  //or set up an alert/message with the password or that the password was sent to the email with no functionality
-
-  // const checkIfUserExists = async () => {
-
-  //   const userEmail = values.email;
-  //   const response = await fetch("http://localhost:8080/user/"+ {userEmail}, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(values),
-  //   });
-
-  //   if (response.status !== 201) {
-  //     throw new Error(`Request failed: ${response.status}`);
-  //   }
-  // };
-  // const updateUserPassword = async () => {
-  //   const userEmail = values.email;
-  //   const response = await fetch(
-  //     "http://localhost:8080/user/" + { userEmail },
-  //     {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(values),
-  //     }
-  //   );
-
-  //   if (response.status !== 201) {
-  //     throw new Error(`Request failed: ${response.status}`);
-  //   }
-  // };
-  // const onSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     //await checkIfUserExists();
-  //     // await updateUserPassword();
-  //     sendEmail()
-  //     alert("Your password was sent");
-  //   } catch (e) {
-  //     alert(`Failed! ${e.message}`);
-  //     console.log("Failed");
-  //   }
-  // };
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    const newPassword = generateRandomPassword(10);
-    // console.log(newPassword)
-    
-    // console.log(newPassword)
-    
-    generateRandomPassword(10)
+  const handleSubmit = (e) => { 
     e.preventDefault();
-    setValues({pwd: newPassword })
-    // console.log(values.email)
-     console.log(values.pwd)
-    const templateParams = {
-      to_email: values.email,
-    pwd: values.pwd,
-      to_name: values.name,
-    };
+    const newPassword = generateRandomPassword();
+    console.log("These are the handleSubmit values")
+    console.log(values.name)
+    console.log(values.email)
+    console.log(newPassword)
+  sendEmail( values.name, values.email, newPassword) 
 
-    emailjs
-      .sendForm(
-        "service_i7rn969",
-        "template_2v6984n",
-        form.current,
-        "Cy7tiuWbCkBC_n4MB", 
-           
-       
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          alert("Your email was successfully sent");
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+
+    // console.log(newPassword)
+    // console.log(newPassword)
+   // setValues({pwd: newPassword })
+    // console.log(values.email)
+     //console.log(values.pwd)
+    // const templateParams = {
+    //   to_email: values.email,
+    // pwd: values.pwd,
+    //   to_name: values.name,
+    // };
+    // emailjs
+    //   .sendForm(
+    //     "service_i7rn969",
+    //     "template_2v6984n",
+    //     form.current,
+    //     "Cy7tiuWbCkBC_n4MB", 
+    //   )
+    //   .then(
+    //     (result) => {
+    //       console.log(result.text);
+    //       alert("Your email was successfully sent");
+    //     },
+    //     (error) => {
+    //       console.log(error.text);
+    //     }
+    //   );
   };
+  
+
+  const generateRandomPassword = () => {
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-=_+";
+
+    let newPassword = "";
+    let length = 10
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      newPassword += charset[randomIndex];
+    }
+
+    return newPassword;
+  };
+
+  const sendEmail = (name, email, newPassword) =>{
+    const serviceId = "service_i7rn969"
+    const templateId ="template_2v6984n"
+    const userId = "Cy7tiuWbCkBC_n4MB"
+    const templateParams = {
+      to_email: email,
+      pwd: newPassword,
+      to_name: name
+    }
+emailjs.send(serviceId, templateId, templateParams, userId)
+.then(
+      (response) => {
+        console.log(response.text);
+        alert("Your email was successfully sent");
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
+  };
+
   return (
-    <form ref={form} onSubmit={sendEmail}>
+    <form onSubmit={handleSubmit}>
       <label>Name</label>
       <input
         type="text"
@@ -135,16 +110,16 @@ export default function LostPassword() {
         onChange={handleChange}
         required
       />
-  <label>Password</label>
+  {/* <label>Password</label>
       <input
         type="radio"
         name="pwd"
         value={values.pwd}
         onChange={handleChange}
         required
-      />
+      /> */}
 
-      <input type="submit" value="Send" />
+      <button type="submit" value="Send" >Send Password</button>
     </form>
     // <div form ref={form} onSubmit={sendEmail}>
     //   <div class="field">
