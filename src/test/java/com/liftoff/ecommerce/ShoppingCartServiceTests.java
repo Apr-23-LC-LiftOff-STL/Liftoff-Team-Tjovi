@@ -9,6 +9,7 @@ import com.liftoff.ecommerce.Service.ShoppingCartService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -17,10 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
@@ -42,8 +42,10 @@ public class ShoppingCartServiceTests {
     Customer testCustomer2;
     Movie testMovie1;
     Movie testMovie2;
+    Movie testMovie3;
     ShoppingCart testCart1;
     ShoppingCart testCart2;
+    ShoppingCart testCart3;
     ShoppingCart testCartWithNewQuantity;
     List<ShoppingCart> testShoppingCarts = new ArrayList<>();
 
@@ -58,17 +60,23 @@ public class ShoppingCartServiceTests {
                 "999 Broad St.", "1B", "New York", "NY", 99949L);
         testCustomer2.setId(101L);
 
-        testMovie1 = new Movie("Test Movie 1", "Test Movie 1", "2022-06-05", "120", 9.99);
+        testMovie1 = new Movie("Test Movie 1", "Test Movie 1", "2021-06-05", "120", 9.99);
         testMovie1.setId(200L);
-        testMovie2 = new Movie("Test Movie 2", "Test Movie 2: Return of the Test", "2023-06-05", "140", 8.99);
+        testMovie2 = new Movie("Test Movie 2", "Test Movie 2: Return of the Test", "2022-06-05", "140", 8.99);
         testMovie2.setId(201L);
+        testMovie3 = new Movie("Test Movie 3", "Test Movie 3: Back Again", "2023-06-05", "160", 7.99);
+        testMovie3.setId(202L);
 
         testCart1 = new ShoppingCart(testMovie1.getId(), 1L);
-        testCart2 = new ShoppingCart(testMovie2.getId(), 2L);
-//        testCartReq1.setCustomer(testCustomer1);
-//        testCartReq2.setCustomer(testCustomer1);
+        testCart1.setCustomer(testCustomer1);
         testShoppingCarts.add(testCart1);
+        testCart2 = new ShoppingCart(testMovie2.getId(), 2L);
+        testCart2.setCustomer(testCustomer1);
         testShoppingCarts.add(testCart2);
+        testCart3 = new ShoppingCart(testMovie3.getId(), 1L);
+        testCart3.setCustomer(testCustomer2);
+        testShoppingCarts.add(testCart3);
+
         testCartWithNewQuantity = new ShoppingCart(testMovie1.getId(), 10L);
     }
 
@@ -173,13 +181,13 @@ public class ShoppingCartServiceTests {
         String specNewQuantity = "The quantity of testCart1 should now match the quantity in testCartWithNewQuantity";
         String specTotalPrice = "When passed a shoppingCart object, the setTotalPrice method invoked in the " +
                 "updateQuantityInCart method should return an accurate price to two decimal places";
-        String specStatus = "The status code should be HttpStatus.ACCEPTED";
+        String specStatus = "The status code should be HttpStatus.OK";
 
         assertTrue(specUpdatedCartIsPresent, cartAfterUpdate.isPresent());
         assertEquals(specNewQuantity, testCartWithNewQuantity.getQuantity(), cartAfterUpdate.get().getQuantity());
         assertEquals(specTotalPrice, expectedTotalPrice, testCart1.getTotalPrice());
         verify(shoppingCartRepository, times(1)).save(testCart1);
-        assertEquals(specStatus, HttpStatus.ACCEPTED, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
@@ -199,7 +207,27 @@ public class ShoppingCartServiceTests {
 
     @Test
     @Order(10)
-    public void testRemoveItemFromCart(){
+    public void testRemoveAllItemsFromCart(){
+        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
+
+        ArgumentCaptor<List<ShoppingCart>> argumentCaptor = ArgumentCaptor.forClass(List.class);
+        ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCart(testCustomer1);
+
+        verify(shoppingCartRepository, times(1)).findByCustomerId(testCustomer1.getId());
+
+        verify(shoppingCartRepository, times(1)).deleteAll(argThat(carts -> {
+            Set<Long> expectedCartIds = testShoppingCarts.stream()
+                    .filter(cart -> cart.getCustomer().equals(testCustomer1))
+                    .map(ShoppingCart::getCartId)
+                    .collect(Collectors.toSet());
+            Set<Long> actualCartIds = StreamSupport.stream(carts.spliterator(), false)
+                    .map(ShoppingCart::getCartId)
+                    .collect(Collectors.toSet());
+        return actualCartIds.equals(expectedCartIds);
+                }));
+
+        String specStatus = "The status code should be HttpStatus.OK";
+        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
 
     }
 

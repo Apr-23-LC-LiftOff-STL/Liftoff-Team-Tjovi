@@ -65,7 +65,7 @@ public class ShoppingCartService {
                     break;
                 }
             }
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else{
             return new ResponseEntity<>("No carts associated with that user were found",HttpStatus.NOT_FOUND);
         }
@@ -83,7 +83,7 @@ public class ShoppingCartService {
                     break;
                 }
             }
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else{
             return new ResponseEntity<>("No carts associated with that user were found",HttpStatus.NOT_FOUND);
         }
@@ -91,8 +91,12 @@ public class ShoppingCartService {
 
     public ResponseEntity<?> removeAllItemsFromCart(Customer customer) {
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
-        shoppingCartRepository.deleteAll(allCustomersCarts);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        if(allCustomersCarts.size()>0){
+            shoppingCartRepository.deleteAll(allCustomersCarts);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     public void setTotalPrice(ShoppingCart shoppingCart) {
