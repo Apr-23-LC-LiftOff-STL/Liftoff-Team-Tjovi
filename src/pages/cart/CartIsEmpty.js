@@ -8,7 +8,7 @@ import { Fade } from "@mui/material";
 const CartIsEmpty = () => {
   return (
     <div className="mx-6">
-    <div className="column is-offset-1 is-vcentered box is-shadowless has-background-white-ter mb-3 py-5" style={{borderStyle: 'dashed', borderColor: "hsl(348, 100%, 61%)", borderWidth: "1px"}}>
+    <div className="column is-offset-1 is-vcentered box is-shadowless mb-3 py-5" style={{borderStyle: 'dashed', borderColor: "hsl(0, 0%, 71%)", borderWidth: "1px"}}>
         <section className="section is-medium">
         <NavLink className="is-center" to="/">
         <Fade in timeout={800}>
@@ -16,7 +16,7 @@ const CartIsEmpty = () => {
           Nothing In Cart
         </div>
         </Fade>
-        <div className="has-text-centered">
+        <div className="has-text-centered is-italic">
             Keep Browsing
         </div>
 {/*         <div className="has-text-centered">

@@ -15,7 +15,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 const CartItem = ({
   title,
@@ -39,13 +39,14 @@ const CartItem = ({
   const cart = useCartStore((state) => state.cart);
   const cartUser = useCartStore((state) => state.cartUser);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     useCartStore.getState().initialize();
     console.log(cartUser);
-  }, [cart]);
+  }, [cart]); */
 
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
+  const currencySymbol = "$";
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
@@ -54,7 +55,6 @@ const CartItem = ({
 
   const incrementCartItemButtonHandler = () => {
     incrementCartItem(id);
-    console.log(JSON.stringify(cart));
   };
 
   const decrementCartItemButtonHandler = () => {
@@ -63,95 +63,111 @@ const CartItem = ({
     } else {
       decrementCartItem(id);
     }
-    console.log(JSON.stringify(cart));
   };
 
   const removeAllThisItemButtonHandler = () => {
     handleClickOpen();
     removeAllThisItem(id);
-    console.log(JSON.stringify(cart));
   };
 
   return (
-    <div className="mx-4" style={{maxWidth: '1400px'}}>
+    <div>
       <Fade in timeout={500}>
-        <div className="column is-offset-2 is-vcentered card mb-3" style={{borderStyle: 'solid', borderColor: 'lightgray', borderWidth: '1px'}}>
-          <div className="columns is-centered is-vcentered is-narrow">
-            <div className="column is-narrow">
-              <figure className="cart-item-img">
-                <a href={`${baseProductUrl}${id}`}>
-                  <img
-                    src={`${baseImgUrl}${posterPath}`}
-                    alt={`Poster for ${title}`}
-                  ></img>
-                </a>
-              </figure>
-            </div>
-            <div className="column">
-              <div>
-                <span className="is-size-5 has-text-weight-semibold is-italic">
-                  {title}
-                </span>
-                <div className="is-size-6">({releaseDate?.slice(0, 4)})</div>
+        <div className="columns mx-4">
+          <div
+            className="column is-offset-1 is-vcentered card p-4 mb-2"
+            style={{
+              borderStyle: "solid",
+              borderColor: "lightgray",
+              borderWidth: "1px",
+            }}
+          >
+            <div className="columns is-vcentered">
+              <div className="column is-narrow">
+                <figure className="cart-item-img">
+                  <a href={`${baseProductUrl}${id}`}>
+                    <img
+                      src={`${baseImgUrl}${posterPath}`}
+                      alt={`Poster for ${title}`}
+                    ></img>
+                  </a>
+                </figure>
               </div>
-              {/*               <div>
+              <div className="column">
+                <div>
+                  <span className="is-size-5 has-text-weight-semibold is-italic">
+                    {title}
+                  </span>
+                  <div className="is-size-6">({releaseDate?.slice(0, 4)})</div>
+                </div>
+                {/*               <div>
                 Movie ID: {id} Count: {count}
               </div> */}
-            </div>
-            <div className="column is-1 pr-6">
-              <button
-                className="button is-primary is-small"
-                style={{ minWidth: "36px", maxWidth: "36px" }}
-                onClick={incrementCartItemButtonHandler}
+              </div>
+
+              <div
+                className="column is-3 has-text-centered card is-shadowless p-4 m-2 has-background-white-ter"
+                style={{
+                  borderStyle: "solid",
+                  borderColor: "lightgray",
+                  borderWidth: "1px",
+                }}
               >
-                <FontAwesomeIcon icon={faAdd} />
-              </button>
-              <input
-                className="input is-small has-text-centered"
-                style={{ minWidth: "36px", maxWidth: "36px" }}
-                number
-                value={count}
-                readOnly
-              />
-              <button
-                className="button is-warning is-small"
-                style={{ minWidth: "36px", maxWidth: "36px" }}
-                onClick={decrementCartItemButtonHandler}
-              >
-                <FontAwesomeIcon icon={faSubtract} />
-              </button>
-              <button
-                className="button is-danger is-small"
-                style={{ minWidth: "36px", maxWidth: "36px" }}
-                onClick={handleClickOpen}
-              >
-                <FontAwesomeIcon icon={faX} />
-              </button>
-            </div>
-            <div className="column is-narrow">
-            <table className="table mr-5">
-              <tr>
-                <th className="menu-label has-text-centered">
-                  Price
-                </th>
-                <th className="menu-label has-text-centered">
-                  Subtotal
-                </th>
-              </tr>
-              <tr>
-                <td
-                  className="has-text-centered"
-                  style={{
-                    color: price < 10 ? "hsl(348, 100%, 61%)" : "",
-                  }}
-                >
-                  ${price?.toFixed(2)}
-                </td>
-                <td className="has-text-centered has-text-weight-semibold">
-                  ${subtotal}
-                </td>
-              </tr>
-            </table>
+                <div className="pb-4">
+                  <input
+                    className="input is-small has-text-centered"
+                    style={{ minWidth: "36px", maxWidth: "36px" }}
+                    number
+                    value={count}
+                    readOnly
+                  />
+                  &nbsp; <span className="menu-label">IN CART</span>
+                </div>
+                <div className="pb-4">
+                  <button
+                    className="button is-primary is-small"
+                    style={{ minWidth: "36px", maxWidth: "36px" }}
+                    onClick={incrementCartItemButtonHandler}
+                  >
+                    <FontAwesomeIcon icon={faAdd} />
+                  </button>
+                  <button
+                    className="button is-warning is-small"
+                    style={{ minWidth: "36px", maxWidth: "36px" }}
+                    onClick={decrementCartItemButtonHandler}
+                  >
+                    <FontAwesomeIcon icon={faSubtract} />
+                  </button>
+                  <button
+                    className="button is-danger is-small"
+                    style={{ minWidth: "36px", maxWidth: "36px" }}
+                    onClick={handleClickOpen}
+                  >
+                    <FontAwesomeIcon icon={faX} />
+                  </button>
+                </div>
+                <div>
+                  <p
+                    className="has-text-centered"
+                    style={{
+                      color: price < 10 ? "hsl(348, 100%, 61%)" : "",
+                    }}
+                  >
+                    <span className="menu-label">Item Price: &nbsp;</span>
+                    {currencySymbol}
+                    {price?.toFixed(2)}
+                  </p>
+                  <p className="p-2">
+                    <span className="menu-label has-text-centered has-text-weight-semibold">
+                      Subtotal:{" "}
+                    </span>{" "}
+                    <span className="has-text-weight-semibold">
+                      {currencySymbol}
+                      {subtotal}
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -163,24 +179,25 @@ const CartItem = ({
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            <img className="mt-4" src={logo125} width="112" height="28" />
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Remove{" "}
-              <span className="has-text-weight-semibold">"{title}"</span> from
-              your cart?
+              Remove <span className="has-text-weight-semibold">"{title}"</span>{" "}
+              from your cart?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <button
-              className="button is-small is-warning has-text-weight-semibold"
+              className="button is-warning"
               onClick={handleClose}
               autoFocus
             >
               Cancel
             </button>
             <button
-              className="button is-small is-danger is-outlined has-text-weight-semibold"
+              className="button is-danger is-outlined m-2"
               onClick={removeAllThisItemButtonHandler}
             >
               Remove Item

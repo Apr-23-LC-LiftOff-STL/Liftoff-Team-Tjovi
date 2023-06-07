@@ -22,7 +22,7 @@ import ProductsError from "./ProductsError";
 
 import { useCartStore } from "../../store/cartStore";
 
-import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function ProductsDetails() {
   const [open, setOpen] = useState(false);
@@ -41,17 +41,16 @@ export default function ProductsDetails() {
 
   const cartUser = useCartStore((state) => state.cartUser);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     useCartStore.getState().initialize();
-    console.log(cartUser);
-    console.log(cart);
-  }, [cart]);
+  }, [cart]); */
 
   /*   const thisItemInCart = cart.find((f) => f.id === id)?.count || 0; */
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
+  const changeCartItem = useCartStore((state) => state.changeCartItem);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
@@ -85,35 +84,12 @@ export default function ProductsDetails() {
     handleClose();
   };
 
-  /*   const incrementCartItemButtonHandler = () => {
-    console.log(JSON.stringify(cart));
-    incrementCartItem(product.id);
-    setCartMessageStyle("is-size-6");
-    setCartMessage(`"${product.title}" was added to cart`);
-    setButtonDisabled(false);
-  };
-
-  const decrementCartItemButtonHandler = () => {
-    console.log(JSON.stringify(cart));
-    decrementCartItem(product.id);
-    setCartMessageStyle("is-size-6 has-text-danger");
-    setCartMessage(`"${product.title}" was removed from cart`);
-    if (!thisItemInCart) {
-      setButtonDisabled(true);
-    }
-  };
-
-  const removeAllThisItemButtonHandler = () => {
-    removeAllThisItem(product.id);
-    setCartMessageStyle("is-size-6 has-text-danger");
-    setCartMessage(`"${product.title}" was removed from cart`);
-    if (!thisItemInCart) {
-      setButtonDisabled(true);
-    }
-  }; */
+  /*   const handleCartItemCountChange = (e) => {
+    changeCartItem(id, e.target.value);
+  } */
 
   if (!product) {
-    return <ProductsError />
+    return <ProductsError />;
   }
 
   return (
@@ -140,12 +116,13 @@ export default function ProductsDetails() {
               className="card is-horizontal shadow-xl transform is-duration-100"
               style={{ borderStyle: "solid", borderColor: "lightgray" }}
             >
-              <div className="card-image p-4">
+              <div className="card-image mx-4 my-4">
                 <Fade in timeout={500}>
                   <figure className="card-image">
                     <img
                       src={`${baseImgUrl}${product.posterPath}`}
                       alt={`Poster for ${product.title}`}
+                      style={{ borderStyle: "solid", borderColor: "lightgray" }}
                     ></img>
                   </figure>
                 </Fade>
@@ -159,21 +136,48 @@ export default function ProductsDetails() {
                     {product.overview}
                   </p>
                   <p>
-                    <span className="has-text-weight-semibold">
-                      &emsp; &emsp; Genres:{" "}
-                    </span>
+                    <span className="has-text-weight-semibold">Genres: </span>
                     {product.genres.map((genre) => genre.name).join(", ")}
                   </p>
                   <p>
-                    <span className="has-text-weight-semibold">
-                      &emsp; &emsp; Runtime:{" "}
-                    </span>
+                    <span className="has-text-weight-semibold">Runtime: </span>
                     {product?.runtime} minutes
                   </p>
                 </div>
-                <div className="content p-5 has-background-info-light">
-                  <div className="columns">
-                    <div className="column">
+                <div
+                  className="content p-5 mb-2 mr-2 box is-shadowless has-background-light"
+                  style={{ borderStyle: "solid", borderColor: "lightgray" }}
+                >
+                  <div className="columns pl-3">
+                    <div className="column is-4">
+                      {/*                       <div className="select" onChange={handleCartItemCountChange}>
+                        <select>
+                          <option>0</option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                        </select>
+                      </div> */}
+                      <div className="is-size-5 has-text-weight-semibold">
+                        In Cart &nbsp;
+                        <input
+                          className="input has-text-centered"
+                          style={{ width: "50px" }}
+                          number
+                          value={
+                            cart.find((product) => product.id === id)?.count ||
+                            0
+                          }
+                          readOnly
+                        />{" "}
+                      </div>
+                      <br />
                       <div className="is-size-5">
                         <span className="has-text-weight-semibold">Price:</span>{" "}
                         <span
@@ -185,40 +189,42 @@ export default function ProductsDetails() {
                           ${product.price.toFixed(2)}
                         </span>
                       </div>
-                      <div>
+                    </div>
+                    <div>
+                      <div className="column">
                         <button
                           className="button is-primary is-small"
+                          style={{ minWidth: "165px" }}
                           onClick={() =>
                             incrementCartItemButtonHandler(product.id)
                           }
                         >
                           <FontAwesomeIcon icon={faAdd} />
+                          &nbsp; Add to Cart
                         </button>
-                        <input
-                          className="input is-small has-text-centered"
-                          style={{ width: "40px" }}
-                          number
-                          value={
-                            cart.find((product) => product.id === id)?.count ||
-                            0
-                          }
-                          readOnly
-                        />
+                        <br></br>
+                        <br></br>
                         <button
                           className="button is-warning is-small"
+                          style={{ minWidth: "165px" }}
                           onClick={() =>
                             decrementCartItemButtonHandler(product.id)
                           }
                           disabled={!thisItemInCart}
                         >
                           <FontAwesomeIcon icon={faSubtract} />
+                          &nbsp; Remove from Cart
                         </button>
+                        <br></br>
+                        <br></br>
                         <button
                           className="button is-danger is-small"
+                          style={{ minWidth: "165px" }}
                           onClick={() => handleClickOpen(product.id)}
                           disabled={!thisItemInCart}
                         >
                           <FontAwesomeIcon icon={faX} />
+                          &nbsp; Remove All From Cart
                         </button>
                         <div>
                           <span className={cartMessageStyle}>
@@ -228,7 +234,6 @@ export default function ProductsDetails() {
                       </div>
                     </div>
                   </div>
-                  <p className="is-size-7"></p>
                 </div>
               </div>
             </div>
@@ -241,7 +246,9 @@ export default function ProductsDetails() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Remove{" "}
@@ -250,15 +257,11 @@ export default function ProductsDetails() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <button
-            className="button is-small is-warning has-text-weight-semibold"
-            onClick={handleClose}
-            autoFocus
-          >
+          <button className="button is-warning" onClick={handleClose} autoFocus>
             Cancel
           </button>
           <button
-            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            className="button is-danger is-outlined m-2"
             onClick={removeAllThisItemButtonHandler}
           >
             Remove Item

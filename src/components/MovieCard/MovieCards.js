@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 import MovieCard from "./MovieCard.js";
-import MovieCardsNoneFound from "./MovieCardsNoneFound.js"
+import MovieCardsNoneFound from "./MovieCardsNoneFound.js";
 
 import { Box } from "@mui/material";
 import { Pagination } from "@mui/material";
@@ -59,15 +59,17 @@ function MovieCards() {
     });
   }, [searchTerm, selectedGenres, sortOptions, page]);
 
+  useEffect(() => {
+    setPage(0);
+  }, []);
+
   const handleChangePage = (event, value) => {
     setPage(value - 1);
     fetchMovies(searchTerm, selectedGenres, value - 1);
   };
 
   if (movies.length === 0) {
-    return (
-      <MovieCardsNoneFound />
-    );
+    return <MovieCardsNoneFound />;
   }
 
   return (
