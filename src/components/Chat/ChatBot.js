@@ -10,7 +10,7 @@ function ChatBot({ handleCloseChatBot }) {
 
   const [userInput, setUserInput] = useState("");
   const [lastUserInput, setLastUserInput] = useState("");
-  const [response, setResponse] = useState("");
+  const [chatReply, setChatReply] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (event) => {
@@ -22,7 +22,7 @@ function ChatBot({ handleCloseChatBot }) {
 
     if (userInput.length < 10) {
       setLastUserInput("");
-      setErrorMessage('Query must be over 10 characters long.');
+      setErrorMessage("Query must be over 10 characters long.");
       return;
     }
 
@@ -40,12 +40,18 @@ function ChatBot({ handleCloseChatBot }) {
     if (response.ok) {
       const data = await response.json();
       const message = data.choices[0].text;
-      setResponse(message);
+      setChatReply(message);
     } else {
-      setResponse("Error occurred while communicating with server.");
+      setChatReply("Error occurred while communicating with server.");
     }
 
     setUserInput("");
+  };
+
+  const handleCopyToClipboard = () => {
+    if (chatReply && chatReply.text) {
+      navigator.clipboard.writeText(chatReply.text);
+    }
   };
 
   const inputStyleHandler = {
@@ -100,16 +106,41 @@ function ChatBot({ handleCloseChatBot }) {
       </Form>
       <div className="has-text-weight-semibold mx-4 pt-4">Your Question:</div>
       <div className="is-italic has-text-info mx-4">{lastUserInput}</div>
-    
 
-      <div className="is-italic has-text-danger mx-4">{errorMessage && <Fade in timeout={500}><p>{errorMessage}</p></Fade>}</div>
-      
+      <div className="is-italic has-text-danger mx-4">
+        {errorMessage && (
+          <Fade in timeout={500}>
+            <p>{errorMessage}</p>
+          </Fade>
+        )}
+      </div>
+
       <hr />
-      <div className="has-text-weight-semibold mx-4">Response:</div>
-      {response && (
-        <div className="is-italic has-text-info mx-4">{response}</div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div className="has-text-weight-semibold mx-4">
+          Response:{" "}
+        </div>
+        <div
+            className="button is-light has-text-info is-small mx-4"
+            onClick={() =>
+              navigator.clipboard.writeText(JSON.stringify({ chatReply }))
+            }
+          >
+            Copy Response to Clipboard
+          </div>
+      </div>
+      {chatReply === "Error occurred while communicating with server." && (
+        <div className="is-italic has-text-danger mx-4">{chatReply}</div>
       )}
-
+      {chatReply !== "Error occurred while communicating with server." && (
+        <div className="is-italic has-text-info mx-4">{chatReply}</div>
+      )}
     </div>
   );
 }
