@@ -21,6 +21,10 @@ export const useCartStore = create(
         // add a final save of cart to DB?
       },
 
+      emptyCartStateOnly: async () => {
+        set({ cart: []});
+      },
+
       incrementCartItem: async (id) => {
         set((state) => {
           const isPresent = state.cart.find((movies) => movies.id === id);
@@ -200,7 +204,7 @@ export const useCartStore = create(
           }
         },
 
-      getCart: async () => {
+      getAndMergeCart: async () => {
 
         const { cart } = useCartStore.getState();
         const feCart = [...cart];
@@ -260,6 +264,9 @@ export const useCartStore = create(
           }
       },
     }),
+
+
+    
     /*       fetchMovies: async () => {
         await fetch("http://localhost:8080/")
           .then((response) => response.json())

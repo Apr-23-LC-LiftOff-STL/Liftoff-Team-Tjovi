@@ -31,7 +31,7 @@ const Footer = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink className="card-footer-item" to="help">
+              <NavLink className="card-footer-item" to="help/faq">
                 Customer Service
               </NavLink>
             </li>

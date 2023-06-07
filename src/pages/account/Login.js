@@ -28,7 +28,7 @@ const Login = () => {
   const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const setCartUser = useCartStore((state) => state.setCartUser);
-  const getCart = useCartStore((state) => state.getCart);
+  const getAndMergeCart = useCartStore((state) => state.getAndMergeCart);
 
   const [open, setOpen] = useState(false);
 
@@ -64,7 +64,7 @@ const Login = () => {
         console.log(response.data);
         const userData = jwtDecode(authorization);
         setCartUser(userData.username);
-        getCart(userData.username);
+        getAndMergeCart(userData.username);
         navigate("/");
       } else {
         throw new Error("Login failed");

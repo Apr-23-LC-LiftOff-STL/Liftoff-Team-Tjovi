@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import { useCartStore } from "../../store/cartStore";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
-import { faSubtract } from "@fortawesome/free-solid-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faSubtract, faX, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { Fade } from "@mui/material";
 
@@ -143,7 +141,7 @@ const CartItem = ({
                     style={{ minWidth: "36px", maxWidth: "36px" }}
                     onClick={handleClickOpen}
                   >
-                    <FontAwesomeIcon icon={faX} />
+                    <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </div>
                 <div>

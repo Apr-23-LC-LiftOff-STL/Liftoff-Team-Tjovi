@@ -8,6 +8,9 @@ import OrderHistoryItem from "../account/OrderHistoryItem";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
 export default function CheckoutSuccess() {
   const cart = useCartStore((state) => state.cart);
   const emptyCart = useCartStore((state) => state.emptyCart);
@@ -75,6 +78,7 @@ export default function CheckoutSuccess() {
           return a.id - b.id;
         });
         setOrderData(orderData);
+        emptyCart();
       } catch (error) {
         console.error("Error getting order history:", error);
       }
@@ -99,56 +103,42 @@ export default function CheckoutSuccess() {
           </li>
         </ul>
       </nav>
-      <div className="columns is-centered">
-        <div className="column is-6 mx-6">
-          <div
-            className="box px-6 pb-6"
-            style={{
-              borderStyle: "solid",
-              borderColor: "lightgray",
-              borderWidth: "1px",
-            }}
-          >
-            <div className="title is-3 mt-5 has-text-weight-semibold">
-              Purchase Confirmation
-              <span className="is-pulled-right">
-                <img className="px-5" src={logo125}></img>
-              </span>
-            </div>
-            <div>
-              <div>
-                <div className="columns is-centered pt-4">
-                  <div className="column is-fullwidth">
-                    {orderData.length > 0 && (
-                      <div key={orderData[0].id}>
-                        <OrderHistoryItem
-                          orderId={orderData[0].id}
-                          createDt={orderData[0].createDt}
-                          totalOrderPrice={orderData[0].totalOrderPrice}
-                          completedOrderItems={orderData[0].completedOrderItems}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br />
-            <hr></hr>
-            {cartUser ? (
-              <div className="has-text-centered is-italic">
-                View your{" "}
-                <NavLink to="../account/orders">Order History</NavLink>
-              </div>
-            ) : (
-              <div className="has-text-centered is-danger">
-                Please print this page for your records!
-                <div>Guest users do not have access to account history.</div>
+      <div className="title is-3 ml-6">Purchase Confirmation</div>
+      <div className="subtitle is-6 is-italic ml-6 pt-1">
+        Thank you for your order! Please download your selections via the
+        link(s) below.
+      </div>
+      <div>
+        <div className="columns is-centered">
+          <div className="column is-two-thirds mx-4">
+            {orderData.length > 0 && (
+              <div key={orderData[0].id}>
+                <OrderHistoryItem
+                  orderId={orderData[0].id}
+                  createDt={orderData[0].createDt}
+                  email={orderData[0].email}
+                  totalOrderPrice={orderData[0].totalOrderPrice}
+                  completedOrderItems={orderData[0].completedOrderItems}
+                />
+                      {cartUser ? (
+          <div className="has-text-right is-italic pr-5">
+            View your <NavLink to="../account/orders">Order History</NavLink>
+          </div>
+        ) : (
+          <div className="has-text-right is-danger">
+            Please print this page for your records!
+            <div>Guest users do not have access to account history.</div>
+          </div>
+        )}
               </div>
             )}
           </div>
         </div>
+
       </div>
+
+      <div className="column is-1"></div>
+
     </div>
   );
 }
