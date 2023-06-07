@@ -268,8 +268,8 @@ const NavBar = () => {
                 </div>
               </DialogTitle>
               <DialogContent>
-                <DialogContentText className="mx-4 mb-2">
-                  Ask Chat GPT movie questions here!
+                <DialogContentText className="mx-4 mb-4">
+                <span className="has-text-danger has-text-weight-bold"> [BETA]</span> Ask Chat GPT movie questions here! 
                 </DialogContentText>
                 <ChatBot />
               </DialogContent>

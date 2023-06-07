@@ -48,12 +48,6 @@ function ChatBot({ handleCloseChatBot }) {
     setUserInput("");
   };
 
-  const handleCopyToClipboard = () => {
-    if (chatReply && chatReply.text) {
-      navigator.clipboard.writeText(chatReply.text);
-    }
-  };
-
   const inputStyleHandler = {
     color: "black",
     width: "100%",
