@@ -106,7 +106,7 @@ export default function OrderHistory() {
           <div className="column"></div>
           <div className="column is-two-thirds mx-4">
             <div
-              className="button is-info is-small is-light is-outlined mb-1 ml-2"
+              className="button is-small has-text-info  mb-1"
               onClick={() =>
                 !sortFirstLastFlag
                   ? handleSortFirstLast()

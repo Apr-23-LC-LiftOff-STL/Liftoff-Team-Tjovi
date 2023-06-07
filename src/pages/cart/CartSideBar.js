@@ -29,7 +29,6 @@ export default function CartSideBar({ allItemsSubtotal }) {
   const cart = useCartStore((state) => state.cart);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const emptyCart = useCartStore((state) => state.emptyCart);
-  const getCart = useCartStore((state) => state.getCart);
 
   const totalProductsInCart = cart.reduce(
     (prev, current) => prev + current.count,

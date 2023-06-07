@@ -13,7 +13,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function CheckoutSuccess() {
   const cart = useCartStore((state) => state.cart);
-  const emptyCart = useCartStore((state) => state.emptyCart);
+  const emptyCartStateOnly = useCartStore((state) => state.emptyCartStateOnly);
 
   //let date = new Date();
   // {date.toLocaleString()}
@@ -78,6 +78,7 @@ export default function CheckoutSuccess() {
           return a.id - b.id;
         });
         setOrderData(orderData);
+        emptyCartStateOnly();
       } catch (error) {
         console.error("Error getting order history:", error);
       }
