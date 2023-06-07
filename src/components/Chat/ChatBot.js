@@ -81,6 +81,8 @@ function ChatBot({ handleCloseChatBot }) {
     chatSampleQs[Math.floor(Math.random() * chatSampleQs.length)]
   );
 
+  console.log(chatReply);
+
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -129,7 +131,7 @@ function ChatBot({ handleCloseChatBot }) {
         <div
             className="button is-light has-text-info is-small mx-4"
             onClick={() =>
-              navigator.clipboard.writeText(JSON.stringify({ chatReply }))
+              navigator.clipboard.writeText(chatReply)
             }
           >
             Copy Response to Clipboard
