@@ -21,6 +21,7 @@
     "bootstrap": "^5.2.3",
     "bulma": "^0.9.4",
     "crypto-browserify": "^3.12.0",
+    "emailjs": "^4.0.2",
     "emailjs-com": "^3.2.0",
     "generate-password": "^1.7.0",
     "jwt-decode": "^3.1.2",
