@@ -12,7 +12,11 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
+import { validate } from "json-schema";
 export default function Profile(props) {
   const navigate = useNavigate();
 
@@ -70,8 +74,18 @@ export default function Profile(props) {
   //       // });
   //     });
   //   }
-
+  function validateEmail(email) {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
   const saveFormData = async () => {
+    if(validateForm()){
+      handleClickOpen();
+    }
+    
+  };
+  const handleConfirmUpdate = async () => {
     //need an endpoint for updated submitted user data
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
@@ -81,15 +95,19 @@ export default function Profile(props) {
         `http://localhost:8080/profile/edit/${username}`,
         values
       );
-  
+
       if (response.status === 200 || response.status === 201) {
-        alert("Your profile was successfully updated!");
+        setDisabled(true);
+        handleClose();
+        toast.success('Your profile was successfully updated!');
+        
       } else {
         throw new Error(`Request failed: ${response.status}`);
       }
     } catch (error) {
-      alert(`Profile update failed! ${error.message}`);
-      console.log("Failed");
+      handleClose();
+      toast.error('Profile update failed!');
+      
     }
   };
 
@@ -118,35 +136,53 @@ export default function Profile(props) {
   function cancelEdit() {
     setDisabled(true);
     setValues({
-      email: userData.email , 
-      firstName: userData.firstName ,
-      lastName: userData.lastName ,
-      mobileNumber: userData.mobileNumber ,
-      streetAddress: userData.streetAddress ,
-      suite: userData.suite ,
-      city: userData.city ,
+      email: userData.email,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      mobileNumber: userData.mobileNumber,
+      streetAddress: userData.streetAddress,
+      suite: userData.suite,
+      city: userData.city,
       state: userData.state,
       zipCode: userData.zipCode,
     });
   }
+  function validateForm() {
+    const {
+      email,
+      firstName,
+      lastName,
+      mobileNumber,
+      streetAddress,
+      suite,
+      city,
+      state,
+      zipCode,
+    } = values;
 
-  // const onUpdate = async (event) => {
-  //   event.preventDefault();
+    if (
+      !email ||
+      !firstName ||
+      !lastName ||
+      !mobileNumber ||
+      !streetAddress ||
+      !suite ||
+      !city ||
+      !state ||
+      !zipCode
+    ) {
+      toast.error("Please fill in all fields.");
+      return false;
+    }
 
-  //   try {
-  //     event.target.disabled = true;
-  //     if (!disabled) {
-  //     await saveFormData();
-
-  //     alert("Your profile was  successfully updated!");
-  //   }} catch (e) {
-  //     alert(`Profile update failed! ${e.message}`);
-  //     console.log("Failed");
-  //   }finally {
-      
-  //     event.target.disabled = false;
-  //   }
-  // };
+    // Perform additional validation checks for each field
+    if (!validateEmail(email)) {
+      toast.error("Please enter a valid email address.");
+      return false;
+    }
+  
+  return true
+  }
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -175,6 +211,28 @@ export default function Profile(props) {
 
   return (
     <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+          Confirmation
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to update your profile?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button onClick={handleClose}>Cancel</button>
+          <button onClick={handleConfirmUpdate} autoFocus>
+            Update
+          </button>
+        </DialogActions>
+      </Dialog>
       <div>
         <div>
           <nav
@@ -411,6 +469,9 @@ export default function Profile(props) {
                                 name="zipCode"
                                 placeholder={userData.zipCode}
                                 title="Please enter your 5 digit zipcode"
+                                minlength="5"
+                                maxlength="5"
+                                required
                               />
                             </div>
                           </div>
@@ -443,7 +504,8 @@ export default function Profile(props) {
             </form>
           </div>
         </div>
-      </div>
+      </div> 
+      <ToastContainer />
     </div>
   );
 }
