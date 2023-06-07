@@ -122,6 +122,7 @@ export default function OrderHistory() {
                   <OrderHistoryItem
                     orderId={order.id}
                     createDt={order.createDt}
+                    email={order.email}
                     totalOrderPrice={order.totalOrderPrice}
                     completedOrderItems={order.completedOrderItems}
                   />

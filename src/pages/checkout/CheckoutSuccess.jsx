@@ -115,6 +115,7 @@ export default function CheckoutSuccess() {
                 <OrderHistoryItem
                   orderId={orderData[0].id}
                   createDt={orderData[0].createDt}
+                  email={orderData[0].email}
                   totalOrderPrice={orderData[0].totalOrderPrice}
                   completedOrderItems={orderData[0].completedOrderItems}
                 />

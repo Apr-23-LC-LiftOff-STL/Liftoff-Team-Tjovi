@@ -9,15 +9,12 @@ import {
 const OrderHistoryItem = ({
   orderId,
   createDt,
+  email,
   totalOrderPrice,
   completedOrderItems,
   // stripeRef,
 }) => {
   console.log(JSON.stringify(completedOrderItems));
-
-  const token = localStorage.getItem("token");
-  const userData = token ? jwtDecode(token) : null;
-  const cartUser = userData?.username;
 
   return (
     <div className="py-2">
@@ -39,7 +36,7 @@ const OrderHistoryItem = ({
           </div>
           <div className="has-text-left py-3 px-4" style={{flex: "0 0 auto"}}>
             <div className="title is-5 has-text-centered"><FontAwesomeIcon icon={faUser} /></div>
-            <div className="subtitle is-6">{cartUser}</div>
+            <div className="subtitle is-6">{email}</div>
           </div>
           <div className="has-text-left py-3 px-4" style={{marginLeft: "auto"}}>
             <div className="title is-5 has-text-centered">Invoice Total</div>
