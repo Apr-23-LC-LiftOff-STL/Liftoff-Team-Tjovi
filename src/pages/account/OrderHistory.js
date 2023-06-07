@@ -6,9 +6,7 @@ import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUser, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function OrderHistory() {
   const baseProductUrl = "/products/";
@@ -70,7 +68,7 @@ export default function OrderHistory() {
     });
     setOrderData(sortedData);
     setSortFirstLastFlag(true);
-  }
+  };
 
   const handleSortLastFirst = () => {
     const sortedData = [...orderData].sort((b, a) => {
@@ -78,7 +76,7 @@ export default function OrderHistory() {
     });
     setOrderData(sortedData);
     setSortFirstLastFlag(false);
-}
+  };
 
   return (
     <div>
@@ -106,26 +104,36 @@ export default function OrderHistory() {
         <div className="title ml-6">Order History</div>
         <div className="columns">
           <div className="column"></div>
-            <div className="column is-two-thirds mx-4 has-text-right">
-            <div className="button is-info is-small mr-1 mb-1" onClick={() => !sortFirstLastFlag ? handleSortFirstLast() : handleSortLastFirst()}>Sort Orders</div>
-              {orderData.length > 0 ? (
-                orderData.map((order) => (
-                  <div key={order.id}>
-                    <OrderHistoryItem
-                      orderId={order.id}
-                      createDt={order.createDt}
-                      totalOrderPrice={order.totalOrderPrice}
-                      completedOrderItems={order.completedOrderItems}
-                    />
-                  </div>
-                ))
-              ) : (
-                <OrderHistoryNoneFound />
-              )}
+          <div className="column is-two-thirds mx-4">
+            <div
+              className="button is-info is-small is-light is-outlined mb-1 ml-2"
+              onClick={() =>
+                !sortFirstLastFlag
+                  ? handleSortFirstLast()
+                  : handleSortLastFirst()
+              }
+            >
+              Sort By Order &nbsp;
+              {!sortFirstLastFlag ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}
             </div>
-            <div className="column"></div>
+            {orderData.length > 0 ? (
+              orderData.map((order) => (
+                <div key={order.id}>
+                  <OrderHistoryItem
+                    orderId={order.id}
+                    createDt={order.createDt}
+                    totalOrderPrice={order.totalOrderPrice}
+                    completedOrderItems={order.completedOrderItems}
+                  />
+                </div>
+              ))
+            ) : (
+              <OrderHistoryNoneFound />
+            )}
           </div>
+          <div className="column"></div>
         </div>
       </div>
+    </div>
   );
 }
