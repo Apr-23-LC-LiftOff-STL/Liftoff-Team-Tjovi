@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Faq from "./pages/help/Faq";
 import Contact, { contactAction } from "./pages/help/Contact";
+import ChatBot, { chatAction } from "./components/Chat/ChatBot"
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Account from "./pages/account/Account";
@@ -86,7 +87,6 @@ function App() {
   return (
    
       <RouterProvider router={router} />
-   
   );
 }
 

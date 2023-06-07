@@ -22,6 +22,7 @@ import {
   faRightToBracket,
   faQuestion,
   faRobot,
+  faX,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useCartStore } from "../../store/cartStore";
@@ -180,7 +181,11 @@ const NavBar = () => {
                 &nbsp;
               </Link>
               <button
-                className={openChatBot ? "button is-small is-info" : "button is-small is-info is-light"}
+                className={
+                  openChatBot
+                    ? "button is-small is-info"
+                    : "button is-small is-info is-light"
+                }
                 style={{
                   borderStyle: "solid",
                   borderColor: "lightgray",
@@ -228,7 +233,9 @@ const NavBar = () => {
           </div>
           <div className="buttons is-hidden-mobile is-hidden-touch">
             <button
-              className={openChatBot ? "button is-info": "button is-info is-light"}
+              className={
+                openChatBot ? "button is-info" : "button is-info is-light"
+              }
               style={{
                 borderStyle: "solid",
                 borderColor: "lightgray",
@@ -245,16 +252,29 @@ const NavBar = () => {
               maxWidth="md"
             >
               <DialogTitle>
-                <img src={logo125}></img>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <img className="mx-4 mt-2" src={logo125} width="112" height="28" />
+                  <div className="button is-light mx-4 mt-2"
+                    onClick={handleCloseChatBot}
+                  >
+                    <FontAwesomeIcon icon={faX} />
+                  </div>
+                </div>
               </DialogTitle>
               <DialogContent>
-                <DialogContentText>
+                <DialogContentText className="mx-4 mb-2">
                   Ask Chat GPT movie questions here!
                 </DialogContentText>
                 <ChatBot />
               </DialogContent>
               <DialogActions>
-              <Button onClick={handleCloseChatBot}>Cancel</Button>
+                <Button onClick={handleCloseChatBot}>Cancel</Button>
                 <Button onClick={handleCloseChatBot}>Cancel</Button>
                 <Button type="submit">Submit</Button>
               </DialogActions>
