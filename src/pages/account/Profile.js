@@ -12,11 +12,11 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
-import { validate } from "json-schema";
+
 export default function Profile(props) {
   const navigate = useNavigate();
 
@@ -75,21 +75,37 @@ export default function Profile(props) {
   //     });
   //   }
   function validateEmail(email) {
-    // Regular expression for email validation
+    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-  }
-  const saveFormData = async () => {
-    if(validateForm()){
+  };
+
+  function validateMobileNumber(mobileNumber) {
+    
+    const mobileNumberRegex = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gm;
+    return mobileNumberRegex.test(mobileNumber);
+  };
+
+  function validateZipCode(zipCode) {
+    
+    const zipCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+    return zipCodeRegex.test(zipCode);
+  };
+
+  const saveFormData = async (event) => {
+    event.preventDefault()
+    if (validateForm(true)) {
       handleClickOpen();
     }
     
   };
-  const handleConfirmUpdate = async () => {
+  const handleConfirmUpdate = async (event) => {
+    event.preventDefault();
     //need an endpoint for updated submitted user data
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     const username = userData.username;
+    
     try {
       const response = await axios.put(
         `http://localhost:8080/profile/edit/${username}`,
@@ -99,15 +115,13 @@ export default function Profile(props) {
       if (response.status === 200 || response.status === 201) {
         setDisabled(true);
         handleClose();
-        toast.success('Your profile was successfully updated!');
-        
+        toast.success("Your profile was successfully updated!");
       } else {
         throw new Error(`Request failed: ${response.status}`);
       }
     } catch (error) {
       handleClose();
-      toast.error('Profile update failed!');
-      
+      toast.error("Profile update failed!");
     }
   };
 
@@ -131,7 +145,7 @@ export default function Profile(props) {
     } else {
       setDisabled(true);
     }
-  }
+  };
 
   function cancelEdit() {
     setDisabled(true);
@@ -146,7 +160,7 @@ export default function Profile(props) {
       state: userData.state,
       zipCode: userData.zipCode,
     });
-  }
+  };
   function validateForm() {
     const {
       email,
@@ -154,7 +168,7 @@ export default function Profile(props) {
       lastName,
       mobileNumber,
       streetAddress,
-      suite,
+      
       city,
       state,
       zipCode,
@@ -166,7 +180,7 @@ export default function Profile(props) {
       !lastName ||
       !mobileNumber ||
       !streetAddress ||
-      !suite ||
+      
       !city ||
       !state ||
       !zipCode
@@ -175,14 +189,21 @@ export default function Profile(props) {
       return false;
     }
 
-    // Perform additional validation checks for each field
+    
     if (!validateEmail(email)) {
       toast.error("Please enter a valid email address.");
       return false;
     }
-  
-  return true
-  }
+    if (!validateMobileNumber(mobileNumber)) {
+      toast.error("Please enter a valid 10 digit mobile number.");
+      return false;
+    }
+    if (!validateZipCode(zipCode)) {
+      toast.error("Please enter a valid 5 digit ZIP code.");
+      return false;
+    }
+    return true;
+  };
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -191,6 +212,7 @@ export default function Profile(props) {
     } else {
       const userData = jwtDecode(token);
       const username = userData.username;
+      
       axios.get(`http://localhost:8080/profile/${username}`).then((res) => {
         const userInfo = res.data;
         console.log(userInfo);
@@ -298,7 +320,7 @@ export default function Profile(props) {
                           />
                         </div>
                       </div>
-                      <div className="column is-half"></div>
+                      {/* <div className="column is-half"></div>
                       <div className="columns">
                         <div className="column is-half">
                           <div className="field">
@@ -332,7 +354,7 @@ export default function Profile(props) {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                       <div className="columns">
                         <div className="column is-half">
                           <div className="field">
@@ -414,7 +436,7 @@ export default function Profile(props) {
                                 type="text"
                                 value={values.suite}
                                 onChange={handleChange}
-                                required
+                               
                                 name="suite"
                                 placeholder={userData.suite}
                               />
@@ -469,8 +491,7 @@ export default function Profile(props) {
                                 name="zipCode"
                                 placeholder={userData.zipCode}
                                 title="Please enter your 5 digit zipcode"
-                                minlength="5"
-                                maxlength="5"
+                                
                                 required
                               />
                             </div>
@@ -504,7 +525,7 @@ export default function Profile(props) {
             </form>
           </div>
         </div>
-      </div> 
+      </div>
       <ToastContainer />
     </div>
   );
