@@ -16,6 +16,7 @@ export default function OrderHistory() {
 
   const navigate = useNavigate();
   const [orderData, setOrderData] = useState([]);
+  const [sortFirstLastFlag, setSortFirstLastFlag] = useState(false);
   console.log(JSON.stringify(orderData));
 
   useEffect(() => {
@@ -63,6 +64,22 @@ export default function OrderHistory() {
     fetchData();
   }, []);
 
+  const handleSortFirstLast = () => {
+    const sortedData = [...orderData].sort((b, a) => {
+      return b.id - a.id;
+    });
+    setOrderData(sortedData);
+    setSortFirstLastFlag(true);
+  }
+
+  const handleSortLastFirst = () => {
+    const sortedData = [...orderData].sort((b, a) => {
+      return a.id - b.id;
+    });
+    setOrderData(sortedData);
+    setSortFirstLastFlag(false);
+}
+
   return (
     <div>
       <div>
@@ -89,7 +106,8 @@ export default function OrderHistory() {
         <div className="title ml-6">Order History</div>
         <div className="columns">
           <div className="column"></div>
-            <div className="column is-two-thirds mx-4">
+            <div className="column is-two-thirds mx-4 has-text-right">
+            <div className="button is-info is-small mr-1 mb-1" onClick={() => !sortFirstLastFlag ? handleSortFirstLast() : handleSortLastFirst()}>Sort Orders</div>
               {orderData.length > 0 ? (
                 orderData.map((order) => (
                   <div key={order.id}>
