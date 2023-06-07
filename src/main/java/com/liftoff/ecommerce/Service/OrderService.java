@@ -46,11 +46,13 @@ public class OrderService {
                     currentCart.getQuantity(), currentCart.getTotalPrice());
             totalOrderQuantity += currentCart.getQuantity();
             completedOrderedItemRepository.save(orderItem);
+            shoppingCartRepository.delete(currentCart);
         }
 
         newOrder.setTotalOrderQuantity(totalOrderQuantity);
         setTotalOrderPrice(newOrder);
         completedOrderRepository.save(newOrder);
+
 
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
