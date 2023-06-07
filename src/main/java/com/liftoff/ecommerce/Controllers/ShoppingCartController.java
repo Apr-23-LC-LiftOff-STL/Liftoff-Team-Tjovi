@@ -27,7 +27,7 @@ public class ShoppingCartController {
     @GetMapping("/returnAll/{email}")
     public ResponseEntity<?> returnCart(@PathVariable String email){
         Customer customer = customerService.findCustomer(email);
-        return shoppingCartService.returnCartInstances(customer.getId());
+        return shoppingCartService.returnCartsByCustomerId(customer.getId());
     }
 
     @PostMapping("/add/{email}")
