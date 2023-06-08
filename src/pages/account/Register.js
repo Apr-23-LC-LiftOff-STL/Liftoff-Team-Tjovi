@@ -296,7 +296,7 @@ export default function Register() {
                   </div>
                 </div>
               </div>
-              <div className="column is-one-quarter">
+              {/* <div className="column is-one-quarter">
                 <div className="field">
                   <label className="label">State</label>
                   <div className="control">
@@ -310,8 +310,8 @@ export default function Register() {
                     />
                   </div>
                 </div>
-              </div>
-              {/* <div className="column is-one-quarter">
+              </div> */}
+              <div className="column is-one-quarter">
                 <label className="label">State</label>
                 <div class="field has-addons">
                   <div className="control is-expanded">
@@ -378,7 +378,7 @@ export default function Register() {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
               <div className="column is-one-quarter">
                 <div className="field">
                   <label className="label">Zip</label>
