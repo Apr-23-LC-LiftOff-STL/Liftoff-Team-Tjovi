@@ -16,6 +16,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function Register() {
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
@@ -31,7 +32,78 @@ export default function Register() {
     zipCode: "",
     role: "user",
   });
+
+  function validateEmail(email) {
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  function validateMobileNumber(mobileNumber) {
+    
+    const mobileNumberRegex = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gm;
+    return mobileNumberRegex.test(mobileNumber);
+  };
+
+  function validateZipCode(zipCode) {
+    
+    const zipCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+    return zipCodeRegex.test(zipCode);
+  };
+    
+  function validateForm() {
+    const {
+      email,
+      firstName,
+      lastName,
+      mobileNumber,
+      streetAddress,
+      city,
+      state,
+      zipCode,
+    } = values;
+    
+    let newErrors ={};
+    if (!email || !validateEmail(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+  
+    if (!firstName || firstName.length < 2 || firstName.length > 50) {
+      newErrors.firstName = "First name must be between 2 and 50 characters.";
+    }
+  
+    if (!lastName || lastName.length < 2 || lastName.length > 50) {
+      newErrors.lastName = "Last name must be between 2 and 50 characters.";
+    }
+  
+    if (!mobileNumber || !validateMobileNumber(mobileNumber)) {
+      newErrors.mobileNumber = "Please enter a valid 10 digit mobile number.";
+    }
+  
+    if (!streetAddress) {
+      newErrors.streetAddress = "Please enter the street address.";
+    }
+  
+    if (!city) {
+      newErrors.city = "Please enter the city.";
+    }
+  
+    if (!state) {
+      newErrors.state = "Please select the state.";
+    }
+  
+    if (!zipCode || !validateZipCode(zipCode)) {
+      newErrors.zipCode = "Please enter a valid 5 digit ZIP code.";
+    }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+   // Form is valid if there are no errors
+  
+  }
+  
   const saveFormData = async () => {
+    if (validateForm(true)) {
     const response = await fetch("http://localhost:8080/register", {
       method: "POST",
       headers: {
@@ -42,6 +114,7 @@ export default function Register() {
     if (response.status !== 201) {
       throw new Error(`Request failed: ${response.status}`);
     }
+  }
   };
 
   const handleChange = (e) => {
@@ -67,22 +140,7 @@ export default function Register() {
     }
   };
 
-  const cancelRegistration = () => {
-    setValues({
-      email: "",
-      pwd: "",
-      verifyPwd: "",
-      firstName: "",
-      lastName: "",
-      mobileNumber: "",
-      streetAddress: "",
-      suite: "",
-      city: "",
-      state: "",
-      zipCode: "",
-    });
-    navigate("/");
-  };
+  
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -144,6 +202,7 @@ export default function Register() {
                       placeholder="e.g. alex@example.com"
                       name="email"
                     />
+                    {errors.email && <p className="help is-danger">{errors.email}</p>}
                     <span className="icon is-small is-left">
                       <FontAwesomeIcon icon={faEnvelope} />
                     </span>
@@ -206,6 +265,7 @@ export default function Register() {
                       required
                       name="firstName"
                     />
+                    {errors.firstName && <p className="help is-danger">{errors.firstName}</p>}
                   </div>
                 </div>
               </div>
@@ -220,6 +280,7 @@ export default function Register() {
                     required
                     name="lastName"
                   />
+                  {errors.lastName && <p className="help is-danger">{errors.lastName}</p>}
                 </div>
               </div>
             </div>
@@ -238,6 +299,7 @@ export default function Register() {
                     placeholder="555-555-5555"
                     title="Please enter your 10 digit phone number"
                   />
+                   {errors.mobileNumber && <p className="help is-danger">{errors.mobileNumber}</p>}
                   <span className="icon is-small is-left">
                     <FontAwesomeIcon icon={faPhone} />
                   </span>
@@ -260,6 +322,7 @@ export default function Register() {
                     <span className="icon is-small is-left">
                       <FontAwesomeIcon icon={faAddressBook} />
                     </span>
+                    {errors.streetAddress && <p className="help is-danger">{errors.streetAddress}</p>}
                   </div>
                 </div>
               </div>
@@ -293,6 +356,7 @@ export default function Register() {
 
                       name="city"
                     />
+                     {errors.city && <p className="help is-danger">{errors.city}</p>}
                   </div>
                 </div>
               </div>
