@@ -75,7 +75,7 @@ from_name: values.name
                
               </label>
               <div className="control">
-                 <input type="text" name="name" value={values.name} onChange={handleChange} required/>
+                 <input className='input is normal' type="text" name="name" value={values.name} onChange={handleChange} required/>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ from_name: values.name
                
               </label>
               <div className="control">
-              <input type="email" name="email" value={values.email} onChange={handleChange} required />
+              <input className='input is normal' type="email" name="email" value={values.email} onChange={handleChange} required minLength={50} maxLength={2000}/>
               </div>
             </div>
           </div>
