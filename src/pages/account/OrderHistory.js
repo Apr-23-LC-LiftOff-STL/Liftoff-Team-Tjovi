@@ -1,8 +1,12 @@
 import OrderHistoryItem from "./OrderHistoryItem";
-import { useNavigate } from "react-router-dom";
+import OrderHistoryNoneFound from "./OrderHistoryNoneFound";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function OrderHistory() {
   const baseProductUrl = "/products/";
@@ -10,6 +14,7 @@ export default function OrderHistory() {
 
   const navigate = useNavigate();
   const [orderData, setOrderData] = useState([]);
+  const [sortFirstLastFlag, setSortFirstLastFlag] = useState(false);
   console.log(JSON.stringify(orderData));
 
   useEffect(() => {
@@ -57,6 +62,22 @@ export default function OrderHistory() {
     fetchData();
   }, []);
 
+  const handleSortFirstLast = () => {
+    const sortedData = [...orderData].sort((b, a) => {
+      return b.id - a.id;
+    });
+    setOrderData(sortedData);
+    setSortFirstLastFlag(true);
+  };
+
+  const handleSortLastFirst = () => {
+    const sortedData = [...orderData].sort((b, a) => {
+      return a.id - b.id;
+    });
+    setOrderData(sortedData);
+    setSortFirstLastFlag(false);
+  };
+
   return (
     <div>
       <div>
@@ -80,25 +101,38 @@ export default function OrderHistory() {
             </li>
           </ul>
         </nav>
-        
-        <div className="columns is-centered pt-4 mx-4">
-        <div className="column"></div>
-        <div className="column is-6">
-          <div>
-            {orderData.map((order) => (
-              <div key={order.id}>
-                <OrderHistoryItem
-                  orderId={order.id}
-                  createDt={order.createDt}
-                  totalOrderPrice={order.totalOrderPrice}
-                  completedOrderItems={order.completedOrderItems}
-                />
-              </div>
-            ))}
+        <div className="title ml-6">Order History</div>
+        <div className="columns">
+          <div className="column"></div>
+          <div className="column is-two-thirds mx-4">
+            <div
+              className="button is-small has-text-info  mb-1"
+              onClick={() =>
+                !sortFirstLastFlag
+                  ? handleSortFirstLast()
+                  : handleSortLastFirst()
+              }
+            >
+              Sort By Order &nbsp;
+              {!sortFirstLastFlag ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}
+            </div>
+            {orderData.length > 0 ? (
+              orderData.map((order) => (
+                <div key={order.id}>
+                  <OrderHistoryItem
+                    orderId={order.id}
+                    createDt={order.createDt}
+                    email={order.email}
+                    totalOrderPrice={order.totalOrderPrice}
+                    completedOrderItems={order.completedOrderItems}
+                  />
+                </div>
+              ))
+            ) : (
+              <OrderHistoryNoneFound />
+            )}
           </div>
-
-        </div>
-        <div className="column"></div>
+          <div className="column"></div>
         </div>
       </div>
     </div>
