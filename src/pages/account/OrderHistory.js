@@ -6,15 +6,36 @@ import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faArrowUp,
+  faArrowDown,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { Box } from "@mui/material";
+import { Pagination } from "@mui/material";
 
 export default function OrderHistory() {
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
 
   const navigate = useNavigate();
+
   const [orderData, setOrderData] = useState([]);
   const [sortFirstLastFlag, setSortFirstLastFlag] = useState(false);
+
+  const [page, setPage] = useState(0);
+  const [totalElements, setTotalElements] = useState(0);
+
+  useEffect(() => {
+    setPage(0);
+  }, [sortFirstLastFlag]);
+  const ordersPerPage = 10;
+
+  const handleChangePage = (event, value) => {
+    setPage(value - 1);
+  };
+
   console.log(JSON.stringify(orderData));
 
   useEffect(() => {
@@ -23,21 +44,6 @@ export default function OrderHistory() {
       navigate("/login");
     }
   }, []);
-
-  const orders = [
-    {
-      date: "2022-03-01",
-      orderNumber: "ASDF345",
-      totalPrice: "68.89",
-      stripeRef: "$5sdf5%-",
-    },
-    {
-      date: "2023-01-29",
-      orderNumber: "QB-234s",
-      totalPrice: "15.00",
-      stripeRef: "=$sdf234S",
-    },
-  ];
 
   const token = localStorage.getItem("token");
   const userData = token ? jwtDecode(token) : null;
@@ -55,6 +61,7 @@ export default function OrderHistory() {
           return a.id - b.id;
         });
         setOrderData(orderData);
+        setTotalElements(orderData.length);
       } catch (error) {
         console.error("Error getting order history:", error);
       }
@@ -105,29 +112,55 @@ export default function OrderHistory() {
         <div className="columns">
           <div className="column"></div>
           <div className="column is-two-thirds mx-4">
-            <div
-              className="button is-small has-text-info  mb-1"
-              onClick={() =>
-                !sortFirstLastFlag
-                  ? handleSortFirstLast()
-                  : handleSortLastFirst()
-              }
-            >
-              Sort By Order &nbsp;
-              {!sortFirstLastFlag ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}
+            <div className="container mx-2 mb-1">
+              <Box
+                sx={{
+                  mt: 4,
+                  display: "flex",
+                  justifyContent: "left",
+                  flex: "1 1 auto",
+                }}
+              >
+                <div
+                  className="button is-small is-warning"
+                  style={{ flex: "0 1 auto" }}
+                  onClick={() =>
+                    !sortFirstLastFlag
+                      ? handleSortFirstLast()
+                      : handleSortLastFirst()
+                  }
+                >
+                  Sort By Order &nbsp;
+                  {!sortFirstLastFlag ? (
+                    <FontAwesomeIcon icon={faArrowUp} />
+                  ) : (
+                    <FontAwesomeIcon icon={faArrowDown} />
+                  )}
+                </div>
+                <Pagination
+                  count={Math.ceil(orderData.length / ordersPerPage)}
+                  page={page + 1}
+                  onChange={handleChangePage}
+                  siblingCount={3}
+                  boundaryCount={1}
+                  color="primary"
+                />
+              </Box>
             </div>
             {orderData.length > 0 ? (
-              orderData.map((order) => (
-                <div key={order.id}>
-                  <OrderHistoryItem
-                    orderId={order.id}
-                    createDt={order.createDt}
-                    email={order.email}
-                    totalOrderPrice={order.totalOrderPrice}
-                    completedOrderItems={order.completedOrderItems}
-                  />
-                </div>
-              ))
+              orderData
+                .slice(page * ordersPerPage, (page + 1) * ordersPerPage)
+                .map((order) => (
+                  <div key={order.id}>
+                    <OrderHistoryItem
+                      orderId={order.id}
+                      createDt={order.createDt}
+                      email={order.email}
+                      totalOrderPrice={order.totalOrderPrice}
+                      completedOrderItems={order.completedOrderItems}
+                    />
+                  </div>
+                ))
             ) : (
               <OrderHistoryNoneFound />
             )}
