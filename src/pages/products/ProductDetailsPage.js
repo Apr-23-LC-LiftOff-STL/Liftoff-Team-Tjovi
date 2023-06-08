@@ -27,7 +27,7 @@ import { useCartStore } from "../../store/cartStore";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
-export default function ProductsDetails() {
+export default function ProductDetailsPage() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -281,7 +281,7 @@ export default function ProductsDetails() {
 }
 
 // data loader
-export const productsDetailsLoader = async ({ params }) => {
+export const productDetailsLoader = async ({ params }) => {
   const { id } = params;
 
   const res = await fetch("http://localhost:8080/movies/" + id);
