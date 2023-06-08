@@ -1,11 +1,24 @@
+import { useEffect } from 'react';
 import { NavLink, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import MovieBar from "../components/MovieBar/MovieBar";
 
 export default function HelpLayout() {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   return (
     <div className="help-layout">
-               <nav
+      <nav
         className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
         aria-label="breadcrumbs"
       >
@@ -20,21 +33,13 @@ export default function HelpLayout() {
           </li>
         </ul>
       </nav>
-      <h1 className="title">Customer Service</h1>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque quas
-        debitis quibusdam deserunt repellat hic molestias ipsum commodi aut
-        odit!
-      </p>
+      <h1 className="title mx-6">Customer Service</h1>
 
-      <nav>
-        <NavLink to="faq" className="button is-light">
-          View the FAQ
-        </NavLink>
-        <NavLink to="contact" className="button is-light">
-          Contact Us
-        </NavLink>
-      </nav>
+      <div className="buttons has-addons mx-6">
+        <button className="button is-info is-outlined" onClick={()=> navigate("./faq")}>View the FAQ</button>
+        <button className="button is-info is-outlined" onClick={()=> navigate("./contact")}>Contact</button>
+      </div>
+      
       <Outlet />
       <MovieBar />
     </div>

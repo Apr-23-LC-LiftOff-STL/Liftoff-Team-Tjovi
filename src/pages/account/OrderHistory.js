@@ -1,15 +1,21 @@
-import MovieBar from "../../components/MovieBar/MovieBar";
 import OrderHistoryItem from "./OrderHistoryItem";
-import { useNavigate } from "react-router-dom";
+import OrderHistoryNoneFound from "./OrderHistoryNoneFound";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function OrderHistory() {
-  
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
 
   const navigate = useNavigate();
+  const [orderData, setOrderData] = useState([]);
+  const [sortFirstLastFlag, setSortFirstLastFlag] = useState(false);
+  console.log(JSON.stringify(orderData));
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,8 +36,47 @@ export default function OrderHistory() {
       orderNumber: "QB-234s",
       totalPrice: "15.00",
       stripeRef: "=$sdf234S",
-    }
+    },
   ];
+
+  const token = localStorage.getItem("token");
+  const userData = token ? jwtDecode(token) : null;
+  const cartUser = userData?.username;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/order/history/" + cartUser
+        );
+        console.log(cartUser);
+        const orderData = response.data;
+        orderData.sort((b, a) => {
+          return a.id - b.id;
+        });
+        setOrderData(orderData);
+      } catch (error) {
+        console.error("Error getting order history:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleSortFirstLast = () => {
+    const sortedData = [...orderData].sort((b, a) => {
+      return b.id - a.id;
+    });
+    setOrderData(sortedData);
+    setSortFirstLastFlag(true);
+  };
+
+  const handleSortLastFirst = () => {
+    const sortedData = [...orderData].sort((b, a) => {
+      return a.id - b.id;
+    });
+    setOrderData(sortedData);
+    setSortFirstLastFlag(false);
+  };
 
   return (
     <div>
@@ -56,20 +101,40 @@ export default function OrderHistory() {
             </li>
           </ul>
         </nav>
-        <div>
-          {orders.map((order) => (
-            <div key={order.id}>
-              <OrderHistoryItem
-                orderNumber={order.orderNumber}
-                date={order.date}
-                totalPrice={order.totalPrice}
-                stripeRef={order.stripeRef}
-              />
+        <div className="title ml-6">Order History</div>
+        <div className="columns">
+          <div className="column"></div>
+          <div className="column is-two-thirds mx-4">
+            <div
+              className="button is-small has-text-info  mb-1"
+              onClick={() =>
+                !sortFirstLastFlag
+                  ? handleSortFirstLast()
+                  : handleSortLastFirst()
+              }
+            >
+              Sort By Order &nbsp;
+              {!sortFirstLastFlag ? <FontAwesomeIcon icon={faArrowUp} /> : <FontAwesomeIcon icon={faArrowDown} />}
             </div>
-          ))}
+            {orderData.length > 0 ? (
+              orderData.map((order) => (
+                <div key={order.id}>
+                  <OrderHistoryItem
+                    orderId={order.id}
+                    createDt={order.createDt}
+                    email={order.email}
+                    totalOrderPrice={order.totalOrderPrice}
+                    completedOrderItems={order.completedOrderItems}
+                  />
+                </div>
+              ))
+            ) : (
+              <OrderHistoryNoneFound />
+            )}
+          </div>
+          <div className="column"></div>
         </div>
       </div>
-      <MovieBar />
     </div>
   );
 }

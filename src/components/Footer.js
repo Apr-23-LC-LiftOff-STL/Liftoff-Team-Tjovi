@@ -1,5 +1,5 @@
 import { Outlet, NavLink, Link } from "react-router-dom";
-import logo125 from "./Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../logos/Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
@@ -31,7 +31,7 @@ const Footer = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink className="card-footer-item" to="help">
+              <NavLink className="card-footer-item" to="help/faq">
                 Customer Service
               </NavLink>
             </li>

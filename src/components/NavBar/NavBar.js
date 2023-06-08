@@ -11,7 +11,7 @@ import Button from "@mui/material/Dialog";
 import SearchBar from "./SearchBar";
 import ChatBot from "../Chat/ChatBot";
 
-import logo125 from "./Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -173,10 +173,7 @@ const NavBar = () => {
                 <FontAwesomeIcon icon={faHistory} />
                 &nbsp; Orders
               </Link>
-              <Link
-                className="button is-small has-background-info-light"
-                to="/help"
-              >
+              <Link className="button is-small has-background-info-light" to="/help/faq">
                 <FontAwesomeIcon icon={faQuestion} />
                 &nbsp;
               </Link>
@@ -211,7 +208,7 @@ const NavBar = () => {
                 <Link className="navbar-item" to="/account/orders">
                   <FontAwesomeIcon icon={faHistory} /> &nbsp; Orders
                 </Link>
-                <Link className="navbar-item" to="/help">
+                <Link className="navbar-item" to="/help/faq">
                   <FontAwesomeIcon icon={faQuestion} /> &nbsp; Customer Service
                 </Link>
               </div>
@@ -319,14 +316,14 @@ const NavBar = () => {
         </DialogContent>
         <DialogActions>
           <button
-            className="button is-small is-primary has-text-weight-semibold"
+            className="button is-primary"
             onClick={handleClose}
             autoFocus
           >
             Cancel
           </button>
           <button
-            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            className="button is-danger is-outlined m-2"
             onClick={handleLogOutButton}
           >
             Log Out

@@ -57,8 +57,11 @@ function MovieCards() {
       left: 0,
       behavior: "instant",
     });
-    setPage(0);
   }, [searchTerm, selectedGenres, sortOptions, page]);
+
+  useEffect(() => {
+    setPage(0);
+  }, []);
 
   const handleChangePage = (event, value) => {
     setPage(value - 1);

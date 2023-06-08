@@ -5,12 +5,7 @@ import "./Products.css";
 import { Fade } from "@mui/material";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
-import { faSubtract } from "@fortawesome/free-solid-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-
-import MovieBar from "../../components/MovieBar/MovieBar";
+import { faAdd, faSubtract, faX, faHome, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -24,7 +19,7 @@ import ProductsError from "./ProductsError";
 
 import { useCartStore } from "../../store/cartStore";
 
-import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function ProductsDetails() {
   const [open, setOpen] = useState(false);
@@ -52,7 +47,7 @@ export default function ProductsDetails() {
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
-  const changeCartItem = useCartStore((state => state.changeCartItem));
+  const changeCartItem = useCartStore((state) => state.changeCartItem);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
@@ -86,7 +81,7 @@ export default function ProductsDetails() {
     handleClose();
   };
 
-/*   const handleCartItemCountChange = (e) => {
+  /*   const handleCartItemCountChange = (e) => {
     changeCartItem(id, e.target.value);
   } */
 
@@ -152,7 +147,7 @@ export default function ProductsDetails() {
                 >
                   <div className="columns pl-3">
                     <div className="column is-4">
-{/*                       <div className="select" onChange={handleCartItemCountChange}>
+                      {/*                       <div className="select" onChange={handleCartItemCountChange}>
                         <select>
                           <option>0</option>
                           <option>1</option>
@@ -225,7 +220,7 @@ export default function ProductsDetails() {
                           onClick={() => handleClickOpen(product.id)}
                           disabled={!thisItemInCart}
                         >
-                          <FontAwesomeIcon icon={faX} />
+                          <FontAwesomeIcon icon={faTrash} />
                           &nbsp; Remove All From Cart
                         </button>
                         <div>
@@ -241,7 +236,6 @@ export default function ProductsDetails() {
             </div>
           </div>
         </div>
-        <MovieBar />
       </div>
       <Dialog
         open={open}
@@ -250,7 +244,7 @@ export default function ProductsDetails() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <img src={logo125} width="112" height="28" />
+          <img className="mt-4" src={logo125} width="112" height="28" />
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -260,15 +254,11 @@ export default function ProductsDetails() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <button
-            className="button is-small is-warning has-text-weight-semibold"
-            onClick={handleClose}
-            autoFocus
-          >
+          <button className="button is-warning" onClick={handleClose} autoFocus>
             Cancel
           </button>
           <button
-            className="button is-small is-danger is-outlined has-text-weight-semibold"
+            className="button is-danger is-outlined m-2"
             onClick={removeAllThisItemButtonHandler}
           >
             Remove Item

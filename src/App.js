@@ -14,10 +14,8 @@ import About from "./pages/About";
 import Faq from "./pages/help/Faq";
 import Contact, { contactAction } from "./pages/help/Contact";
 import ChatBot, { chatAction } from "./components/Chat/ChatBot"
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Account from "./pages/account/Account";
-
+import Login from "./pages/account/Login";
+import Register from "./pages/account/Register";
 import NotFound from "./pages/NotFound";
 import Products, { productsLoader } from "./pages/products/Products";
 import ProductsDetails, {
@@ -30,9 +28,10 @@ import Cart, { cartProductsDetailsLoader } from "./pages/cart/Cart.js";
 
 // layouts
 import RootLayout from "./layouts/RootLayout";
+import GeneralLayout from "./layouts/GeneralLayout";
+import CartLayout from "./layouts/CartLayout";
 import HelpLayout from "./layouts/HelpLayout";
-import ProductsLayout from "./layouts/ProductsLayout";
-import AccountLayout from "./layouts/AccountLayout";
+
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
 import Checkout from "./pages/checkout/Checkout";
@@ -45,7 +44,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route
         path="/products"
-        element={<ProductsLayout />}
+        element={<GeneralLayout />}
         errorElement={<ProductsError />}
       >
         <Route
@@ -61,23 +60,26 @@ const router = createBrowserRouter(
           errorElement={<ProductsError />}
         />
       </Route>
-      <Route path="register" element={<Register />} />
-      <Route path="login" element={<Login />} />
-      <Route path="account" element={<AccountLayout />}>
+      <Route element={<CartLayout />}>
+        <Route path="cart" element={<Cart />} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="success" element={<CheckoutSuccess />} />
+        <Route path="failure" element={<CheckoutFailure />} />
+      </Route>
+      <Route element={<GeneralLayout />}>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="about" element={<About />} />
+      </Route>
+      <Route path="account" element={<GeneralLayout />}>
         <Route path="orders" element={<OrderHistory />} />
         <Route path="profile" element={<Profile />} />
       </Route>
-      <Route path="about" element={<About />} />
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />
         <Route path="contact" element={<Contact />} action={contactAction} />
       </Route>
-      <Route path="cart" element={<Cart />} />
-      <Route path="checkout" element={<Checkout />}></Route>
-        <Route path="success" element={<CheckoutSuccess />} />
-        <Route path="failure" element={<CheckoutFailure />} />
-      
-      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

@@ -1,49 +1,79 @@
-const OrderHistoryItem = ({ date, orderNumber, totalPrice, stripeRef }) => {
-  const expression = /\s[^\s]*$/;
+import OrderHistorySubItem from "./OrderHistorySubItem";
+import jwtDecode from "jwt-decode";
 
-  const createShortcut = (text, limit) => {
-    if (text.length > limit) {
-      const part = text.slice(0, limit - 3);
-      if (part.match(expression)) {
-        return part.replace(expression, "...");
-      }
-      return part + "...";
-    }
-    return text;
-  };
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+
+const OrderHistoryItem = ({
+  orderId,
+  createDt,
+  email,
+  totalOrderPrice,
+  completedOrderItems,
+  // stripeRef,
+}) => {
+  console.log(JSON.stringify(completedOrderItems));
 
   return (
-    <div className="pt-4 mb-6">
+    <div className="py-2">
       <div
-        className="columns mx-4 mb-5"
-        style={{ borderStyle: "solid", borderColor: "darkgray", borderWidth: '1px'}}
+        className="px-1 has-background-info-light card"
+        style={{
+          borderStyle: "solid",
+          borderColor: 'darkgray',
+          borderWidth: "1px",
+        }}
       >
-        <div className="column is-2 has-background-grey has-text-white pl-4">
-          <div>
-            <span className="has-text-weight-bold">Order #:</span> {orderNumber}{" "}
+        <div style={{ display: "flex", gap: "8px", justifyContent: "flex-between"}}>
+        <div className="has-text-left py-3 px-4" style={{flex: "0 0 auto"}}>
+            <div className="title is-5 has-text-centered">
+              Order #&nbsp;
+              {orderId}
+            </div>
+            <div className="subtitle is-6 has-text-centered">{createDt}</div>
           </div>
-          <div>
-            <span className="has-text-weight-bold">Date:</span> {date}
+          <div className="has-text-left py-3 px-4" style={{flex: "0 0 auto"}}>
+            <div className="title is-5 has-text-centered"><FontAwesomeIcon icon={faUser} /></div>
+            <div className="subtitle is-6">{email}</div>
           </div>
-        </div>
-        <div className="column has-background-white-ter pl-4">
-          <div>
-            <span className="has-text-weight-bold">Invoice Total:</span> $
-            {totalPrice}
+          <div className="has-text-left py-3 px-4" style={{marginLeft: "auto"}}>
+            <div className="title is-5 has-text-centered">Invoice Total</div>
+            <div className="subtitle is-6 has-text-right">${totalOrderPrice?.toFixed(2)}</div>
           </div>
-          <div>
-            <span className="has-text-weight-bold">Payment Reference:</span>{" "}
-            {stripeRef}
-          </div>
+
         </div>
       </div>
+
       <div
-        className="columns mx-4 pl-1"
-        style={{ borderStyle: "solid", borderColor: "darkgray", borderWidth: '1px' }}
+        className="card"
+        style={{
+          borderStyle: "solid",
+          borderColor: "darkgray",
+          borderWidth: "1px",
+        }}
       >
-        <div className="column">Movie 1</div>
-        <div className="column">Movie 2</div>
-        <div className="column">Movie 3</div>
+        <table className="table is-fullwidth">
+          <thead className="has-background-white-ter">
+            <tr>
+              <th className="has-text-left menu-label"></th>
+              <th className="has-text-centered menu-label">Title</th>
+              <th className="has-text-right menu-label">Price</th>
+              <th className="has-text-centered menu-label">Ct.</th>
+              <th className="has-text-left menu-label">Sub.</th>
+              <th className="has-text-centered menu-label">DL</th>
+            </tr>
+          </thead>
+          {completedOrderItems.map((orderItem) => (
+            <OrderHistorySubItem
+              key={orderItem.orderedItemId}
+              movieId={orderItem.movieId}
+              count={orderItem.quantity}
+              totalPrice={orderItem.totalPrice}
+            />
+          ))}
+        </table>
       </div>
     </div>
   );

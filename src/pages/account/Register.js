@@ -13,8 +13,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import MovieBar from "../components/MovieBar/MovieBar";
-import logo125 from "../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -418,7 +417,7 @@ export default function Register() {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            <img src={logo125} width="112" height="28" />
+            <img className="mt-4" src={logo125} width="112" height="28" />
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -430,13 +429,13 @@ export default function Register() {
           </DialogContent>
           <DialogActions>
             <button
-              className="button is-small is-warning has-text-weight-semibold"
+              className="button is-warning"
               onClick={handleCancelRegistration}
             >
               Yes
             </button>
             <button
-              className="button is-small is-primary is-primary has-text-weight-semibold"
+              className="button is-primary m-2"
               onClick={handleClose}
               autoFocus
             >
@@ -445,7 +444,6 @@ export default function Register() {
           </DialogActions>
         </Dialog>
       </div>
-      <MovieBar />
     </div>
   );
 }
