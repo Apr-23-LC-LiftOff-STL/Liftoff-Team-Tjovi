@@ -43,6 +43,7 @@ export default function Profile(props) {
     setOpen(false);
   };
   const userData = {};
+  const [errors, setErrors] = useState({});
   const [originalValues, setOriginalValues] = useState({ ...values });
 
   const [disabled, setDisabled] = useState(true);
@@ -168,42 +169,94 @@ export default function Profile(props) {
       lastName,
       mobileNumber,
       streetAddress,
-      
       city,
       state,
       zipCode,
     } = values;
 
-    if (
-      !email ||
-      !firstName ||
-      !lastName ||
-      !mobileNumber ||
-      !streetAddress ||
-      
-      !city ||
-      !state ||
-      !zipCode
-    ) {
-      toast.error("Please fill in all fields.");
-      return false;
+    // if (
+    //   !email ||
+    //   !firstName ||
+    //   !lastName ||
+    //   !mobileNumber ||
+    //   !streetAddress ||
+    //   !city ||
+    //   !state ||
+    //   !zipCode
+    // ) 
+    let newErrors ={};
+    if (!email || !validateEmail(email)) {
+      newErrors.email = "Please enter a valid email address.";
     }
+  
+    if (!firstName || firstName.length < 2 || firstName.length > 50) {
+      newErrors.firstName = "First name must be between 2 and 50 characters.";
+    }
+  
+    if (!lastName || lastName.length < 2 || lastName.length > 50) {
+      newErrors.lastName = "Last name must be between 2 and 50 characters.";
+    }
+  
+    if (!mobileNumber || !validateMobileNumber(mobileNumber)) {
+      newErrors.mobileNumber = "Please enter a valid 10 digit mobile number.";
+    }
+  
+    if (!streetAddress) {
+      newErrors.streetAddress = "Please enter the street address.";
+    }
+  
+    if (!city) {
+      newErrors.city = "Please enter the city.";
+    }
+  
+    if (!state) {
+      newErrors.state = "Please enter the state.";
+    }
+  
+    if (!zipCode || !validateZipCode(zipCode)) {
+      newErrors.zipCode = "Please enter a valid 5 digit ZIP code.";
+    }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+   // Form is valid if there are no errors
+  }
+    // {
+    //   toast.error("Please fill in all fields.");
+    //   return false;
+    // }
 
     
-    if (!validateEmail(email)) {
-      toast.error("Please enter a valid email address.");
-      return false;
-    }
-    if (!validateMobileNumber(mobileNumber)) {
-      toast.error("Please enter a valid 10 digit mobile number.");
-      return false;
-    }
-    if (!validateZipCode(zipCode)) {
-      toast.error("Please enter a valid 5 digit ZIP code.");
-      return false;
-    }
-    return true;
-  };
+    // if (!validateEmail(email)) {
+    //   toast.error("Please enter a valid email address.");
+    //   return false;
+    // }
+    // if (firstName.length < 2 || firstName.length > 50) {
+    //   toast.error("First name must be between 2 and 50 characters.");
+    //   return false;
+    // }
+    // if (lastName.length < 2 || lastName.length > 50) {
+    //   toast.error("Last name must be between 2 and 50 characters.");
+    //   return false;
+    // }
+    // if (city.length > 60) {
+    //   toast.error("City must be less than 60 characters.");
+    //   return false;
+    // }
+    // if (streetAddress.length > 200) {
+    //   toast.error("Street Address must be less than 200 characters.");
+    //   return false;
+    // }
+    // if (!validateMobileNumber(mobileNumber)) {
+    //   toast.error("Please enter a valid 10 digit mobile number.");
+    //   return false;
+    // }
+    // if (!validateZipCode(zipCode)) {
+    //   toast.error("Please enter a valid 5 digit ZIP code.");
+    //   return false;
+    // }
+    // return true;
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -318,6 +371,7 @@ export default function Profile(props) {
                             placeholder={userData.email}
                             name="email"
                           />
+                          {errors.email && <p className="help is-danger">{errors.email}</p>}
                         </div>
                       </div>
                       {/* <div className="column is-half"></div>
@@ -369,6 +423,7 @@ export default function Profile(props) {
                                 name="firstName"
                                 placeholder={userData.firstName}
                               />
+                              {errors.firstName && <p className="help is-danger">{errors.firstName}</p>}
                             </div>
                           </div>
                         </div>
@@ -386,6 +441,7 @@ export default function Profile(props) {
                                 name="lastName"
                                 placeholder={userData.lastName}
                               />
+                               {errors.lastName && <p className="help is-danger">{errors.lastName}</p>}
                             </div>
                           </div>
                         </div>
@@ -406,6 +462,7 @@ export default function Profile(props) {
                                 placeholder={userData.mobileNumber}
                                 title="Please enter your 10 digit phone number in this format '555-555-5555'"
                               />
+                               {errors.mobileNumber && <p className="help is-danger">{errors.mobileNumber}</p>}
                             </div>
                           </div>
                         </div>
@@ -424,6 +481,7 @@ export default function Profile(props) {
                                 placeholder={userData.streetAddress}
                                 name="streetAddress"
                               />
+                               {errors.streetAddress && <p className="help is-danger">{errors.streetAddress}</p>}
                             </div>
                           </div>
                         </div>
@@ -458,6 +516,7 @@ export default function Profile(props) {
                                 name="city"
                                 placeholder={userData.city}
                               />
+                               {errors.city && <p className="help is-danger">{errors.city}</p>}
                             </div>
                           </div>
                         </div>
@@ -475,6 +534,7 @@ export default function Profile(props) {
                                 placeholder={userData.state}
                                 name="state"
                               />
+                               {errors.state && <p className="help is-danger">{errors.state}</p>}
                             </div>
                           </div>
                         </div>
@@ -491,9 +551,9 @@ export default function Profile(props) {
                                 name="zipCode"
                                 placeholder={userData.zipCode}
                                 title="Please enter your 5 digit zipcode"
-                                
                                 required
                               />
+                               {errors.zipCode && <p className="help is-danger">{errors.zipCode}</p>}
                             </div>
                           </div>
                         </div>
