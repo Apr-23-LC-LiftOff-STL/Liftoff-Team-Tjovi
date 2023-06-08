@@ -6,8 +6,10 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Dialog";
 
 import SearchBar from "./SearchBar";
+import ChatBot from "../Chat/ChatBot";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
@@ -19,6 +21,8 @@ import {
   faHistory,
   faRightToBracket,
   faQuestion,
+  faRobot,
+  faX,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useCartStore } from "../../store/cartStore";
@@ -46,7 +50,6 @@ const NavBar = () => {
   const cartUser = useCartStore((state) => state.cartUser);
   const setCartUser = useCartStore((state) => state.setCartUser);
 
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,7 +60,9 @@ const NavBar = () => {
       );
     } else {
       setCartButtonStyling("button has-background-warning");
-      setCartDropdownStyling("button is-small has-background-warning-light has-text-weight-normal");
+      setCartDropdownStyling(
+        "button is-small has-background-warning-light has-text-weight-normal"
+      );
     }
   }, [totalProductsInCart]);
 
@@ -87,9 +92,16 @@ const NavBar = () => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const [openChatBot, setOpenChatBot] = useState(false);
+  const handleClickOpenChatBot = () => {
+    setOpenChatBot(true);
+  };
+  const handleCloseChatBot = () => {
+    setOpenChatBot(false);
   };
 
   return (
@@ -147,18 +159,39 @@ const NavBar = () => {
                 <FontAwesomeIcon icon={faCartShopping} />
                 &nbsp; ({totalProductsInCart})
               </Link>
-              <Link className="button is-small has-background-primary-light" to="/account/profile">
+              <Link
+                className="button is-small has-background-primary-light"
+                to="/account/profile"
+              >
                 <FontAwesomeIcon icon={faUser} />
                 &nbsp; Profile
               </Link>
-              <Link className="button is-small has-background-primary-light" to="/account/orders">
+              <Link
+                className="button is-small has-background-primary-light"
+                to="/account/orders"
+              >
                 <FontAwesomeIcon icon={faHistory} />
                 &nbsp; Orders
               </Link>
               <Link className="button is-small has-background-info-light" to="/help/faq">
                 <FontAwesomeIcon icon={faQuestion} />
-                &nbsp; Service
-                </Link>
+                &nbsp;
+              </Link>
+              <button
+                className={
+                  openChatBot
+                    ? "button is-small is-info"
+                    : "button is-small is-info is-light"
+                }
+                style={{
+                  borderStyle: "solid",
+                  borderColor: "lightgray",
+                  borderWidth: "1px",
+                }}
+                onClick={handleClickOpenChatBot}
+              >
+                <FontAwesomeIcon icon={faRobot} />
+              </button>
             </div>
           </div>
 
@@ -195,7 +228,54 @@ const NavBar = () => {
               </Link>
             </div>
           </div>
-          <div className="buttons is-hidden-mobile">
+          <div className="buttons is-hidden-mobile is-hidden-touch">
+            <button
+              className={
+                openChatBot ? "button is-info" : "button is-info is-light"
+              }
+              style={{
+                borderStyle: "solid",
+                borderColor: "lightgray",
+                borderWidth: "1px",
+              }}
+              onClick={handleClickOpenChatBot}
+            >
+              <FontAwesomeIcon icon={faRobot} />
+            </button>
+            <Dialog
+              open={openChatBot}
+              onClose={handleCloseChatBot}
+              fullWidth
+              maxWidth="md"
+            >
+              <DialogTitle>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <img className="mx-4 mt-2" src={logo125} width="112" height="28" />
+                  <div className="button is-light mx-4 mt-2"
+                    onClick={handleCloseChatBot}
+                  >
+                    <FontAwesomeIcon icon={faX} />
+                  </div>
+                </div>
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText className="mx-4 mb-4">
+                <span className="has-text-danger has-text-weight-bold"> [BETA]</span> Ask Chat GPT movie questions here! 
+                </DialogContentText>
+                <ChatBot />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseChatBot}>Cancel</Button>
+                <Button onClick={handleCloseChatBot}>Cancel</Button>
+                <Button type="submit">Submit</Button>
+              </DialogActions>
+            </Dialog>
             <button
               className={
                 isLoggedIn
@@ -211,7 +291,7 @@ const NavBar = () => {
               className={
                 cart.length > 0
                   ? "button is-normal has-background-warning is-hidden-touch"
-                  : "button is-normal has-background-warning-light is-hidden-touch"
+                  : "button is-normal is-outlined has-background-warning-light is-hidden-touch"
               }
             >
               <FontAwesomeIcon icon={faCartShopping} />
@@ -226,7 +306,9 @@ const NavBar = () => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title"><img src={logo125} width="112" height="28" /></DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          <img src={logo125} width="112" height="28" />
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Would you like to log out of your account?
