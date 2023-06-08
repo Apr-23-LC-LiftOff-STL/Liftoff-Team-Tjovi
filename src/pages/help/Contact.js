@@ -1,12 +1,20 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { useState } from 'react';
+import { Form, redirect, useActionData, useNavigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+
 export default function Contact(){
   const [values, setValues] = useState({
     email: "",
   name:"",
 })
-
+const navigate = useNavigate();
+const handleResetFields = (e) => {
+  e.preventDefault();
+  e.target.closest("form").reset();
+  navigate("/help/contact");
+};
 const handleChange = (e) => {
   var value = e.target.value === "" ? null : e.target.value;
   setValues({
@@ -35,16 +43,102 @@ from_name: values.name
       // console.log(values.name)
   };
 
-  return (
-    <form ref={form} onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="name" value={values.name} onChange={handleChange} required/>
-      <label>Email</label>
-      <input type="email" name="email" value={values.email} onChange={handleChange} required />
-      <label>Message</label>
-      <textarea name="message" required/>
-      <input type="submit" value="Send" />
-    </form>
+  // <form ref={form} onSubmit={sendEmail}>
+  //     <label>Name</label>
+    
+  //     <label>Email</label>
+  //     <input type="email" name="email" value={values.email} onChange={handleChange} required />
+  //     <label>Message</label>
+  //     <textarea name="message" required/>
+  //     <input type="submit" value="Send" />
+  //   </form>
+  return ( 
+    <div>
+    <p className="mx-6 pb-2">
+      If you have a question not addressed in the FAQ, please send us a
+      message here.
+    </p>
+    <div
+      className="mx-6 px-5 py-5 box"
+      style={{
+        borderStyle: "solid",
+        borderColor: "lightgray",
+        borderWidth: "1px",
+      }}
+    >
+      <form ref={form} onSubmit={sendEmail}>
+        <div className="columns">
+          <div className="column is-2">
+            <div className="field">
+              <label className="label">
+                <span>Your Name</span>{" "}
+               
+              </label>
+              <div className="control">
+                 <input type="text" name="name" value={values.name} onChange={handleChange} required/>
+              </div>
+            </div>
+          </div>
+          <div className="column is-2">
+            <div className="field">
+              <label className="label">
+                <span>Your E-mail</span>{" "}
+               
+              </label>
+              <div className="control">
+              <input type="email" name="email" value={values.email} onChange={handleChange} required />
+              </div>
+            </div>
+          </div>
+          {/* <div className="column is-3">
+            <div class="field">
+              <label class="label">Order No.</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="orderNo"
+                  placeholder="(optional)"
+                />
+              </div>
+            </div>
+          </div> */}
+        </div>
+        <label>
+          <div className="field">
+            <label className="label">
+              <span>Your Message</span>{" "}
+            </label>
+            
+            <div className="control">
+              <textarea className="textarea" name="message" required></textarea>
+            </div>
+          </div>
+        </label>
+        <div className="field">
+          <div className="control">
+            <label className="checkbox pt-2">
+              <input type="checkbox" name="tac" />
+              &nbsp;I agree to the <a href="#">terms and conditions &nbsp;</a>
+              
+            </label>
+          </div>
+        </div>
+        
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-primary"  input type="submit" value="Send" >Submit</button>
+          </div>
+          <div className="control">
+            <button className="button is-warning" onClick={handleResetFields}>
+              Reset Fields
+            </button>
+          </div>
+        </div>
+        </form>
+    </div>
+  </div>
+    
   );
 };
 {/* //   const data = useActionData() 
