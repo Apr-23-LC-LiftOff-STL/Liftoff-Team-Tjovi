@@ -10,7 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { faPaperPlane, faRobot } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo125 from "../../components/Logo_MovieDL_20230426_125x22.png";
+import logo125 from "../logos/Logo_MovieDL_20230426_125x22.png";
 
 import ChatBot from "../Chat/ChatBot";
 
