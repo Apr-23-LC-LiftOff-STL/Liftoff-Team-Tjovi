@@ -255,10 +255,23 @@ public class ShoppingCartServiceTests {
         ArgumentCaptor<Long> argumentCaptor = ArgumentCaptor.forClass(Long.class);
         verify(shoppingCartRepository, times(1)).deleteById(argumentCaptor.capture());
 
-        Long deletedCart = argumentCaptor.getValue();
+        Long deletedCartId = argumentCaptor.getValue();
         String specStatus = "The status code should be HttpStatus.OK";
 
-        assertEquals(null, testCart1Id, deletedCart);
+//  This check to see if deletedCart was removed from Array list, is not explicitly necessary as it doesn't directly test
+//  service method functionality or in any other way provide information about the service method not learned without it.
+//  It does, however, provide an extra level of confidence in the test setup and help catch any inconsistencies between
+//  the test data and the actual behavior of the service method
+        if (deletedCartId != null) {
+            testShoppingCarts.removeIf(cart -> cart.getCartId().equals(deletedCartId));
+        }
+
+        assertThat(testShoppingCarts)
+                .hasSize(1)
+                .extracting(ShoppingCart::getCartId)
+                .doesNotContain(testCart1Id);
+//
+        assertEquals(null, testCart1Id, deletedCartId);
         assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
     }
 
@@ -272,5 +285,4 @@ public class ShoppingCartServiceTests {
         verify(shoppingCartRepository, never()).deleteById(any());
         assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
     }
-
 }

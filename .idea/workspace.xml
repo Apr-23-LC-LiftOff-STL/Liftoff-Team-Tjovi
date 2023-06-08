@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8308baad-0745-4f8e-b4a6-caeb82cb4e2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/ShoppingCartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/ShoppingCartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Service/ShoppingCartService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Service/ShoppingCartService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/ShoppingCartServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/ShoppingCartServiceTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ShoppingCartService.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ShoppingCartService.class.uniqueId0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/ShoppingCartServiceTests.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/ShoppingCartServiceTests.class.uniqueId0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/ShoppingCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/ShoppingCartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/ShoppingCartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/ShoppingCartService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/ShoppingCartServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/ShoppingCartServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,7 +124,7 @@
       <recent name="com.liftoff.ecommerce.Service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ShoppingCartServiceTests.testRemoveItemFromCartWhenCartExists">
+  <component name="RunManager" selected="JUnit.ShoppingCartServiceTests">
     <configuration name="ShoppingCartServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
@@ -167,22 +151,6 @@
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
       <option name="METHOD_NAME" value="testRemoveAllItemsByCustomerFromCartWhenNoCartsFound" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartServiceTests.testRemoveAllItemsFromCart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
-      <option name="METHOD_NAME" value="testRemoveAllItemsFromCart" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -215,6 +183,22 @@
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
       <option name="METHOD_NAME" value="testRemoveItemFromCartWhenCartExists" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoppingCartServiceTests.testRemoveItemFromCartWhenNoCartFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
+      <option name="METHOD_NAME" value="testRemoveItemFromCartWhenNoCartFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -256,11 +240,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ShoppingCartServiceTests" />
+        <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveItemFromCartWhenNoCartFound" />
         <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveItemFromCartWhenCartExists" />
         <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveAllItemsFromCartByCustomerWhenCartsExist" />
         <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveAllItemsByCustomerFromCartWhenNoCartsFound" />
-        <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveAllItemsFromCart" />
-        <item itemvalue="JUnit.ShoppingCartServiceTests" />
       </list>
     </recent_temporary>
   </component>
