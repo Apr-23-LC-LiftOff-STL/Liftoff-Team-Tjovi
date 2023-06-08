@@ -3,9 +3,14 @@ import { Fade } from "@mui/material";
 import posterNA from "./posterNA.jpg";
 import axios from "axios";
 import "./OrderHistory.css";
+import DownloadDialog from "./DownloadDialog";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
   const [productData, setProductData] = useState();
+  const [showDialog, setShowDialog] = useState(false);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
   const baseProductUrl = "/products/";
@@ -43,56 +48,66 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
   return (
     <tr>
       <td>
-        {" "}
-        <a href={`${baseProductUrl}${movieId}`}>
-        <Fade in timeout={500}>
-          <div
-            style={{ width: "30px", marginLeft: "auto", marginRight: "auto" }}
-          >
-
-            {productData?.posterPath && (
-              <img
-                className="image"
-                src={`${baseImgUrl}${productData?.posterPath}`}
-                alt={`Poster for ${productData?.title}`}
-                style={{
-                  borderStyle: "solid",
-                  borderColor: "darkgray",
-                  borderWidth: "1px",
-                }}
-              />
-            )}
-          </div>
+      <a href={`${baseProductUrl}${movieId}`}>
+          <Fade in timeout={500}>
+            <div
+              style={{ maxWidth: "80px", minWidth: "60px", marginLeft: "auto", marginRight: "auto" }}
+            >
+              {productData?.posterPath && (
+                <img
+                  className="image"
+                  src={`${baseImgUrl}${productData?.posterPath}`}
+                  alt={`Poster for ${productData?.title}`}
+                  style={{
+                    borderStyle: "solid",
+                    borderColor: "darkgray",
+                    borderWidth: "1px",
+                  }}
+                />
+              )}
+            </div>
           </Fade>
-          <div>
-            {!productData?.posterPath && (
-              <img
-                className="image"
-                src={posterNA}
-                alt={`no poster available for ${productData?.title}`}
-                style={{
-                  borderStyle: "solid",
-                  borderColor: "darkgray",
-                  borderWidth: "1px",
-                }}
-              />
-            )}
-          </div>
+          <Fade in timeout={500}>
+          <div
+              style={{ maxWidth: "80px", minWidth: "60px", marginLeft: "auto", marginRight: "auto" }}
+            >
+              {!productData?.posterPath && (
+                <img
+                  className="image"
+                  src={posterNA}
+                  alt={`no poster available for ${productData?.title}`}
+                  style={{
+                    borderStyle: "solid",
+                    borderColor: "darkgray",
+                    borderWidth: "1px",
+                  }}
+                />
+              )}
+            </div>
+          </Fade>
         </a>
+
       </td>
 
-      <td className="has-text-left">
-        <a href={`${baseProductUrl}${movieId}`}>
-          {createShortcut(productData?.title, 50)}
+      <td className="has-text-centered">
+      <a href={`${baseProductUrl}${movieId}`}>
+          {createShortcut(productData?.title, 30)}
         </a>
+        {" "}
+
       </td>
 
       <td className="has-text-right">
         {currencySymbol}
-        {(totalPrice/count).toFixed(2)}
+        {(totalPrice / count).toFixed(2)}
       </td>
       <td className="has-text-centered">{count}</td>
-      <td className="has-text-right">${totalPrice?.toFixed(2)}</td>
+      <td className="has-text-left">${totalPrice?.toFixed(2)}</td>
+      <td className="has-text-centered">
+        <div>
+          <DownloadDialog />
+        </div>
+      </td>
     </tr>
   );
 };

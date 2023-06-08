@@ -155,7 +155,7 @@ const NavBar = () => {
                 <FontAwesomeIcon icon={faHistory} />
                 &nbsp; Orders
               </Link>
-              <Link className="button is-small has-background-info-light" to="/help">
+              <Link className="button is-small has-background-info-light" to="/help/faq">
                 <FontAwesomeIcon icon={faQuestion} />
                 &nbsp; Service
                 </Link>
@@ -175,7 +175,7 @@ const NavBar = () => {
                 <Link className="navbar-item" to="/account/orders">
                   <FontAwesomeIcon icon={faHistory} /> &nbsp; Orders
                 </Link>
-                <Link className="navbar-item" to="/help">
+                <Link className="navbar-item" to="/help/faq">
                   <FontAwesomeIcon icon={faQuestion} /> &nbsp; Customer Service
                 </Link>
               </div>
