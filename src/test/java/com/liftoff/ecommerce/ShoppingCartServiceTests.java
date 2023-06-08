@@ -18,10 +18,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.text.DecimalFormat;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
@@ -44,10 +46,13 @@ public class ShoppingCartServiceTests {
     Movie testMovie2;
     Movie testMovie3;
     ShoppingCart testCart1;
+    Long testCart1Id;
     ShoppingCart testCart2;
     ShoppingCart testCart3;
+    ShoppingCart testCart4;
     ShoppingCart testCartWithNewQuantity;
     List<ShoppingCart> testShoppingCarts = new ArrayList<>();
+    List<ShoppingCart> allShoppingCarts = new ArrayList<>();
 
     @BeforeEach
     public void createTestData() {
@@ -69,19 +74,31 @@ public class ShoppingCartServiceTests {
 
         testCart1 = new ShoppingCart(testMovie1.getId(), 1L);
         testCart1.setCustomer(testCustomer1);
+        testCart1.setCartId(300L);
         testShoppingCarts.add(testCart1);
+        testCart1Id = testCart1.getCartId();
+
         testCart2 = new ShoppingCart(testMovie2.getId(), 2L);
         testCart2.setCustomer(testCustomer1);
+        testCart2.setCartId(301L);
         testShoppingCarts.add(testCart2);
+
         testCart3 = new ShoppingCart(testMovie3.getId(), 1L);
         testCart3.setCustomer(testCustomer2);
-        testShoppingCarts.add(testCart3);
+        testCart3.setCartId(302L);
+        allShoppingCarts.add(testCart3);
+
+        testCart4 = new ShoppingCart(testMovie1.getId(), 2L);
+        testCart4.setCustomer(testCustomer2);
+        testCart4.setCartId(303L);
+        allShoppingCarts.add(testCart4);
+
+        allShoppingCarts.addAll(testShoppingCarts);
 
         testCartWithNewQuantity = new ShoppingCart(testMovie1.getId(), 10L);
     }
 
     @Test
-    @Order(1)
     public void testSetTotalPrice(){
         when(movieRepository.findById(testCart1.getMovieId())).thenReturn(Optional.of(testMovie1));
         shoppingCartService.setTotalPrice(testCart1);
@@ -95,7 +112,6 @@ public class ShoppingCartServiceTests {
     }
 
     @Test
-    @Order(2)
     public void testReturnAllCarts(){
         when(shoppingCartRepository.findAll()).thenReturn(testShoppingCarts);
         ResponseEntity<?> response = shoppingCartService.returnAllCarts();
@@ -108,7 +124,6 @@ public class ShoppingCartServiceTests {
     }
 
     @Test
-    @Order(3)
     public void testReturnAllCartsNotFound(){
         when(shoppingCartRepository.findAll()).thenReturn(Collections.emptyList());
         ResponseEntity<?> response = shoppingCartService.returnAllCarts();
@@ -121,7 +136,6 @@ public class ShoppingCartServiceTests {
     }
 
     @Test
-    @Order(4)
     public void testReturnCartsByCustomerId(){
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
         ResponseEntity<?> response = shoppingCartService.returnCartsByCustomerId(testCustomer1.getId());
@@ -134,7 +148,6 @@ public class ShoppingCartServiceTests {
     }
 
     @Test
-    @Order(5)
     public void testReturnCartsByCustomerIdNotFound(){
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(Collections.emptyList());
         ResponseEntity<?> response = shoppingCartService.returnCartsByCustomerId(testCustomer1.getId());
@@ -147,7 +160,6 @@ public class ShoppingCartServiceTests {
     }
 
     @Test
-    @Order(6)
     public void testCreateNewShoppingCart(){
         when(movieRepository.findById(testCart1.getMovieId())).thenReturn(Optional.of(testMovie1));
         ResponseEntity<?> response = shoppingCartService.createNewShoppingCart(testCustomer1, testCart1);
@@ -166,7 +178,6 @@ public class ShoppingCartServiceTests {
     // Perhaps could be broke into multiple tests, but wanted to make sure it was updating quantity, setting total price,
     // and saving correctly the correct updated values.
     @Test
-    @Order(7)
     public void testUpdateQuantityInCartUpdatesQuantityAndTotalPriceAndSaves(){
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
         when(movieRepository.findById(testCart1.getMovieId())).thenReturn(Optional.of(testMovie1));
@@ -191,7 +202,6 @@ public class ShoppingCartServiceTests {
     }
 
     @Test
-    @Order(9)
     public void testUpdateQuantityInCartNotFound(){
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(Collections.emptyList());
         ResponseEntity<?> response = shoppingCartService.updateQuantityInCart(testCustomer1, testCart1);
@@ -206,29 +216,61 @@ public class ShoppingCartServiceTests {
     }
 
     @Test
-    @Order(10)
-    public void testRemoveAllItemsFromCart(){
+    public void testRemoveAllItemsFromCartByCustomerWhenCartsExist(){
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
+        ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCartByCustomer(testCustomer1);
 
         ArgumentCaptor<List<ShoppingCart>> argumentCaptor = ArgumentCaptor.forClass(List.class);
-        ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCart(testCustomer1);
-
         verify(shoppingCartRepository, times(1)).findByCustomerId(testCustomer1.getId());
+        verify(shoppingCartRepository, times(1)).deleteAll(argumentCaptor.capture());
 
-        verify(shoppingCartRepository, times(1)).deleteAll(argThat(carts -> {
-            Set<Long> expectedCartIds = testShoppingCarts.stream()
-                    .filter(cart -> cart.getCustomer().equals(testCustomer1))
-                    .map(ShoppingCart::getCartId)
-                    .collect(Collectors.toSet());
-            Set<Long> actualCartIds = StreamSupport.stream(carts.spliterator(), false)
-                    .map(ShoppingCart::getCartId)
-                    .collect(Collectors.toSet());
-        return actualCartIds.equals(expectedCartIds);
-                }));
+        List<ShoppingCart> deletedCarts = argumentCaptor.getValue();
+        assertThat(deletedCarts)
+                .hasSize(2)
+                .extracting(cart -> cart.getCustomer().getId())
+                .containsOnly(testCustomer1.getId());
+
 
         String specStatus = "The status code should be HttpStatus.OK";
         assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+    }
 
+    @Test
+    public void testRemoveAllItemsByCustomerFromCartWhenNoCartsFound() {
+        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(Collections.emptyList());
+        ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCartByCustomer(testCustomer1);
+
+        String specStatus = "The status code should be HttpStatus.NOT_FOUND";
+
+        verify(shoppingCartRepository, never()).deleteAll(any());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    public void testRemoveItemFromCartWhenCartExists() {
+        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
+        ResponseEntity<?> response = shoppingCartService.removeItemFromCart(testCustomer1, testCart1);
+
+        verify(shoppingCartRepository, times(1)).findByCustomerId(testCustomer1.getId());
+        ArgumentCaptor<Long> argumentCaptor = ArgumentCaptor.forClass(Long.class);
+        verify(shoppingCartRepository, times(1)).deleteById(argumentCaptor.capture());
+
+        Long deletedCart = argumentCaptor.getValue();
+        String specStatus = "The status code should be HttpStatus.OK";
+
+        assertEquals(null, testCart1Id, deletedCart);
+        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void testRemoveItemFromCartWhenNoCartFound(){
+        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(Collections.emptyList());
+        ResponseEntity<?> response = shoppingCartService.removeItemFromCart(testCustomer1, testCart1);
+
+        String specStatus = "The status code should be HttpStatus.NOT_FOUND";
+
+        verify(shoppingCartRepository, never()).deleteById(any());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
 }

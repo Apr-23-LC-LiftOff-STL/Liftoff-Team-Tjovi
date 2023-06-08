@@ -52,7 +52,7 @@ public class ShoppingCartController {
     @DeleteMapping("/deleteAll/{email}")
     public ResponseEntity<?> removeAllItemsFromCart(@PathVariable String email){
         Customer customer = customerService.findCustomer(email);
-        return shoppingCartService.removeAllItemsFromCart(customer);
+        return shoppingCartService.removeAllItemsFromCartByCustomer(customer);
     }
 
     @GetMapping("/returnAllCarts")

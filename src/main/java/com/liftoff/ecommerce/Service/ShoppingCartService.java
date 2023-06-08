@@ -89,7 +89,7 @@ public class ShoppingCartService {
         }
     }
 
-    public ResponseEntity<?> removeAllItemsFromCart(Customer customer) {
+    public ResponseEntity<?> removeAllItemsFromCartByCustomer(Customer customer) {
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
         if(allCustomersCarts.size()>0){
             shoppingCartRepository.deleteAll(allCustomersCarts);
