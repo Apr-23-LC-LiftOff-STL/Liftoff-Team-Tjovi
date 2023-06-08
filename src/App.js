@@ -18,13 +18,13 @@ import Register from "./pages/account/Register";
 
 import NotFound from "./pages/NotFound";
 import Products, { productsLoader } from "./pages/products/Products";
-import ProductsDetails, {
-  productsDetailsLoader,
-} from "./pages/products/ProductsDetails";
+import ProductDetailsPage, {
+  productDetailsLoader,
+} from "./pages/products/ProductDetailsPage";
 import ProductsError from "./pages/products/ProductsError";
 import OrderHistory from "./pages/account/OrderHistory.js";
 import Profile from "./pages/account/Profile.js";
-import Cart, { cartProductsDetailsLoader } from "./pages/cart/Cart.js";
+import Cart from "./pages/cart/Cart.js";
 
 // layouts
 import RootLayout from "./layouts/RootLayout";
@@ -55,8 +55,8 @@ const router = createBrowserRouter(
         />
         <Route
           path=":id"
-          element={<ProductsDetails />}
-          loader={productsDetailsLoader}
+          element={<ProductDetailsPage />}
+          loader={productDetailsLoader}
           errorElement={<ProductsError />}
         />
       </Route>

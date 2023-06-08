@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import OrderHistorySubItem from "./OrderHistorySubItem";
 import jwtDecode from "jwt-decode";
 
@@ -14,6 +15,14 @@ const OrderHistoryItem = ({
   completedOrderItems,
   // stripeRef,
 }) => {
+
+  const [sortedOrderItems, setSortedOrderItems] = useState([]);
+
+  useEffect(() => {
+    const sortedItems = completedOrderItems.slice().sort((a, b) => a.movieId - b.movieId);
+    setSortedOrderItems(sortedItems);
+  }, [completedOrderItems]);
+
   console.log(JSON.stringify(completedOrderItems));
 
   return (
@@ -65,7 +74,7 @@ const OrderHistoryItem = ({
               <th className="has-text-centered menu-label">DL</th>
             </tr>
           </thead>
-          {completedOrderItems.map((orderItem) => (
+          {sortedOrderItems?.map((orderItem) => (
             <OrderHistorySubItem
               key={orderItem.orderedItemId}
               movieId={orderItem.movieId}
