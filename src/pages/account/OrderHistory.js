@@ -112,7 +112,7 @@ export default function OrderHistory() {
         <div className="columns">
           <div className="column"></div>
           <div className="column is-two-thirds mx-4">
-            <div className="container mx-2 mb-1">
+            <div className="container mx-3 mb-1">
               <Box
                 sx={{
                   mt: 4,
@@ -122,8 +122,13 @@ export default function OrderHistory() {
                 }}
               >
                 <div
-                  className="button is-small is-warning"
-                  style={{ flex: "0 1 auto" }}
+                  className="button is-small is-warning mr-4"
+                  style={{
+                    flex: "0 1 auto",
+                    borderStyle: "solid",
+                    borderColor: "darkgray",
+                    borderWidth: "1px",
+                  }}
                   onClick={() =>
                     !sortFirstLastFlag
                       ? handleSortFirstLast()
@@ -138,12 +143,13 @@ export default function OrderHistory() {
                   )}
                 </div>
                 <Pagination
+                  disableRipple
                   count={Math.ceil(orderData.length / ordersPerPage)}
                   page={page + 1}
                   onChange={handleChangePage}
-                  siblingCount={3}
+                  siblingCount={1}
                   boundaryCount={1}
-                  color="primary"
+                  shape="rounded"
                 />
               </Box>
             </div>
