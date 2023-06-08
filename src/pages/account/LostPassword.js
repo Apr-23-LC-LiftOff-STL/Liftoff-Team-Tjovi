@@ -8,6 +8,7 @@ export default function LostPassword() {
   const [values, setValues] = useState({
     name: "",
     email: "",
+    pwd:""
   });
 
   const handleChange = (e) => {
@@ -25,33 +26,55 @@ export default function LostPassword() {
     console.log(values.name);
     console.log(values.email);
     console.log(newPassword);
+    console.log("this is the real password "+values.pwd)
     const username = values.email;
+
     try {
       const response = await axios.get(
         `http://localhost:8080/profile/isUser/${username}`
         
       );
-
       if (response.status === 200 || response.status === 201) {
-        //toast.success("This user exists");
-        const response = await fetch(`http://localhost:8080/profile/changePassword/${username}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newPassword),
-    });
-        
-        sendEmail(values.name, values.email, newPassword);
-        
-        toast.success("Your password was successfully updated!");
+        const changePasswordResponse = await axios.put(
+          `http://localhost:8080/profile/changePassword/${username}`,
+          { password: newPassword }
+        );
+  
+        if (changePasswordResponse.status === 200 || changePasswordResponse.status === 201) {
+          sendEmail(values.name, values.email, newPassword);
+          toast.success("Your password was successfully updated!");
+        } else {
+          throw new Error(`Password update failed: ${changePasswordResponse.status}`);
+        }
       } else {
-        throw new Error(`Request failed: ${response.status}`);
+        throw new Error(`User check failed: ${response.status}`);
+        
       }
     } catch (error) {
-      
+      console.error(error);
       toast.error("Password update unsuccessful!");
     }
+    //   if (response.status === 200 || response.status === 201) {
+    //     //toast.success("This user exists");
+    //     const response = await fetch(`http://localhost:8080/profile/changePassword/${username}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(newPassword),
+    // });
+        
+    //     sendEmail(values.name, values.email, newPassword);
+        
+    //     toast.success("Your password was successfully updated!");
+    //   } else {
+    //     throw new Error(`Request failed: ${response.status}`);
+    //   }
+    // } catch (error) {
+      
+    //   toast.error("Password update unsuccessful!");
+    //   return
+    // }
   };
 
   const generateRandomPassword = () => {
