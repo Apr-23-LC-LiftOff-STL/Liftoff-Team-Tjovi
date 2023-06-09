@@ -36,6 +36,7 @@ import GeneralLayout from "./layouts/GeneralLayout";
 import CartLayout from "./layouts/CartLayout";
 import HelpLayout from "./layouts/HelpLayout";
 import AdminLayout from "./layouts/AdminLayout";
+import LostPassword from "./pages/account/LostPassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -74,10 +75,11 @@ const router = createBrowserRouter(
       <Route path="account" element={<GeneralLayout />}>
         <Route path="orders" element={<OrderHistory />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="lostPassword" element={<LostPassword />} />
       </Route>
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />
-        <Route path="contact" element={<Contact />} action={contactAction} />
+        <Route path="contact" element={<Contact />} /* action={contactAction} */ />
       </Route>
       <Route path="admin" element={<AdminLayout />}>
 

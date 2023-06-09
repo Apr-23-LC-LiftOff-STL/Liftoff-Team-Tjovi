@@ -1,11 +1,11 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
-import { faSignature } from "@fortawesome/free-solid-svg-icons";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -15,7 +15,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Register() {
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
@@ -31,19 +35,106 @@ export default function Register() {
     zipCode: "",
     role: "user",
   });
+
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function validateMobileNumber(mobileNumber) {
+    const mobileNumberRegex =
+      /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gm;
+    return mobileNumberRegex.test(mobileNumber);
+  }
+
+  function validateZipCode(zipCode) {
+    const zipCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+    return zipCodeRegex.test(zipCode);
+  }
+
+  function validateForm() {
+    const {
+      email,
+      firstName,
+      lastName,
+      pwd,
+      verifyPwd,
+      mobileNumber,
+      streetAddress,
+      city,
+      state,
+      zipCode,
+    } = values;
+
+    let newErrors = {};
+    if (!email || !validateEmail(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+    if (!pwd) {
+      newErrors.pwd = "Password is required";
+    } else if (pwd.length < 8) {
+      newErrors.pwd = "Password must be at least 8 characters long";
+    } else if (!/(?=.*[A-Z])/.test(values.pwd)) {
+      newErrors.pwd = "Password must contain at least 1 capital letter";
+    } else if (!/(?=.*\d)/.test(values.pwd)) {
+      newErrors.pwd = "Password must contain at least 1 number";
+    }
+    if (!verifyPwd) {
+      newErrors.verifyPwd = "Password verification is required";
+    } else if (verifyPwd !== pwd) {
+      newErrors.verifyPwd = "Passwords MUST match";
+    }
+
+    if (!firstName || firstName.length < 2 || firstName.length > 50) {
+      newErrors.firstName = "First name must be between 2 and 50 characters.";
+    }
+
+    if (!lastName || lastName.length < 2 || lastName.length > 50) {
+      newErrors.lastName = "Last name must be between 2 and 50 characters.";
+    }
+
+    if (!mobileNumber || !validateMobileNumber(mobileNumber)) {
+      newErrors.mobileNumber = "Please enter a valid 10 digit mobile number.";
+    }
+
+    if (!streetAddress) {
+      newErrors.streetAddress = "Please enter the street address.";
+    }
+
+    if (!city) {
+      newErrors.city = "Please enter the city.";
+    }
+
+    if (!state) {
+      newErrors.state = "Please select the state.";
+    }
+
+    if (!zipCode || !validateZipCode(zipCode)) {
+      newErrors.zipCode = "Please enter a valid 5 digit ZIP code.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
+
   const saveFormData = async () => {
-    const response = await fetch("http://localhost:8080/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
-    if (response.status !== 201) {
-      throw new Error(`Request failed: ${response.status}`);
+    try {
+      const response = await fetch("http://localhost:8080/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.status !== 201) {
+        throw new Error(`Request failed: ${response.status}`);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Registration failed! Please try again.");
     }
   };
-
   const handleChange = (e) => {
     var value = e.target.value === "" ? null : e.target.value;
     setValues({
@@ -54,34 +145,19 @@ export default function Register() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    if (values.pwd !== values.verifyPwd) {
-      alert("Passwords do NOT match!");
-    } else {
-      try {
-        await saveFormData();
-        alert("Your registration was successfully submitted!");
-        navigate("/");
-      } catch (e) {
-        alert(`Registration failed! ${e.message}`);
-      }
-    }
-  };
+    const isValid = validateForm();
 
-  const cancelRegistration = () => {
-    setValues({
-      email: "",
-      pwd: "",
-      verifyPwd: "",
-      firstName: "",
-      lastName: "",
-      mobileNumber: "",
-      streetAddress: "",
-      suite: "",
-      city: "",
-      state: "",
-      zipCode: "",
-    });
-    navigate("/");
+    try {
+      if (isValid) {
+        await saveFormData();
+      } else {
+        return;
+      }
+      toast.success("Registration successfully submitted");
+      navigate("/");
+    } catch (e) {
+      toast.error(`Registration failed! ${e.message}`);
+    }
   };
 
   const [open, setOpen] = useState(false);
@@ -115,6 +191,7 @@ export default function Register() {
           </li>
         </ul>
       </nav>
+
       <div className="columns is-centered">
         <div className="column is-7 mx-6">
           <form
@@ -139,10 +216,12 @@ export default function Register() {
                       type="email"
                       value={values.email}
                       onChange={handleChange}
-                      required
                       placeholder="e.g. alex@example.com"
                       name="email"
                     />
+                    {errors.email && (
+                      <p className="help is-danger">{errors.email}</p>
+                    )}
                     <span className="icon is-small is-left">
                       <FontAwesomeIcon icon={faEnvelope} />
                     </span>
@@ -161,9 +240,13 @@ export default function Register() {
                       type="password"
                       value={values.pwd}
                       onChange={handleChange}
-                      required
                       placeholder="********"
+                      //title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                      //pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                     />
+                    {errors.pwd && (
+                      <p className="help is-danger">{errors.pwd}</p>
+                    )}
                     <span className="icon is-small is-left">
                       <FontAwesomeIcon icon={faLock} />
                     </span>
@@ -180,9 +263,11 @@ export default function Register() {
                       type="password"
                       value={values.verifyPwd}
                       onChange={handleChange}
-                      required
                       placeholder="********"
                     />
+                    {errors.verifyPwd && (
+                      <p className="help is-danger">{errors.verifyPwd}</p>
+                    )}
                     <span className="icon is-small is-left">
                       <FontAwesomeIcon icon={faLock} />
                     </span>
@@ -196,14 +281,16 @@ export default function Register() {
                   <label className="label">First Name</label>
                   <div className="control">
                     <input
-                      className="input"
+                      className={`input ${errors.firstName && "is-danger"}`}
                       type="text"
                       value={values.firstName}
                       onChange={handleChange}
-                      required
                       name="firstName"
                     />
                   </div>
+                  {errors.firstName && (
+                    <p className="help is-danger">{errors.firstName}</p>
+                  )}
                 </div>
               </div>
               <div className="column is-half">
@@ -214,9 +301,11 @@ export default function Register() {
                     type="text"
                     value={values.lastName}
                     onChange={handleChange}
-                    required
                     name="lastName"
                   />
+                  {errors.lastName && (
+                    <p className="help is-danger">{errors.lastName}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -230,10 +319,14 @@ export default function Register() {
                     name="mobileNumber"
                     value={values.mobileNumber}
                     onChange={handleChange}
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    required
+                    //pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+
                     placeholder="555-555-5555"
+                    title="Please enter your 10 digit phone number"
                   />
+                  {errors.mobileNumber && (
+                    <p className="help is-danger">{errors.mobileNumber}</p>
+                  )}
                   <span className="icon is-small is-left">
                     <FontAwesomeIcon icon={faPhone} />
                   </span>
@@ -250,12 +343,14 @@ export default function Register() {
                       type="text"
                       value={values.streetAddress}
                       onChange={handleChange}
-                      required
                       name="streetAddress"
                     />
                     <span className="icon is-small is-left">
                       <FontAwesomeIcon icon={faAddressBook} />
                     </span>
+                    {errors.streetAddress && (
+                      <p className="help is-danger">{errors.streetAddress}</p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -285,13 +380,15 @@ export default function Register() {
                       type="text"
                       value={values.city}
                       onChange={handleChange}
-                      required
                       name="city"
                     />
+                    {errors.city && (
+                      <p className="help is-danger">{errors.city}</p>
+                    )}
                   </div>
                 </div>
               </div>
-              <div className="column is-one-quarter">
+              {/* <div className="column is-one-quarter">
                 <div className="field">
                   <label className="label">State</label>
                   <div className="control">
@@ -305,10 +402,10 @@ export default function Register() {
                     />
                   </div>
                 </div>
-              </div>
-              {/* <div className="column is-one-quarter">
+              </div> */}
+              <div className="column is-one-quarter">
                 <label className="label">State</label>
-                <div class="field has-addons">
+                <div className="field has-addons">
                   <div className="control is-expanded">
                     <div className="select is-fullwidth">
                       <select name="state" required onChange={handleChange}>
@@ -370,10 +467,13 @@ export default function Register() {
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
                       </select>
+                      {errors.state && (
+                        <p className="help is-danger">{errors.state}</p>
+                      )}
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
               <div className="column is-one-quarter">
                 <div className="field">
                   <label className="label">Zip</label>
@@ -381,10 +481,15 @@ export default function Register() {
                     <input
                       className="input"
                       type="text"
+                      //pattern="[0-9]{5}"
                       value={values.zipCode}
                       onChange={handleChange}
+                      title="Please enter your 5 digit zipcode"
                       name="zipCode"
                     />
+                    {errors.zipCode && (
+                      <p className="help is-danger">{errors.zipCode}</p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -444,6 +549,7 @@ export default function Register() {
           </DialogActions>
         </Dialog>
       </div>
+      <ToastContainer />
     </div>
   );
 }
