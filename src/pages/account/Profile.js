@@ -3,10 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenSquare } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faLockOpen } from "@fortawesome/free-solid-svg-icons";
-
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -14,7 +12,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function Profile(props) {
@@ -22,8 +19,6 @@ export default function Profile(props) {
 
   const [values, setValues] = useState({
     email: "",
-    // password: "",
-    // verifyPassword: "",
     firstName: "",
     lastName: "",
     mobileNumber: "",
@@ -34,61 +29,29 @@ export default function Profile(props) {
     zipCode: "",
   });
   const [open, setOpen] = useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
   const userData = {};
   const [errors, setErrors] = useState({});
   const [originalValues, setOriginalValues] = useState({ ...values });
-
   const [disabled, setDisabled] = useState(true);
 
-  // useEffect(async () => {
-  //    userData = await fetch("http://localhost:8080/register");
-  //   setValues(data);
-  // });
-
-  //   function findByUserName() {
-  //     axios.get("http://localhost:8080/profile/" + userData.username).then((res) => {
-  //       // const userData =jwt_decode(token);
-  //       //console.log(userData);
-  //       console.log(res.data)
-  // //const userInfo = res.data
-  // //console.log(userInfo)
-  //       // setValues({
-  //       //   email: userData.email,
-  //       //   // pwd: userData.pwd,
-  //       //   // verifyPwd: userData.verifyPwd,
-  //       //   firstName: userData.firstName,
-  //       //   lastName: userData.lastName,
-  //       //   mobileNumber: userData.mobileNumber,
-  //       //   streetAddress: userData.streetAddress,
-  //       //   suite: userData.suite,
-  //       //   city: userData.city,
-  //       //   state: userData.state,
-  //       //   zipCode: userData.zipCode,
-  //       // });
-  //     });
-  //   }
-  function validateEmail(email) {
-    
+ 
+  function validateEmail(email) { 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   function validateMobileNumber(mobileNumber) {
-    
     const mobileNumberRegex = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gm;
     return mobileNumberRegex.test(mobileNumber);
   };
 
   function validateZipCode(zipCode) {
-    
     const zipCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
     return zipCodeRegex.test(zipCode);
   };
@@ -98,21 +61,18 @@ export default function Profile(props) {
     if (validateForm(true)) {
       handleClickOpen();
     }
-    
   };
+
   const handleConfirmUpdate = async (event) => {
     event.preventDefault();
-    //need an endpoint for updated submitted user data
     const token = localStorage.getItem("token");
     const userData = jwtDecode(token);
     const username = userData.username;
-    
     try {
       const response = await axios.put(
         `http://localhost:8080/profile/edit/${username}`,
         values
       );
-
       if (response.status === 200 || response.status === 201) {
         setDisabled(true);
         handleClose();
@@ -128,7 +88,6 @@ export default function Profile(props) {
 
   const handleChange = (e) => {
     var value = e.target.value === "" ? null : e.target.value;
-
     setValues({
       ...values,
       [e.target.name]: value,
@@ -147,21 +106,15 @@ export default function Profile(props) {
       setDisabled(true);
     }
   };
-
-  function cancelEdit() {
-    setDisabled(true);
-    setValues({
-      email: userData.email,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      mobileNumber: userData.mobileNumber,
-      streetAddress: userData.streetAddress,
-      suite: userData.suite,
-      city: userData.city,
-      state: userData.state,
-      zipCode: userData.zipCode,
-    });
-  };
+  // function cancelEdit() {
+  //  setValues({ ...originalValues });
+  //   setDisabled(true);
+  //   setErrors({});
+  //   console.log("These are the Original values")
+  //   console.log({...originalValues})
+  //   console.log("These are the values")
+  //   console.log({...values})
+  // };
   function validateForm() {
     const {
       email,
@@ -173,90 +126,36 @@ export default function Profile(props) {
       state,
       zipCode,
     } = values;
-
-    // if (
-    //   !email ||
-    //   !firstName ||
-    //   !lastName ||
-    //   !mobileNumber ||
-    //   !streetAddress ||
-    //   !city ||
-    //   !state ||
-    //   !zipCode
-    // ) 
     let newErrors ={};
     if (!email || !validateEmail(email)) {
       newErrors.email = "Please enter a valid email address.";
     }
-  
     if (!firstName || firstName.length < 2 || firstName.length > 50) {
       newErrors.firstName = "First name must be between 2 and 50 characters.";
     }
-  
     if (!lastName || lastName.length < 2 || lastName.length > 50) {
       newErrors.lastName = "Last name must be between 2 and 50 characters.";
     }
-  
     if (!mobileNumber || !validateMobileNumber(mobileNumber)) {
       newErrors.mobileNumber = "Please enter a valid 10 digit mobile number.";
     }
-  
     if (!streetAddress) {
       newErrors.streetAddress = "Please enter the street address.";
     }
-  
     if (!city) {
       newErrors.city = "Please enter the city.";
     }
-  
     if (!state) {
       newErrors.state = "Please enter the state.";
     }
-  
     if (!zipCode || !validateZipCode(zipCode)) {
       newErrors.zipCode = "Please enter a valid 5 digit ZIP code.";
     }
-  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
    // Form is valid if there are no errors
   }
-    // {
-    //   toast.error("Please fill in all fields.");
-    //   return false;
-    // }
 
-    
-    // if (!validateEmail(email)) {
-    //   toast.error("Please enter a valid email address.");
-    //   return false;
-    // }
-    // if (firstName.length < 2 || firstName.length > 50) {
-    //   toast.error("First name must be between 2 and 50 characters.");
-    //   return false;
-    // }
-    // if (lastName.length < 2 || lastName.length > 50) {
-    //   toast.error("Last name must be between 2 and 50 characters.");
-    //   return false;
-    // }
-    // if (city.length > 60) {
-    //   toast.error("City must be less than 60 characters.");
-    //   return false;
-    // }
-    // if (streetAddress.length > 200) {
-    //   toast.error("Street Address must be less than 200 characters.");
-    //   return false;
-    // }
-    // if (!validateMobileNumber(mobileNumber)) {
-    //   toast.error("Please enter a valid 10 digit mobile number.");
-    //   return false;
-    // }
-    // if (!validateZipCode(zipCode)) {
-    //   toast.error("Please enter a valid 5 digit ZIP code.");
-    //   return false;
-    // }
-    // return true;
-  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -265,11 +164,22 @@ export default function Profile(props) {
     } else {
       const userData = jwtDecode(token);
       const username = userData.username;
-      
+
       axios.get(`http://localhost:8080/profile/${username}`).then((res) => {
         const userInfo = res.data;
         console.log(userInfo);
         setValues({
+          email: userInfo.email,
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          mobileNumber: userInfo.mobileNumber,
+          streetAddress: userInfo.streetAddress,
+          suite: userInfo.suite,
+          city: userInfo.city,
+          state: userInfo.state,
+          zipCode: userInfo.zipCode,
+        });
+        setOriginalValues({
           email: userInfo.email,
           firstName: userInfo.firstName,
           lastName: userInfo.lastName,
@@ -374,41 +284,7 @@ export default function Profile(props) {
                           {errors.email && <p className="help is-danger">{errors.email}</p>}
                         </div>
                       </div>
-                      {/* <div className="column is-half"></div>
-                      <div className="columns">
-                        <div className="column is-half">
-                          <div className="field">
-                            <label className="label">New Password</label>
-                            <div className="control">
-                              <input
-                                name="pwd"
-                                className="input"
-                                type="password"
-                                onChange={handleChange}
-                                // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-                                required
-                                placeholder="********"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="column is-half">
-                          <div className="field">
-                            <label className="label">Verify New Password</label>
-                            <div className="control">
-                              <input
-                                name="verifyPwd"
-                                className="input"
-                                type="password"
-                                onChange={handleChange}
-                                required
-                                placeholder="********"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
+                     
                       <div className="columns">
                         <div className="column is-half">
                           <div className="field">
@@ -427,7 +303,6 @@ export default function Profile(props) {
                             </div>
                           </div>
                         </div>
-
                         <div className="column is-half">
                           <div className="field">
                             <label className="label">Last Name</label>
@@ -584,7 +459,6 @@ export default function Profile(props) {
                         <option value="WV">West Virginia</option>
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
-                        
                       </select>
                     </div>
                   </div>
@@ -623,13 +497,6 @@ export default function Profile(props) {
                       </button>
                     </div>
                     <div className="control">
-                      <button
-                        type="button"
-                        className="button is-secondary is-light"
-                        onClick={cancelEdit}
-                      >
-                        Cancel Changes
-                      </button>
                     </div>
                   </div>
                 </div>
