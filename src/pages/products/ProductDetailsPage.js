@@ -1,11 +1,17 @@
 import { useLoaderData, useParams } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Products.css";
 import { Fade } from "@mui/material";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faSubtract, faX, faHome, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAdd,
+  faSubtract,
+  faX,
+  faHome,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -21,8 +27,9 @@ import { useCartStore } from "../../store/cartStore";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
-export default function ProductsDetails() {
+export default function ProductDetailsPage() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -97,7 +104,7 @@ export default function ProductsDetails() {
       >
         <ul>
           <li>
-            <a href="/">Home</a>
+            <a onClick={() => navigate(-1)}>Home</a>
           </li>
           <li className="is-active">
             <a href="#" aria-current="page">
@@ -134,7 +141,11 @@ export default function ProductsDetails() {
                   </p>
                   <p>
                     <span className="has-text-weight-semibold">Genres: </span>
-                    {product.genres.map((genre) => genre.name).join(", ")}
+                    {product.genres
+                      .slice()
+                      .sort((a, b) => a.name.localeCompare(b.name))
+                      .map((genre) => genre.name)
+                      .join(", ")}
                   </p>
                   <p>
                     <span className="has-text-weight-semibold">Runtime: </span>
@@ -270,7 +281,7 @@ export default function ProductsDetails() {
 }
 
 // data loader
-export const productsDetailsLoader = async ({ params }) => {
+export const productDetailsLoader = async ({ params }) => {
   const { id } = params;
 
   const res = await fetch("http://localhost:8080/movies/" + id);

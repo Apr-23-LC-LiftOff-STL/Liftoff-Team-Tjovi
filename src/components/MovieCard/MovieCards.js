@@ -78,13 +78,14 @@ function MovieCards() {
         <div className="movie-grid">
           {movies.map((movie) => (
             <div key={movie.id}>
-              <a href={`${baseProductUrl}${movie.id}`}>
+              <div href={`${baseProductUrl}${movie.id}`}>
                 <MovieCard
+                  id={movie.id}
                   title={movie.title}
                   posterPath={movie.posterPath}
                   price={movie.price}
                 />
-              </a>
+              </div>
             </div>
           ))}
         </div>
@@ -106,3 +107,4 @@ function MovieCards() {
 }
 
 export default MovieCards;
+

@@ -13,18 +13,18 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Faq from "./pages/help/Faq";
 import Contact, { contactAction } from "./pages/help/Contact";
+import ChatBot, { chatAction } from "./components/Chat/ChatBot"
 import Login from "./pages/account/Login";
 import Register from "./pages/account/Register";
-
 import NotFound from "./pages/NotFound";
 import Products, { productsLoader } from "./pages/products/Products";
-import ProductsDetails, {
-  productsDetailsLoader,
-} from "./pages/products/ProductsDetails";
+import ProductDetailsPage, {
+  productDetailsLoader,
+} from "./pages/products/ProductDetailsPage";
 import ProductsError from "./pages/products/ProductsError";
 import OrderHistory from "./pages/account/OrderHistory.js";
 import Profile from "./pages/account/Profile.js";
-import Cart, { cartProductsDetailsLoader } from "./pages/cart/Cart.js";
+import Cart from "./pages/cart/Cart.js";
 
 // layouts
 import RootLayout from "./layouts/RootLayout";
@@ -55,8 +55,8 @@ const router = createBrowserRouter(
         />
         <Route
           path=":id"
-          element={<ProductsDetails />}
-          loader={productsDetailsLoader}
+          element={<ProductDetailsPage />}
+          loader={productDetailsLoader}
           errorElement={<ProductsError />}
         />
       </Route>
@@ -85,7 +85,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+
+  return (
+   
+      <RouterProvider router={router} />
+  );
 }
 
 export default App;
