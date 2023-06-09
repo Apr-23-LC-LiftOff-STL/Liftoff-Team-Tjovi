@@ -1,5 +1,6 @@
 package com.liftoff.ecommerce.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -28,6 +29,7 @@ public class Movie {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     @JsonManagedReference
+    @JsonIgnore
     private Set<Genre> genres = new HashSet<>();
 
     private String releaseDate;
@@ -103,5 +105,9 @@ public class Movie {
         Double truePrice = new Random().nextDouble(9, 20);
 
         this.price = Double.parseDouble(decimalFormat.format(truePrice));
+    }
+
+    public void setPrice(Double price){
+        this.price = price;
     }
 }
