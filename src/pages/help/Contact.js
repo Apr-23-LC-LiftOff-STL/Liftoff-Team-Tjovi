@@ -1,214 +1,220 @@
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { useState } from 'react';
-import { Form, redirect, useActionData, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import emailjs from 'emailjs-com';
 
-
-export default function Contact(){
+export default function Contact() {
   const [values, setValues] = useState({
-    email: "",
-  name:"",
-  // errors:{}
-})
-const navigate = useNavigate();
-const handleResetFields = (e) => {
-  e.preventDefault();
-  e.target.closest("form").reset();
-  navigate("/help/contact");
-};
-const handleChange = (e) => {
-  var value = e.target.value === "" ? null : e.target.value;
-  setValues({
-    ...values,
-    [e.target.name]: value,
+    email: '',
+    name: '',
+    message: '',
   });
-};
+
+  const [errors, setErrors] = useState({});
+
   const form = useRef();
 
-  const sendEmail = (e) => {
-       e.preventDefault(); 
-      //  let errors = {};
-      
-  // if (values.name.trim() === "") {
-  //   errors.name = "Name is required";
-   
-  // }
-  // if (!/\S+@\S+\.\S+/.test(values.email)) {
-  //   errors.email = "Invalid email address";
-   
-  // }
-
-  // if (Object.keys(errors).length > 0) {
-    
-  //   setValues((prevValues) => ({
-  //     ...prevValues,
-  //     errors: errors,
-  //   }));
-  //   return;
-  // }
-       const templateParams ={
-from_email: values.email,
-from_name: values.name
-};
-
-
-    emailjs.sendForm('service_i7rn969', 'template_ko2ve92', form.current, 'Cy7tiuWbCkBC_n4MB')
-      .then((result) => {
-          console.log(result.text);
-          alert("Your email was successfully sent")
-      }, (error) => {
-          console.log(error.text);
-      });
-      // console.log(values)
-      // console.log(values.email)
-      // console.log(values.name)
+  const handleResetFields = (e) => {
+    e.preventDefault();
+    setValues({
+      email: '',
+    name: '',
+    message: '',
+    })
   };
 
-  // <form ref={form} onSubmit={sendEmail}>
-  //     <label>Name</label>
-    
-  //     <label>Email</label>
-  //     <input type="email" name="email" value={values.email} onChange={handleChange} required />
-  //     <label>Message</label>
-  //     <textarea name="message" required/>
-  //     <input type="submit" value="Send" />
-  //   </form>
-  return ( 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value === '' ? null : e.target.value;
+    setValues({
+      ...values,
+      [e.target.name]: value,
+    });
+  };
+
+  const validateForm = () => {
+    const { email, name, message } = values;
+    const newErrors = {};
+
+    if (!email || !validateEmail(email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+
+    if (name.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters long.';
+    }
+
+    if (name.length > 40) {
+      newErrors.name = 'Name must be less than 40 characters long.';
+    }
+    if (!message) {
+      newErrors.message =
+        'Message is required';
+    }
+    if (message.length < 10 || message.length > 3000) {
+      newErrors.message =
+        'Message must be between 10 and 3000 characters long.';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    const isValid = validateForm();
+
+    try {
+      if (isValid) {
+        const {email, name, message} = values;
+        // if(!message){
+        //   toast.error("Please enter a message");
+        //   return
+        // }
+        const templateParams = {
+          from_email: email,
+          from_name: name,
+          message: message,
+        };
+
+        emailjs
+          .send(
+            'service_i7rn969',
+            'template_ko2ve92',
+            templateParams,
+            'Cy7tiuWbCkBC_n4MB'
+          )
+          .then(
+            (result) => {
+              console.log(result.text);
+              toast.success('Your email was successfully sent.');
+            },
+            (error) => {
+              console.log(error.text);
+              toast.error('Failed to send your email.');
+            }
+          );
+          setValues({
+            email: '',
+          name: '',
+          message: '',
+          })
+      }
+    } catch (e) {
+      toast.error(`Failed to send your email. ${e.message}`);
+    }
+  };
+
+  return (
     <div>
-    <p className="mx-6 pb-2">
-      If you have a question not addressed in the FAQ, please send us a
-      message here.
-    </p>
-    <div
-      className="mx-6 px-5 py-5 box"
-      style={{
-        borderStyle: "solid",
-        borderColor: "lightgray",
-        borderWidth: "1px",
-      }}
-    >
-      <form ref={form} onSubmit={sendEmail}>
-        <div className="columns">
-          <div className="column is-2">
-            <div className="field">
-              <label className="label">
-                <span>Your Name</span>{" "}
-                {/* {values.errors.name && (
-        <span className="error-message">{values.errors.name}</span>
-      )} */}
-              </label>
-              <div className="control">
-                 <input className='input is normal' type="text" name="name" value={values.name} onChange={handleChange} 
-                 required/>
+      <p className="mx-6 pb-2">
+        If you have a question not addressed in the FAQ, please send us a
+        message here.
+      </p>
+      <div
+        className="mx-6 px-5 py-5 box"
+        style={{
+          borderStyle: 'solid',
+          borderColor: 'lightgray',
+          borderWidth: '1px',
+        }}
+      >
+        <form ref={form} onSubmit={sendEmail}>
+          <div className="columns">
+            <div className="column is-2">
+              <div className="field">
+                <label className="label">
+                  <span>Your Name</span>
+                </label>
+                <div className="control">
+                  <input
+                    className={`input ${errors.name ? 'is-danger' : ''}`}
+                    type="text"
+                    name="name"
+                    value={values.name}
+                    onChange={handleChange}
+                  />
+                </div>
+                {errors.name && (
+                  <p className="help is-danger">{errors.name}</p>
+                )}
+              </div>
+            </div>
+            <div className="column is-2">
+              <div className="field">
+                <label className="label">
+                  <span>Your E-mail</span>
+                </label>
+                <div className="control">
+                  <input
+                    className={`input ${errors.email ? 'is-danger' : ''}`}
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                {errors.email && (
+                  <p className="help is-danger">{errors.email}</p>
+                )}
               </div>
             </div>
           </div>
-          <div className="column is-2">
+          <label>
             <div className="field">
               <label className="label">
-                <span>Your E-mail</span>{" "}
-                {/* {values.errors.email && (
-        <span className="error-message">{values.errors.email}</span>
-      )} */}
+                <span>Your Message</span>
               </label>
               <div className="control">
-              <input className='input is normal' type="email" name="email" value={values.email} onChange={handleChange} required minLength={50} maxLength={2000}/>
+                <textarea
+                  className={`textarea ${
+                    errors.message ? 'is-danger' : ''
+                  }`}
+                  name="message"
+                  value={values.message}
+                  onChange={handleChange}
+                  minLength={10}
+                  maxLength={3000}
+                  title="Your message must be 10-3000 characters long."
+                />
               </div>
+              {errors.message && (
+                <p className="help is-danger">{errors.message}</p>
+              )}
             </div>
-          </div>
-        </div>
-        <label>
+          </label>
           <div className="field">
-            <label className="label">
-              <span>Your Message</span>{" "}
-            </label>
-            
             <div className="control">
-              <textarea className="textarea is small" name="message"  
-              minLength={10}
-              maxLength={3000}
-              title='Your message must be 10-3000 characters long'
-              required></textarea>
+              <label className="checkbox pt-2">
+                <input type="checkbox" name="tac" />
+                &nbsp;I agree to the{' '}
+                <a href="#">terms and conditions&nbsp;</a>
+              </label>
             </div>
           </div>
-        </label>
-        <div className="field">
-          <div className="control">
-            <label className="checkbox pt-2">
-              <input type="checkbox" name="tac" />
-              &nbsp;I agree to the <a href="#">terms and conditions &nbsp;</a>
-              
-            </label>
+          <div className="field is-grouped">
+            <div className="control">
+              <button className="button is-primary" type="submit">
+                Submit
+              </button>
+            </div>
+            <div className="control">
+              <button
+                className="button is-warning"
+                type="button"
+                onClick={handleResetFields}
+              >
+                Reset Fields
+              </button>
+            </div>
           </div>
-        </div>
-        
-        <div className="field is-grouped">
-          <div className="control">
-            <button className="button is-primary"  input type="submit" value="Send" >Submit</button>
-          </div>
-          <div className="control">
-            <button className="button is-warning" onClick={handleResetFields}>
-              Reset Fields
-            </button>
-          </div>
-        </div>
         </form>
+      </div>
+      <ToastContainer />
     </div>
-  </div>
-    
   );
-};
-{/* //   const data = useActionData() 
-
-//   return (
-//     <div className="contact">
-//                  <nav */}
-{/* //         className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
-//         aria-label="breadcrumbs"
-//       >
-//         <ul>
-//           <li>
-//             <a href="/">Home</a>
-//           </li>
-//           <li className="is-active">
-//             <a href="#" aria-current="page">
-//               Contact Us
-//             </a>
-//           </li>
-//         </ul>
-//       </nav>
-//       <Form method="post" action="/help/contact">
-//         <label>
-//           <span>Your email:</span>
-//           <input type="email" name="email" required />
-//         </label>
-//         <label>
-//           <span>Your message:</span>
-//           <textarea name="message" required></textarea>
-//         </label>
-//         <button className="button is-primary">Submit</button>
-
-//         {data && data.error && <p>{data.error}</p>}
-//       </Form>
-//     </div>
-//   )
-// }
-
-// export const contactAction = async ({ request }) => { */}
-{/* //   const data = await request.formData()
-
-//   const submission = { */}
-{/* //     email: data.get('email'),
-//     message: data.get('message')
-//   }
-
-//   console.log(submission)
-
-//   // send your post request
-
-//   if (submission.message.length < 10) { */}
-{/* //     return {error: 'Message must be over 10 chars long.'}
-//   }
-
-//   // redirect the user
-//   return redirect('/') */}
+}
