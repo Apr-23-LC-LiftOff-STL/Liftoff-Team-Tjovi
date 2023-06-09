@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/cart")
@@ -21,11 +23,13 @@ public class ShoppingCartController {
     @Autowired
     private CustomerService customerService;
 
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    @GetMapping("/returnAllCarts")
+    public ResponseEntity<?> returnAllCarts(){
+        return shoppingCartService.returnAllCarts();
+    }
 
     @GetMapping("/returnAll/{email}")
-    public ResponseEntity<?> returnCart(@PathVariable String email){
+    public ResponseEntity<?> returnCartsByCustomer(@PathVariable String email){
         Customer customer = customerService.findCustomer(email);
         return shoppingCartService.returnCartsByCustomerId(customer.getId());
     }
@@ -44,20 +48,15 @@ public class ShoppingCartController {
     }
 
     @DeleteMapping("/delete/{email}")
-    public ResponseEntity<?> removeItemFromCart(@PathVariable String email, @RequestBody ShoppingCart shoppingCart){
+    public ResponseEntity<?> removeItemFromCustomerCart(@PathVariable String email, @RequestBody ShoppingCart shoppingCart){
         Customer customer = customerService.findCustomer(email);
-        return shoppingCartService.removeItemFromCart(customer, shoppingCart);
+        return shoppingCartService.removeItemFromCustomerCart(customer, shoppingCart);
     }
 
     @DeleteMapping("/deleteAll/{email}")
-    public ResponseEntity<?> removeAllItemsFromCart(@PathVariable String email){
+    public ResponseEntity<?> removeAllItemsFromCartByCustomer(@PathVariable String email){
         Customer customer = customerService.findCustomer(email);
         return shoppingCartService.removeAllItemsFromCartByCustomer(customer);
-    }
-
-    @GetMapping("/returnAllCarts")
-    public ResponseEntity<?> returnAllCarts(){
-        return shoppingCartService.returnAllCarts();
     }
 }
 

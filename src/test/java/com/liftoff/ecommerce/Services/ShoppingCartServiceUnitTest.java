@@ -6,15 +6,14 @@ import com.liftoff.ecommerce.Models.ShoppingCart;
 import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import com.liftoff.ecommerce.Service.ShoppingCartService;
-
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -29,42 +28,35 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ShoppingCartServiceTests {
+
+@ExtendWith(MockitoExtension.class)
+public class ShoppingCartServiceUnitTest {
 
     @Mock
-    ShoppingCartRepository shoppingCartRepository;
+    private ShoppingCartRepository shoppingCartRepository;
 
     @Mock
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     @InjectMocks
-    ShoppingCartService shoppingCartService;
+    private ShoppingCartService shoppingCartService;
 
     Customer testCustomer1;
-    Customer testCustomer2;
     Movie testMovie1;
     Movie testMovie2;
     Movie testMovie3;
     ShoppingCart testCart1;
-    Long testCart1Id;
     ShoppingCart testCart2;
-    ShoppingCart testCart3;
-    ShoppingCart testCart4;
-    ShoppingCart testCartWithNewQuantity;
-    List<ShoppingCart> testShoppingCarts = new ArrayList<>();
-    List<ShoppingCart> allShoppingCarts = new ArrayList<>();
+    ShoppingCart requestedCart;
+    List<ShoppingCart> testCustomer1Carts = new ArrayList<>();
 
-    @Before
+    @BeforeEach
     public void createTestData() {
         MockitoAnnotations.openMocks(this);
 
         testCustomer1 = new Customer("John", "Doe", "john@example.com", "123-456-7890",
                 "123 Main St.", "1", "St. Louis", "MO", 12345L);
         testCustomer1.setId(100L);
-        testCustomer2 = new Customer("Jane", "Doe", "jane@example.com", "098-765-4321",
-                "999 Broad St.", "1B", "New York", "NY", 99949L);
-        testCustomer2.setId(101L);
 
         testMovie1 = new Movie("Test Movie 1", "Test Movie 1", "2021-06-05", "120", 9.99);
         testMovie1.setId(200L);
@@ -76,27 +68,14 @@ public class ShoppingCartServiceTests {
         testCart1 = new ShoppingCart(testMovie1.getId(), 1L);
         testCart1.setCustomer(testCustomer1);
         testCart1.setCartId(300L);
-        testShoppingCarts.add(testCart1);
-        testCart1Id = testCart1.getCartId();
+        testCustomer1Carts.add(testCart1);
 
         testCart2 = new ShoppingCart(testMovie2.getId(), 2L);
         testCart2.setCustomer(testCustomer1);
         testCart2.setCartId(301L);
-        testShoppingCarts.add(testCart2);
+        testCustomer1Carts.add(testCart2);
 
-        testCart3 = new ShoppingCart(testMovie3.getId(), 1L);
-        testCart3.setCustomer(testCustomer2);
-        testCart3.setCartId(302L);
-        allShoppingCarts.add(testCart3);
-
-        testCart4 = new ShoppingCart(testMovie1.getId(), 2L);
-        testCart4.setCustomer(testCustomer2);
-        testCart4.setCartId(303L);
-        allShoppingCarts.add(testCart4);
-
-        allShoppingCarts.addAll(testShoppingCarts);
-
-        testCartWithNewQuantity = new ShoppingCart(testMovie1.getId(), 10L);
+        requestedCart = new ShoppingCart(testMovie1.getId(), 10L);
     }
 
     @Test
@@ -114,14 +93,14 @@ public class ShoppingCartServiceTests {
 
     @Test
     public void testReturnAllCarts(){
-        when(shoppingCartRepository.findAll()).thenReturn(testShoppingCarts);
+        when(shoppingCartRepository.findAll()).thenReturn(testCustomer1Carts);
         ResponseEntity<?> response = shoppingCartService.returnAllCarts();
 
         String specStatus = "The status code should be HttpStatus.OK";
-        String specBody = "The returned response body shopping carts should match the expected list testShoppingCarts";
+        String specBody = "The returned response body shopping carts should match the expected list testCustomer1Carts";
 
         assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
-        assertEquals(specBody, testShoppingCarts, response.getBody());
+        assertEquals(specBody, testCustomer1Carts, response.getBody());
     }
 
     @Test
@@ -138,14 +117,14 @@ public class ShoppingCartServiceTests {
 
     @Test
     public void testReturnCartsByCustomerId(){
-        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
+        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testCustomer1Carts);
         ResponseEntity<?> response = shoppingCartService.returnCartsByCustomerId(testCustomer1.getId());
 
         String specStatus = "The status code should be HttpStatus.OK";
         String specBody = "The returned response body shopping carts should match the expected list testShoppingCarts";
 
         assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
-        assertEquals(specBody, testShoppingCarts, response.getBody());
+        assertEquals(specBody, testCustomer1Carts, response.getBody());
     }
 
     @Test
@@ -163,16 +142,16 @@ public class ShoppingCartServiceTests {
     @Test
     public void testCreateNewShoppingCart(){
         when(movieRepository.findById(testCart1.getMovieId())).thenReturn(Optional.of(testMovie1));
-        ResponseEntity<?> response = shoppingCartService.createNewShoppingCart(testCustomer1, testCart1);
+        ResponseEntity<?> response = shoppingCartService.createNewShoppingCart(testCustomer1, requestedCart);
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        Double expectedTotalPrice = Double.parseDouble(decimalFormat.format(testMovie1.getPrice() * testCart1.getQuantity()));
+        Double expectedTotalPrice = Double.parseDouble(decimalFormat.format(testMovie1.getPrice() * requestedCart.getQuantity()));
 
         String specTotalPrice = "When passed a shoppingCart object, the setTotalPrice method invoked in the " +
                 "createNewShoppingCart method should return an accurate price to two decimal places";
         String specStatus = "The status code should be HttpStatus.CREATED";
 
-        assertEquals(specTotalPrice, expectedTotalPrice, testCart1.getTotalPrice());
-        verify(shoppingCartRepository, times(1)).save(testCart1);
+        assertEquals(specTotalPrice, expectedTotalPrice, requestedCart.getTotalPrice());
+        verify(shoppingCartRepository, times(1)).save(requestedCart);
         assertEquals(specStatus, HttpStatus.CREATED, response.getStatusCode());
     }
 
@@ -180,11 +159,11 @@ public class ShoppingCartServiceTests {
     // and saving correctly the correct updated values.
     @Test
     public void testUpdateQuantityInCartUpdatesQuantityAndTotalPriceAndSaves(){
-        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
+        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testCustomer1Carts);
         when(movieRepository.findById(testCart1.getMovieId())).thenReturn(Optional.of(testMovie1));
-        ResponseEntity<?> response = shoppingCartService.updateQuantityInCart(testCustomer1, testCartWithNewQuantity);
-        Optional<ShoppingCart> cartAfterUpdate = testShoppingCarts.stream()
-                .filter(cart -> cart.getMovieId().equals(testCartWithNewQuantity.getMovieId()))
+        ResponseEntity<?> response = shoppingCartService.updateQuantityInCart(testCustomer1, requestedCart);
+        Optional<ShoppingCart> cartAfterUpdate = testCustomer1Carts.stream()
+                .filter(cart -> cart.getMovieId().equals(requestedCart.getMovieId()))
                 .findFirst();
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         Double expectedTotalPrice = Double.parseDouble(decimalFormat.format(testMovie1.getPrice() * testCart1.getQuantity()));
@@ -196,7 +175,7 @@ public class ShoppingCartServiceTests {
         String specStatus = "The status code should be HttpStatus.OK";
 
         assertTrue(specUpdatedCartIsPresent, cartAfterUpdate.isPresent());
-        assertEquals(specNewQuantity, testCartWithNewQuantity.getQuantity(), cartAfterUpdate.get().getQuantity());
+        assertEquals(specNewQuantity, requestedCart.getQuantity(), cartAfterUpdate.get().getQuantity());
         assertEquals(specTotalPrice, expectedTotalPrice, testCart1.getTotalPrice());
         verify(shoppingCartRepository, times(1)).save(testCart1);
         assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
@@ -218,7 +197,7 @@ public class ShoppingCartServiceTests {
 
     @Test
     public void testRemoveAllItemsFromCartByCustomerWhenCartsExist(){
-        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
+        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testCustomer1Carts);
         ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCartByCustomer(testCustomer1);
 
         ArgumentCaptor<List<ShoppingCart>> argumentCaptor = ArgumentCaptor.forClass(List.class);
@@ -248,9 +227,9 @@ public class ShoppingCartServiceTests {
     }
 
     @Test
-    public void testRemoveItemFromCartWhenCartExists() {
-        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testShoppingCarts);
-        ResponseEntity<?> response = shoppingCartService.removeItemFromCart(testCustomer1, testCart1);
+    public void testRemoveItemFromCustomerCartWhenCartExists() {
+        when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testCustomer1Carts);
+        ResponseEntity<?> response = shoppingCartService.removeItemFromCustomerCart(testCustomer1, testCart1);
 
         verify(shoppingCartRepository, times(1)).findByCustomerId(testCustomer1.getId());
         ArgumentCaptor<Long> argumentCaptor = ArgumentCaptor.forClass(Long.class);
@@ -264,22 +243,22 @@ public class ShoppingCartServiceTests {
 //  It does, however, provide an extra level of confidence in the test setup and help catch any inconsistencies between
 //  the test data and the actual behavior of the service method
         if (deletedCartId != null) {
-            testShoppingCarts.removeIf(cart -> cart.getCartId().equals(deletedCartId));
+            testCustomer1Carts.removeIf(cart -> cart.getCartId().equals(deletedCartId));
         }
 
-        assertThat(testShoppingCarts)
+        assertThat(testCustomer1Carts)
                 .hasSize(1)
                 .extracting(ShoppingCart::getCartId)
-                .doesNotContain(testCart1Id);
+                .doesNotContain(testCart1.getCartId());
 //
-        assertEquals(null, testCart1Id, deletedCartId);
+        assertEquals(null, testCart1.getCartId(), deletedCartId);
         assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    public void testRemoveItemFromCartWhenNoCartFound(){
+    public void testRemoveItemFromCustomerCartWhenNoCartFound(){
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(Collections.emptyList());
-        ResponseEntity<?> response = shoppingCartService.removeItemFromCart(testCustomer1, testCart1);
+        ResponseEntity<?> response = shoppingCartService.removeItemFromCustomerCart(testCustomer1, testCart1);
 
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
 

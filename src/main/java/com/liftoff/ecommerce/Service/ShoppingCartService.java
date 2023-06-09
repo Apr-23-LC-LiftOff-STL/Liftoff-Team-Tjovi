@@ -71,7 +71,7 @@ public class ShoppingCartService {
         }
     }
 
-    public ResponseEntity<?> removeItemFromCart(Customer customer, ShoppingCart shoppingCart) {
+    public ResponseEntity<?> removeItemFromCustomerCart(Customer customer, ShoppingCart shoppingCart) {
         Long customerId = customer.getId();
         Long movieIdToRemove = shoppingCart.getMovieId();
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customerId);
