@@ -85,6 +85,11 @@ public class InitializeProjectDBController {
             String overview = jsonObject.get("overview").getAsString();
             movie.setOverview(overview);
 
+            movie.setPopularity(jsonObject.get("popularity").getAsString());
+
+            movie.setTagline(jsonObject.get("tagline").getAsString());
+            movie.setVote_average(jsonObject.get("vote_average").getAsString());
+            movie.setImdbId(jsonObject.get("imdb_id").getAsString());
 
             // Check for presence of poster_path in API call, extract and set if not NULL
             if (jsonObject.get("poster_path") != null && !jsonObject.get("poster_path").isJsonNull()){
