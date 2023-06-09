@@ -2,12 +2,13 @@ import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { useState } from 'react';
 import { Form, redirect, useActionData, useNavigate } from "react-router-dom";
-import { Navigate } from 'react-router-dom';
+
 
 export default function Contact(){
   const [values, setValues] = useState({
     email: "",
   name:"",
+  // errors:{}
 })
 const navigate = useNavigate();
 const handleResetFields = (e) => {
@@ -25,11 +26,31 @@ const handleChange = (e) => {
   const form = useRef();
 
   const sendEmail = (e) => {
-    const templateParams ={
+       e.preventDefault(); 
+      //  let errors = {};
+      
+  // if (values.name.trim() === "") {
+  //   errors.name = "Name is required";
+   
+  // }
+  // if (!/\S+@\S+\.\S+/.test(values.email)) {
+  //   errors.email = "Invalid email address";
+   
+  // }
+
+  // if (Object.keys(errors).length > 0) {
+    
+  //   setValues((prevValues) => ({
+  //     ...prevValues,
+  //     errors: errors,
+  //   }));
+  //   return;
+  // }
+       const templateParams ={
 from_email: values.email,
 from_name: values.name
 };
-    e.preventDefault();
+
 
     emailjs.sendForm('service_i7rn969', 'template_ko2ve92', form.current, 'Cy7tiuWbCkBC_n4MB')
       .then((result) => {
@@ -72,10 +93,13 @@ from_name: values.name
             <div className="field">
               <label className="label">
                 <span>Your Name</span>{" "}
-               
+                {/* {values.errors.name && (
+        <span className="error-message">{values.errors.name}</span>
+      )} */}
               </label>
               <div className="control">
-                 <input className='input is normal' type="text" name="name" value={values.name} onChange={handleChange} required/>
+                 <input className='input is normal' type="text" name="name" value={values.name} onChange={handleChange} 
+                 required/>
               </div>
             </div>
           </div>
@@ -83,26 +107,15 @@ from_name: values.name
             <div className="field">
               <label className="label">
                 <span>Your E-mail</span>{" "}
-               
+                {/* {values.errors.email && (
+        <span className="error-message">{values.errors.email}</span>
+      )} */}
               </label>
               <div className="control">
               <input className='input is normal' type="email" name="email" value={values.email} onChange={handleChange} required minLength={50} maxLength={2000}/>
               </div>
             </div>
           </div>
-          {/* <div className="column is-3">
-            <div class="field">
-              <label class="label">Order No.</label>
-              <div class="control">
-                <input
-                  class="input"
-                  type="text"
-                  name="orderNo"
-                  placeholder="(optional)"
-                />
-              </div>
-            </div>
-          </div> */}
         </div>
         <label>
           <div className="field">
@@ -111,7 +124,11 @@ from_name: values.name
             </label>
             
             <div className="control">
-              <textarea className="textarea" name="message" required></textarea>
+              <textarea className="textarea is small" name="message"  
+              minLength={10}
+              maxLength={3000}
+              title='Your message must be 10-3000 characters long'
+              required></textarea>
             </div>
           </div>
         </label>
