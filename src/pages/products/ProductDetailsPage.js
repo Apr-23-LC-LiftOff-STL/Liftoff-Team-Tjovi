@@ -139,14 +139,14 @@ export default function ProductDetailsPage() {
                   <p className="is-size-6 has-text-weight-normal is-italic">
                     {product.overview}
                   </p>
-                  <p>
+{/*                   <p>
                     <span className="has-text-weight-semibold">Genres: </span>
                     {product.genres
                       .slice()
                       .sort((a, b) => a.name.localeCompare(b.name))
                       .map((genre) => genre.name)
                       .join(", ")}
-                  </p>
+                  </p> */}
                   <p>
                     <span className="has-text-weight-semibold">Runtime: </span>
                     {product?.runtime} minutes

@@ -31,8 +31,8 @@ const Footer = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink className="card-footer-item" to="help/faq">
-                Customer Service
+              <NavLink className="card-footer-item" to="admin">
+                Admin
               </NavLink>
             </li>
           </ul>

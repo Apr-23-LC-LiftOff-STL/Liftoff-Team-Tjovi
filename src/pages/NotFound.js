@@ -23,9 +23,9 @@ export default function NotFound() {
         Redirecting to home page in 10 seconds.
         </div>
         <br />
-          <div className="button is-small is-link is-outlined ml-6" to="/">
+          <NavLink className="button is-small is-link is-outlined ml-6" to="/">
             <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Browse Movies
-          </div>
+          </NavLink>
 </div>
   );
 }
