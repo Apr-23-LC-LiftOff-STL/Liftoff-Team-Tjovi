@@ -520,24 +520,7 @@ export default function Profile(props) {
                             </div>
                           </div>
                         </div>
-{/* 
-                        <div className="column is-one-quarter">
-                          <div className="field">
-                            <label className="label">State:</label>
-                            <div className="control">
-                              <input
-                                className="input"
-                                type="text"
-                                value={values.state}
-                                onChange={handleChange}
-                                required
-                                placeholder={userData.state}
-                                name="state"
-                              />
-                               {errors.state && <p className="help is-danger">{errors.state}</p>}
-                            </div>
-                          </div>
-                        </div> */}
+
                         <div className="column is-one-quarter">
                 <label className="label">State</label>
                 <div class="field has-addons">
