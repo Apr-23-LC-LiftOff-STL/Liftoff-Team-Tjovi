@@ -15,6 +15,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useCartStore } from "../../store/cartStore";
 import { useLoginStore } from "../../store/loginStore";
 
@@ -70,7 +73,7 @@ const Login = () => {
         throw new Error("Login failed");
       }
     } catch (error) {
-      alert(`Login failed: ${error.message}`);
+      toast.failure(`Login failed: ${error.message}`);
     }
   };
 
@@ -227,6 +230,7 @@ const Login = () => {
           </button>
         </DialogActions>
       </Dialog>
+      <ToastContainer/>
     </div>
   );
 };
