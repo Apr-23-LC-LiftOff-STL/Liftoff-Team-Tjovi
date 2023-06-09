@@ -230,7 +230,7 @@ const Login = () => {
           </button>
         </DialogActions>
       </Dialog>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
