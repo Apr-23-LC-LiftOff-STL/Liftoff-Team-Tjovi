@@ -1,4 +1,4 @@
-package com.liftoff.ecommerce;
+package com.liftoff.ecommerce.Services;
 
 import com.liftoff.ecommerce.Models.Customer;
 import com.liftoff.ecommerce.Models.Movie;
@@ -6,14 +6,15 @@ import com.liftoff.ecommerce.Models.ShoppingCart;
 import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import com.liftoff.ecommerce.Service.ShoppingCartService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -28,17 +29,17 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
-@SpringBootTest(classes={ShoppingCartServiceTests.class})
+@RunWith(MockitoJUnitRunner.class)
 public class ShoppingCartServiceTests {
 
     @Mock
-    private ShoppingCartRepository shoppingCartRepository;
+    ShoppingCartRepository shoppingCartRepository;
 
     @Mock
-    private MovieRepository movieRepository;
+    MovieRepository movieRepository;
 
     @InjectMocks
-    private ShoppingCartService shoppingCartService;
+    ShoppingCartService shoppingCartService;
 
     Customer testCustomer1;
     Customer testCustomer2;
@@ -54,7 +55,7 @@ public class ShoppingCartServiceTests {
     List<ShoppingCart> testShoppingCarts = new ArrayList<>();
     List<ShoppingCart> allShoppingCarts = new ArrayList<>();
 
-    @BeforeEach
+    @Before
     public void createTestData() {
         MockitoAnnotations.openMocks(this);
 

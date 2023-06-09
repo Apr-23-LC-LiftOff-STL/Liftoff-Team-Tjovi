@@ -5,8 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8308baad-0745-4f8e-b4a6-caeb82cb4e2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/ShoppingCartServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/ShoppingCartServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/ShoppingCartServiceTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CustomerService.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ProfileController.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ShoppingCartController.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ShoppingCartService.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/ShoppingCartServiceTests.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/ShoppingCartServiceTests.class.uniqueId0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/ShoppingCartServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/ShoppingCartServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +76,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -85,30 +104,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/joshjennemann/Desktop/launchcode/Unit-3/Liftoff-Team-Tjovi&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;3a6c104ef32302e5b80977671abbb914&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers": "true",
+    "last_opened_file_path": "/Users/joshjennemann/Desktop/launchcode/Unit-3/Liftoff-Team-Tjovi",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gant",
+    "spring.configuration.checksum": "3a6c104ef32302e5b80977671abbb914",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce" />
@@ -122,84 +142,98 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.liftoff.ecommerce.Service" />
+      <recent name="com.liftoff.ecommerce.Controllers" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.ShoppingCartServiceTests">
-    <configuration name="ShoppingCartServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShoppingCartServiceTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Service" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Service.ShoppingCartServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartServiceTests.testRemoveAllItemsByCustomerFromCartWhenNoCartsFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShoppingCartServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
-      <option name="METHOD_NAME" value="testRemoveAllItemsByCustomerFromCartWhenNoCartsFound" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.ShoppingCartServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartServiceTests.testRemoveAllItemsFromCartByCustomerWhenCartsExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShoppingCartServiceTestTESTTEST" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Service" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Service.ShoppingCartServiceTestTESTTEST" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoppingCartServiceTest.testRemoveAllItemsFromCartByCustomerWhenCartsExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.ShoppingCartServiceTest" />
       <option name="METHOD_NAME" value="testRemoveAllItemsFromCartByCustomerWhenCartsExist" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartServiceTests.testRemoveItemFromCartWhenCartExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShoppingCartServiceTest.testSetTotalPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
-      <option name="METHOD_NAME" value="testRemoveItemFromCartWhenCartExists" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.ShoppingCartServiceTest" />
+      <option name="METHOD_NAME" value="testSetTotalPrice" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartServiceTests.testRemoveItemFromCartWhenNoCartFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShoppingCartServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ShoppingCartServiceTests" />
-      <option name="METHOD_NAME" value="testRemoveItemFromCartWhenNoCartFound" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.ShoppingCartServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -238,13 +272,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.ShoppingCartServiceTest (1)" />
+      <item itemvalue="JUnit.ShoppingCartServiceTest.testRemoveAllItemsFromCartByCustomerWhenCartsExist" />
+      <item itemvalue="JUnit.ShoppingCartServiceTest.testSetTotalPrice" />
+      <item itemvalue="JUnit.ShoppingCartServiceTestTESTTEST" />
+      <item itemvalue="JUnit.ShoppingCartServiceTests" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ShoppingCartServiceTests" />
-        <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveItemFromCartWhenNoCartFound" />
-        <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveItemFromCartWhenCartExists" />
-        <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveAllItemsFromCartByCustomerWhenCartsExist" />
-        <item itemvalue="JUnit.ShoppingCartServiceTests.testRemoveAllItemsByCustomerFromCartWhenNoCartsFound" />
+        <item itemvalue="JUnit.ShoppingCartServiceTestTESTTEST" />
+        <item itemvalue="JUnit.ShoppingCartServiceTest (1)" />
+        <item itemvalue="JUnit.ShoppingCartServiceTests" />
+        <item itemvalue="JUnit.ShoppingCartServiceTest.testRemoveAllItemsFromCartByCustomerWhenCartsExist" />
       </list>
     </recent_temporary>
   </component>
