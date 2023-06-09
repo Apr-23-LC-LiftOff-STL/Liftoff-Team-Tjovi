@@ -1,23 +1,112 @@
-import { useState } from "react";
-import { Form, redirect, useActionData, useNavigate } from "react-router-dom";
-
-import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
+import React, { useRef, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import emailjs from 'emailjs-com';
 
 export default function Contact() {
-  const [open, setOpen] = useState(false);
+  const [values, setValues] = useState({
+    email: '',
+    name: '',
+    message: '',
+  });
 
-  const data = useActionData();
+  const [errors, setErrors] = useState({});
 
-  const navigate = useNavigate();
+  const form = useRef();
 
   const handleResetFields = (e) => {
     e.preventDefault();
-    e.target.closest("form").reset();
-    navigate("/help/contact");
+    setValues({
+      email: '',
+    name: '',
+    message: '',
+    })
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value === '' ? null : e.target.value;
+    setValues({
+      ...values,
+      [e.target.name]: value,
+    });
+  };
+
+  const validateForm = () => {
+    const { email, name, message } = values;
+    const newErrors = {};
+
+    if (!email || !validateEmail(email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+
+    if (name.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters long.';
+    }
+
+    if (name.length > 40) {
+      newErrors.name = 'Name must be less than 40 characters long.';
+    }
+    if (!message) {
+      newErrors.message =
+        'Message is required';
+    }
+    if (message.length < 10 || message.length > 3000) {
+      newErrors.message =
+        'Message must be between 10 and 3000 characters long.';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    const isValid = validateForm();
+
+    try {
+      if (isValid) {
+        const {email, name, message} = values;
+        // if(!message){
+        //   toast.error("Please enter a message");
+        //   return
+        // }
+        const templateParams = {
+          from_email: email,
+          from_name: name,
+          message: message,
+        };
+
+        emailjs
+          .send(
+            'service_i7rn969',
+            'template_ko2ve92',
+            templateParams,
+            'Cy7tiuWbCkBC_n4MB'
+          )
+          .then(
+            (result) => {
+              console.log(result.text);
+              toast.success('Your email was successfully sent.');
+            },
+            (error) => {
+              console.log(error.text);
+              toast.error('Failed to send your email.');
+            }
+          );
+          setValues({
+            email: '',
+          name: '',
+          message: '',
+          })
+      }
+    } catch (e) {
+      toast.error(`Failed to send your email. ${e.message}`);
+    }
   };
 
   return (
@@ -29,147 +118,103 @@ export default function Contact() {
       <div
         className="mx-6 px-5 py-5 box"
         style={{
-          borderStyle: "solid",
-          borderColor: "lightgray",
-          borderWidth: "1px",
+          borderStyle: 'solid',
+          borderColor: 'lightgray',
+          borderWidth: '1px',
         }}
       >
-        <Form method="post" action="/help/contact">
+        <form ref={form} onSubmit={sendEmail}>
           <div className="columns">
-            <div className="column is-3">
-              <div class="field">
+            <div className="column is-2">
+              <div className="field">
                 <label className="label">
-                  <span>Your Name</span>{" "}
-                  {data && data.errorName && (
-                    <span className="has-text-danger has-text-weight-normal">
-                      {data.errorName}
-                    </span>
-                  )}
+                  <span>Your Name</span>
                 </label>
-                <div class="control">
-                  <input class="input" type="text" name="name" />
-                </div>
-              </div>
-            </div>
-            <div className="column is-3">
-              <div class="field">
-                <label className="label">
-                  <span>Your E-mail</span>{" "}
-                  {data && data.errorEmail && (
-                    <span className="has-text-danger has-text-weight-normal">
-                      {data.errorEmail}
-                    </span>
-                  )}
-                </label>
-                <div class="control">
-                  <input class="input" type="email" name="email" />
-                </div>
-              </div>
-            </div>
-            <div className="column is-3">
-              <div class="field">
-                <label class="label">Order No.</label>
-                <div class="control">
+                <div className="control">
                   <input
-                    class="input"
+                    className={`input ${errors.name ? 'is-danger' : ''}`}
                     type="text"
-                    name="orderNo"
-                    placeholder="(optional)"
+                    name="name"
+                    value={values.name}
+                    onChange={handleChange}
                   />
                 </div>
+                {errors.name && (
+                  <p className="help is-danger">{errors.name}</p>
+                )}
+              </div>
+            </div>
+            <div className="column is-2">
+              <div className="field">
+                <label className="label">
+                  <span>Your E-mail</span>
+                </label>
+                <div className="control">
+                  <input
+                    className={`input ${errors.email ? 'is-danger' : ''}`}
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                {errors.email && (
+                  <p className="help is-danger">{errors.email}</p>
+                )}
               </div>
             </div>
           </div>
           <label>
             <div className="field">
               <label className="label">
-                <span>Your Message</span>{" "}
-                {data && data.errorMessage && (
-                  <span className="has-text-danger has-text-weight-normal">
-                    {data.errorMessage}
-                  </span>
-                )}
+                <span>Your Message</span>
               </label>
-              <div class="control">
-                <textarea className="textarea" name="message"></textarea>
+              <div className="control">
+                <textarea
+                  className={`textarea ${
+                    errors.message ? 'is-danger' : ''
+                  }`}
+                  name="message"
+                  value={values.message}
+                  onChange={handleChange}
+                  minLength={10}
+                  maxLength={3000}
+                  title="Your message must be 10-3000 characters long."
+                />
               </div>
+              {errors.message && (
+                <p className="help is-danger">{errors.message}</p>
+              )}
             </div>
           </label>
           <div className="field">
             <div className="control">
               <label className="checkbox pt-2">
                 <input type="checkbox" name="tac" />
-                &nbsp;I agree to the <a href="#">terms and conditions &nbsp;</a>
-                {data && data.errorTac && (
-                  <span className="has-text-danger has-text-weight-normal">
-                    {data.errorTac}
-                  </span>
-                )}
+                &nbsp;I agree to the{' '}
+                <a href="#">terms and conditions&nbsp;</a>
               </label>
             </div>
           </div>
-          <div>
-            {data && data.errorGeneral && (
-              <p className="has-text-danger pb-2">{data.errorGeneral}</p>
-            )}
-          </div>
-          <div class="field is-grouped">
-            <div class="control">
-              <button className="button is-primary">Submit</button>
+          <div className="field is-grouped">
+            <div className="control">
+              <button className="button is-primary" type="submit">
+                Submit
+              </button>
             </div>
-            <div class="control">
-              <button className="button is-warning" onClick={handleResetFields}>
+            <div className="control">
+              <button
+                className="button is-warning"
+                type="button"
+                onClick={handleResetFields}
+              >
                 Reset Fields
               </button>
             </div>
           </div>
-        </Form>
+        </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }
-
-export const contactAction = async ({ request }) => {
-  const data = await request.formData();
-
-  let date = new Date();
-
-  const submission = {
-    date: date,
-    name: data.get("name"),
-    email: data.get("email"),
-    orderNo: data.get("orderNo"),
-    message: data.get("message"),
-    tacOk: data.get("tac"),
-  };
-
-  const errors = {};
-
-  if (submission.name.length < 1 || submission.name === null) {
-    errors.errorName = "*required field";
-    errors.errorGeneral = "Submission incomplete, please try again.";
-  }
-  if (submission.email.length < 1 || submission.email === null) {
-    errors.errorEmail = "*required field";
-  }
-  if (submission.message.length < 10 || submission.message === null) {
-    errors.errorMessage = " *must be over 10 characters long.";
-  }
-  if (submission.tac === "off") {
-    errors.errorTac = "*required";
-  }
-
-  if (Object.keys(errors).length > 0) {
-    return errors;
-  }
-
-  console.log(submission);
-  alert(
-    `Your message has been submitted. Please wait 60-120 business days for reply.  Thank you! - MovieDL Customer Support Team`
-  );
-
-  // send your post request
-
-  // redirect the user
-  return redirect("/");
-};
