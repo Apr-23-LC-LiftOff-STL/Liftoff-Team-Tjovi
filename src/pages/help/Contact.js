@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Form, redirect, useActionData, useNavigate } from "react-router-dom";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function Contact() {
-
   const [open, setOpen] = useState(false);
 
   const data = useActionData();
@@ -130,7 +129,6 @@ export default function Contact() {
   );
 }
 
-
 export const contactAction = async ({ request }) => {
   const data = await request.formData();
 
@@ -166,8 +164,9 @@ export const contactAction = async ({ request }) => {
   }
 
   console.log(submission);
-  alert(`Your message has been submitted. Please wait 60-120 business days for reply.  Thank you! - MovieDL Customer Support Team`)
-
+  alert(
+    `Your message has been submitted. Please wait 60-120 business days for reply.  Thank you! - MovieDL Customer Support Team`
+  );
 
   // send your post request
 

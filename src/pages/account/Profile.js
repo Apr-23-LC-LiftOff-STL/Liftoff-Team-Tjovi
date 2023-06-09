@@ -1,17 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faLockOpen } from "@fortawesome/free-solid-svg-icons";
+
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
 export default function Profile(props) {
@@ -40,24 +45,24 @@ export default function Profile(props) {
   const [originalValues, setOriginalValues] = useState({ ...values });
   const [disabled, setDisabled] = useState(true);
 
- 
-  function validateEmail(email) { 
+  function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-  };
+  }
 
   function validateMobileNumber(mobileNumber) {
-    const mobileNumberRegex = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gm;
+    const mobileNumberRegex =
+      /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gm;
     return mobileNumberRegex.test(mobileNumber);
-  };
+  }
 
   function validateZipCode(zipCode) {
     const zipCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
     return zipCodeRegex.test(zipCode);
-  };
+  }
 
   const saveFormData = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     if (validateForm(true)) {
       handleClickOpen();
     }
@@ -105,7 +110,7 @@ export default function Profile(props) {
     } else {
       setDisabled(true);
     }
-  };
+  }
   // function cancelEdit() {
   //  setValues({ ...originalValues });
   //   setDisabled(true);
@@ -126,7 +131,7 @@ export default function Profile(props) {
       state,
       zipCode,
     } = values;
-    let newErrors ={};
+    let newErrors = {};
     if (!email || !validateEmail(email)) {
       newErrors.email = "Please enter a valid email address.";
     }
@@ -153,7 +158,7 @@ export default function Profile(props) {
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-   // Form is valid if there are no errors
+    // Form is valid if there are no errors
   }
 
   useEffect(() => {
@@ -281,10 +286,12 @@ export default function Profile(props) {
                             placeholder={userData.email}
                             name="email"
                           />
-                          {errors.email && <p className="help is-danger">{errors.email}</p>}
+                          {errors.email && (
+                            <p className="help is-danger">{errors.email}</p>
+                          )}
                         </div>
                       </div>
-                     
+
                       <div className="columns">
                         <div className="column is-half">
                           <div className="field">
@@ -299,7 +306,11 @@ export default function Profile(props) {
                                 name="firstName"
                                 placeholder={userData.firstName}
                               />
-                              {errors.firstName && <p className="help is-danger">{errors.firstName}</p>}
+                              {errors.firstName && (
+                                <p className="help is-danger">
+                                  {errors.firstName}
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -316,7 +327,11 @@ export default function Profile(props) {
                                 name="lastName"
                                 placeholder={userData.lastName}
                               />
-                               {errors.lastName && <p className="help is-danger">{errors.lastName}</p>}
+                              {errors.lastName && (
+                                <p className="help is-danger">
+                                  {errors.lastName}
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -337,7 +352,11 @@ export default function Profile(props) {
                                 placeholder={userData.mobileNumber}
                                 title="Please enter your 10 digit phone number in this format '555-555-5555'"
                               />
-                               {errors.mobileNumber && <p className="help is-danger">{errors.mobileNumber}</p>}
+                              {errors.mobileNumber && (
+                                <p className="help is-danger">
+                                  {errors.mobileNumber}
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -356,7 +375,11 @@ export default function Profile(props) {
                                 placeholder={userData.streetAddress}
                                 name="streetAddress"
                               />
-                               {errors.streetAddress && <p className="help is-danger">{errors.streetAddress}</p>}
+                              {errors.streetAddress && (
+                                <p className="help is-danger">
+                                  {errors.streetAddress}
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -369,7 +392,6 @@ export default function Profile(props) {
                                 type="text"
                                 value={values.suite}
                                 onChange={handleChange}
-                               
                                 name="suite"
                                 placeholder={userData.suite}
                               />
@@ -391,79 +413,90 @@ export default function Profile(props) {
                                 name="city"
                                 placeholder={userData.city}
                               />
-                               {errors.city && <p className="help is-danger">{errors.city}</p>}
+                              {errors.city && (
+                                <p className="help is-danger">{errors.city}</p>
+                              )}
                             </div>
                           </div>
                         </div>
 
                         <div className="column is-one-quarter">
-                <label className="label">State</label>
-                <div class="field has-addons">
-                  <div className="control is-expanded">
-                    <div className="select is-fullwidth">
-                      <select name="state" required onChange={handleChange} value={userData.state}>
-                        <option selected="default">---</option>
-                        <option value="AL">Alabama</option>
-                        <option value="AK">Alaska</option>
-                        <option value="AZ">Arizona</option>
-                        <option value="AR">Arksansas</option>
-                        <option value="AS">American Samoa</option>
-                        <option value="CA">California</option>
-                        <option value="CO">Colorado</option>
-                        <option value="CT">Connecticut</option>
-                        <option value="DE">Delaware</option>
-                        <option value="DC">District of Columbia</option>
-                        <option value="FL">Florida</option>
-                        <option value="GA">Georgia</option>
-                        <option value="GU">Guam</option>
-                        <option value="HI">Hawaii</option>
-                        <option value="ID">Idaho</option>
-                        <option value="IL">Illinois</option>
-                        <option value="IN">Indiana</option>
-                        <option value="IA">Iowa</option>
-                        <option value="KS">Kansas</option>
-                        <option value="KY">Kentucky</option>
-                        <option value="LA">Louisiana</option>
-                        <option value="ME">Maine</option>
-                        <option value="MD">Maryland</option>
-                        <option value="MA">Massachusetts</option>
-                        <option value="MI">Michigan</option>
-                        <option value="MN">Minnesota</option>
-                        <option value="MS">Mississippi</option>
-                        <option value="MT">Montana</option>
-                        <option value="NE">Nebraska</option>
-                        <option value="NV">Nevada</option>
-                        <option value="NH">New Hampshire</option>
-                        <option value="NJ">New Jersey</option>
-                        <option value="NM">New Mexico</option>
-                        <option value="NY">New York</option>
-                        <option value="NC">North Carolina</option>
-                        <option value="ND">North Dakota</option>
-                        <option value="MP">Northern Mariana Islands</option>
-                        <option value="OH">Ohio</option>
-                        <option value="OK">Oklahoma</option>
-                        <option value="OR">Oregon</option>
-                        <option value="PA">Pennsylvania</option>
-                        <option value="PR">Puerto Rico</option>
-                        <option value="RI">Rhode Island</option>
-                        <option value="SC">South Carolina</option>
-                        <option value="SD">South Dakota</option>
-                        <option value="TN">Tennessee</option>
-                        <option value="TX">Texas</option>
-                        <option value="TT">Trust Territories</option>
-                        <option value="UT">Utah</option>
-                        <option value="VT">Vermont</option>
-                        <option value="VA">Virginia</option>
-                        <option value="VI">Virgin Islands</option>
-                        <option value="WA">Washington</option>
-                        <option value="WV">West Virginia</option>
-                        <option value="WI">Wisconsin</option>
-                        <option value="WY">Wyoming</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                          <label className="label">State</label>
+                          <div class="field has-addons">
+                            <div className="control is-expanded">
+                              <div className="select is-fullwidth">
+                                <select
+                                  name="state"
+                                  required
+                                  onChange={handleChange}
+                                  value={userData.state}
+                                >
+                                  <option selected="default">---</option>
+                                  <option value="AL">Alabama</option>
+                                  <option value="AK">Alaska</option>
+                                  <option value="AZ">Arizona</option>
+                                  <option value="AR">Arksansas</option>
+                                  <option value="AS">American Samoa</option>
+                                  <option value="CA">California</option>
+                                  <option value="CO">Colorado</option>
+                                  <option value="CT">Connecticut</option>
+                                  <option value="DE">Delaware</option>
+                                  <option value="DC">
+                                    District of Columbia
+                                  </option>
+                                  <option value="FL">Florida</option>
+                                  <option value="GA">Georgia</option>
+                                  <option value="GU">Guam</option>
+                                  <option value="HI">Hawaii</option>
+                                  <option value="ID">Idaho</option>
+                                  <option value="IL">Illinois</option>
+                                  <option value="IN">Indiana</option>
+                                  <option value="IA">Iowa</option>
+                                  <option value="KS">Kansas</option>
+                                  <option value="KY">Kentucky</option>
+                                  <option value="LA">Louisiana</option>
+                                  <option value="ME">Maine</option>
+                                  <option value="MD">Maryland</option>
+                                  <option value="MA">Massachusetts</option>
+                                  <option value="MI">Michigan</option>
+                                  <option value="MN">Minnesota</option>
+                                  <option value="MS">Mississippi</option>
+                                  <option value="MT">Montana</option>
+                                  <option value="NE">Nebraska</option>
+                                  <option value="NV">Nevada</option>
+                                  <option value="NH">New Hampshire</option>
+                                  <option value="NJ">New Jersey</option>
+                                  <option value="NM">New Mexico</option>
+                                  <option value="NY">New York</option>
+                                  <option value="NC">North Carolina</option>
+                                  <option value="ND">North Dakota</option>
+                                  <option value="MP">
+                                    Northern Mariana Islands
+                                  </option>
+                                  <option value="OH">Ohio</option>
+                                  <option value="OK">Oklahoma</option>
+                                  <option value="OR">Oregon</option>
+                                  <option value="PA">Pennsylvania</option>
+                                  <option value="PR">Puerto Rico</option>
+                                  <option value="RI">Rhode Island</option>
+                                  <option value="SC">South Carolina</option>
+                                  <option value="SD">South Dakota</option>
+                                  <option value="TN">Tennessee</option>
+                                  <option value="TX">Texas</option>
+                                  <option value="TT">Trust Territories</option>
+                                  <option value="UT">Utah</option>
+                                  <option value="VT">Vermont</option>
+                                  <option value="VA">Virginia</option>
+                                  <option value="VI">Virgin Islands</option>
+                                  <option value="WA">Washington</option>
+                                  <option value="WV">West Virginia</option>
+                                  <option value="WI">Wisconsin</option>
+                                  <option value="WY">Wyoming</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div className="column is-one-quarter">
                           <div className="field">
                             <label className="label">Zip</label>
@@ -479,7 +512,11 @@ export default function Profile(props) {
                                 title="Please enter your 5 digit zipcode"
                                 required
                               />
-                               {errors.zipCode && <p className="help is-danger">{errors.zipCode}</p>}
+                              {errors.zipCode && (
+                                <p className="help is-danger">
+                                  {errors.zipCode}
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -496,8 +533,7 @@ export default function Profile(props) {
                         Update Profile
                       </button>
                     </div>
-                    <div className="control">
-                    </div>
+                    <div className="control"></div>
                   </div>
                 </div>
               </div>
