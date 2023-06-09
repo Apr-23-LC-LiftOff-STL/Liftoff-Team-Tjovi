@@ -53,11 +53,19 @@ public class OrderService {
         setTotalOrderPrice(newOrder);
         completedOrderRepository.save(newOrder);
 
-
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    public ResponseEntity<?> returnAllCompletedOrders(Long customerId){
+    public ResponseEntity<?> returnAllCompletedOrders(){
+        List<CompletedOrder> allCompletedOrders = (List<CompletedOrder>) completedOrderRepository.findAll();
+        if(allCompletedOrders.size()>0){
+            return new ResponseEntity<>(allCompletedOrders, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<?> returnAllCompletedOrdersByCustomer(Long customerId){
         List<CompletedOrder> completedOrders = completedOrderRepository.findByCustomerId(customerId);
         if(completedOrders.size()>0){
             return new ResponseEntity<>(completedOrders, HttpStatus.OK);

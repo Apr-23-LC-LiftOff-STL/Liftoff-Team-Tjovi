@@ -24,14 +24,19 @@ public class OrderController {
     }
 
     @GetMapping("/history/{email}")
-    public ResponseEntity<?> returnAllCompletedOrders(@PathVariable String email){
+    public ResponseEntity<?> returnAllCompletedOrdersByCustomer(@PathVariable String email){
         Customer customer = shoppingCartService.findCustomer(email);
-        return orderService.returnAllCompletedOrders(customer.getId());
+        return orderService.returnAllCompletedOrdersByCustomer(customer.getId());
     }
 
     @GetMapping("/currentPurchase/{email}")
     public ResponseEntity<?> returnMostRecentCompletedOrder(@PathVariable String email){
         Customer customer = shoppingCartService.findCustomer(email);
         return orderService.returnMostRecentCompletedOrder(customer.getId());
+    }
+
+    @GetMapping("/allOrdersHistory")
+    public ResponseEntity<?> returnAllCompletedOrders(){
+        return orderService.returnAllCompletedOrders();
     }
 }
