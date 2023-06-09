@@ -5,8 +5,6 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
-import { faSignature } from "@fortawesome/free-solid-svg-icons";
-import Alert from '@mui/material/Alert';
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -14,7 +12,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Register() {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -103,18 +102,19 @@ export default function Register() {
   }
   
   const saveFormData = async () => {
-    if (validateForm(true)) {
+   
     const response = await fetch("http://localhost:8080/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(values),
-    });
+    }
+    );
     if (response.status !== 201) {
       throw new Error(`Request failed: ${response.status}`);
     }
-  }
+  
   };
 
   const handleChange = (e) => {
@@ -127,12 +127,18 @@ export default function Register() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    const isValid = validateForm();
     if (values.pwd !== values.verifyPwd) {
-      alert("Passwords do NOT match!");
+      toast.error("Passwords do NOT match!");
     } else {
       try {
-        await saveFormData();
-        
+        if(isValid){
+          await saveFormData();
+          
+        }else{
+        return;
+        }
+        toast.success("Registration successfully submitted")
         navigate("/");
       } catch (e) {
         alert(`Registration failed! ${e.message}`);
@@ -265,8 +271,9 @@ export default function Register() {
                       required
                       name="firstName"
                     />
-                    {errors.firstName && <p className="help is-danger">{errors.firstName}</p>}
+                    
                   </div>
+                  {errors.firstName && <p className="help is-danger">{errors.firstName}</p>}
                 </div>
               </div>
               <div className="column is-half">
@@ -377,7 +384,7 @@ export default function Register() {
               </div> */}
               <div className="column is-one-quarter">
                 <label className="label">State</label>
-                <div class="field has-addons">
+                <div className="field has-addons">
                   <div className="control is-expanded">
                     <div className="select is-fullwidth">
                       <select name="state" required onChange={handleChange}>
@@ -517,6 +524,7 @@ export default function Register() {
           </DialogActions>
         </Dialog>
       </div>
+      <ToastContainer/>
     </div>
   );
 }
