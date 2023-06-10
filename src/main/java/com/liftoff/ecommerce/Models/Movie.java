@@ -38,7 +38,16 @@ public class Movie {
 
     private Double price;
 
+    public Movie() {
+    }
 
+    public Movie(String title, String overview, String releaseDate, String runtime, Double price) {
+        this.title = title;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+        this.runtime = runtime;
+        this.price = price;
+    }
 
     public Long getId() {
         return id;
