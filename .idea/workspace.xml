@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8308baad-0745-4f8e-b4a6-caeb82cb4e2d" name="Changes" comment="" />
+    <list default="true" id="8308baad-0745-4f8e-b4a6-caeb82cb4e2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/InitializeProjectDBController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/InitializeProjectDBController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,6 +187,7 @@
       <workItem from="1684444713661" duration="1238000" />
       <workItem from="1684445967718" duration="243000" />
       <workItem from="1684452024283" duration="12703000" />
+      <workItem from="1686360098957" duration="547000" />
     </task>
     <task id="LOCAL-00001" summary="Added .gradle dir">
       <created>1682198565041</created>
@@ -234,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686353969076</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="555555 movies">
+      <created>1686354429676</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1686354429676</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +268,8 @@
     <MESSAGE value="Initial JWT code" />
     <MESSAGE value="Admin update movies + all order history" />
     <MESSAGE value="Added imdb, vote_avg, popularity, and tagline" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added imdb, vote_avg, popularity, and tagline" />
+    <MESSAGE value="555555 movies" />
+    <option name="LAST_COMMIT_MESSAGE" value="555555 movies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

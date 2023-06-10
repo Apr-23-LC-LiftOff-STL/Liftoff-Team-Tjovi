@@ -62,7 +62,7 @@ public class InitializeProjectDBController {
         RestTemplate restTemplate = new RestTemplate();
         Gson gson = new GsonBuilder().create();
 
-        for (int movieId = 1; movieId <= 555555; movieId++) {
+        for (int movieId = 1; movieId <= 1000; movieId++) {
 
             String uri = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=a37b4cb3ae6aa5cc3bb9ed882c3e341e&language=en-US";
             String json = null;
@@ -76,6 +76,9 @@ public class InitializeProjectDBController {
 
             JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
+            if(jsonObject.get("adult").equals("true")){
+                continue;
+            }
 
             Movie movie = new Movie();
             // Extract and set title
