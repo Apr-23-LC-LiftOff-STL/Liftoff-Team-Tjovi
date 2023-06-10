@@ -12,11 +12,11 @@ const Footer = () => {
           <img src={logo125} />
         </NavLink>
         <p className="is-size-7">
-          4811 Delmar Blvd
+          5555 Delmar Blvd
           <br />
           St. Louis, MO 63108
           <br />
-          (314) 254-0107
+          (555) 555-5555
         </p>
         <div className="tabs is-centered pr-5">
           <ul>

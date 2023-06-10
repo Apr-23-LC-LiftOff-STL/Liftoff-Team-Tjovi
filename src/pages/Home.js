@@ -1,5 +1,4 @@
 import MovieCards from "../components/MovieCard/MovieCards";
-import GenreAndSortBar from "../components/MovieFilterAndSort/GenreAndSortBar";
 import SortButtons from "../components/MovieFilterAndSort/SortButtons";
 import GenreSelect from "../components/MovieFilterAndSort/GenreSelect";
 import MovieCardsPerPageSelect from "../components/MovieFilterAndSort/MovieCardsPerPageSelect";
