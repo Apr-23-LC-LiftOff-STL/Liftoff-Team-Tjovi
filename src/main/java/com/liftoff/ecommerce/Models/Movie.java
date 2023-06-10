@@ -38,15 +38,44 @@ public class Movie {
 
     private Double price;
 
-    public Movie() {
+    private String tagline;
+
+    private String popularity;
+
+    private String vote_average;
+
+    private String imdbId;
+
+    public String getImdbId() {
+        return imdbId;
     }
 
-    public Movie(String title, String overview, String releaseDate, String runtime, Double price) {
-        this.title = title;
-        this.overview = overview;
-        this.releaseDate = releaseDate;
-        this.runtime = runtime;
-        this.price = price;
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
+
+    public String getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(String vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public String getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(String popularity) {
+        this.popularity = popularity;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
     }
 
     public Long getId() {

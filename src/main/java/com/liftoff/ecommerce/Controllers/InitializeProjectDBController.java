@@ -62,7 +62,7 @@ public class InitializeProjectDBController {
         RestTemplate restTemplate = new RestTemplate();
         Gson gson = new GsonBuilder().create();
 
-        for (int movieId = 1; movieId <= 1000; movieId++) {
+        for (int movieId = 1; movieId <= 25000; movieId++) {
 
             String uri = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=a37b4cb3ae6aa5cc3bb9ed882c3e341e&language=en-US";
             String json = null;
@@ -76,6 +76,9 @@ public class InitializeProjectDBController {
 
             JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
+            if(jsonObject.get("adult").equals("true")){
+                continue;
+            }
 
             Movie movie = new Movie();
             // Extract and set title
@@ -85,6 +88,11 @@ public class InitializeProjectDBController {
             String overview = jsonObject.get("overview").getAsString();
             movie.setOverview(overview);
 
+            movie.setPopularity(jsonObject.get("popularity").getAsString());
+
+            movie.setTagline(jsonObject.get("tagline").getAsString());
+            movie.setVote_average(jsonObject.get("vote_average").getAsString());
+            movie.setImdbId(jsonObject.get("imdb_id").getAsString());
 
             // Check for presence of poster_path in API call, extract and set if not NULL
             if (jsonObject.get("poster_path") != null && !jsonObject.get("poster_path").isJsonNull()){
