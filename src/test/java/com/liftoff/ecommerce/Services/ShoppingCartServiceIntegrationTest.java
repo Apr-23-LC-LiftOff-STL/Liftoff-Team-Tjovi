@@ -1,4 +1,4 @@
-package com.liftoff.ecommerce.Service;
+package com.liftoff.ecommerce.Services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liftoff.ecommerce.Models.Customer;
@@ -7,6 +7,8 @@ import com.liftoff.ecommerce.Models.ShoppingCart;
 import com.liftoff.ecommerce.Repositories.CustomerRepository;
 import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
+import com.liftoff.ecommerce.Service.CustomerService;
+import com.liftoff.ecommerce.Service.ShoppingCartService;
 import com.liftoff.ecommerce.config.DatabaseTestConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

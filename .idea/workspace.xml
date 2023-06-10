@@ -140,7 +140,7 @@
       <recent name="com.liftoff.ecommerce.Controllers" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ShoppingCartControllerIntegrationTest">
+  <component name="RunManager" selected="JUnit.ShoppingCartServiceIntegrationTest">
     <configuration name="ShoppingCartControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
@@ -152,6 +152,38 @@
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoppingCartControllerIntegrationTest.addToCartTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="addToCartTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoppingCartControllerIntegrationTest.returnCartsByCustomerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="returnCartsByCustomerTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -182,38 +214,6 @@
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Service" />
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Service.ShoppingCartServiceIntegrationTest" />
       <option name="METHOD_NAME" value="removeAllItemsFromCartByCustomer" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartServiceIntegrationTest.removeItemFromCustomerCartTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Service" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Service.ShoppingCartServiceIntegrationTest" />
-      <option name="METHOD_NAME" value="removeItemFromCustomerCartTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartServiceIntegrationTest.updateQuantityInCart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Service" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Service.ShoppingCartServiceIntegrationTest" />
-      <option name="METHOD_NAME" value="updateQuantityInCart" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -270,18 +270,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
+      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.addToCartTest" />
+      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.returnCartsByCustomerTest" />
       <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest" />
       <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest.removeAllItemsFromCartByCustomer" />
-      <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest.removeItemFromCustomerCartTest" />
-      <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest.updateQuantityInCart" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
         <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest" />
+        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
+        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.addToCartTest" />
+        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.returnCartsByCustomerTest" />
         <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest.removeAllItemsFromCartByCustomer" />
-        <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest.removeItemFromCustomerCartTest" />
-        <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest.updateQuantityInCart" />
       </list>
     </recent_temporary>
   </component>
