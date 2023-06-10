@@ -40,7 +40,7 @@ public class ProfileController {
 
     @RequestMapping("/isUser")
     public ResponseEntity<?> isUser(@PathVariable String email) {
-        List<Customer> customer = customerRepository.findByEmail(email);
+        Customer customer = shoppingCartService.findCustomer(email);
 
         if (!customer.equals(null)){
             return new ResponseEntity<>(HttpStatus.OK);
