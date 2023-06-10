@@ -44,4 +44,8 @@ public class CustomerService {
         List<Customer> customer = customerRepository.findByEmail(email);
         return customer.get(0);
     }
+
+    public void createNewCustomer(Customer customer){
+        customerRepository.save(customer);
+    }
 }
