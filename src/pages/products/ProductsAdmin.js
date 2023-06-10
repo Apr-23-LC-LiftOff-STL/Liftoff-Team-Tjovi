@@ -25,7 +25,7 @@ export default function ProductsAdmin() {
     setSortedProducts(products.content.slice(0, productsPerPage));
   }, [products]);
 
-  const productsPerPage = 10000;
+  const productsPerPage = 5000;
 
   console.log(JSON.stringify(products.content));
 
@@ -104,36 +104,17 @@ export default function ProductsAdmin() {
 
   return (
     <div>
-      <Box
-        className="mx-4"
-        sx={{
-          mt: 4,
-          display: "flex",
-          justifyContent: "left",
-          flex: "1 1 auto",
-        }}
-      >
-        {/*         <Pagination
-          disableRipple
-          count={Math.ceil(sortedProducts.length / productsPerPage)}
-          page={page + 1}
-          onChange={handleChangePage}
-          siblingCount={1}
-          boundaryCount={1}
-          shape="rounded"
-        /> */}
-      </Box>
       <table className="table is-striped is-bordered my-2 mx-4">
         <thead className="has-background-grey-lighter">
           <tr>
-            <th className="has-text-centered has-background-grey-light">
+            <th className="is-size-7 has-text-centered has-background-primary-light">
               <p>{totalElements}</p>
               <p>Ct.</p>
             </th>
             <th>
               {" "}
               <div
-                className="button"
+                className="button is-small"
                 onClick={() =>
                   !sortFirstLastFlag
                     ? handleSortByNumAsc("id")
@@ -146,7 +127,7 @@ export default function ProductsAdmin() {
             <th>
               {" "}
               <div
-                className="button"
+                className="button is-small"
                 onClick={() =>
                   !sortFirstLastFlag
                     ? handleSortByTitleAsc()
@@ -159,7 +140,7 @@ export default function ProductsAdmin() {
             <th>
               {" "}
               <div
-                className="button"
+                className="button is-small"
                 onClick={() =>
                   !sortFirstLastFlag
                     ? handleSortByReleaseDateAsc()
@@ -172,7 +153,7 @@ export default function ProductsAdmin() {
             <th>
               {" "}
               <div
-                className="button"
+                className="button is-small"
                 onClick={() =>
                   !sortFirstLastFlag
                     ? handleSortByNumAsc("runtime")
@@ -185,7 +166,7 @@ export default function ProductsAdmin() {
             <th>
               {" "}
               <div
-                className="button"
+                className="button is-small"
                 onClick={() =>
                   !sortFirstLastFlag
                     ? handleSortByNumAsc("popularity")
@@ -198,7 +179,7 @@ export default function ProductsAdmin() {
             <th>
               {" "}
               <div
-                className="button"
+                className="button is-small"
                 onClick={() =>
                   !sortFirstLastFlag
                     ? handleSortByNumAsc("price")
@@ -208,8 +189,8 @@ export default function ProductsAdmin() {
                 Price $
               </div>
             </th>
-            <th className="has-text-centered">Tagline</th>
-            <th>Overview</th>
+            <th className="is-size-7 has-text-centered">Tagline</th>
+            <th className="is-size-7">Overview</th>
           </tr>
         </thead>
         <tbody>
@@ -223,28 +204,35 @@ export default function ProductsAdmin() {
                   EDIT
                 </div>
               </td>
-              <td>{product.id}</td>
-              <td>{product.title}</td>
-              <td>{product.releaseDate}</td>
-              <td>{product.runtime}</td>
-              <td>{product.popularity}</td>
-              <td>{product?.price.toFixed(2)}</td>
-              <td className="is-size-7">{product.tagline}</td>
-              <td className="is-size-7">{product.overview}</td>
+              <td className="is-size-7 has-text-right">{product.id}</td>
+              <td className="is-size-7 has-text-left">{product.title}</td>
+              <td className="is-size-7 has-text-centered">
+                {product.releaseDate}
+              </td>
+              <td className="is-size-7 has-text-right">{product.runtime}</td>
+              <td className="is-size-7 has-text-right">{product.popularity}</td>
+              <td className="is-size-7 has-text-right">
+                {product?.price.toFixed(2)}
+              </td>
+              <td className="is-size-7 has-text-left">{product.tagline}</td>
+              <td className="is-size-7 has-text-left">{product.overview}</td>
             </tr>
           ))}
         </tbody>
         <tfoot className="has-background-grey-lighter">
           <tr>
-            <th className="has-text-centered">EDIT?</th>
-            <th className="has-text-centered">ID</th>
-            <th className="has-text-centered">Title</th>
-            <th className="has-text-centered">Rel. Date</th>
-            <th className="has-text-centered">Runtime (min)</th>
-            <th className="has-text-centered">Pop. TMBD</th>
-            <th className="has-text-centered">Price</th>
-            <th className="has-text-centered">Tagline</th>
-            <th>Overview</th>
+            <th className="is-size-7 has-text-centered has-background-primary-light">
+              <p>{totalElements}</p>
+              <p>Ct.</p>
+            </th>
+            <th className="is-size-7 has-text-centered">ID</th>
+            <th className="is-size-7 has-text-centered">Title</th>
+            <th className="is-size-7 has-text-centered">Rel. Date</th>
+            <th className="is-size-7 has-text-centered">Runtime (min)</th>
+            <th className="is-size-7 has-text-centered">Pop. TMBD</th>
+            <th className="is-size-7 has-text-centered">Price</th>
+            <th className="is-size-7 has-text-centered">Tagline</th>
+            <th className="is-size-7 has-text-centered">Overview</th>
           </tr>
         </tfoot>
       </table>
@@ -253,8 +241,17 @@ export default function ProductsAdmin() {
 }
 
 // data loader
-export const productsLoaderAdmin = async () => {
-  const res = await fetch("http://localhost:8080/movies");
+export const productsLoaderAdmin = async (
+  query = "",
+  genres = [],
+  pageNumber = 0,
+  productsPerPage = 822
+) => {
+  const res = await fetch(
+    `http://localhost:8080/movies?title=${encodeURIComponent(
+      ""
+    )}&page=${pageNumber}&size=${productsPerPage}`
+  );
 
   if (!res.ok) {
     throw Error("Could not fetch the list of products");

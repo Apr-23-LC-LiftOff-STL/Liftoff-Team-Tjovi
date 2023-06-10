@@ -85,7 +85,7 @@ const router = createBrowserRouter(
           element={<Contact />} /* action={contactAction} */
         />
       </Route>
-      <Route path="admin" element={<AdminLayout />}>
+      <Route path="admin" element={<AdminLayout />} >
         <Route path="orders" element={<OrderHistoryAdmin />} />
         <Route
           path="products"
@@ -99,7 +99,7 @@ const router = createBrowserRouter(
           loader={productDetailsLoaderAdmin}
           errorElement={<ProductsError />}
         />
-      </Route>
+        </Route>
     </Route>
   )
 );

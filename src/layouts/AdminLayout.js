@@ -83,16 +83,7 @@ export default function AdminLayout() {
           </p>
         </div>
       </div>
-      {!activeButton ? (
-        <div>
-          <div className="is-size-5 px-6 py-3 has-background-info-light">
-            Welcome to the Admin Portal. Please select one of the above options.
-          </div>
-          <div className="section is-large"></div>
-        </div>
-      ) : (
-        <Outlet />
-      )}
+      <Outlet />
     </div>
   );
 }
