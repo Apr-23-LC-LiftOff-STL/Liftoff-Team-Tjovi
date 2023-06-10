@@ -444,7 +444,6 @@ export default function Profile(props) {
                                   <option value="DC">
                                     District of Columbia
                                   </option>
-                                  <option value="MO">Missouri</option>
                                   <option value="FL">Florida</option>
                                   <option value="GA">Georgia</option>
                                   <option value="GU">Guam</option>
@@ -462,6 +461,7 @@ export default function Profile(props) {
                                   <option value="MI">Michigan</option>
                                   <option value="MN">Minnesota</option>
                                   <option value="MS">Mississippi</option>
+                                  <option value="MO">Missouri</option>
                                   <option value="MT">Montana</option>
                                   <option value="NE">Nebraska</option>
                                   <option value="NV">Nevada</option>
