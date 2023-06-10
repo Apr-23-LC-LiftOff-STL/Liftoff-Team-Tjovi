@@ -1,6 +1,8 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import axios from "axios";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -51,7 +53,20 @@ export default function Register() {
     const zipCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
     return zipCodeRegex.test(zipCode);
   }
-
+const userExistCheck = async () => {
+    const username = values.email
+    let userExists = false
+  const response = await axios.get(
+            `http://localhost:8080/profile/isUser/${username}`
+            
+          );
+          if (response.status === 200 || response.status === 201) {
+           toast.error("This email is already in use!")
+           return userExists = true
+          }else{
+          return
+           }
+          }
   function validateForm() {
     const {
       email,
@@ -149,12 +164,13 @@ export default function Register() {
 
     try {
       if (isValid) {
+       try userExistCheck();
         await saveFormData();
-      } else {
+      } else  {
         return;
       }
       toast.success("Registration successfully submitted");
-      navigate("/");
+      //navigate("/");
     } catch (e) {
       toast.error(`Registration failed! ${e.message}`);
     }
