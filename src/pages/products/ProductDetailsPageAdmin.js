@@ -1,7 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "./Products.css";
 import { Fade } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -77,26 +76,33 @@ export default function AdminProductDetails() {
   // render form for admin users
   const renderAdminForm = () => (
     <form onSubmit={handleFormSubmit}>
-      <label>
-        Title:
-        <input
-          type="text"
-          name="title"
-          value={product.title}
-          onChange={handleInputChange}
-          required
-        />
-      </label>
-      <label>
-        Price:
-        <input
-          type="number"
-          name="price"
-          value={product.price}
-          onChange={handleInputChange}
-          required
-        />
-      </label>
+      <div className="field">
+        <label className="label">
+          Title:
+          <div className="control">
+            <input
+              className="input"
+              type="text"
+              name="title"
+              value={product.title}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </label>
+      </div>
+      <p>
+        <label>
+          Price:
+          <input
+            type="number"
+            name="price"
+            value={product.price}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
+      </p>
       <label>
         Overview:
         <input
@@ -123,28 +129,41 @@ export default function AdminProductDetails() {
 
   return (
     <div>
-      <section className="section">
+      <div className="title is-4 px-6 pt-3">Edit Product ID # {product.id}</div>
         <div className="container">
           <div className="columns is-centered">
             <div className="column">
-              <div className="card is-horizontal shadow-xl transform is-duration-100">
+              <div
+                className="card is-horizontal shadow-xl transform is-duration-100"
+                style={{
+                  borderStyle: "solid",
+                  borderColor: "lightgray",
+                  borderWidth: "1px",
+                }}
+              >
                 <div className="card-image p-4">
                   <Fade in timeout={500}>
                     <figure className="image ">
                       <img
                         src={`${baseImgUrl}${product.posterPath}`}
                         alt={`Poster for ${product.title}`}
+                        style={{
+                          borderStyle: "solid",
+                          borderColor: "lightgray",
+                          borderWidth: "1px",
+                        }}
                       ></img>
                     </figure>
                   </Fade>
                 </div>
                 <div className="card-content p-4 is-flex is-flex-direction-column">
                   <div className="content p-4 has-text-weight-normal">
-                    {isAdmin ? (
+                    {isAdmin && (
                       <form onSubmit={handleFormSubmit}>
-                        <label>
+                        <label className="label">
                           Title:
                           <input
+                            className="input"
                             type="text"
                             name="title"
                             value={product.title}
@@ -153,9 +172,10 @@ export default function AdminProductDetails() {
                             readOnly
                           />
                         </label>
-                        <label>
+                        <label className="label">
                           Price:
                           <input
+                            className="input"
                             type="number"
                             name="price"
                             value={product.price}
@@ -163,18 +183,20 @@ export default function AdminProductDetails() {
                             required
                           />
                         </label>
-                        <label>
+                        <label className="label">
                           Overview:
                           <textarea
+                            className="textarea"
                             name="overview"
                             value={product.overview}
                             onChange={handleInputChange}
                             required
                           />
                         </label>
-                        <label>
+                        <label className="label">
                           Poster Path:
                           <input
+                            className="input"
                             type="text"
                             name="posterPath"
                             value={product.posterPath}
@@ -182,66 +204,31 @@ export default function AdminProductDetails() {
                             required
                           />
                         </label>
-                        <input type="submit" value="Update Product" />
-                      </form>
-                    ) : (
-                      <div>
-                        <div className="is-size-5">
-                          <h3>{product.title}</h3>
-                        </div>
-                        <p className="is-size-6 has-text-weight-normal is-italic">
-                          {product.overview}
-                        </p>
-                        <p>
-                          <span className="has-text-weight-semibold">
-                            &emsp; &emsp; Genres:{" "}
-                          </span>
-                          <p>
-                            {product.genres
-                              ? product.genres
-                                  .map((genre) => genre.name)
-                                  .join(", ")
-                              : "Loading genres..."}
-                          </p>
-                        </p>
-                        <p>
-                          <span className="has-text-weight-semibold">
-                            &emsp; &emsp; Runtime:{" "}
-                          </span>
-                          {product.runtime} minutes
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <div className="content p-5 has-background-info-light">
-                    <div className="columns">
-                      <div className="column">
-                        <div className="is-size-4">
-                          <span className="has-text-weight-semibold">
-                            Price:
-                          </span>{" "}
-                          <span
-                            style={{
-                              color:
-                                product.price < 10 ? "hsl(348, 100%, 61%)" : "",
-                            }}
+                        <p class="control">
+                          <button
+                            className="button is-warning"
+                            type="submit"
+                            value="Update Product"
                           >
-                            ${product.price && product.price}
-                          </span>
-                        </div>
-                        <div>
-                          <div></div>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="is-size-7"></p>
+                            Update Product
+                          </button>
+                        </p>
+                        <p class="control">
+                          <div
+                            className="button is-light"
+                            onClick={() => navigate("/admin/products")}
+                          >
+                            Return to Products
+                          </div>
+                        </p>
+                      </form>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
     </div>
   );
 }

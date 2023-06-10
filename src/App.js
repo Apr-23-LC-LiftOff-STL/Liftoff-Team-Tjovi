@@ -19,11 +19,12 @@ import Faq from "./pages/help/Faq";
 import Home from "./pages/Home";
 import Login from "./pages/account/Login";
 import NotFound from "./pages/NotFound";
-import NotFoundAdmin from "./pages/NotFound";
 import OrderHistory from "./pages/account/OrderHistory.js";
 import OrderHistoryAdmin from "./pages/account/OrderHistoryAdmin.js";
 import Products, { productsLoader } from "./pages/products/Products";
-import ProductsAdmin, { productsLoaderAdmin } from "./pages/products/Products";
+import ProductsAdmin, {
+  productsLoaderAdmin,
+} from "./pages/products/ProductsAdmin";
 import ProductDetailsPage, {
   productDetailsLoader,
 } from "./pages/products/ProductDetailsPage";
@@ -83,21 +84,23 @@ const router = createBrowserRouter(
       </Route>
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />
-        <Route path="contact" element={<Contact />} /* action={contactAction} */ />
+        <Route
+          path="contact"
+          element={<Contact />} /* action={contactAction} */
+        />
       </Route>
       <Route path="admin" element={<AdminLayout />}>
-
         <Route path="orders" element={<OrderHistoryAdmin />} />
         <Route
           path="products"
           element={<ProductsAdmin />}
-          loader={productsLoader}
+          loader={productsLoaderAdmin}
           errorElement={<ProductsError />}
         />
         <Route
           path="products/:id"
           element={<ProductDetailsPageAdmin />}
-          loader={productDetailsLoader}
+          loader={productDetailsLoaderAdmin}
           errorElement={<ProductsError />}
         />
       </Route>

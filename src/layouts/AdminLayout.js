@@ -42,13 +42,13 @@ export default function AdminLayout() {
     }
   }, [location]);
 
-  if (!isAdmin) {
-    return (
-      <div>
-        <Login />
-      </div>
-    );
-  }
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
 
   return (
     <div>
@@ -84,8 +84,11 @@ export default function AdminLayout() {
         </div>
       </div>
       {!activeButton ? (
-        <div className="section is-small is-size-6">
-          Please select one of the above options.
+        <div>
+          <div className="is-size-5 px-6 py-3 has-background-info-light">
+            Welcome to the Admin Portal. Please select one of the above options.
+          </div>
+          <div className="section is-large"></div>
         </div>
       ) : (
         <Outlet />
