@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Products.css";
 import { Fade } from "@mui/material";
@@ -32,7 +32,6 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
   const navigate = useNavigate();
 
   const handleClickOpenRemove = (event) => {
-
     //setOpenRemove(true);
   };
 
@@ -46,6 +45,7 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+  const baseImdbUrl = "https://www.imdb.com/title/";
 
   const [cartMessage, setCartMessage] = useState("");
   const [cartMessageStyle, setCartMessageStyle] = useState("");
@@ -61,7 +61,7 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
 
   const decrementCartItemButtonHandler = (event) => {
     if (thisItemInCart === 1) {
-      removeAllThisItem(id)
+      removeAllThisItem(id);
       setThisItemInCart(0);
       //handleClickOpenRemove();
     } else {
@@ -118,29 +118,6 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
         </ul>
       </nav> */}
         <div className="container">
-          <div
-            className="mb-3"
-            style={{
-              display: "flex",
-              gap: "8px",
-              justifyContent: "flex-between",
-            }}
-          >
-            <div className="has-text-left px-5" style={{ flex: "0 0 auto" }}>
-              <div className="title is-3 has-text-weight-normal has-text-color-primary">
-                Movie Details
-              </div>
-            </div>
-            <div className="has-text-left mr-2" style={{ marginLeft: "auto" }}>
-              <div
-                className="button is-light"
-                onClick={handleCloseDialog}
-                style={{ flex: "0 0 auto" }}
-              >
-                <FontAwesomeIcon icon={faX} />
-              </div>
-            </div>
-          </div>
           <div className="columns is-centered">
             <div className="column">
               <div
@@ -159,18 +136,65 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                           borderColor: "lightgray",
                         }}
                       ></img>
+                      {product.tagline && (
+                        <div
+                          className="subtitle is-size-6 is-italic has-text-centered card is-shadowless has-background-info-light my-1 p-3"
+                          style={{
+                            borderStyle: "solid",
+                            borderColor: "lightgray",
+                          }}
+                        >
+                          "{product.tagline}"
+                        </div>
+                      )}
                     </figure>
                   </Fade>
                 </div>
                 <div className="card-content p-4 is-flex is-flex-direction-column">
                   <div className="content p-4 has-text-weight-normal">
-                    <div className="is-size-5 is-italic">
-                      <h3>{product.title}</h3>
+                    <div>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "8px",
+                          justifyContent: "flex-between",
+                        }}
+                      >
+                        <div
+                          className="has-text-left"
+                          style={{ flex: "0 0 auto" }}
+                        >
+                          <div className="title is-size-3 is-italic">
+                            {product.title}
+                          </div>
+                        </div>
+                        <div
+                          className="has-text-left"
+                          style={{ marginLeft: "auto" }}
+                        >
+                          <div
+                            className="button is-light"
+                            onClick={handleCloseDialog}
+                            style={{ flex: "0 0 auto" }}
+                          >
+                            <FontAwesomeIcon icon={faX} />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="has-text-left mr-2"
+                        style={{ marginLeft: "auto" }}
+                      ></div>
                     </div>
-                    <p className="is-size-6 has-text-weight-normal is-italic">
+                    <br />
+                    <div className="is-size-6 has-text-weight-normal is-italic p-2">
+                      <span className="has-text-weight-semibold">
+                        Overview:{" "}
+                      </span>
                       {product.overview}
-                    </p>
-{/*                     <p>
+                    </div>
+                    <br />
+                    {/*                     <p>
                       <span className="has-text-weight-semibold">Genres: </span>
                       {product?.genres
                         .slice()
@@ -178,12 +202,21 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                         .map((genre) => genre.name)
                         .join(", ")}
                     </p> */}
-                    <p>
-                      <span className="has-text-weight-semibold">
+                    <div>
+                      <span className="has-text-weight-semibold p-2">
+                        IMDB page:{" "}
+                      </span>
+                      <NavLink to={baseImdbUrl + product.imdbId}>
+                        {product.title}
+                      </NavLink>
+                    </div>
+                    <br />
+                    <div>
+                      <span className="has-text-weight-semibold p-2">
                         Runtime:{" "}
                       </span>
                       {product?.runtime} minutes
-                    </p>
+                    </div>
                   </div>
                   <div
                     className="content p-5 mb-2 mr-2 box is-shadowless has-background-light"
@@ -280,7 +313,7 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
           </div>
         </div>
       </div>
-{/*       <Dialog
+      {/*       <Dialog
         open={openRemove}
         onClose={handleCloseRemove}
         aria-labelledby="alert-dialog-title"

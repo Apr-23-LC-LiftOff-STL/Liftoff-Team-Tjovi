@@ -1,11 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import OrderHistorySubItem from "./OrderHistorySubItem";
 import jwtDecode from "jwt-decode";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const OrderHistoryItem = ({
   orderId,
@@ -15,11 +13,12 @@ const OrderHistoryItem = ({
   completedOrderItems,
   // stripeRef,
 }) => {
-
   const [sortedOrderItems, setSortedOrderItems] = useState([]);
 
   useEffect(() => {
-    const sortedItems = completedOrderItems.slice().sort((a, b) => a.movieId - b.movieId);
+    const sortedItems = completedOrderItems
+      .slice()
+      .sort((a, b) => a.movieId - b.movieId);
     setSortedOrderItems(sortedItems);
   }, [completedOrderItems]);
 
@@ -31,27 +30,39 @@ const OrderHistoryItem = ({
         className="px-1 has-background-info-light card"
         style={{
           borderStyle: "solid",
-          borderColor: 'darkgray',
+          borderColor: "darkgray",
           borderWidth: "1px",
         }}
       >
-        <div style={{ display: "flex", gap: "8px", justifyContent: "flex-between"}}>
-        <div className="has-text-left py-3 px-4" style={{flex: "0 0 auto"}}>
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            justifyContent: "flex-between",
+          }}
+        >
+          <div className="has-text-left py-3 px-4" style={{ flex: "0 0 auto" }}>
             <div className="title is-5 has-text-centered">
               Order #&nbsp;
               {orderId}
             </div>
             <div className="subtitle is-6 has-text-centered">{createDt}</div>
           </div>
-          <div className="has-text-left py-3 px-4" style={{flex: "0 0 auto"}}>
-            <div className="title is-5 has-text-centered"><FontAwesomeIcon icon={faUser} /></div>
+          <div className="has-text-left py-3 px-4" style={{ flex: "0 0 auto" }}>
+            <div className="title is-5 has-text-centered">
+              <FontAwesomeIcon icon={faUser} />
+            </div>
             <div className="subtitle is-6">{email}</div>
           </div>
-          <div className="has-text-left py-3 px-4" style={{marginLeft: "auto"}}>
+          <div
+            className="has-text-left py-3 px-4"
+            style={{ marginLeft: "auto" }}
+          >
             <div className="title is-5 has-text-centered">Invoice Total</div>
-            <div className="subtitle is-6 has-text-right">${totalOrderPrice?.toFixed(2)}</div>
+            <div className="subtitle is-6 has-text-right">
+              ${totalOrderPrice?.toFixed(2)}
+            </div>
           </div>
-
         </div>
       </div>
 

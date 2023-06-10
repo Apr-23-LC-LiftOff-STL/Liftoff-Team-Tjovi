@@ -23,9 +23,13 @@ import NotFoundAdmin from "./pages/NotFound";
 import OrderHistory from "./pages/account/OrderHistory.js";
 import OrderHistoryAdmin from "./pages/account/OrderHistoryAdmin.js";
 import Products, { productsLoader } from "./pages/products/Products";
+import ProductsAdmin, { productsLoaderAdmin } from "./pages/products/Products";
 import ProductDetailsPage, {
   productDetailsLoader,
 } from "./pages/products/ProductDetailsPage";
+import ProductDetailsPageAdmin, {
+  productDetailsLoaderAdmin,
+} from "./pages/products/ProductDetailsPageAdmin";
 import ProductsError from "./pages/products/ProductsError";
 import Profile from "./pages/account/Profile.js";
 import Register from "./pages/account/Register";
@@ -86,13 +90,13 @@ const router = createBrowserRouter(
         <Route path="orders" element={<OrderHistoryAdmin />} />
         <Route
           path="products"
-          element={<Products />}
+          element={<ProductsAdmin />}
           loader={productsLoader}
           errorElement={<ProductsError />}
         />
         <Route
           path="products/:id"
-          element={<ProductDetailsPage />}
+          element={<ProductDetailsPageAdmin />}
           loader={productDetailsLoader}
           errorElement={<ProductsError />}
         />
