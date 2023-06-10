@@ -161,18 +161,31 @@ const userExistCheck = async () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     const isValid = validateForm();
-
-    try {
-      if (isValid) {
-       try userExistCheck();
-        await saveFormData();
-      } else  {
-        return;
+    const username = values.email
+    let userExists = false
+    if (!isValid) {return
+     
+    }
+   try {
+        const response = await axios.get(
+          `http://localhost:8080/profile/isUser/${username}`
+        );
+  
+        if (response.status === 200 || response.status === 201) {
+          toast.error("This email is already in use!");
+          userExists = true;
+        }
+      } catch (error) {
+        toast.error(`Failed to check user existence! ${error.message}`);
       }
-      toast.success("Registration successfully submitted");
-      //navigate("/");
-    } catch (e) {
-      toast.error(`Registration failed! ${e.message}`);
+    if (!userExists && isValid) {
+      try {
+        await saveFormData();
+        toast.success("Registration successfully submitted",{autoClose: 2000});
+        setTimeout(() => navigate("/"), 3000);
+      } catch (error) {
+        toast.error(`Registration failed! ${error.message}`);
+      }
     }
   };
 
@@ -257,8 +270,7 @@ const userExistCheck = async () => {
                       value={values.pwd}
                       onChange={handleChange}
                       placeholder="********"
-                      //title="Password must contain: Minimum 8 characters atleast 1 Alphabet and 1 Number"
-                      //pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                     
                     />
                     {errors.pwd && (
                       <p className="help is-danger">{errors.pwd}</p>
@@ -436,6 +448,7 @@ const userExistCheck = async () => {
                         <option value="CT">Connecticut</option>
                         <option value="DE">Delaware</option>
                         <option value="DC">District of Columbia</option>
+                        <option value="MO">Missouri</option>
                         <option value="FL">Florida</option>
                         <option value="GA">Georgia</option>
                         <option value="GU">Guam</option>
