@@ -156,15 +156,25 @@ public class ShoppingCartControllerIntegrationTest {
         assertThat(updatedCart.getMovieId(), is(cartToUpdate.getMovieId()));
         assertThat(updatedCart.getQuantity(), is(cartToUpdate.getQuantity()));
     }
-//
-//    @Test
-//    public void testRemoveItemFromCustomerCart() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.delete("/cart/delete/" + testCustomer.getEmail())
-//                        .content(objectMapper.writeValueAsString(testCart))
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
-//    }
+
+    @Test
+    public void testRemoveItemFromCustomerCart() throws Exception {
+        ShoppingCart cartToDelete = new ShoppingCart(testMovie1.getId(), 1L);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/cart/delete/" + testCustomer1.getEmail())
+                        .content(objectMapper.writeValueAsString(cartToDelete))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+
+        assertThat(customerCarts, hasSize(1));
+        ShoppingCart onlyCustomerCart = customerCarts.get(0);
+        assertThat(onlyCustomerCart.getMovieId(), is(testCart2.getMovieId()));
+        assertThat(onlyCustomerCart.getQuantity(), is(testCart2.getQuantity()));
+
+    }
 //
 //    @Test
 //    public void testRemoveAllItemsFromCartByCustomer() throws Exception {
