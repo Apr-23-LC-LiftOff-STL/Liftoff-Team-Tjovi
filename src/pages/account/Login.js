@@ -27,7 +27,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [errors, setErrors] = useState({});
+  
   const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const setCartUser = useCartStore((state) => state.setCartUser);
@@ -43,12 +44,35 @@ const Login = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  function validateForm() {
+    
 
+    let newErrors = {};
+    if (!email || !validateEmail(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+    if (!password) {
+      newErrors.password = "Password is required";
+    } else if (password.length < 8) {
+      newErrors.passwordd = "Password must be at least 8 characters long";
+    } 
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  } 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+   
     const credentials = btoa(`${email}:${password}`);
-    try {
+    const isValid = validateForm();
+    if(isValid){
+     
+            
+            try {
       const response = await axios.get(
         "http://localhost:8080/user",
 
@@ -63,8 +87,6 @@ const Login = () => {
       if (authorization) {
         localStorage.setItem("token", authorization);
         setIsLoggedIn(true);
-        console.log(authorization);
-        console.log(response.data);
         const userData = jwtDecode(authorization);
         setCartUser(userData.username);
         getAndMergeCart(userData.username);
@@ -73,9 +95,13 @@ const Login = () => {
         throw new Error("Login failed");
       }
     } catch (error) {
-      toast.failure(`Login failed: ${error.message}`);
+      toast.error(`Login failed: incorrect email or password`);
     }
-  };
+          }
+    }
+  
+    
+  
 
   const token = localStorage.getItem("token");
 
@@ -155,6 +181,9 @@ const Login = () => {
                   placeholder="E-mail"
                   onChange={({ target }) => setEmail(target.value)}
                 />
+                 {errors.email && (
+                      <p className="help is-danger">{errors.email}</p>
+                    )}
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faEnvelope} />
                 </span>
@@ -173,6 +202,9 @@ const Login = () => {
                   placeholder="*********"
                   onChange={({ target }) => setPassword(target.value)}
                 />
+                 {errors.password && (
+                      <p className="help is-danger">{errors.password}</p>
+                    )}
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faLock} />
                 </span>
