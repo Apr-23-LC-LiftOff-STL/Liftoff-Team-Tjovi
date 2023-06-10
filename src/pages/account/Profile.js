@@ -444,6 +444,7 @@ export default function Profile(props) {
                                   <option value="DC">
                                     District of Columbia
                                   </option>
+                                  <option value="MO">Missouri</option>
                                   <option value="FL">Florida</option>
                                   <option value="GA">Georgia</option>
                                   <option value="GU">Guam</option>
