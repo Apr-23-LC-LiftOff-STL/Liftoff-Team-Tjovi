@@ -111,7 +111,7 @@ public class ShoppingCartServiceUnitTest {
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
@@ -135,7 +135,7 @@ public class ShoppingCartServiceUnitTest {
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
@@ -190,7 +190,7 @@ public class ShoppingCartServiceUnitTest {
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).save(any());
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
@@ -223,7 +223,7 @@ public class ShoppingCartServiceUnitTest {
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).deleteAll(any());
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
@@ -265,7 +265,7 @@ public class ShoppingCartServiceUnitTest {
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).deleteById(any());
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 }

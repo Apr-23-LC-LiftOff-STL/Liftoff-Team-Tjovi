@@ -3,6 +3,8 @@ package com.liftoff.ecommerce.Service;
 import com.liftoff.ecommerce.Models.Customer;
 import com.liftoff.ecommerce.Models.Movie;
 import com.liftoff.ecommerce.Models.ShoppingCart;
+import com.liftoff.ecommerce.Repositories.CompletedOrderRepository;
+import com.liftoff.ecommerce.Repositories.CompletedOrderedItemRepository;
 import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +21,19 @@ public class ShoppingCartService {
 
     private static final String NO_CARTS_FOUND = "No carts matching your criteria were found";
 
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
+    private final MovieRepository movieRepository;
 
     @Autowired
-    private MovieRepository movieRepository;
+    public ShoppingCartService(ShoppingCartRepository shoppingCartRepository, MovieRepository movieRepository){
+        this.shoppingCartRepository = shoppingCartRepository;
+        this.movieRepository = movieRepository;
+    }
 
     public ResponseEntity<?> returnAllCarts() {
         List<ShoppingCart> shoppingCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
         if (shoppingCarts.isEmpty()) {
-            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(shoppingCarts, HttpStatus.OK);
         }
@@ -37,7 +42,7 @@ public class ShoppingCartService {
     public ResponseEntity<?> returnCartsByCustomerId(Long customerId) {
         List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(customerId);
         if (customerCarts.isEmpty()) {
-            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(customerCarts, HttpStatus.OK);
         }
@@ -56,7 +61,7 @@ public class ShoppingCartService {
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
 
         if (allCustomersCarts.isEmpty()) {
-            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
         }
 
         allCustomersCarts.stream()
@@ -76,7 +81,7 @@ public class ShoppingCartService {
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
 
         if (allCustomersCarts.isEmpty()) {
-            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
         }
 
         allCustomersCarts.stream()
@@ -91,7 +96,7 @@ public class ShoppingCartService {
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
 
         if (allCustomersCarts.isEmpty()) {
-            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
         }
 
         shoppingCartRepository.deleteAll(allCustomersCarts);

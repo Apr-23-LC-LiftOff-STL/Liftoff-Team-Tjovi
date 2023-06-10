@@ -13,42 +13,53 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderService {
 
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    private static final String NO_ORDERS_FOUND = "No orders matching your criteria were found";
+    private static final String NO_CARTS_FOUND = "No carts matching your criteria were found";
+    private static final String NO_MOVIES_FOUND = "No movies matching your criteria were found";
+
+    private final ShoppingCartRepository shoppingCartRepository;
+    private final CompletedOrderRepository completedOrderRepository;
+    private final CompletedOrderedItemRepository completedOrderedItemRepository;
+    private final MovieRepository movieRepository;
 
     @Autowired
-    private CompletedOrderRepository completedOrderRepository;
+    public OrderService(ShoppingCartRepository shoppingCartRepository,
+                        CompletedOrderRepository completedOrderRepository,
+                        CompletedOrderedItemRepository completedOrderedItemRepository,
+                        MovieRepository movieRepository){
+        this.shoppingCartRepository = shoppingCartRepository;
+        this.completedOrderRepository = completedOrderRepository;
+        this.completedOrderedItemRepository = completedOrderedItemRepository;
+        this.movieRepository = movieRepository;
+    }
 
-    @Autowired
-    private CompletedOrderedItemRepository completedOrderedItemRepository;
-
-    @Autowired
-    private MovieRepository movieRepository;
-
-    public ResponseEntity<?> createNewOrder(Customer customer){
+    public ResponseEntity<?> createNewOrder(Customer customer) {
         CompletedOrder newOrder = new CompletedOrder(customer, customer.getEmail());
         newOrder.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
         completedOrderRepository.save(newOrder);
-        long totalOrderQuantity = 0;
 
+        long totalOrderQuantity = 0;
         List<ShoppingCart> cartItemsToOrder = shoppingCartRepository.findByCustomerId(customer.getId());
-        for(ShoppingCart currentCart:cartItemsToOrder){
-            CompletedOrderItem orderItem = new CompletedOrderItem(newOrder, currentCart.getMovieId(),
-                    movieRepository.findById(currentCart.getMovieId()).get().getTitle(),
+
+        if (cartItemsToOrder.isEmpty()) {
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
+        }
+        for (ShoppingCart currentCart : cartItemsToOrder) {
+            Movie orderedMovie = movieRepository.findById(currentCart.getMovieId())
+                    .orElseThrow(() -> new RuntimeException(NO_MOVIES_FOUND));
+
+            String orderedMovieTitle = orderedMovie.getTitle();
+            CompletedOrderItem orderItem = new CompletedOrderItem(newOrder, currentCart.getMovieId(), orderedMovieTitle,
                     currentCart.getQuantity(), currentCart.getTotalPrice());
             totalOrderQuantity += currentCart.getQuantity();
             completedOrderedItemRepository.save(orderItem);
             shoppingCartRepository.delete(currentCart);
         }
-
         newOrder.setTotalOrderQuantity(totalOrderQuantity);
         setTotalOrderPrice(newOrder);
         completedOrderRepository.save(newOrder);
@@ -58,28 +69,31 @@ public class OrderService {
 
     public ResponseEntity<?> returnAllCompletedOrders(){
         List<CompletedOrder> allCompletedOrders = (List<CompletedOrder>) completedOrderRepository.findAll();
-        if(allCompletedOrders.size()>0){
-            return new ResponseEntity<>(allCompletedOrders, HttpStatus.OK);
+
+        if(allCompletedOrders.isEmpty()){
+            return new ResponseEntity<>(NO_ORDERS_FOUND, HttpStatus.NOT_FOUND);
         } else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(allCompletedOrders, HttpStatus.OK);
         }
     }
 
     public ResponseEntity<?> returnAllCompletedOrdersByCustomer(Long customerId){
-        List<CompletedOrder> completedOrders = completedOrderRepository.findByCustomerId(customerId);
-        if(completedOrders.size()>0){
-            return new ResponseEntity<>(completedOrders, HttpStatus.OK);
+        List<CompletedOrder> allCompletedCustomerOrders = completedOrderRepository.findByCustomerId(customerId);
+
+        if(allCompletedCustomerOrders.isEmpty()){
+            return new ResponseEntity<>(NO_ORDERS_FOUND, HttpStatus.NOT_FOUND);
         } else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(allCompletedCustomerOrders, HttpStatus.OK);
         }
     }
 
     public ResponseEntity<?> returnMostRecentCompletedOrder(Long customerId){
-        List<CompletedOrder> completedOrders = completedOrderRepository.findByCustomerId(customerId);
-        if(completedOrders.size()>0){
-            return new ResponseEntity<>(completedOrders.get(completedOrders.size()-1), HttpStatus.OK);
+        List<CompletedOrder> mostRecentCompletedOrder = completedOrderRepository.findByCustomerId(customerId);
+
+        if(mostRecentCompletedOrder.isEmpty()){
+            return new ResponseEntity<>(NO_ORDERS_FOUND, HttpStatus.NOT_FOUND);
         } else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(mostRecentCompletedOrder, HttpStatus.OK);
         }
     }
 
@@ -89,11 +103,14 @@ public class OrderService {
 
         List<CompletedOrderItem> orderItems = completedOrderedItemRepository.findByCompletedOrderId(completedOrder.getId());
 
-        for(CompletedOrderItem currentItem:orderItems){
-            totalOrderPrice += currentItem.getTotalPrice();
+        if(orderItems.size()>0){
+            for(CompletedOrderItem currentItem:orderItems){
+                totalOrderPrice += currentItem.getTotalPrice();
+            }
+            Double finalPrice = Double.parseDouble(decimalFormat.format(totalOrderPrice));
+            completedOrder.setTotalOrderPrice(finalPrice);
+        } else{
+            throw new RuntimeException("Order items not found");
         }
-
-        Double finalPrice = Double.parseDouble(decimalFormat.format(totalOrderPrice));
-        completedOrder.setTotalOrderPrice(finalPrice);
     }
 }
