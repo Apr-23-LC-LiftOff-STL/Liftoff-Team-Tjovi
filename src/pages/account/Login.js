@@ -28,7 +28,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  
+
   const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const setCartUser = useCartStore((state) => state.setCartUser);
@@ -49,8 +49,6 @@ const Login = () => {
     return emailRegex.test(email);
   }
   function validateForm() {
-    
-
     let newErrors = {};
     if (!email || !validateEmail(email)) {
       newErrors.email = "Please enter a valid email address.";
@@ -59,92 +57,56 @@ const Login = () => {
       newErrors.password = "Password is required";
     } else if (password.length < 8) {
       newErrors.passwordd = "Password must be at least 8 characters long";
-    } 
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const userCheck = await axios.get(
-    //     `http://localhost:8080/profile/isUser/${username}`
-        
-    //   );
-    //   if (userCheck.status === 200 || userCheck.status === 201) {
-    //     const changePasswordResponse = await axios.put(
-    //       `http://localhost:8080/profile/changePassword/${username}`,
-    //       { password: newPassword }
-    //     );
-  
-    //     if (changePasswordResponse.status === 200 || changePasswordResponse.status === 201) {
-    //       sendEmail(values.name, values.email, newPassword);
-    //       toast.success("Your password was successfully updated!");
-    //     } else {
-    //       throw new Error(`Password update failed: ${changePasswordResponse.status}`);
-    //     }
-    //   } else {
-    //     throw new Error(`User check failed: ${response.status}`);
-        
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("Password update unsuccessful!");
-    // }
+
     const credentials = btoa(`${email}:${password}`);
     const isValid = validateForm();
     let userExists = false;
-    if(isValid){
-          
-            const userCheck = await axios.get(
-            `http://localhost:8080/profile/isUser/${email}`
-            
-          );
-          if (userCheck.status === 200 || userCheck.status === 201){
-            console.log("success")
-            userExists = true;
-           } else if(userCheck.status === 204) {
-              toast.error("This user does not exist");
-            }
-          
-          
-          
-           
-           
-           
-           
-          if (userExists){
-            try {
-              const response = await axios.get(
-             "http://localhost:8080/user",
+    if (isValid) {
+      const userCheck = await axios.get(
+        `http://localhost:8080/profile/isUser/${email}`
+      );
+      if (userCheck.status === 200 || userCheck.status === 201) {
+        userExists = true;
+      } else if (userCheck.status === 204) {
+        toast.error("This user does not exist");
+      }
 
-              {
-                headers: {
+      if (userExists) {
+        try {
+          const response = await axios.get(
+            "http://localhost:8080/user",
+
+            {
+              headers: {
                 Authorization: `Basic ${credentials}`,
-                },
-              }
-            );
+              },
+            }
+          );
 
           const { authorization } = response.headers;
-            if (authorization) {
-              localStorage.setItem("token", authorization);
-              setIsLoggedIn(true);
-              console.log(authorization);
-              console.log(response.data);
-              const userData = jwtDecode(authorization);
-              setCartUser(userData.username);
-              getAndMergeCart(userData.username);
-              navigate("/");
-            }
-            else {
-              throw new Error("Login failed");
-            }
-    } catch (error) {
-      toast.error(`Login failed: email or password is incorrect`);
+          if (authorization) {
+            localStorage.setItem("token", authorization);
+            setIsLoggedIn(true);
+
+            const userData = jwtDecode(authorization);
+            setCartUser(userData.username);
+            getAndMergeCart(userData.username);
+            navigate("/");
+          } else {
+            throw new Error("Login failed");
+          }
+        } catch (error) {
+          toast.error(`Login failed: email or password is incorrect`);
+        }
+      }
     }
-  }    
-  }
-    
   };
 
   const token = localStorage.getItem("token");
@@ -225,9 +187,9 @@ const Login = () => {
                   placeholder="E-mail"
                   onChange={({ target }) => setEmail(target.value)}
                 />
-                 {errors.email && (
-                      <p className="help is-danger">{errors.email}</p>
-                    )}
+                {errors.email && (
+                  <p className="help is-danger">{errors.email}</p>
+                )}
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faEnvelope} />
                 </span>
@@ -246,9 +208,9 @@ const Login = () => {
                   placeholder="*********"
                   onChange={({ target }) => setPassword(target.value)}
                 />
-                 {errors.password && (
-                      <p className="help is-danger">{errors.password}</p>
-                    )}
+                {errors.password && (
+                  <p className="help is-danger">{errors.password}</p>
+                )}
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faLock} />
                 </span>
@@ -311,48 +273,3 @@ const Login = () => {
   );
 };
 export default Login;
-
-//     return (
-//       <div >
-//         <div className="field is-small">
-//           <p className="control is-horizontal has-icons-left has-icons-right">
-//             <input className="input "
-//             type="email"
-//             value={values.email}
-//             onChange={handleChange}
-//             required
-//              placeholder="Email"
-//              name="email"/>
-//             <span className="icon is-small is-left">
-//               <i className="fas fa-envelope"></i>
-//             </span>
-//             <span className="icon is-small is-right">
-//               <i className="fas fa-check"></i>
-//             </span>
-//           </p>
-//         </div>
-//         <div className="field">
-//           <p className="control is-horizontal has-icons-left">
-//             <input className="input"
-//             type="password"
-//             value={values.password}
-//                 onChange={handleChange}
-//                 // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-//                 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-//             placeholder="Password"
-//             name="password"/>
-//             <span className="icon is-small is-left">
-//               <i className="fas fa-lock"></i>
-//             </span>
-//           </p>
-//         </div>
-//         <div className="field">
-//           <p className="control">
-//             <button className="button is-primary" onClick={onSubmit}>Login</button>
-//              <button className="button is-secondary" onClick={forgotPassword}>Forgot Password</button>
-//           </p>
-//         </div>
-//       </div>
-//     );
-//   };
-//  }
