@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8308baad-0745-4f8e-b4a6-caeb82cb4e2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/ProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/ProfileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Movie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/ShoppingCartControllerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +79,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/b111b" />
+    <option name="BRANCH" value="origin/back-end-unit-testing" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -114,7 +129,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ECommerceApp">
+  <component name="RunManager" selected="JUnit.ShoppingCartServiceIntegrationTest">
     <configuration name="ECommerceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ECommerceApp" />
       <module name="ecommerce.main" />
@@ -124,6 +139,66 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoppingCartControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoppingCartControllerUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoppingCartServiceIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoppingCartServiceUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,10 +239,17 @@
     </configuration>
     <list>
       <item itemvalue="Application.ECommerceApp" />
+      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
+      <item itemvalue="JUnit.ShoppingCartControllerUnitTest" />
+      <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest" />
+      <item itemvalue="JUnit.ShoppingCartServiceUnitTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ECommerceApp" />
+        <item itemvalue="JUnit.ShoppingCartServiceIntegrationTest" />
+        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
+        <item itemvalue="JUnit.ShoppingCartServiceUnitTest" />
+        <item itemvalue="JUnit.ShoppingCartControllerUnitTest" />
         <item itemvalue="Application.ECommerceApp" />
       </list>
     </recent_temporary>
