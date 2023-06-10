@@ -89,15 +89,15 @@ public class ShoppingCartControllerIntegrationTest {
         testMovie3 = new Movie("Test Movie 3", "Test Movie 3: Back Again", "2023-06-05", "160", 7.99);
         movieRepository.save(testMovie3);
 
-        testCart1 = new ShoppingCart(testMovie1.getId(), 3L);
+        testCart1 = new ShoppingCart(testMovie1.getId(), 1L);
         testCart1.setCustomer(testCustomer1);
         shoppingCartRepository.save(testCart1);
 
-        testCart2 = new ShoppingCart(testMovie2.getId(), 1L);
+        testCart2 = new ShoppingCart(testMovie2.getId(), 2L);
         testCart2.setCustomer(testCustomer1);
         shoppingCartRepository.save(testCart2);
 
-        testCart3 = new ShoppingCart(testMovie3.getId(), 2L);
+        testCart3 = new ShoppingCart(testMovie3.getId(), 3L);
         testCart3.setCustomer(testCustomer2);
         shoppingCartRepository.save(testCart3);
     }
@@ -124,6 +124,7 @@ public class ShoppingCartControllerIntegrationTest {
     @Test
     public void testAddToCart() throws Exception {
         ShoppingCart newCartToAdd = new ShoppingCart(testMovie3.getId(), 2L);
+
         mockMvc.perform(MockMvcRequestBuilders.post("/cart/add/" + testCustomer1.getEmail())
                         .content(objectMapper.writeValueAsString(newCartToAdd))
                         .contentType(MediaType.APPLICATION_JSON)
@@ -137,15 +138,24 @@ public class ShoppingCartControllerIntegrationTest {
         assertThat(savedCart.getMovieId(), is(newCartToAdd.getMovieId()));
         assertThat(savedCart.getQuantity(), is(newCartToAdd.getQuantity()));
     }
-//
-//    @Test
-//    public void testUpdateCartQuantity() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.put("/cart/edit/" + testCustomer.getEmail())
-//                        .content(objectMapper.writeValueAsString(testCart))
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
-//    }
+
+    @Test
+    public void testUpdateCartQuantity() throws Exception {
+        ShoppingCart cartToUpdate = new ShoppingCart(testMovie1.getId(), 4L);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/cart/edit/" + testCustomer1.getEmail())
+                        .content(objectMapper.writeValueAsString(cartToUpdate))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+
+        assertThat(customerCarts, hasSize(2));
+        ShoppingCart updatedCart = customerCarts.get(0);
+        assertThat(updatedCart.getMovieId(), is(cartToUpdate.getMovieId()));
+        assertThat(updatedCart.getQuantity(), is(cartToUpdate.getQuantity()));
+    }
 //
 //    @Test
 //    public void testRemoveItemFromCustomerCart() throws Exception {

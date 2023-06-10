@@ -138,7 +138,7 @@
       <recent name="com.liftoff.ecommerce.Service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ShoppingCartControllerIntegrationTest.testReturnCartsByCustomer">
+  <component name="RunManager" selected="JUnit.ShoppingCartControllerIntegrationTest">
     <configuration name="ShoppingCartControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
@@ -276,9 +276,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
         <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnCartsByCustomer" />
         <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testAddToCart" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
         <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnAllCarts" />
         <item itemvalue="JUnit.ShoppingCartControllerTestIntegration.testReturnAllCarts" />
       </list>
