@@ -17,8 +17,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Component
 public class ShoppingCartService {
+
+    private static final String NO_CARTS_FOUND = "No carts matching your criteria were found";
 
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
@@ -28,19 +29,19 @@ public class ShoppingCartService {
 
     public ResponseEntity<?> returnAllCarts() {
         List<ShoppingCart> shoppingCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
-        if (shoppingCarts.size() > 0) {
-            return new ResponseEntity<>(shoppingCarts, HttpStatus.OK);
+        if (shoppingCarts.isEmpty()) {
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("No carts associated with that user were found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(shoppingCarts, HttpStatus.OK);
         }
     }
 
     public ResponseEntity<?> returnCartsByCustomerId(Long customerId) {
-        List<ShoppingCart> customerCart = shoppingCartRepository.findByCustomerId(customerId);
-        if (customerCart.size() > 0) {
-            return new ResponseEntity<>(customerCart, HttpStatus.OK);
+        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(customerId);
+        if (customerCarts.isEmpty()) {
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("No carts associated with that user were found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(customerCarts, HttpStatus.OK);
         }
     }
 
@@ -52,61 +53,65 @@ public class ShoppingCartService {
     }
 
     public ResponseEntity<?> updateQuantityInCart(Customer customer, ShoppingCart shoppingCart) {
-        Long customerId = customer.getId();
         Long movieIdToUpdate = shoppingCart.getMovieId();
         Long newQuantity = shoppingCart.getQuantity();
-        List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customerId);
-        if(allCustomersCarts.size()>0) {
-            for (ShoppingCart currentCart : allCustomersCarts) {
-                if (currentCart.getMovieId().equals(movieIdToUpdate)) {
+        List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
+
+        if (allCustomersCarts.isEmpty()) {
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
+        }
+
+        allCustomersCarts.stream()
+                .filter(currentCart -> currentCart.getMovieId().equals(movieIdToUpdate))
+                .findFirst()
+                .ifPresent(currentCart -> {
                     currentCart.setQuantity(newQuantity);
                     setTotalPrice(currentCart);
                     shoppingCartRepository.save(currentCart);
-                    break;
-                }
-            }
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else{
-            return new ResponseEntity<>("No carts associated with that user were found",HttpStatus.NOT_FOUND);
-        }
+                });
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     public ResponseEntity<?> removeItemFromCustomerCart(Customer customer, ShoppingCart shoppingCart) {
-        Long customerId = customer.getId();
         Long movieIdToRemove = shoppingCart.getMovieId();
-        List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customerId);
-        if(allCustomersCarts.size()>0) {
-            for (ShoppingCart currentCart : allCustomersCarts) {
-                if (currentCart.getMovieId().equals(movieIdToRemove)) {
-                    Long cartId = currentCart.getCartId();
-                    shoppingCartRepository.deleteById(cartId);
-                    break;
-                }
-            }
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else{
-            return new ResponseEntity<>("No carts associated with that user were found",HttpStatus.NOT_FOUND);
+        List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
+
+        if (allCustomersCarts.isEmpty()) {
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
         }
+
+        allCustomersCarts.stream()
+                .filter(currentCart -> currentCart.getMovieId().equals(movieIdToRemove))
+                .findFirst()
+                .ifPresent(currentCart -> shoppingCartRepository.deleteById(currentCart.getCartId()));
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     public ResponseEntity<?> removeAllItemsFromCartByCustomer(Customer customer) {
         List<ShoppingCart> allCustomersCarts = shoppingCartRepository.findByCustomerId(customer.getId());
-        if(allCustomersCarts.size()>0){
-            shoppingCartRepository.deleteAll(allCustomersCarts);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        if (allCustomersCarts.isEmpty()) {
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.OK);
         }
+
+        shoppingCartRepository.deleteAll(allCustomersCarts);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     public void setTotalPrice(ShoppingCart shoppingCart) {
         Long movieId = shoppingCart.getMovieId();
         Long quantity = shoppingCart.getQuantity();
         Optional<Movie> movie = movieRepository.findById(movieId);
-        Double individualPrice = movie.get().getPrice();
-        Double totalPrice = individualPrice * quantity;
 
-        DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        shoppingCart.setTotalPrice(Double.parseDouble(decimalFormat.format(totalPrice)));
+        if (movie.isPresent()) {
+            Double individualPrice = movie.get().getPrice();
+            Double totalPrice = individualPrice * quantity;
+            DecimalFormat decimalFormat = new DecimalFormat("0.00");
+            shoppingCart.setTotalPrice(Double.parseDouble(decimalFormat.format(totalPrice)));
+        } else {
+            throw new RuntimeException("Movie not found");
+        }
     }
 }

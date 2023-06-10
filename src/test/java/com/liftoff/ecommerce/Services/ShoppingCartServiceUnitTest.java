@@ -109,10 +109,10 @@ public class ShoppingCartServiceUnitTest {
         ResponseEntity<?> response = shoppingCartService.returnAllCarts();
 
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
-        String specBody = "The response body should be 'No carts associated with that user were found' for no shopping carts found";
+        String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals(specBody, "No carts associated with that user were found", response.getBody());
+        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
     @Test
@@ -133,10 +133,10 @@ public class ShoppingCartServiceUnitTest {
         ResponseEntity<?> response = shoppingCartService.returnCartsByCustomerId(testCustomer1.getId());
 
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
-        String specBody = "The response body should be 'No carts associated with that user were found' for no shopping carts found";
+        String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals(specBody, "No carts associated with that user were found", response.getBody());
+        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
     @Test
@@ -187,12 +187,11 @@ public class ShoppingCartServiceUnitTest {
         ResponseEntity<?> response = shoppingCartService.updateQuantityInCart(testCustomer1, testCart1);
 
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
-        String specBody = "The response body should be 'No carts associated with that user were found' for no shopping carts found";
+        String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).save(any());
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals(specBody, "No carts associated with that user were found", response.getBody());
-
+        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
     @Test
@@ -221,9 +220,11 @@ public class ShoppingCartServiceUnitTest {
         ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCartByCustomer(testCustomer1);
 
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
+        String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).deleteAll(any());
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
     @Test
@@ -261,8 +262,10 @@ public class ShoppingCartServiceUnitTest {
         ResponseEntity<?> response = shoppingCartService.removeItemFromCustomerCart(testCustomer1, testCart1);
 
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
+        String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).deleteById(any());
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 }
