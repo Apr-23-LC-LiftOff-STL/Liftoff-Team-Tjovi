@@ -78,7 +78,7 @@ export default function AdminLayout() {
               }
               onClick={handleProductsButton}
             >
-              PRODUCT EDIT
+              PRODUCT DASHBOARD
             </div>
           </p>
         </div>

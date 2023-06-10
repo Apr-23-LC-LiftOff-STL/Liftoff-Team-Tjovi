@@ -129,9 +129,9 @@ export default function AdminProductDetails() {
 
   return (
     <div>
-      <div className="title is-4 px-6 pt-3">Edit Product ID # {product.id}</div>
+      <div className="is-size-6 ml-6 mt-2 mb-2">EDIT PRODUCT ID # {product.id}</div>
 
-      <div className="container">
+      <div className="container ml-6">
         <div className="columns is-centered">
           <div className="column">
             <div

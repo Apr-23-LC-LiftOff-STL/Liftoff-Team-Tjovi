@@ -104,7 +104,8 @@ export default function ProductsAdmin() {
 
   return (
     <div>
-      <table className="table is-striped is-bordered my-2 mx-4">
+      <div className="is-size-6 ml-6 mt-2">PRODUCT DASHBOARD</div>
+      <table className="table is-striped is-bordered my-2 mx-6 card">
         <thead className="has-background-grey-lighter">
           <tr>
             <th className="is-size-7 has-text-centered has-background-primary-light">
