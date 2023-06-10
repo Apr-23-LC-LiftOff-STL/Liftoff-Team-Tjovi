@@ -36,6 +36,10 @@ public class OrderController {
         return orderService.returnMostRecentCompletedOrder(customer.getId());
     }
 
+    @GetMapping("/allOrdersHistory")
+    public ResponseEntity<?> returnAllCompletedOrders(){
+        return orderService.returnAllCompletedOrders();
+    }
 
 
 
