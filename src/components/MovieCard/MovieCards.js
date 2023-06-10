@@ -12,6 +12,7 @@ import { Pagination } from "@mui/material";
 import { useSearchStore } from "../../store/searchStore.js";
 import { useGenreStore } from "../../store/genreStore.js";
 import { useSortStore } from "../../store/sortStore.js";
+import { useMovieCountStore } from "../../store/movieCountStore";
 
 function MovieCards() {
   const [movies, setMovies] = useState([]);
@@ -22,8 +23,9 @@ function MovieCards() {
   const selectedGenres = useGenreStore((state) => state.selectedGenres);
   const sortOptions = useSortStore((state) => state.sortOptions);
 
+  const moviesPerPageGlobal = useMovieCountStore((state) => state.moviesPerPageGlobal);
+  const movieCountGlobal = useMovieCountStore((state) => state.movieCountGlobal);
   const baseProductUrl = "/products/";
-  const cardsPerPage = 30;
 
   // fetch movies
   const fetchMovies = async (
@@ -39,7 +41,7 @@ function MovieCards() {
           query
         )}&genre=${encodeURIComponent(
           genreQueryParam
-        )}&page=${pageNumber}&size=${cardsPerPage}&sort=${
+        )}&page=${pageNumber}&size=${moviesPerPageGlobal}&sort=${
           sortOptions[0]
         }&direction=${sortOptions[1]}`
       );
@@ -57,11 +59,11 @@ function MovieCards() {
       left: 0,
       behavior: "instant",
     });
-  }, [searchTerm, selectedGenres, sortOptions, page]);
+  }, [searchTerm, selectedGenres, sortOptions, page, moviesPerPageGlobal]);
 
   useEffect(() => {
     setPage(0);
-  }, []);
+  }, [moviesPerPageGlobal]);
 
   const handleChangePage = (event, value) => {
     setPage(value - 1);
@@ -92,7 +94,7 @@ function MovieCards() {
         <div>
           <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
             <Pagination
-              count={Math.ceil(totalElements / cardsPerPage)}
+              count={Math.ceil(totalElements / moviesPerPageGlobal)}
               page={page + 1}
               onChange={handleChangePage}
               siblingCount={3}

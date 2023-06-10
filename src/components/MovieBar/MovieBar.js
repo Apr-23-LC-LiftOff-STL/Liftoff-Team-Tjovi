@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieBarCard from "./MovieBarCard.js";
 import "./MovieBar.css";
+import { useMovieCountStore } from "../../store/movieCountStore";
 
 function MovieBar() {
   const [movies, setMovies] = useState([]);
 
   const baseProductUrl = "/products/";
 
-  const totalMoviesInDb = 822;  // consider making this a global via Zustand
+  const movieCountGlobal = useMovieCountStore((state) => state.movieCountGlobal);
 
   const movieBarPicks = [];
   for (let i = 0; movieBarPicks.length < 5; i++) {
-    let newId = Math.floor(Math.random() * totalMoviesInDb);
+    let newId = Math.floor(Math.random() * movieCountGlobal);
     if (!movieBarPicks.includes(newId)) {
       movieBarPicks.push(newId);
     }

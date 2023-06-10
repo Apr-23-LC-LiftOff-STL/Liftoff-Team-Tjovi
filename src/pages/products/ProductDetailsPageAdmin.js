@@ -131,8 +131,8 @@ export default function AdminProductDetails() {
     <div>
       <div className="is-size-6 ml-6 mt-2 mb-2">EDIT PRODUCT ID # {product.id}</div>
 
-      <div className="container ml-6">
-        <div className="columns is-centered">
+      <div className="container">
+        <div className="columns is-centered mb-6">
           <div className="column">
             <div
               className="card is-horizontal shadow-xl transform is-duration-100"
