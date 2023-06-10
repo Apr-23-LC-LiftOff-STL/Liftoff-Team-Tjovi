@@ -1,4 +1,4 @@
-package com.liftoff.ecommerce.Controllers;
+package com.liftoff.ecommerce.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liftoff.ecommerce.Models.Customer;
@@ -7,44 +7,42 @@ import com.liftoff.ecommerce.Models.ShoppingCart;
 import com.liftoff.ecommerce.Repositories.CustomerRepository;
 import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
-import com.liftoff.ecommerce.Service.ShoppingCartService;
 import com.liftoff.ecommerce.config.DatabaseTestConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {"spring.config.name=application-test"})
-@AutoConfigureMockMvc
+@SpringBootTest(properties = {"spring.config.name=application-test"})
 @Import(DatabaseTestConfiguration.class)
+@AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class ShoppingCartControllerIntegrationTest {
-
-    @LocalServerPort
-    private int port;
+class ShoppingCartServiceIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    private CustomerService customerService;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -53,10 +51,10 @@ public class ShoppingCartControllerIntegrationTest {
     private ShoppingCartService shoppingCartService;
 
     @Autowired
-    private MovieRepository movieRepository;
+    private ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private MovieRepository movieRepository;
 
     Customer testCustomer1;
     Customer testCustomer2;
@@ -99,7 +97,7 @@ public class ShoppingCartControllerIntegrationTest {
     }
 
     @Test
-    public void returnAllCartsTest() throws Exception {
+    public void returnAllCartsTest() throws Exception{
         List<ShoppingCart> allShoppingCarts = (List<ShoppingCart>) shoppingCartService.returnAllCarts().getBody();
 
         assert allShoppingCarts != null;
@@ -108,44 +106,45 @@ public class ShoppingCartControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)));
 
-        for (int i = 0; i < allShoppingCarts.size(); i++) {
+        for(int i=0; i<allShoppingCarts.size(); i++){
             mockMvc.perform(get("/cart/returnAllCarts"))
-                    .andExpect(jsonPath("$[" + i + "].cartId", is((int) ((long) allShoppingCarts.get(i).getCartId()))))
-                    .andExpect(jsonPath("$[" + i + "].movieId", is((int) ((long) allShoppingCarts.get(i).getMovieId()))))
-                    .andExpect(jsonPath("$[" + i + "].quantity", is((int) ((long) allShoppingCarts.get(i).getQuantity()))))
+                    .andExpect(jsonPath("$[" + i + "].cartId", is((int)((long)allShoppingCarts.get(i).getCartId()))))
+                    .andExpect(jsonPath("$[" + i + "].movieId", is((int)((long)allShoppingCarts.get(i).getMovieId()))))
+                    .andExpect(jsonPath("$[" + i + "].quantity", is((int)((long)allShoppingCarts.get(i).getQuantity()))))
                     .andExpect(jsonPath("$[" + i + "].totalPrice", is(allShoppingCarts.get(i).getTotalPrice())));
         }
     }
 
     @Test
-    public void returnCartsByCustomerTest() throws Exception {
+    public void returnCartsByCustomerIdTest() throws Exception {
         List<ShoppingCart> allShoppingCartsByCustomer = (List<ShoppingCart>) shoppingCartService.returnCartsByCustomerId(testCustomer1.getId()).getBody();
 
-        assert allShoppingCartsByCustomer != null;
+        assert allShoppingCartsByCustomer !=null;
         mockMvc.perform(get("/cart/returnAll/{email}", testCustomer1.getEmail()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
 
         assertThat(allShoppingCartsByCustomer, hasSize(2));
-        for (int i = 0; i < allShoppingCartsByCustomer.size(); i++) {
+        for(int i=0; i<allShoppingCartsByCustomer.size(); i++){
             mockMvc.perform(get("/cart/returnAll/{email}", testCustomer1.getEmail()))
-                    .andExpect(jsonPath("$[" + i + "].customer.id", is((int) ((long) testCustomer1.getId()))))
-                    .andExpect(jsonPath("$[" + i + "].cartId", is((int) ((long) allShoppingCartsByCustomer.get(i).getCartId()))))
-                    .andExpect(jsonPath("$[" + i + "].movieId", is((int) ((long) allShoppingCartsByCustomer.get(i).getMovieId()))))
-                    .andExpect(jsonPath("$[" + i + "].quantity", is((int) ((long) allShoppingCartsByCustomer.get(i).getQuantity()))))
+                    .andExpect(jsonPath("$[" + i + "].customer.id", is((int)((long)testCustomer1.getId()))))
+                    .andExpect(jsonPath("$[" + i + "].cartId", is((int)((long)allShoppingCartsByCustomer.get(i).getCartId()))))
+                    .andExpect(jsonPath("$[" + i + "].movieId", is((int)((long)allShoppingCartsByCustomer.get(i).getMovieId()))))
+                    .andExpect(jsonPath("$[" + i + "].quantity", is((int)((long)allShoppingCartsByCustomer.get(i).getQuantity()))))
                     .andExpect(jsonPath("$[" + i + "].totalPrice", is(allShoppingCartsByCustomer.get(i).getTotalPrice())));
         }
     }
 
     @Test
-    public void addToCartTest() throws Exception {
+    public void createNewShoppingCartTest() throws Exception{
         ShoppingCart newCartToAdd = new ShoppingCart(testMovie3.getId(), 5L);
 
-        mockMvc.perform(post("/cart/add/" + testCustomer1.getEmail())
-                        .content(objectMapper.writeValueAsString(newCartToAdd))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/cart/add/{email}", testCustomer1.getEmail())
+                .content(objectMapper.writeValueAsString(newCartToAdd))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(status().isCreated());
 
         List<ShoppingCart> allCustomerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
@@ -160,54 +159,55 @@ public class ShoppingCartControllerIntegrationTest {
     }
 
     @Test
-    public void updateCartQuantityTest() throws Exception {
+    public void updateQuantityInCart() throws Exception{
         ShoppingCart cartToUpdate = new ShoppingCart(testMovie1.getId(), 4L);
 
-        mockMvc.perform(put("/cart/edit/" + testCustomer1.getEmail())
-                        .content(objectMapper.writeValueAsString(cartToUpdate))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(put("/cart/edit/{email}", testCustomer1.getEmail())
+                .content(objectMapper.writeValueAsString(cartToUpdate))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(status().isOk());
 
-        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+        List<ShoppingCart> testCustomer1Carts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
         Double expectedPrice = testMovie1.getPrice() * 4;
 
-        assertThat(customerCarts, hasSize(2));
-        ShoppingCart updatedCart = customerCarts.get(0);
+        assertThat(testCustomer1Carts, hasSize(2));
+        ShoppingCart updatedCart = testCustomer1Carts.get(0);
         assertThat(updatedCart.getMovieId(), is(cartToUpdate.getMovieId()));
         assertThat(updatedCart.getQuantity(), is(cartToUpdate.getQuantity()));
-        assertThat(updatedCart.getTotalPrice(), is(expectedPrice));
+        assertThat(updatedCart.getTotalPrice(),is(expectedPrice));
     }
 
     @Test
-    public void removeItemFromCustomerCartTest() throws Exception {
+    public void removeItemFromCustomerCartTest() throws Exception{
         ShoppingCart cartToDelete = new ShoppingCart(testCart1.getMovieId(), 1L);
 
-        mockMvc.perform(delete("/cart/delete/" + testCustomer1.getEmail())
-                        .content(objectMapper.writeValueAsString(cartToDelete))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/cart/delete/{email}", testCustomer1.getEmail())
+                .content(objectMapper.writeValueAsString(cartToDelete))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(status().isOk());
 
-        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+        List<ShoppingCart> testCustomer1Carts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
 
-        assertThat(customerCarts, hasSize(1));
-        assertThat(customerCarts.get(0).getCartId(), is(testCart2.getCartId()));
-        assertThat(customerCarts.get(0).getMovieId(), is(testCart2.getMovieId()));
-        assertThat(customerCarts.get(0).getQuantity(), is(testCart2.getQuantity()));
-
+        assertThat(testCustomer1Carts, hasSize(1));
+        assertThat(testCustomer1Carts.get(0).getCartId(), is(testCart2.getCartId()));
+        assertThat(testCustomer1Carts.get(0).getMovieId(), is(testCart2.getMovieId()));
+        assertThat(testCustomer1Carts.get(0).getQuantity(), is(testCart2.getQuantity()));
     }
 
     @Test
-    public void removeAllItemsFromCartByCustomerTest() throws Exception {
-        mockMvc.perform(delete("/cart/deleteAll/" + testCustomer1.getEmail())
-                        .accept(MediaType.APPLICATION_JSON))
+    public void removeAllItemsFromCartByCustomer() throws Exception{
+        mockMvc.perform(delete("/cart/deleteAll/{email}", testCustomer1.getEmail()))
+                .andDo(print())
                 .andExpect(status().isOk());
 
-        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+        List<ShoppingCart> testCustomer1Carts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
         List<ShoppingCart> allCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
 
-        assertThat(customerCarts, hasSize(0));
+        assertThat(testCustomer1Carts.size(), is(0));
         assertThat(allCarts, hasSize(1));
         assertThat(allCarts.get(0).getCustomer().getId(), is(testCustomer2.getId()));
     }
