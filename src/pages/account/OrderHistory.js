@@ -113,6 +113,7 @@ export default function OrderHistory() {
         <div className="columns">
           <div className="column"></div>
           <div className="column is-two-thirds mx-4">
+          { orderData.length > 0 &&
             <div className="container mx-3 mb-1">
               <Box
                 sx={{
@@ -176,6 +177,7 @@ export default function OrderHistory() {
                 </div>
               </Box>
             </div>
+          }
             {orderData.length > 0 ? (
               orderData
                 .slice(page * ordersPerPage, (page + 1) * ordersPerPage)

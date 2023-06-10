@@ -90,8 +90,34 @@ export default function Cart() {
           </li>
         </ul>
       </nav>
+      <div className="title ml-6">Shopping Cart</div>
       <div className="columns">
         <div className="column">
+          {/* <div>
+            {cart.length > 0 ? (
+              cart.map((item) => {
+                const data = productData[item.id] || {};
+                const itemSubtotal = item.count * data.price;
+                return (
+                  <div key={item.id}>
+                    <CartItem
+                      id={item.id}
+                      count={item.count}
+                      price={data.price}
+                      title={data.title}
+                      releaseDate={data.releaseDate}
+                      posterPath={data.posterPath}
+                      subtotal={itemSubtotal.toFixed(2)}
+                    />
+                  </div>
+                );
+              })
+            ) : (
+              <div>
+                <CartIsEmpty />
+              </div>
+            )}
+          </div> */}
           <div>
             {cart.length > 0 ? (
               cart.map((item) => {
