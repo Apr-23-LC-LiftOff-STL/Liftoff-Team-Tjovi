@@ -18,7 +18,7 @@ public class OrderController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping("newOrder/{email}")
+    @PostMapping("/newOrder/{email}")
     public ResponseEntity<?> createNewOrder(@PathVariable String email){
         Customer customer = customerService.findCustomer(email);
         return orderService.createNewOrder(customer);
@@ -36,6 +36,10 @@ public class OrderController {
         return orderService.returnMostRecentCompletedOrder(customer.getId());
     }
 
+    @GetMapping("/allOrdersHistory")
+    public ResponseEntity<?> returnAllCompletedOrders(){
+        return orderService.returnAllCompletedOrders();
+    }
 
 
 

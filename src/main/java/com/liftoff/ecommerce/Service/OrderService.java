@@ -22,21 +22,17 @@ public class OrderService {
     private static final String NO_CARTS_FOUND = "No carts matching your criteria were found";
     private static final String NO_MOVIES_FOUND = "No movies matching your criteria were found";
 
-    private final ShoppingCartRepository shoppingCartRepository;
-    private final CompletedOrderRepository completedOrderRepository;
-    private final CompletedOrderedItemRepository completedOrderedItemRepository;
-    private final MovieRepository movieRepository;
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    public OrderService(ShoppingCartRepository shoppingCartRepository,
-                        CompletedOrderRepository completedOrderRepository,
-                        CompletedOrderedItemRepository completedOrderedItemRepository,
-                        MovieRepository movieRepository){
-        this.shoppingCartRepository = shoppingCartRepository;
-        this.completedOrderRepository = completedOrderRepository;
-        this.completedOrderedItemRepository = completedOrderedItemRepository;
-        this.movieRepository = movieRepository;
-    }
+    private CompletedOrderRepository completedOrderRepository;
+
+    @Autowired
+    private CompletedOrderedItemRepository completedOrderedItemRepository;
+
+    @Autowired
+    private MovieRepository movieRepository;
 
     public ResponseEntity<?> createNewOrder(Customer customer) {
         CompletedOrder newOrder = new CompletedOrder(customer, customer.getEmail());

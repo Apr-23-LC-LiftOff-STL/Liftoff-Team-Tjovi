@@ -21,21 +21,18 @@ public class ShoppingCartService {
 
     private static final String NO_CARTS_FOUND = "No carts matching your criteria were found";
 
-    private final ShoppingCartRepository shoppingCartRepository;
-    private final MovieRepository movieRepository;
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    public ShoppingCartService(ShoppingCartRepository shoppingCartRepository, MovieRepository movieRepository){
-        this.shoppingCartRepository = shoppingCartRepository;
-        this.movieRepository = movieRepository;
-    }
+    private MovieRepository movieRepository;
 
     public ResponseEntity<?> returnAllCarts() {
-        List<ShoppingCart> shoppingCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
-        if (shoppingCarts.isEmpty()) {
+        List<ShoppingCart> allShoppingCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
+        if (allShoppingCarts.isEmpty()) {
             return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(shoppingCarts, HttpStatus.OK);
+            return new ResponseEntity<>(allShoppingCarts, HttpStatus.OK);
         }
     }
 
