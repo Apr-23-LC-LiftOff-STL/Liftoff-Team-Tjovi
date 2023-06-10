@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name="customer")
 public class Customer {
 
     @Id
@@ -52,6 +53,22 @@ public class Customer {
     @JsonIgnore
     @OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
     private Set<ShoppingCart> shoppingCart;
+
+    public Customer() {
+    }
+
+    public Customer(String firstName, String lastName, String email, String mobileNumber, String streetAddress,
+                    String suiteNumber, String city, String state, Long zipCode) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.mobileNumber = mobileNumber;
+        this.streetAddress = streetAddress;
+        this.suiteNumber = suiteNumber;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
 
     public Long getId() {
         return id;

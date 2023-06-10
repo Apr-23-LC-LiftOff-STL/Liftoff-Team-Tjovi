@@ -20,11 +20,10 @@ public class ProfileController {
 
     @Autowired
     private CustomerRepository customerRepository;
-    @Autowired
-    private ShoppingCartService shoppingCartService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Autowired
     private CustomerService customerService;
 
@@ -51,7 +50,7 @@ public ResponseEntity<?> isUser(@PathVariable String email) {
 
     @PutMapping("/changePassword")
     public ResponseEntity<?> changePassword(@PathVariable String email, @RequestBody String newPassword){
-        Customer customer = shoppingCartService.findCustomer(email);
+        Customer customer = customerService.findCustomer(email);
         String hashPwd = passwordEncoder.encode(newPassword);
 
         customer.setPwd(hashPwd);

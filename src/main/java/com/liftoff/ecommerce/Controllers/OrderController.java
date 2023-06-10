@@ -1,6 +1,7 @@
 package com.liftoff.ecommerce.Controllers;
 
 import com.liftoff.ecommerce.Models.Customer;
+import com.liftoff.ecommerce.Service.CustomerService;
 import com.liftoff.ecommerce.Service.OrderService;
 import com.liftoff.ecommerce.Service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +16,23 @@ public class OrderController {
     private OrderService orderService;
 
     @Autowired
-    private ShoppingCartService shoppingCartService;
+    private CustomerService customerService;
 
     @PostMapping("newOrder/{email}")
     public ResponseEntity<?> createNewOrder(@PathVariable String email){
-        Customer customer = shoppingCartService.findCustomer(email);
+        Customer customer = customerService.findCustomer(email);
         return orderService.createNewOrder(customer);
     }
 
     @GetMapping("/history/{email}")
     public ResponseEntity<?> returnAllCompletedOrdersByCustomer(@PathVariable String email){
-        Customer customer = shoppingCartService.findCustomer(email);
+        Customer customer = customerService.findCustomer(email);
         return orderService.returnAllCompletedOrdersByCustomer(customer.getId());
     }
 
     @GetMapping("/currentPurchase/{email}")
     public ResponseEntity<?> returnMostRecentCompletedOrder(@PathVariable String email){
-        Customer customer = shoppingCartService.findCustomer(email);
+        Customer customer = customerService.findCustomer(email);
         return orderService.returnMostRecentCompletedOrder(customer.getId());
     }
 
