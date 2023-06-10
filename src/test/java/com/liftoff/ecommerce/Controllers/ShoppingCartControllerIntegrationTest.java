@@ -29,10 +29,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.hamcrest.Matchers.everyItem;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {"spring.config.name=application-test"})
@@ -175,11 +173,19 @@ public class ShoppingCartControllerIntegrationTest {
         assertThat(onlyCustomerCart.getQuantity(), is(testCart2.getQuantity()));
 
     }
-//
-//    @Test
-//    public void testRemoveAllItemsFromCartByCustomer() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.delete("/cart/deleteAll/" + testCustomer.getEmail())
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
-//    }
+
+    @Test
+    public void testRemoveAllItemsFromCartByCustomer() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/cart/deleteAll/" + testCustomer1.getEmail())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+        List<ShoppingCart> allCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
+
+        assertThat(customerCarts, hasSize(0));
+        assertThat(allCarts, hasSize(1));
+        ShoppingCart onlyCart = allCarts.get(0);
+        assertThat(onlyCart.getCustomer().getId(), is(testCustomer2.getId()));
+    }
 }
