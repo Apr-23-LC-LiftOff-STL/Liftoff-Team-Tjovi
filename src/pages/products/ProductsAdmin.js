@@ -39,23 +39,68 @@ export default function ProductsAdmin() {
     setPage(value - 1);
   };
 
-  const handleSortByNumAsc = (key) => {
+  const handleSortByNumAsc = (num) => {
     const sortedData = [...products.content].sort((a, b) => {
-      return a[key] - b[key];
+      return a[num] - b[num];
     });
     setSortedProducts(sortedData);
     setSortFirstLastFlag(true);
   };
 
-  const handleSortByNumDesc = (key) => {
+  const handleSortByNumDesc = (num) => {
     const sortedData = [...products.content].sort((a, b) => {
-      return b[key] - a[key];
+      return b[num] - a[num];
     });
     setSortedProducts(sortedData);
     setSortFirstLastFlag(false);
   };
 
-  
+  const alphanumericSort = (a, b) => {
+    const titleA = a.title.toLowerCase();
+    const titleB = b.title.toLowerCase();
+
+    if (titleA < titleB) {
+      return -1;
+    }
+    if (titleA > titleB) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const handleSortByTitleAsc = () => {
+    const sortedData = [...products.content].sort(alphanumericSort);
+    setSortedProducts(sortedData);
+    setSortFirstLastFlag(true);
+  };
+
+  const handleSortByTitleDesc = () => {
+    const sortedData = [...products.content].sort((a, b) =>
+      alphanumericSort(b, a)
+    );
+    setSortedProducts(sortedData);
+    setSortFirstLastFlag(false);
+  };
+
+  const handleSortByReleaseDateAsc = () => {
+    const sortedData = [...products.content].sort((a, b) => {
+      const dateA = parseInt(a.releaseDate.replace(/-/g, ""), 10);
+      const dateB = parseInt(b.releaseDate.replace(/-/g, ""), 10);
+      return dateA - dateB;
+    });
+    setSortedProducts(sortedData);
+    setSortFirstLastFlag(true);
+  };
+
+  const handleSortByReleaseDateDesc = () => {
+    const sortedData = [...products.content].sort((a, b) => {
+      const dateA = parseInt(a.releaseDate.replace(/-/g, ""), 10);
+      const dateB = parseInt(b.releaseDate.replace(/-/g, ""), 10);
+      return dateB - dateA;
+    });
+    setSortedProducts(sortedData);
+    setSortFirstLastFlag(false);
+  };
 
   return (
     <div>
@@ -68,7 +113,7 @@ export default function ProductsAdmin() {
           flex: "1 1 auto",
         }}
       >
-{/*         <Pagination
+        {/*         <Pagination
           disableRipple
           count={Math.ceil(sortedProducts.length / productsPerPage)}
           page={page + 1}
@@ -81,7 +126,10 @@ export default function ProductsAdmin() {
       <table className="table is-striped is-bordered my-2 mx-4">
         <thead className="has-background-grey-lighter">
           <tr>
-            <th>{totalElements} CT.</th>
+            <th className="has-text-centered has-background-grey-light">
+              <p>{totalElements}</p>
+              <p>Ct.</p>
+            </th>
             <th>
               {" "}
               <div
@@ -95,8 +143,32 @@ export default function ProductsAdmin() {
                 ID
               </div>
             </th>
-            <th>Title</th>
-            <th>Rel. Date</th>
+            <th>
+              {" "}
+              <div
+                className="button"
+                onClick={() =>
+                  !sortFirstLastFlag
+                    ? handleSortByTitleAsc()
+                    : handleSortByTitleDesc()
+                }
+              >
+                Title
+              </div>
+            </th>
+            <th>
+              {" "}
+              <div
+                className="button"
+                onClick={() =>
+                  !sortFirstLastFlag
+                    ? handleSortByReleaseDateAsc()
+                    : handleSortByReleaseDateDesc()
+                }
+              >
+                Rel. Date
+              </div>
+            </th>
             <th>
               {" "}
               <div
@@ -136,7 +208,7 @@ export default function ProductsAdmin() {
                 Price $
               </div>
             </th>
-            <th>Tagline</th>
+            <th className="has-text-centered">Tagline</th>
             <th>Overview</th>
           </tr>
         </thead>
@@ -156,7 +228,7 @@ export default function ProductsAdmin() {
               <td>{product.releaseDate}</td>
               <td>{product.runtime}</td>
               <td>{product.popularity}</td>
-              <td>{product.price}</td>
+              <td>{product?.price.toFixed(2)}</td>
               <td className="is-size-7">{product.tagline}</td>
               <td className="is-size-7">{product.overview}</td>
             </tr>
@@ -164,14 +236,14 @@ export default function ProductsAdmin() {
         </tbody>
         <tfoot className="has-background-grey-lighter">
           <tr>
-            <th>EDIT?</th>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Rel. Date</th>
-            <th>Runtime (min)</th>
-            <th>Pop. TMBD</th>
-            <th>Price</th>
-            <th>Tagline</th>
+            <th className="has-text-centered">EDIT?</th>
+            <th className="has-text-centered">ID</th>
+            <th className="has-text-centered">Title</th>
+            <th className="has-text-centered">Rel. Date</th>
+            <th className="has-text-centered">Runtime (min)</th>
+            <th className="has-text-centered">Pop. TMBD</th>
+            <th className="has-text-centered">Price</th>
+            <th className="has-text-centered">Tagline</th>
             <th>Overview</th>
           </tr>
         </tfoot>
