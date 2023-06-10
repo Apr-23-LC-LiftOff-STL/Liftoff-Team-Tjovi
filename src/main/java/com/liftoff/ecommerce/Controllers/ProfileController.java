@@ -38,16 +38,16 @@ public class ProfileController {
         return customerService.editCustomerInformation(email, customer);
     }
 
-    @RequestMapping("/isUser")
-    public ResponseEntity<?> isUser(@PathVariable String email) {
-        List<Customer> customer = customerRepository.findByEmail(email);
+    @GetMapping("/isUser/{email}")
+public ResponseEntity<?> isUser(@PathVariable String email) {
+    List<Customer> customer = customerRepository.findByEmail(email);
 
-        if (!customer.equals(null)){
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    if (!customer.isEmpty()){
+        return new ResponseEntity<>(HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+}
 
     @PutMapping("/changePassword")
     public ResponseEntity<?> changePassword(@PathVariable String email, @RequestBody String newPassword){
