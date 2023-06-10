@@ -1,8 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Faq() {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   return (
     <div>
       <div

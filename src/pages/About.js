@@ -1,7 +1,19 @@
 import logoLaunchCode from "./Logo_LaunchCode.svg";
+import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 
+
+
 export default function About() {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
+  
   return (
     <div>
       <div>

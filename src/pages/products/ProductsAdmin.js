@@ -32,7 +32,7 @@ export default function ProductsAdmin() {
 }
 
 // data loader
-export const productsLoader = async () => {
+export const productsLoaderAdmin = async () => {
   const res = await fetch("http://localhost:8080/movies");
 
   if (!res.ok) {

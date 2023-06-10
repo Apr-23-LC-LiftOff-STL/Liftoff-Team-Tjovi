@@ -1,4 +1,4 @@
-import OrderHistoryItem from "./OrderHistoryItem";
+import OrderHistoryItemAdmin from "./OrderHistoryItemAdmin";
 import OrderHistoryNoneFound from "./OrderHistoryNoneFound";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -15,7 +15,7 @@ import {
 import { Box } from "@mui/material";
 import { Pagination } from "@mui/material";
 
-export default function OrderHistory() {
+export default function OrderHistoryAdmin() {
   const baseProductUrl = "/products/";
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
 
@@ -23,6 +23,7 @@ export default function OrderHistory() {
 
   const [orderData, setOrderData] = useState([]);
   const [sortFirstLastFlag, setSortFirstLastFlag] = useState(false);
+  const [totalRevenue, setTotalRevenue] = useState(0);
 
   const [page, setPage] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
@@ -53,7 +54,7 @@ export default function OrderHistory() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/order/history/" + cartUser
+          "http://localhost:8080/admin/allOrdersHistory"
         );
         console.log(cartUser);
         const orderData = response.data;
@@ -62,6 +63,11 @@ export default function OrderHistory() {
         });
         setOrderData(orderData);
         setTotalElements(orderData.length);
+        const totalRevenue = orderData.reduce(
+          (total, order) => total + order.totalOrderPrice,
+          0
+        );
+        setTotalRevenue(totalRevenue);
       } catch (error) {
         console.error("Error getting order history:", error);
       }
@@ -88,34 +94,13 @@ export default function OrderHistory() {
   return (
     <div>
       <div>
-        <nav
-          className="breadcrumb is-medium has-succeeds-separator pl-6 pt-1 pb-2"
-          aria-label="breadcrumbs"
-        >
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/account/profile" aria-current="page">
-                My Profile
-              </a>
-            </li>
-            <li className="is-active">
-              <a href="#" aria-current="page">
-                Order History
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div className="title ml-6">Order History</div>
-        <div className="subtitle ml-6">user: {cartUser}</div>
         <div className="columns">
           <div className="column"></div>
           <div className="column is-two-thirds mx-4">
             <div className="container mx-3 mb-1">
               <Box
                 sx={{
+                  mt: 4,
                   display: "flex",
                   justifyContent: "left",
                   flex: "1 1 auto",
@@ -142,6 +127,7 @@ export default function OrderHistory() {
                     <FontAwesomeIcon icon={faArrowDown} />
                   )}
                 </div>
+
                 <Pagination
                   disableRipple
                   count={Math.ceil(orderData.length / ordersPerPage)}
@@ -168,9 +154,23 @@ export default function OrderHistory() {
                       borderWidth: "1px",
                     }}
                   >
-                    Total Orders:{" "}
+                    Order Ct:{" "}
                     <span className="has-text-weight-semibold">
                       {totalElements}
+                    </span>
+                  </div>
+                  <div
+                    className="is-size-7 has-text-right has-background-white-ter py-1 px-2"
+                    style={{
+                      flex: "0 1 auto",
+                      borderStyle: "solid",
+                      borderColor: "darkgray",
+                      borderWidth: "1px",
+                    }}
+                  >
+                    Total Revenue:{" "}
+                    <span className="has-text-weight-semibold">
+                      ${totalRevenue?.toFixed(2)}
                     </span>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default function OrderHistory() {
                 .slice(page * ordersPerPage, (page + 1) * ordersPerPage)
                 .map((order) => (
                   <div key={order.id}>
-                    <OrderHistoryItem
+                    <OrderHistoryItemAdmin
                       orderId={order.id}
                       createDt={order.createDt}
                       email={order.email}

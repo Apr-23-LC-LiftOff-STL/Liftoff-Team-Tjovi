@@ -57,6 +57,7 @@ export default function ProductDetailsPage() {
   const changeCartItem = useCartStore((state) => state.changeCartItem);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+  const baseImdbUrl = "https://www.imdb.com/title/";
 
   const [cartMessage, setCartMessage] = useState("");
   const [cartMessageStyle, setCartMessageStyle] = useState("");
@@ -104,7 +105,7 @@ export default function ProductDetailsPage() {
       >
         <ul>
           <li>
-            <a onClick={() => navigate(-1)}>Home</a>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li className="is-active">
             <a href="#" aria-current="page">
@@ -128,29 +129,56 @@ export default function ProductDetailsPage() {
                       alt={`Poster for ${product.title}`}
                       style={{ borderStyle: "solid", borderColor: "lightgray" }}
                     ></img>
+                    {product.tagline && (
+                      <div
+                        className="subtitle is-size-6 is-italic has-text-centered card is-shadowless has-background-info-light my-1 p-3"
+                        style={{
+                          borderStyle: "solid",
+                          borderColor: "lightgray",
+                        }}
+                      >
+                        "{product.tagline}"
+                      </div>
+                    )}
                   </figure>
                 </Fade>
               </div>
               <div className="card-content p-4 is-flex is-flex-direction-column">
-                <div className="content p-4 has-text-weight-normal">
-                  <div className="is-size-5 is-italic">
-                    <h3>{product.title}</h3>
+                <div className="content has-text-weight-normal">
+                  <div>
+                    <div
+                      className="title is-size-3 is-italic pt-4"
+                    >
+                      {product.title}
+                    </div>
                   </div>
-                  <p className="is-size-6 has-text-weight-normal is-italic">
+                  <br />
+                  <div className="is-size-6 has-text-weight-normal is-italic p-2">
+                    <span className="has-text-weight-semibold">Overview: </span>
                     {product.overview}
-                  </p>
-                  <p>
-                    <span className="has-text-weight-semibold">Genres: </span>
-                    {product.genres
-                      .slice()
-                      .sort((a, b) => a.name.localeCompare(b.name))
-                      .map((genre) => genre.name)
-                      .join(", ")}
-                  </p>
-                  <p>
-                    <span className="has-text-weight-semibold">Runtime: </span>
+                  </div>
+                  <br />
+                  {/*                     <p>
+                      <span className="has-text-weight-semibold">Genres: </span>
+                      {product?.genres
+                        .slice()
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((genre) => genre.name)
+                        .join(", ")}
+                    </p> */}
+                  <div>
+                    <span className="has-text-weight-semibold p-2">
+                      IMDB page:{" "}
+                    </span>
+                    <NavLink to={baseImdbUrl + product.imdbId}>
+                      {product.title}
+                    </NavLink>
+                  </div>
+                  <br />
+                  <div>
+                    <span className="has-text-weight-semibold p-2">Runtime: </span>
                     {product?.runtime} minutes
-                  </p>
+                  </div>
                 </div>
                 <div
                   className="content p-5 mb-2 mr-2 box is-shadowless has-background-light"
