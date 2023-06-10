@@ -8,10 +8,6 @@ function MovieBar() {
 
   const baseProductUrl = "/products/";
 
-  /*     const randomMovieIds = Array.from({ length: 5 }, () =>
-    Math.floor(Math.random() * 822)
-  ); */
-
   const totalMoviesInDb = 822;  // consider making this a global via Zustand
 
   const movieBarPicks = [];
