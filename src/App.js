@@ -47,11 +47,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
-      <Route
-        path="/products"
-        element={<GeneralLayout />}
-        errorElement={<ProductsError />}
-      >
+
         <Route
           index
           element={<Products />}
@@ -59,12 +55,12 @@ const router = createBrowserRouter(
           errorElement={<ProductsError />}
         />
         <Route
-          path=":id"
+          path="products/:id"
           element={<ProductDetailsPage />}
           loader={productDetailsLoader}
           errorElement={<ProductsError />}
         />
-      </Route>
+
       <Route element={<CartLayout />}>
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />

@@ -54,14 +54,12 @@ const NavBar = () => {
 
   useEffect(() => {
     if (totalProductsInCart !== 0) {
-      setCartButtonStyling("button is-warning has-text-weight-semibold");
       setCartDropdownStyling(
-        "button is-small is-warning has-text-weight-normal"
+        "button is-small is-warning has-text-weight-semibold"
       );
     } else {
-      setCartButtonStyling("button has-background-warning");
       setCartDropdownStyling(
-        "button is-small has-background-warning-light has-text-weight-normal"
+        "button is-small is-warning has-text-weight-normal"
       );
     }
   }, [totalProductsInCart]);
@@ -290,8 +288,8 @@ const NavBar = () => {
               to="/cart"
               className={
                 cart.length > 0
-                  ? "button is-normal has-background-warning is-hidden-touch"
-                  : "button is-normal is-outlined has-background-warning-light is-hidden-touch"
+                  ? "button is-normal is-warning is-hidden-touch has-text-weight-semibold"
+                  : "button is-normal is-warning is-hidden-touch"
               }
             >
               <FontAwesomeIcon icon={faCartShopping} />
