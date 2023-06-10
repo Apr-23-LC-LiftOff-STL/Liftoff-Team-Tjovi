@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useLocation } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import MovieBar from "../components/MovieBar/MovieBar";
 
 export default function HelpLayout() {
+  const [activeButton, setActiveButton] = useState();
 
   const navigate = useNavigate();
 
@@ -15,6 +16,16 @@ export default function HelpLayout() {
       behavior: "instant",
     });
   }, []);
+
+  const handleFaqButton = () => {
+    setActiveButton("faqButton");
+    navigate("./faq");
+  };
+
+  const handleContactButton = () => {
+    setActiveButton("contactButton");
+    navigate("./contact");
+  };
 
   return (
     <div className="help-layout">
@@ -36,10 +47,27 @@ export default function HelpLayout() {
       <h1 className="title mx-6">Customer Service</h1>
 
       <div className="buttons has-addons mx-6">
-        <button className="button is-info is-outlined" onClick={()=> navigate("./faq")}>View the FAQ</button>
-        <button className="button is-info is-outlined" onClick={()=> navigate("./contact")}>Contact</button>
+        <button
+          className={
+            activeButton === "faqButton"
+              ? "button is-info"
+              : "button is-info is-outlined"
+          }
+          onClick={handleFaqButton}
+        >View the FAQ
+        </button>
+        <button
+          className={
+            activeButton === "contactButton"
+              ? "button is-info"
+              : "button is-info is-outlined"
+          }
+          onClick={handleContactButton}
+        >
+          Contact
+        </button>
       </div>
-      
+
       <Outlet />
       <MovieBar />
     </div>

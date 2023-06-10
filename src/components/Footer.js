@@ -26,7 +26,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link className="card-footer-item" to="help/faq">
+              <Link className="card-footer-item" to="faq">
                 Customer Service
               </Link>
             </li>

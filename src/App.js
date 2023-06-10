@@ -78,7 +78,7 @@ const router = createBrowserRouter(
         <Route path="profile" element={<Profile />} />
         <Route path="lostPassword" element={<LostPassword />} />
       </Route>
-      <Route path="help" element={<HelpLayout />}>
+      <Route element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />
         <Route
           path="contact"

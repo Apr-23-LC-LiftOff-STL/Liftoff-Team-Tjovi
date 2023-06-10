@@ -206,7 +206,7 @@ const NavBar = () => {
                 <Link className="navbar-item" to="/account/orders">
                   <FontAwesomeIcon icon={faHistory} /> &nbsp; Orders
                 </Link>
-                <Link className="navbar-item" to="/help/faq">
+                <Link className="navbar-item" to="faq">
                   <FontAwesomeIcon icon={faQuestion} /> &nbsp; Customer Service
                 </Link>
               </div>
