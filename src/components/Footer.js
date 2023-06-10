@@ -20,9 +20,14 @@ const Footer = () => {
         </p>
         <div className="tabs is-centered pr-5">
           <ul>
-            <li>
+          <li>
               <Link className="card-footer-item" to="/">
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link className="card-footer-item" to="help/faq">
+                Customer Service
               </Link>
             </li>
             <li>
@@ -31,8 +36,8 @@ const Footer = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink className="card-footer-item" to="help/faq">
-                Customer Service
+              <NavLink className="card-footer-item" to="admin">
+                Admin
               </NavLink>
             </li>
           </ul>

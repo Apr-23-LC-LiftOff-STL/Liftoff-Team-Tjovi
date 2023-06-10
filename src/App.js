@@ -9,34 +9,38 @@ import {
 import "bulma/css/bulma.min.css";
 
 // pages
-import Home from "./pages/Home";
 import About from "./pages/About";
-import Faq from "./pages/help/Faq";
+import Cart from "./pages/cart/Cart.js";
+import Checkout from "./pages/checkout/Checkout";
+import CheckoutFailure from "./pages/checkout/CheckoutSuccess";
+import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import Contact, { contactAction } from "./pages/help/Contact";
-import ChatBot, { chatAction } from "./components/Chat/ChatBot"
+import Faq from "./pages/help/Faq";
+import Home from "./pages/Home";
 import Login from "./pages/account/Login";
-import Register from "./pages/account/Register";
 import NotFound from "./pages/NotFound";
+import NotFoundAdmin from "./pages/NotFound";
+import OrderHistory from "./pages/account/OrderHistory.js";
+import OrderHistoryAdmin from "./pages/account/OrderHistoryAdmin.js";
 import Products, { productsLoader } from "./pages/products/Products";
+import ProductsAdmin, { productsLoaderAdmin } from "./pages/products/Products";
 import ProductDetailsPage, {
   productDetailsLoader,
 } from "./pages/products/ProductDetailsPage";
+import ProductDetailsPageAdmin, {
+  productDetailsLoaderAdmin,
+} from "./pages/products/ProductDetailsPageAdmin";
 import ProductsError from "./pages/products/ProductsError";
-import OrderHistory from "./pages/account/OrderHistory.js";
 import Profile from "./pages/account/Profile.js";
-import Cart from "./pages/cart/Cart.js";
+import Register from "./pages/account/Register";
 
 // layouts
 import RootLayout from "./layouts/RootLayout";
 import GeneralLayout from "./layouts/GeneralLayout";
 import CartLayout from "./layouts/CartLayout";
 import HelpLayout from "./layouts/HelpLayout";
-
-// import { Elements } from "@stripe/react-stripe-js";
-// import { loadStripe } from "@stripe/stripe-js";
-import Checkout from "./pages/checkout/Checkout";
-import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
-import CheckoutFailure from "./pages/checkout/CheckoutSuccess";
+import AdminLayout from "./layouts/AdminLayout";
+import LostPassword from "./pages/account/LostPassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -67,29 +71,42 @@ const router = createBrowserRouter(
         <Route path="failure" element={<CheckoutFailure />} />
       </Route>
       <Route element={<GeneralLayout />}>
+        <Route path="about" element={<About />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="about" element={<About />} />
       </Route>
       <Route path="account" element={<GeneralLayout />}>
         <Route path="orders" element={<OrderHistory />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="lostPassword" element={<LostPassword />} />
       </Route>
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />
-        <Route path="contact" element={<Contact />} action={contactAction} />
+        <Route path="contact" element={<Contact />} /* action={contactAction} */ />
+      </Route>
+      <Route path="admin" element={<AdminLayout />}>
+
+        <Route path="orders" element={<OrderHistoryAdmin />} />
+        <Route
+          path="products"
+          element={<ProductsAdmin />}
+          loader={productsLoader}
+          errorElement={<ProductsError />}
+        />
+        <Route
+          path="products/:id"
+          element={<ProductDetailsPageAdmin />}
+          loader={productDetailsLoader}
+          errorElement={<ProductsError />}
+        />
       </Route>
     </Route>
   )
 );
 
 function App() {
-
-  return (
-   
-      <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

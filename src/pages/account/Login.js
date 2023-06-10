@@ -36,6 +36,14 @@ const Login = () => {
 
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   const forgotPassword = () => {
     setOpen(true);
     //navigate("/lostPassword");
