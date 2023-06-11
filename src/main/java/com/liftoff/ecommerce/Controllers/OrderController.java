@@ -25,9 +25,9 @@ public class OrderController {
     }
 
     @GetMapping("/history/{email}")
-    public ResponseEntity<?> returnAllCompletedOrdersByCustomer(@PathVariable String email){
+    public ResponseEntity<?> returnAllCompletedOrdersByCustomerId(@PathVariable String email){
         Customer customer = customerService.findCustomer(email);
-        return orderService.returnAllCompletedOrdersByCustomer(customer.getId());
+        return orderService.returnAllCompletedOrdersByCustomerId(customer.getId());
     }
 
     @GetMapping("/currentPurchase/{email}")

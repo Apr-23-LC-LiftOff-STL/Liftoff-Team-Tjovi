@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomerService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Service</a> &gt; <span class="el_source">CustomerService.java</span></div><h1>CustomerService.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Service;
+
+import com.liftoff.ecommerce.Models.Customer;
+import com.liftoff.ecommerce.Repositories.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+<span class="fc" id="L13">public class CustomerService {</span>
+
+    @Autowired
+    private ShoppingCartService shoppingCartService;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    public ResponseEntity&lt;?&gt; returnCustomerInformation(String email){
+<span class="nc" id="L22">        Customer customer = findCustomer(email);</span>
+<span class="nc" id="L23">        return new ResponseEntity&lt;&gt;(customer, HttpStatus.OK);</span>
+    }
+
+    public ResponseEntity&lt;?&gt; editCustomerInformation(String email, Customer customer){
+<span class="nc" id="L27">        Customer customerInformationToBeEdited = findCustomer(email);</span>
+
+<span class="nc" id="L29">        customerInformationToBeEdited.setEmail(customer.getEmail());</span>
+<span class="nc" id="L30">        customerInformationToBeEdited.setFirstName(customer.getFirstName());</span>
+<span class="nc" id="L31">        customerInformationToBeEdited.setLastName(customer.getLastName());</span>
+<span class="nc" id="L32">        customerInformationToBeEdited.setMobileNumber(customer.getMobileNumber());</span>
+<span class="nc" id="L33">        customerInformationToBeEdited.setStreetAddress(customer.getStreetAddress());</span>
+<span class="nc" id="L34">        customerInformationToBeEdited.setSuiteNumber(customer.getSuiteNumber());</span>
+<span class="nc" id="L35">        customerInformationToBeEdited.setCity(customer.getCity());</span>
+<span class="nc" id="L36">        customerInformationToBeEdited.setState(customer.getState());</span>
+<span class="nc" id="L37">        customerInformationToBeEdited.setZipCode(customer.getZipCode());</span>
+
+<span class="nc" id="L39">        customerRepository.save(customerInformationToBeEdited);</span>
+<span class="nc" id="L40">        return ResponseEntity.ok(HttpStatus.CREATED);</span>
+    }
+
+    public Customer findCustomer(String email){
+<span class="fc" id="L44">        List&lt;Customer&gt; customer = customerRepository.findByEmail(email);</span>
+<span class="fc" id="L45">        return customer.get(0);</span>
+    }
+
+    public void createNewCustomer(Customer customer){
+<span class="nc" id="L49">        customerRepository.save(customer);</span>
+<span class="nc" id="L50">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

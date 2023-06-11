@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JWTTokenGeneratorFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.filter</a> &gt; <span class="el_source">JWTTokenGeneratorFilter.java</span></div><h1>JWTTokenGeneratorFilter.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.filter;
+
+import com.liftoff.ecommerce.constants.SecurityConstants;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import javax.crypto.SecretKey;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+<span class="fc" id="L23">public class JWTTokenGeneratorFilter extends OncePerRequestFilter {</span>
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+<span class="nc" id="L28">        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (null != authentication) {</span>
+<span class="nc" id="L30">            SecretKey key = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes(StandardCharsets.UTF_8));</span>
+<span class="nc" id="L31">            String jwt = Jwts.builder().setIssuer(&quot;MovieDL&quot;).setSubject(&quot;JWT Token&quot;)</span>
+<span class="nc" id="L32">                    .claim(&quot;username&quot;, authentication.getName())</span>
+<span class="nc" id="L33">                    .claim(&quot;authorities&quot;, populateAuthorities(authentication.getAuthorities()))</span>
+<span class="nc" id="L34">                    .setIssuedAt(new Date())</span>
+<span class="nc" id="L35">                    .setExpiration(new Date((new Date()).getTime() + 300000000))</span>
+<span class="nc" id="L36">                    .signWith(key).compact();</span>
+<span class="nc" id="L37">            response.setHeader(SecurityConstants.JWT_HEADER, jwt);</span>
+<span class="nc" id="L38">            System.out.println(jwt);</span>
+        }
+
+<span class="nc" id="L41">        filterChain.doFilter(request, response);</span>
+<span class="nc" id="L42">    }</span>
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        return !request.getServletPath().equals(&quot;/user&quot;);</span>
+    }
+
+    private String populateAuthorities(Collection&lt;? extends GrantedAuthority&gt; collection) {
+<span class="nc" id="L50">        Set&lt;String&gt; authoritiesSet = new HashSet&lt;&gt;();</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (GrantedAuthority authority : collection) {</span>
+<span class="nc" id="L52">            authoritiesSet.add(authority.getAuthority());</span>
+<span class="nc" id="L53">        }</span>
+<span class="nc" id="L54">        return String.join(&quot;,&quot;, authoritiesSet);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

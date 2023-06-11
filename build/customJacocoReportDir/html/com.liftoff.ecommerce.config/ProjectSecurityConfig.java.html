@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjectSecurityConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.config</a> &gt; <span class="el_source">ProjectSecurityConfig.java</span></div><h1>ProjectSecurityConfig.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.config;
+
+import com.liftoff.ecommerce.filter.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+
+@EnableWebSecurity(debug=true)
+@Configuration
+<span class="fc" id="L25">public class ProjectSecurityConfig {</span>
+
+    @Bean
+    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+<span class="fc" id="L29">        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();</span>
+<span class="fc" id="L30">        requestHandler.setCsrfRequestAttributeName(&quot;_csrf&quot;);</span>
+<span class="fc" id="L31">        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()</span>
+<span class="fc" id="L32">            .cors().configurationSource(new CorsConfigurationSource() {</span>
+            @Override
+            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+<span class="fc" id="L35">                CorsConfiguration config = new CorsConfiguration();</span>
+<span class="fc" id="L36">                config.setAllowedOrigins(Collections.singletonList(&quot;http://localhost:3000&quot;));</span>
+<span class="fc" id="L37">                config.setAllowedMethods(Collections.singletonList(&quot;*&quot;));</span>
+<span class="fc" id="L38">                config.setAllowCredentials(true);</span>
+<span class="fc" id="L39">                config.setAllowedHeaders(Collections.singletonList(&quot;*&quot;));</span>
+<span class="fc" id="L40">                config.setExposedHeaders(Arrays.asList(&quot;Authorization&quot;));</span>
+<span class="fc" id="L41">                config.setMaxAge(3600L);</span>
+<span class="fc" id="L42">                return config;</span>
+            }
+<span class="fc" id="L44">                }).and().csrf().disable()</span>
+//                .csrf((csrf) -&gt; csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers(&quot;/register&quot;)
+//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+//                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+//                .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
+<span class="fc" id="L49">                .addFilterAt(new AuthoritiesLoggingAtFilter(),BasicAuthenticationFilter.class)</span>
+<span class="fc" id="L50">                .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)</span>
+<span class="fc" id="L51">                .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)</span>
+<span class="fc" id="L52">                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)</span>
+<span class="fc" id="L53">                .authorizeHttpRequests()</span>
+<span class="fc" id="L54">                        .requestMatchers(&quot;/user&quot;).authenticated()</span>
+<span class="fc" id="L55">                        .requestMatchers(&quot;/register&quot;, &quot;/movies&quot;, &quot;/*&quot;, &quot;/initialize/**&quot;, &quot;/cart/**&quot;, &quot;/profile/**&quot;, &quot;/movies/{id}&quot;, &quot;/order/**&quot;, &quot;/admin/**&quot;).permitAll()</span>
+<span class="fc" id="L56">                .and().formLogin()</span>
+<span class="fc" id="L57">                .and().httpBasic();</span>
+<span class="fc" id="L58">        return http.build();</span>
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+<span class="fc" id="L63">        return new BCryptPasswordEncoder();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

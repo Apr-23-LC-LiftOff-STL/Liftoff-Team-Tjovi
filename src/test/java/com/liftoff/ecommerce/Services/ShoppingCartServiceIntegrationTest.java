@@ -25,6 +25,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -102,7 +103,7 @@ class ShoppingCartServiceIntegrationTest {
     public void returnAllCartsTest() throws Exception{
         List<ShoppingCart> allShoppingCarts = (List<ShoppingCart>) shoppingCartService.returnAllCarts().getBody();
 
-        assert allShoppingCarts != null;
+        assertNotNull(allShoppingCarts);
         mockMvc.perform(get("/cart/returnAllCarts"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -121,7 +122,7 @@ class ShoppingCartServiceIntegrationTest {
     public void returnCartsByCustomerIdTest() throws Exception {
         List<ShoppingCart> allShoppingCartsByCustomer = (List<ShoppingCart>) shoppingCartService.returnCartsByCustomerId(testCustomer1.getId()).getBody();
 
-        assert allShoppingCartsByCustomer !=null;
+        assertNotNull(allShoppingCartsByCustomer);
         mockMvc.perform(get("/cart/returnAll/{email}", testCustomer1.getEmail()))
                 .andDo(print())
                 .andExpect(status().isOk())

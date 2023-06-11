@@ -57,10 +57,10 @@ public class OrderService {
             shoppingCartRepository.delete(currentCart);
         }
         newOrder.setTotalOrderQuantity(totalOrderQuantity);
-        setTotalOrderPrice(newOrder);
+        this.setTotalOrderPrice(newOrder);
         completedOrderRepository.save(newOrder);
 
-        return ResponseEntity.ok(HttpStatus.CREATED);
+        return new ResponseEntity<> (HttpStatus.CREATED);
     }
 
     public ResponseEntity<?> returnAllCompletedOrders(){
@@ -73,7 +73,7 @@ public class OrderService {
         }
     }
 
-    public ResponseEntity<?> returnAllCompletedOrdersByCustomer(Long customerId){
+    public ResponseEntity<?> returnAllCompletedOrdersByCustomerId(Long customerId){
         List<CompletedOrder> allCompletedCustomerOrders = completedOrderRepository.findByCustomerId(customerId);
 
         if(allCompletedCustomerOrders.isEmpty()){

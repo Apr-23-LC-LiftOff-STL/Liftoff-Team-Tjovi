@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CheckoutController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Controllers</a> &gt; <span class="el_source">CheckoutController.java</span></div><h1>CheckoutController.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Controllers;
+
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+
+import com.stripe.model.PaymentIntent;
+
+import com.stripe.param.PaymentIntentCreateParams;
+
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+@CrossOrigin(origins = &quot;http://localhost:3000&quot;)
+@RestController
+<span class="fc" id="L16">public class CheckoutController {</span>
+
+//    @Value(&quot;${stripeKey}&quot;)
+//    private String stripeKey;
+
+    @RequestMapping(&quot;/checkout&quot;)
+    public Map&lt;String,String&gt; checkout(@RequestParam Long amount) throws StripeException {
+
+
+
+
+<span class="nc" id="L27">        Stripe.apiKey = &quot;sk_test_51N8n2ODvHmrdraF8ov56fzzBxwokVlEvCMG8tHuBBZZCdWZT39hK9QYonV7aHiT0UwOUgsBgWTJOe97UgHBwxEoH000oqXg4Qu&quot;;</span>
+
+
+
+<span class="nc" id="L31">        PaymentIntentCreateParams params= PaymentIntentCreateParams.builder().setAmount(amount).setCurrency(&quot;usd&quot;).setAutomaticPaymentMethods(PaymentIntentCreateParams.AutomaticPaymentMethods.builder().setEnabled(true).build()).build();</span>
+
+<span class="nc" id="L33">        PaymentIntent paymentIntent = PaymentIntent.create(params);</span>
+<span class="nc" id="L34">        Map&lt;String,String&gt; map = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L35">        map.put(&quot;client_secret&quot;,paymentIntent.getClientSecret());</span>
+<span class="nc" id="L36">        return map;</span>
+    }
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

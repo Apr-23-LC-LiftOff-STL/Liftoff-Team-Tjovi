@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Customer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Models</a> &gt; <span class="el_source">Customer.java</span></div><h1>Customer.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Models;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name=&quot;customer&quot;)
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO,generator=&quot;native&quot;)
+    @GenericGenerator(name = &quot;native&quot;,strategy = &quot;native&quot;)
+    @Column(name = &quot;customer_id&quot;)
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
+
+    private String email;
+
+    @Column(name = &quot;mobile_number&quot;)
+    private String mobileNumber;
+
+    private String streetAddress;
+
+    private String suiteNumber;
+
+    private String city;
+
+    private String state;
+
+    private Long zipCode;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String pwd;
+
+    @JsonIgnore
+    private String role;
+
+    @Column(name = &quot;create_dt&quot;)
+    private String createDt;
+
+    @JsonIgnore
+    @OneToMany(mappedBy=&quot;customer&quot;,fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set&lt;Authority&gt; authorities;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = &quot;customer&quot;, fetch=FetchType.EAGER)
+    private Set&lt;ShoppingCart&gt; shoppingCart;
+
+<span class="fc" id="L57">    public Customer() {</span>
+<span class="fc" id="L58">    }</span>
+
+    public Customer(String firstName, String lastName, String email, String mobileNumber, String streetAddress,
+<span class="fc" id="L61">                    String suiteNumber, String city, String state, Long zipCode) {</span>
+<span class="fc" id="L62">        this.firstName = firstName;</span>
+<span class="fc" id="L63">        this.lastName = lastName;</span>
+<span class="fc" id="L64">        this.email = email;</span>
+<span class="fc" id="L65">        this.mobileNumber = mobileNumber;</span>
+<span class="fc" id="L66">        this.streetAddress = streetAddress;</span>
+<span class="fc" id="L67">        this.suiteNumber = suiteNumber;</span>
+<span class="fc" id="L68">        this.city = city;</span>
+<span class="fc" id="L69">        this.state = state;</span>
+<span class="fc" id="L70">        this.zipCode = zipCode;</span>
+<span class="fc" id="L71">    }</span>
+
+    public Long getId() {
+<span class="fc" id="L74">        return id;</span>
+    }
+
+    public void setId(Long id) {
+<span class="fc" id="L78">        this.id = id;</span>
+<span class="fc" id="L79">    }</span>
+
+    public String getFirstName() {
+<span class="fc" id="L82">        return firstName;</span>
+    }
+
+    public void setFirstName(String firstName) {
+<span class="nc" id="L86">        this.firstName = firstName;</span>
+<span class="nc" id="L87">    }</span>
+
+    public String getLastName() {
+<span class="fc" id="L90">        return lastName;</span>
+    }
+
+    public void setLastName(String lastName) {
+<span class="nc" id="L94">        this.lastName = lastName;</span>
+<span class="nc" id="L95">    }</span>
+
+    public String getEmail() {
+<span class="fc" id="L98">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="nc" id="L102">        this.email = email;</span>
+<span class="nc" id="L103">    }</span>
+
+    public String getMobileNumber() {
+<span class="fc" id="L106">        return mobileNumber;</span>
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+<span class="nc" id="L110">        this.mobileNumber = mobileNumber;</span>
+<span class="nc" id="L111">    }</span>
+
+    public String getStreetAddress() {
+<span class="fc" id="L114">        return streetAddress;</span>
+    }
+
+    public void setStreetAddress(String streetAddress) {
+<span class="nc" id="L118">        this.streetAddress = streetAddress;</span>
+<span class="nc" id="L119">    }</span>
+
+    public String getSuiteNumber() {
+<span class="fc" id="L122">        return suiteNumber;</span>
+    }
+
+    public void setSuiteNumber(String suiteNumber) {
+<span class="nc" id="L126">        this.suiteNumber = suiteNumber;</span>
+<span class="nc" id="L127">    }</span>
+
+    public String getCity() {
+<span class="fc" id="L130">        return city;</span>
+    }
+
+    public void setCity(String city) {
+<span class="nc" id="L134">        this.city = city;</span>
+<span class="nc" id="L135">    }</span>
+
+    public String getState() {
+<span class="fc" id="L138">        return state;</span>
+    }
+
+    public void setState(String state) {
+<span class="nc" id="L142">        this.state = state;</span>
+<span class="nc" id="L143">    }</span>
+
+    public Long getZipCode() {
+<span class="fc" id="L146">        return zipCode;</span>
+    }
+
+    public void setZipCode(Long zipCode) {
+<span class="nc" id="L150">        this.zipCode = zipCode;</span>
+<span class="nc" id="L151">    }</span>
+
+    public String getPwd() {
+<span class="nc" id="L154">        return pwd;</span>
+    }
+
+    public void setPwd(String pwd) {
+<span class="nc" id="L158">        this.pwd = pwd;</span>
+<span class="nc" id="L159">    }</span>
+
+    public String getRole() {
+<span class="nc" id="L162">        return role;</span>
+    }
+
+    public void setRole(String role) {
+<span class="nc" id="L166">        this.role = role;</span>
+<span class="nc" id="L167">    }</span>
+
+    public String getCreateDt() {
+<span class="fc" id="L170">        return createDt;</span>
+    }
+
+    public void setCreateDt(String createDt) {
+<span class="nc" id="L174">        this.createDt = createDt;</span>
+<span class="nc" id="L175">    }</span>
+
+    public Set&lt;Authority&gt; getAuthorities() {
+<span class="nc" id="L178">        return authorities;</span>
+    }
+
+    public void setAuthorities(Set&lt;Authority&gt; authorities) {
+<span class="nc" id="L182">        this.authorities = authorities;</span>
+<span class="nc" id="L183">    }</span>
+
+    public void addAuthority(Authority authority) {
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (this.authorities == null) {</span>
+<span class="nc" id="L187">            this.authorities = new HashSet&lt;&gt;();</span>
+        }
+<span class="nc" id="L189">        this.authorities.add(authority);</span>
+<span class="nc" id="L190">        authority.setCustomer(this);</span>
+<span class="nc" id="L191">    }</span>
+
+    public Set&lt;ShoppingCart&gt; getShoppingCart() {
+<span class="nc" id="L194">        return shoppingCart;</span>
+    }
+
+    public void setShoppingCart(Set&lt;ShoppingCart&gt; shoppingCart) {
+<span class="nc" id="L198">        this.shoppingCart = shoppingCart;</span>
+<span class="nc" id="L199">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

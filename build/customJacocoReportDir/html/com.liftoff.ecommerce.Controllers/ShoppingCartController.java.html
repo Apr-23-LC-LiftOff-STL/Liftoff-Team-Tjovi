@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShoppingCartController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Controllers</a> &gt; <span class="el_source">ShoppingCartController.java</span></div><h1>ShoppingCartController.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Controllers;
+
+import com.liftoff.ecommerce.Models.Customer;
+import com.liftoff.ecommerce.Models.ShoppingCart;
+import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
+import com.liftoff.ecommerce.Service.CustomerService;
+import com.liftoff.ecommerce.Service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
+@RestController
+@RequestMapping(&quot;/cart&quot;)
+<span class="fc" id="L18">public class ShoppingCartController {</span>
+
+    @Autowired
+    private ShoppingCartService shoppingCartService;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @GetMapping(&quot;/returnAllCarts&quot;)
+    public ResponseEntity&lt;?&gt; returnAllCarts(){
+<span class="fc" id="L28">        return shoppingCartService.returnAllCarts();</span>
+    }
+
+    @GetMapping(&quot;/returnAll/{email}&quot;)
+    public ResponseEntity&lt;?&gt; returnCartsByCustomer(@PathVariable String email){
+<span class="fc" id="L33">        Customer customer = customerService.findCustomer(email);</span>
+<span class="fc" id="L34">        return shoppingCartService.returnCartsByCustomerId(customer.getId());</span>
+    }
+
+    @PostMapping(&quot;/add/{email}&quot;)
+    public ResponseEntity&lt;?&gt; addToCart(@PathVariable String email, @RequestBody ShoppingCart shoppingCart) {
+<span class="fc" id="L39">        Customer customer = customerService.findCustomer(email);</span>
+<span class="fc" id="L40">        return shoppingCartService.createNewShoppingCart(customer, shoppingCart);</span>
+    }
+
+    // This is assuming Front End is sending the total count and not just the new movies needing to be added
+    @PutMapping(&quot;/edit/{email}&quot;)
+    public ResponseEntity&lt;?&gt; updateCartQuantity(@PathVariable String email, @RequestBody ShoppingCart shoppingCart){
+<span class="fc" id="L46">        Customer customer = customerService.findCustomer(email);</span>
+<span class="fc" id="L47">        return shoppingCartService.updateQuantityInCart(customer, shoppingCart);</span>
+    }
+
+    @DeleteMapping(&quot;/delete/{email}&quot;)
+    public ResponseEntity&lt;?&gt; removeItemFromCustomerCart(@PathVariable String email, @RequestBody ShoppingCart shoppingCart){
+<span class="fc" id="L52">        Customer customer = customerService.findCustomer(email);</span>
+<span class="fc" id="L53">        return shoppingCartService.removeItemFromCustomerCart(customer, shoppingCart);</span>
+    }
+
+    @DeleteMapping(&quot;/deleteAll/{email}&quot;)
+    public ResponseEntity&lt;?&gt; removeAllItemsFromCartByCustomer(@PathVariable String email){
+<span class="fc" id="L58">        Customer customer = customerService.findCustomer(email);</span>
+<span class="fc" id="L59">        return shoppingCartService.removeAllItemsFromCartByCustomer(customer);</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
