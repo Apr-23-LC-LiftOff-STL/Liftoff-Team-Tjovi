@@ -10,7 +10,6 @@ import { useMovieCountStore } from "../../store/movieCountStore";
 const CustomSelect = styled(Select)({
   color: 'hsl(0, 0%, 48%)',
   fontSize: '12px',
-  maxHeight: '38px',
 });
 
 export default function MovieCardsPerPageSelect() {

@@ -15,7 +15,6 @@ const SortOptions = () => {
   const setSortOptions = useSortStore((state) => state.setSortOptions);
 
   useEffect(() => {
-    // This will be executed whenever the "sort" state changes
     setSortOptions(sort);
   }, [sort, setSortOptions]);
 
@@ -25,11 +24,12 @@ const SortOptions = () => {
   };
 
   return (
-    <div style={{paddingLeft: '2px'}}>
+    <div className="ml-6" style={{marginRight: "-30px", marginBottom: "-10px"}}>
+    <div>
         <FormControl name="radioSort">
-        <FormLabel id="radio-buttons-sort-options" style={{ color: "hsl(0, 0%, 48%)", fontSize: "13px" }}>
+        <FormLabel id="radio-buttons-sort-options" style={{ color: "hsl(0, 0%, 48%)", fontSize: "12px" }}>
         </FormLabel>
-            <RadioGroup row defaultValue="title,ASC">
+        <RadioGroup sx={{ flexDirection: "row" }} defaultValue="title,ASC">
 
               <FormControlLabel
                 name="radioSort"
@@ -40,6 +40,7 @@ const SortOptions = () => {
                     onChange={handleChange}
                     value="title,ASC"
                     size="small"
+                    sx={{ marginLeft: '-4px', marginRight: '-4px' }}
                   />
                 }
                 label={
@@ -56,6 +57,7 @@ const SortOptions = () => {
                     onChange={handleChange}
                     value="title,DESC"
                     size="small"
+                    sx={{ marginLeft: '-4px', marginRight: '-4px' }}
                   />
                 }
                 label={
@@ -72,6 +74,7 @@ const SortOptions = () => {
                     onChange={handleChange}
                     value="price,ASC"
                     size="small"
+                    sx={{ marginLeft: '-4px', marginRight: '-4px' }}
                   />
                 }
                 label={
@@ -88,6 +91,7 @@ const SortOptions = () => {
                     onChange={handleChange}
                     value="price,DESC"
                     size="small"
+                    sx={{ marginLeft: '-4px', marginRight: '-4px' }}
                   />
                 }
                 label={
@@ -104,11 +108,12 @@ const SortOptions = () => {
                     onChange={handleChange}
                     value="releaseDate,DESC"
                     size="small"
+                    sx={{ marginLeft: '-4px', marginRight: '-4px' }}
                   />
                 }
                 label={
                   <span style={{ color: "hsl(0, 0%, 48%)", fontSize: "12px" }}>
-                    New-Old
+                    New
                   </span>
                 }
               />
@@ -122,16 +127,18 @@ const SortOptions = () => {
                     onChange={handleChange}
                     value="releaseDate,ASC"
                     size="small"
+                    sx={{ marginLeft: '-4px', marginRight: '-4px' }}
                   />
                 }
                 label={
                   <span style={{ color: "hsl(0, 0%, 48%)", fontSize: "12px" }}>
-                    Old-New
+                    Old
                   </span>
                 }
               />
             </RadioGroup>
         </FormControl>
+      </div>
       </div>
   );
 };

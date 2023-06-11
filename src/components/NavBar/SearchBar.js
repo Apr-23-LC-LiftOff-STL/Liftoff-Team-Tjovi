@@ -34,7 +34,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div style={{maxWidth: '428px'}}>
+    <div>
       <div className="navbar-item">
         <div className="control has-icons-left has-icons-right">
           <input

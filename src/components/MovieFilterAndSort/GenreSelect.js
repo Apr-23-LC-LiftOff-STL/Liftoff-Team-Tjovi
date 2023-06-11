@@ -88,7 +88,7 @@ const GenreSelect = () => {
 
   return (
     <div>
-      <div className="genre-select-main mt-1" style={{width: '355px'}}>
+      <div className="genre-select-main mt-1" style={{minWidth: '20rem'}}>
         <Select
           closeMenuOnSelect={false}
           styles={styles}
