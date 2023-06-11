@@ -266,7 +266,7 @@ const Login = () => {
             Lost password feature under construction. Please contact your
             network administrator.
             <br></br>
-            <p className="has-text-centered"><img src={underConstruction} /></p>
+            <p className="has-text-centered"><img src={underConstruction} style={{maxWidth: '150px'}}/></p>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
