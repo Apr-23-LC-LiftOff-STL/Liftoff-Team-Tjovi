@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { Pagination } from "@mui/material";
+import axios from "axios";
+import ProductsAdminDialogDelete from "./ProductsAdminDialogDelete";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,9 +12,13 @@ import {
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { useMovieCountStore } from "../../store/movieCountStore";
+
 export default function ProductsAdmin() {
   const products = useLoaderData();
   const navigate = useNavigate();
+
+  const movieCountGlobal = useMovieCountStore((state) => state.movieCountGlobal);
 
   const [sortedProducts, setSortedProducts] = useState(products.content);
   const [sortFirstLastFlag, setSortFirstLastFlag] = useState(false);
@@ -25,7 +31,7 @@ export default function ProductsAdmin() {
     setSortedProducts(products.content.slice(0, productsPerPage));
   }, [products]);
 
-  const productsPerPage = 5000;
+  const productsPerPage = movieCountGlobal;
 
   console.log(JSON.stringify(products.content));
 
@@ -33,6 +39,23 @@ export default function ProductsAdmin() {
 
   const handleNavigate = (id) => {
     navigate("./" + id);
+  };
+
+ const ConfirmAlert = (id) => {
+      if (window.confirm("Are you sure you want to delete this item?")) {
+        handleDelete(id);
+        alert("Item deleted successfully!");
+      } else {
+    }
+  }
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete("http://localhost:8080/admin/deleteMovie/" + id);
+      alert(id + " deleted from database");
+    } catch (error) {
+      console.log("Error deleting movie: ", error);
+    }
   };
 
   const handleChangePage = (event, value) => {
@@ -105,7 +128,7 @@ export default function ProductsAdmin() {
   return (
     <div>
       <div className="is-size-6 ml-6 mt-2">PRODUCT DASHBOARD</div>
-      <table className="table is-striped is-bordered my-2 mx-6 card">
+      <table className="table is-striped is-bordered my-2 mx-1 card">
         <thead className="has-background-grey-lighter">
           <tr>
             <th className="is-size-7 has-text-centered has-background-primary-light">
@@ -174,7 +197,7 @@ export default function ProductsAdmin() {
                     : handleSortByNumDesc("popularity")
                 }
               >
-                Pop. TMBD
+                Vote Avg
               </div>
             </th>
             <th>
@@ -190,6 +213,7 @@ export default function ProductsAdmin() {
                 Price $
               </div>
             </th>
+            <th className="is-size-7 has-text-centered">Poster Path</th>
             <th className="is-size-7 has-text-centered">Tagline</th>
             <th className="is-size-7">Overview</th>
           </tr>
@@ -197,12 +221,18 @@ export default function ProductsAdmin() {
         <tbody>
           {sortedProducts.map((product) => (
             <tr key={product.id}>
-              <td>
+              <td className="has-text-centered">
                 <div
-                  className="button is-small is-warning"
+                  className="button is-small is-rounded is-warning"
                   onClick={() => handleNavigate(product.id)}
                 >
                   EDIT
+                </div>
+                <div
+                  className="button is-small is-rounded is-danger"
+                  onClick={() => ConfirmAlert(product.id)}
+                >
+                  DEL
                 </div>
               </td>
               <td className="is-size-7 has-text-right">{product.id}</td>
@@ -211,10 +241,11 @@ export default function ProductsAdmin() {
                 {product.releaseDate}
               </td>
               <td className="is-size-7 has-text-right">{product.runtime}</td>
-              <td className="is-size-7 has-text-right">{product.popularity}</td>
+              <td className="is-size-7 has-text-right">{product.vote_average}</td>
               <td className="is-size-7 has-text-right">
                 {product?.price.toFixed(2)}
               </td>
+              <td className="is-size-7 has-text-right">{product.posterPath}</td>
               <td className="is-size-7 has-text-left">{product.tagline}</td>
               <td className="is-size-7 has-text-left">{product.overview}</td>
             </tr>
@@ -230,10 +261,11 @@ export default function ProductsAdmin() {
             <th className="is-size-7 has-text-centered">Title</th>
             <th className="is-size-7 has-text-centered">Rel. Date</th>
             <th className="is-size-7 has-text-centered">Runtime (min)</th>
-            <th className="is-size-7 has-text-centered">Pop. TMBD</th>
+            <th className="is-size-7 has-text-centered">Vote Avg</th>
             <th className="is-size-7 has-text-centered">Price</th>
+            <th className="is-size-7 has-text-centered">Poster Path</th>
             <th className="is-size-7 has-text-centered">Tagline</th>
-            <th className="is-size-7 has-text-centered">Overview</th>
+            <th className="is-size-7">Overview</th>
           </tr>
         </tfoot>
       </table>
@@ -246,7 +278,7 @@ export const productsLoaderAdmin = async (
   query = "",
   genres = [],
   pageNumber = 0,
-  productsPerPage = 822
+  productsPerPage = 15000
 ) => {
   const res = await fetch(
     `http://localhost:8080/movies?title=${encodeURIComponent(
