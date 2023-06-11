@@ -36,19 +36,24 @@ export default function AdminLayout() {
     navigate("orders");
   };
 
+  const handleAdminButton = () => {
+    setActiveButton("adminButton");
+    navigate("../admin");
+  };
+
   useEffect(() => {
     if (location.pathname === "/admin") {
-      setActiveButton(null);
+      setActiveButton("adminButton");
     }
   }, [location]);
 
-  if (!isAdmin) {
-    return (
-      <div>
-        <Login />
-      </div>
-    );
-  }
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
 
   return (
     <div>
@@ -56,6 +61,18 @@ export default function AdminLayout() {
         <div class="field is-grouped is-grouped-left">
           <p class="control">
             <div className="title is-4 has-text-danger pb-1">ADMIN PORTAL</div>
+          </p>
+          <p class="control">
+            <div
+              className={
+                activeButton === "adminButton"
+                  ? "button is-small is-info"
+                  : "button is-small"
+              }
+              onClick={handleAdminButton}
+            >
+              ADMIN HOME
+            </div>
           </p>
           <p class="control">
             <div
@@ -78,18 +95,16 @@ export default function AdminLayout() {
               }
               onClick={handleProductsButton}
             >
-              PRODUCT EDIT
+              PRODUCT DASHBOARD
             </div>
           </p>
         </div>
       </div>
-      {!activeButton ? (
-        <div className="section is-small is-size-6">
-          Please select one of the above options.
-        </div>
-      ) : (
-        <Outlet />
-      )}
+      {activeButton === "adminButton" && <div><div className="mx-6 mt-2">Welcome to the Admin Portal. Please select an option from the menu above.
+          </div><div className="section is-large"></div></div>
+          
+        }
+      <Outlet />
     </div>
   );
 }

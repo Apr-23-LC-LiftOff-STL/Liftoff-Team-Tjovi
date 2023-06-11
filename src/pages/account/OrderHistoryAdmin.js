@@ -94,6 +94,7 @@ export default function OrderHistoryAdmin() {
   return (
     <div>
       <div>
+      <div className="is-size-6 ml-6 mt-2 mb-2">ORDER REVIEW</div>
         <div className="columns">
           <div className="column"></div>
           <div className="column is-two-thirds mx-4">

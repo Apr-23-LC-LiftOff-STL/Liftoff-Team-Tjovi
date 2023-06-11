@@ -37,3 +37,7 @@
 .cart-sidebar-content {
   display: inline-block;
 }
+
+.thick-hr {
+  border-width: 3px;
+}

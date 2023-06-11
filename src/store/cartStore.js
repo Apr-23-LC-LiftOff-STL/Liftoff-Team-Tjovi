@@ -22,7 +22,7 @@ export const useCartStore = create(
       },
 
       emptyCartStateOnly: async () => {
-        set({ cart: []});
+        set({ cart: [] });
       },
 
       incrementCartItem: async (id) => {
@@ -183,29 +183,28 @@ export const useCartStore = create(
           };
         }), */
 
-        emptyCart: async () => {
-          const token = localStorage.getItem("token");
-          if (token) {
-            const userData = jwtDecode(token);
-            const cartUser = userData.username;
-        
-            try {
-              await axios.delete(
-                "http://localhost:8080/cart/deleteAll/" + cartUser
-              );
-              console.log("emptyCart");
-              console.log(userData.username);
-        
-              set({ cart: [], cartUser: cartUser });
-            } catch (error) {
-              console.error("Error emptying cart:", error);
-              throw error; // Rethrow the error to handle it at the caller's end
-            }
+      emptyCart: async () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const userData = jwtDecode(token);
+          const cartUser = userData.username;
+
+          try {
+            await axios.delete(
+              "http://localhost:8080/cart/deleteAll/" + cartUser
+            );
+            console.log("emptyCart");
+            console.log(userData.username);
+
+          } catch (error) {
+            console.error("Error emptying cart:", error);
+            throw error;
           }
-        },
+        }
+        set({ cart: [] });
+      },
 
       getAndMergeCart: async () => {
-
         const { cart } = useCartStore.getState();
         const feCart = [...cart];
 
@@ -213,60 +212,58 @@ export const useCartStore = create(
         const userData = token ? jwtDecode(token) : null;
         const cartUser = userData?.username || useCartStore.getState().cartUser;
 
-          let combinedCart = [];
+        let combinedCart = [];
 
-          if (feCart.length > 0) {
-            combinedCart = feCart;
+        if (feCart.length > 0) {
+          combinedCart = feCart;
 
-            try {
-              // Repopulate the cart in the database
-              await useCartStore.getState().emptyCart(); // Call emptyCart and wait for it to finish
-              await Promise.all(
-                combinedCart.map(async (cartItem) => {
-                  try {
-                    await axios.post(
-                      "http://localhost:8080/cart/add/" + cartUser,
-                      { movieId: cartItem.id, quantity: cartItem.count }
-                    );
-                    console.log(cartItem.id);
-                    console.log(cartItem.count);
-                  } catch (error) {
-                    console.error("Error posting cart item:", error);
-                  }
-                })
-              );
-            } catch (error) {
-              console.error("Error getting cart:", error);
-            }
-          }
-
-          // Get the updated cart from the database
           try {
-            const response = await axios.get(
-              "http://localhost:8080/cart/returnAll/" + cartUser
+            // Repopulate the cart in the database
+            await useCartStore.getState().emptyCart(); // Call emptyCart and wait for it to finish
+            await Promise.all(
+              combinedCart.map(async (cartItem) => {
+                try {
+                  await axios.post(
+                    "http://localhost:8080/cart/add/" + cartUser,
+                    { movieId: cartItem.id, quantity: cartItem.count }
+                  );
+                  console.log(cartItem.id);
+                  console.log(cartItem.count);
+                } catch (error) {
+                  console.error("Error posting cart item:", error);
+                }
+              })
             );
-            const cartData = response.data;
-
-            const updatedCart = cartData.map(({ movieId, quantity }) => ({
-              id: movieId,
-              count: quantity,
-            }));
-
-            console.log(JSON.stringify(updatedCart));
-
-            // Update the state immediately
-            set({
-              cart: updatedCart,
-              cartUser: useCartStore.getState().cartUser,
-            });
           } catch (error) {
-            console.error("Error setting cart state:", error);
+            console.error("Error getting cart:", error);
           }
+        }
+
+        // Get the updated cart from the database
+        try {
+          const response = await axios.get(
+            "http://localhost:8080/cart/returnAll/" + cartUser
+          );
+          const cartData = response.data;
+
+          const updatedCart = cartData.map(({ movieId, quantity }) => ({
+            id: movieId,
+            count: quantity,
+          }));
+
+          console.log(JSON.stringify(updatedCart));
+
+          // Update the state immediately
+          set({
+            cart: updatedCart,
+            cartUser: useCartStore.getState().cartUser,
+          });
+        } catch (error) {
+          console.error("Error setting cart state:", error);
+        }
       },
     }),
 
-
-    
     /*       fetchMovies: async () => {
         await fetch("http://localhost:8080/")
           .then((response) => response.json())
