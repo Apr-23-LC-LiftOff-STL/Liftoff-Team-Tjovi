@@ -87,8 +87,7 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
                   }}
                 />
               )}
-              <div>
-              </div>
+              <div></div>
             </div>
           </Fade>
           <Fade in timeout={500}>
@@ -131,22 +130,22 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
         </div>
       </td>
       <Dialog
-          open={open}
-          onClose={handleClose}
-          fullWidth={fullWidth}
-          maxWidth={maxWidth}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          {/*                     <DialogActions>
+        open={open}
+        onClose={handleClose}
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        {/*                     <DialogActions>
             <div className="button is-light m-2" onClick={handleClose}><FontAwesomeIcon icon={faX} /></div>
           </DialogActions> */}
-          <DialogTitle id="alert-dialog-title"></DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description"></DialogContentText>
-            <ProductDetailsDialog id={movieId} handleCloseDialog={handleClose} />
-          </DialogContent>
-        </Dialog>
+        <DialogTitle id="alert-dialog-title"></DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description"></DialogContentText>
+          <ProductDetailsDialog id={movieId} handleCloseDialog={handleClose} />
+        </DialogContent>
+      </Dialog>
     </tr>
   );
 };
