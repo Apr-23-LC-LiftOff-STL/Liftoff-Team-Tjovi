@@ -54,16 +54,17 @@ function MovieCards() {
 
   useEffect(() => {
     fetchMovies(searchTerm, selectedGenres, page);
+
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "instant",
     });
-  }, [searchTerm, selectedGenres, sortOptions, page, moviesPerPageGlobal]);
+  }, [searchTerm, selectedGenres, sortOptions, moviesPerPageGlobal, page]);
 
   useEffect(() => {
     setPage(0);
-  }, [moviesPerPageGlobal]);
+  }, [searchTerm, selectedGenres, sortOptions, moviesPerPageGlobal]);
 
   const handleChangePage = (event, value) => {
     setPage(value - 1);
