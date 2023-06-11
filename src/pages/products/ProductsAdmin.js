@@ -19,15 +19,15 @@ export default function ProductsAdmin() {
   const navigate = useNavigate();
 
   const movieCountGlobal = useMovieCountStore((state) => state.movieCountGlobal);
+  const setMovieCountGlobal = useMovieCountStore((state) => state.setMovieCountGlobal);
 
   const [sortedProducts, setSortedProducts] = useState(products.content);
   const [sortFirstLastFlag, setSortFirstLastFlag] = useState(false);
   const [page, setPage] = useState(0);
-  const [totalElements, setTotalElements] = useState();
 
   useEffect(() => {
     setPage(0);
-    setTotalElements(products.content.length);
+    setMovieCountGlobal(products.content.length);
     setSortedProducts(products.content.slice(0, productsPerPage));
   }, [products]);
 
@@ -41,17 +41,10 @@ export default function ProductsAdmin() {
     navigate("./" + id);
   };
 
-  const confirmAlert = (id) => {
-    if (window.confirm("Delete product ID # " + id + " ?")) {
-      handleDelete(id);
-    } else {
-    }
-  };
-
   const handleDelete = async (id) => {
     try {
       await axios.delete("http://localhost:8080/admin/deleteMovie/" + id);
-      alert(id + " deleted from database");
+      alert("ID # " + id + " deleted from database");
       navigate(0);
     } catch (error) {
       console.log("Error deleting movie: ", error);
@@ -132,7 +125,7 @@ export default function ProductsAdmin() {
         <thead className="has-background-grey-lighter">
           <tr>
             <th className="is-size-7 has-text-centered has-background-primary-light">
-              <p>{totalElements}</p>
+              <p>{movieCountGlobal}</p>
               <p>Ct.</p>
             </th>
             <th>
@@ -230,7 +223,7 @@ export default function ProductsAdmin() {
                 </div>
                 <div
                   className="button is-small is-rounded is-danger"
-                  onClick={() => confirmAlert(product.id)}
+                  onClick={() => handleDelete(product.id)}
                 >
                   DEL
                 </div>
@@ -254,7 +247,7 @@ export default function ProductsAdmin() {
         <tfoot className="has-background-grey-lighter">
           <tr>
             <th className="is-size-7 has-text-centered has-background-primary-light">
-              <p>{totalElements}</p>
+              <p>{movieCountGlobal}</p>
               <p>Ct.</p>
             </th>
             <th className="is-size-7 has-text-centered">ID</th>

@@ -16,6 +16,7 @@ export default function AdminProductDetails() {
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
   const [isAdmin, setIsAdmin] = useState(false);
+  const [productNotFound, setProductNotFound] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -34,12 +35,15 @@ export default function AdminProductDetails() {
         });
         if (response.data) {
           setProduct(response.data);
+          setProductNotFound(false);
+        } else {
+          setProductNotFound(true);
         }
       } catch (error) {
         navigate("/login");
       }
     };
-
+  
     fetchProduct();
   }, [id, navigate, isAdmin]);
 
@@ -76,17 +80,17 @@ export default function AdminProductDetails() {
     }));
   };
 
-  const confirmAlert = (id) => {
+  /*   const confirmAlert = (id) => {
     if (window.confirm("Delete product ID # " + id + " ?")) {
       handleDelete(id);
     } else {
     }
-  };
+  }; */
 
   const handleDelete = async (id) => {
     try {
       await axios.delete("http://localhost:8080/admin/deleteMovie/" + id);
-      alert(id + " deleted from database");
+      alert("ID # " + id + " deleted from database");
       navigate(-1);
     } catch (error) {
       console.log("Error deleting movie: ", error);
@@ -103,7 +107,7 @@ export default function AdminProductDetails() {
     <form onSubmit={handleFormSubmit}>
       <div className="field">
         <label className="label">
-          Title:
+          title
           <div className="control">
             <input
               className="input"
@@ -117,38 +121,48 @@ export default function AdminProductDetails() {
         </label>
       </div>
       <p>
-        <label>
-          Price:
+      <label className="label">
+          price
+          <div className="control">
           <input
+          className="input"
             type="number"
             name="price"
             value={product.price}
             onChange={handleInputChange}
             required
           />
+          </div>
         </label>
+
       </p>
-      <label>
-        Overview:
-        <input
+      <label className="label">
+          overview
+          <div className="control">
+          <input
+          className="input"
           type="text"
           name="overview"
           value={product.overview}
           onChange={handleInputChange}
           required
         />
+        </div>
       </label>
-      <label>
-        Poster Path:
-        <input
+      <label className="label">
+          posterPath
+          <div className="control">
+          <input
+          className="input"
           type="text"
           name="posterPath"
           value={product.posterPath}
           onChange={handleInputChange}
           required
         />
+        </div>
       </label>
-      <input type="submit" value="Update Product" />
+      <input className="button is-warning" type="submit" value="Update Product" />
     </form>
   );
 
@@ -156,10 +170,10 @@ export default function AdminProductDetails() {
     <div>
       <div className="is-size-6 ml-6 mt-2 mb-2">
         PRODUCT ID #{" "}
-        <span className="has-text-weight-semibold">{product.id}</span>
+        <span className="has-text-weight-semibold">{id}</span>
       </div>
-      <div class="field is-grouped ml-6">
-        <p class="control">
+      <div className="field is-grouped ml-6">
+        <p className="control">
           <div
             className="button is-small is-info"
             onClick={() => navigate("/admin/products")}
@@ -167,7 +181,7 @@ export default function AdminProductDetails() {
             Back to Products
           </div>
         </p>
-        <p class="control">
+        <p className="control">
           <a
             className="button is-small is-info is-light is-outlined"
             onClick={() => navigate(`../products/${prevProductId}`)}
@@ -175,7 +189,7 @@ export default function AdminProductDetails() {
             <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; ID # {prevProductId}
           </a>
         </p>
-        <p class="control">
+        <p className="control">
           <a
             className="button is-small is-info is-light is-outlined"
             onClick={() => navigate(`../products/${nextProductId}`)}
@@ -184,105 +198,59 @@ export default function AdminProductDetails() {
           </a>
         </p>
       </div>
-      <div className="columns is-centered mb-6">
-        <div className="column">
-          <div
-            className="card is-horizontal shadow-xl transform is-duration-100"
-            style={{
-              borderStyle: "solid",
-              borderColor: "lightgray",
-              borderWidth: "1px",
-            }}
-          >
-            <div className="card-image p-4">
-              <Fade in timeout={500}>
-                <figure className="image">
-                  <img
-                    src={`${baseImgUrl}${product.posterPath}`}
-                    alt={`Poster for ${product.title}`}
-                    style={{
-                      borderStyle: "solid",
-                      borderColor: "lightgray",
-                      borderWidth: "1px",
-                    }}
-                  ></img>
-                </figure>
-              </Fade>
-            </div>
-            <div className="card-content p-4 is-flex is-flex-direction-column">
-              <div className="content p-4 has-text-weight-normal">
-                {isAdmin && (
-                  <form onSubmit={handleFormSubmit}>
-                    <label className="label">
-                      Title:
-                      <input
-                        className="input"
-                        type="text"
-                        name="title"
-                        value={product.title}
-                        onChange={handleInputChange}
-                        required
-                        readOnly
-                      />
-                    </label>
-                    <label className="label">
-                      Price:
-                      <input
-                        className="input"
-                        type="number"
-                        name="price"
-                        value={product.price}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </label>
-                    <label className="label">
-                      Overview:
-                      <textarea
-                        className="textarea"
-                        name="overview"
-                        value={product.overview}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </label>
-                    <label className="label">
-                      Poster Path:
-                      <input
-                        className="input"
-                        type="text"
-                        name="posterPath"
-                        value={product.posterPath}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </label>
-                    <p class="control">
-                      <button
-                        className="button is-small is-warning"
-                        type="submit"
-                        value="Update Product"
-                      >
-                        Update Product
-                      </button>
-                    </p>
-                  </form>
-                )}
-                <hr></hr>
-                <p class="control">
-                  <button
-                    className="button is-small is-danger"
-                    onClick={() => confirmAlert(product.id)}
-                    value="Update Product"
-                  >
-                    Delete Product
-                  </button>
-                </p>
+      {!productNotFound ? (
+        <div className="columns is-centered mb-6 px-6">
+          <div className="column">
+            <div
+              className="card is-horizontal shadow-xl transform is-duration-100"
+              style={{
+                borderStyle: "solid",
+                borderColor: "lightgray",
+                borderWidth: "1px",
+              }}
+            >
+              <div className="card-image p-4" style={{maxWidth: '500px'}}>
+                <Fade in timeout={500}>
+                  <figure className="image">
+                    <img
+                      src={`${baseImgUrl}${product.posterPath}`}
+                      alt={`Poster for ${product.title}`}
+                      style={{
+                        borderStyle: "solid",
+                        borderColor: "lightgray",
+                        borderWidth: "1px",
+                      }}
+                    ></img>
+                  </figure>
+                </Fade>
+              </div>
+              <div className="card-content p-4 is-flex is-flex-direction-column">
+                <div className="content p-4 has-text-weight-normal">
+                  {isAdmin && renderAdminForm()}
+                  <hr></hr>
+                  <p className="control">
+                    <button
+                      className="button is-small is-danger"
+                      onClick={() => handleDelete(product.id)}
+                      value="Update Product"
+                    >
+                      Delete Product
+                    </button>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        ) : (
+        <Fade in timeout={500}>
+        <div className="pl-6">
+          <h2 className="has-text-danger">Product Not Found</h2>
+          <p>Product ID # {id} was not found.</p>
+          <div className="section is-medium"></div>
+        </div>
+        </Fade>
+      )}
     </div>
   );
 }
