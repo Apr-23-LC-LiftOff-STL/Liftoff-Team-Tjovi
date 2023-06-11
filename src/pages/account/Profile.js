@@ -81,7 +81,8 @@ export default function Profile(props) {
       if (response.status === 200 || response.status === 201) {
         setDisabled(true);
         handleClose();
-        toast.success("Your profile was successfully updated!");
+        toast.success("Your profile was successfully updated!",{autoClose: 2000});
+        setTimeout(() => navigate("/"), 3000);
       } else {
         throw new Error(`Request failed: ${response.status}`);
       }
@@ -158,7 +159,6 @@ export default function Profile(props) {
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-    // Form is valid if there are no errors
   }
 
   useEffect(() => {
