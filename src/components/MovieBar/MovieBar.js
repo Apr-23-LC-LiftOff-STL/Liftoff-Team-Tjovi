@@ -67,18 +67,17 @@ function MovieBar() {
           <div className="movie-bar">
             {movies.map((movie) => (
               <div key={movie.id}>
-                <a href={`${baseProductUrl}${movie.id}`}>
                   <MovieBarCard
+                    id={movie.id}
                     price={movie.price}
                     title={movie.title}
                     posterPath={movie.posterPath}
                   />
-                </a>
               </div>
             ))}
           </div>
         ) : (
-          <div>Loading movies...</div>
+          <div className="mx-6 my-2">Loading movies...</div>
         )}
       </div>
     </div>

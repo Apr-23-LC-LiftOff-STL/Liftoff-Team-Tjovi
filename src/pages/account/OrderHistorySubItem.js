@@ -4,6 +4,12 @@ import posterNA from "./posterNA.jpg";
 import axios from "axios";
 import "./OrderHistory.css";
 import DownloadDialog from "./DownloadDialog";
+import ProductDetailsDialog from "../products/ProductDetailsDialog";
+
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +17,9 @@ import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
 const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
   const [productData, setProductData] = useState();
   const [showDialog, setShowDialog] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [fullWidth, setFullWidth] = useState(true);
+  const [maxWidth, setMaxWidth] = useState("lg");
 
   const baseImgUrl = "https://image.tmdb.org/t/p/w300";
   const baseProductUrl = "/products/";
@@ -45,13 +54,26 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
     return text;
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <tr>
       <td>
-      <a href={`${baseProductUrl}${movieId}`}>
+        <div onClick={handleClickOpen}>
           <Fade in timeout={500}>
             <div
-              style={{ maxWidth: "80px", minWidth: "60px", marginLeft: "auto", marginRight: "auto" }}
+              style={{
+                maxWidth: "80px",
+                minWidth: "60px",
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
             >
               {productData?.posterPath && (
                 <img
@@ -65,11 +87,17 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
                   }}
                 />
               )}
+              <div></div>
             </div>
           </Fade>
           <Fade in timeout={500}>
-          <div
-              style={{ maxWidth: "80px", minWidth: "60px", marginLeft: "auto", marginRight: "auto" }}
+            <div
+              style={{
+                maxWidth: "80px",
+                minWidth: "60px",
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
             >
               {!productData?.posterPath && (
                 <img
@@ -85,18 +113,11 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
               )}
             </div>
           </Fade>
-        </a>
-
+        </div>
       </td>
-
       <td className="has-text-centered">
-      <a href={`${baseProductUrl}${movieId}`}>
-          {createShortcut(productData?.title, 30)}
-        </a>
-        {" "}
-
+        {createShortcut(productData?.title, 30)}
       </td>
-
       <td className="has-text-right">
         {currencySymbol}
         {(totalPrice / count).toFixed(2)}
@@ -108,6 +129,23 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
           <DownloadDialog />
         </div>
       </td>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        {/*                     <DialogActions>
+            <div className="button is-light m-2" onClick={handleClose}><FontAwesomeIcon icon={faX} /></div>
+          </DialogActions> */}
+        <DialogTitle id="alert-dialog-title"></DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description"></DialogContentText>
+          <ProductDetailsDialog id={movieId} handleCloseDialog={handleClose} />
+        </DialogContent>
+      </Dialog>
     </tr>
   );
 };

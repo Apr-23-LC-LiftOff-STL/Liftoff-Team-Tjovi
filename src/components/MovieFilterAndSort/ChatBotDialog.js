@@ -33,7 +33,12 @@ export default function FormDialog() {
       >
         AI Assistant &nbsp; <FontAwesomeIcon icon={faRobot} />
       </div>
-      <Dialog open={openChatBot} onClose={handleCloseChatBot} fullWidth maxWidth="md">
+      <Dialog
+        open={openChatBot}
+        onClose={handleCloseChatBot}
+        fullWidth
+        maxWidth="md"
+      >
         <DialogTitle>
           <img src={logo125}></img>
         </DialogTitle>

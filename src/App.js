@@ -25,9 +25,9 @@ import Products, { productsLoader } from "./pages/products/Products";
 import ProductsAdmin, {
   productsLoaderAdmin,
 } from "./pages/products/ProductsAdmin";
-import ProductDetailsPage, {
+/* import ProductDetailsPage, {
   productDetailsLoader,
-} from "./pages/products/ProductDetailsPage";
+} from "./pages/products/ProductDetailsPage"; */
 import ProductDetailsPageAdmin, {
   productDetailsLoaderAdmin,
 } from "./pages/products/ProductDetailsPageAdmin";
@@ -47,20 +47,18 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
-
-        <Route
-          index
-          element={<Products />}
-          loader={productsLoader}
-          errorElement={<ProductsError />}
-        />
-        <Route
-          path="products/:id"
-          element={<ProductDetailsPage />}
-          loader={productDetailsLoader}
-          errorElement={<ProductsError />}
-        />
-
+{/*       <Route
+        index
+        element={<Products />}
+        loader={productsLoader}
+        errorElement={<ProductsError />}
+      />
+      <Route
+        path="products/:id"
+        element={<ProductDetailsPage />}
+        loader={productDetailsLoader}
+        errorElement={<ProductsError />}
+      /> */}
       <Route element={<CartLayout />}>
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
@@ -85,7 +83,7 @@ const router = createBrowserRouter(
           element={<Contact />} /* action={contactAction} */
         />
       </Route>
-      <Route path="admin" element={<AdminLayout />} >
+      <Route path="admin" element={<AdminLayout />}>
         <Route path="orders" element={<OrderHistoryAdmin />} />
         <Route
           path="products"
@@ -99,7 +97,7 @@ const router = createBrowserRouter(
           loader={productDetailsLoaderAdmin}
           errorElement={<ProductsError />}
         />
-        </Route>
+      </Route>
     </Route>
   )
 );

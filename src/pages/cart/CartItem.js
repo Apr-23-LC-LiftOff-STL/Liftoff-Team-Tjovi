@@ -17,6 +17,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import ProductDetailsDialog from "../products/ProductDetailsDialog";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
 
@@ -30,6 +31,8 @@ const CartItemNEW = ({
   subtotal,
 }) => {
   const [open, setOpen] = useState(false);
+  const [fullWidth, setFullWidth] = useState(true);
+  const [maxWidth, setMaxWidth] = useState("lg");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -86,12 +89,12 @@ const CartItemNEW = ({
             }}
           >
             <figure className="cart-item-img" style={{ flex: '1' }}>
-              <a href={`${baseProductUrl}${id}`}>
+              <div onClick={handleClickOpen}>
                 <img
                   src={`${baseImgUrl}${posterPath}`}
                   alt={`Poster for ${title}`}
                 ></img>
-              </a>
+              </div>
             </figure>
 
             <div className="px-4" style={{ flex: 1 }}>
@@ -202,6 +205,23 @@ const CartItemNEW = ({
               </button>
             </DialogActions>
           </Dialog>
+          <Dialog
+          open={open}
+          onClose={handleClose}
+          fullWidth={fullWidth}
+          maxWidth={maxWidth}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          {/*                     <DialogActions>
+            <div className="button is-light m-2" onClick={handleClose}><FontAwesomeIcon icon={faX} /></div>
+          </DialogActions> */}
+          <DialogTitle id="alert-dialog-title"></DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description"></DialogContentText>
+            <ProductDetailsDialog id={id} handleCloseDialog={handleClose} />
+          </DialogContent>
+        </Dialog>
     </div>
   );
 };

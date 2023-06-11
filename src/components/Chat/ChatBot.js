@@ -103,7 +103,7 @@ function ChatBot({ handleCloseChatBot }) {
       <div className="has-text-weight-semibold mx-4 pt-4">Your Question:</div>
       <div className="is-italic has-text-info mx-4">{lastUserInput}</div>
 
-      <div className="is-italic has-text-danger mx-4">
+      <div className="is-italic has-text-danger mx-4 mb-2">
         {errorMessage && (
           <Fade in timeout={500}>
             <p>{errorMessage}</p>
@@ -119,7 +119,7 @@ function ChatBot({ handleCloseChatBot }) {
           alignItems: "center",
         }}
       >
-        <div className="has-text-weight-semibold mx-4">
+        <div className="has-text-weight-semibold mx-4 mb-2">
           Response:{" "}
         </div>
         <div

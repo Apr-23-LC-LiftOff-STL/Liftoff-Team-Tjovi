@@ -1,6 +1,7 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
+import underConstruction from "./under-construction90s-90s.gif";
 
 import axios from "axios";
 
@@ -264,6 +265,8 @@ const Login = () => {
           <DialogContentText id="alert-dialog-description">
             Lost password feature under construction. Please contact your
             network administrator.
+            <br></br>
+            <p className="has-text-centered"><img src={underConstruction} style={{maxWidth: '150px'}}/></p>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
