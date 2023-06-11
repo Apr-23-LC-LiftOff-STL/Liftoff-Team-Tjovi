@@ -47,9 +47,6 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
   const baseImdbUrl = "https://www.imdb.com/title/";
 
-  const [cartMessage, setCartMessage] = useState("");
-  const [cartMessageStyle, setCartMessageStyle] = useState("");
-
   const [thisItemInCart, setThisItemInCart] = useState(
     cart.find((product) => product.id === id)?.count || 0
   );
@@ -147,44 +144,31 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                           "{product.tagline}"
                         </div>
                       )}
+                      <div
+                    className="button is-small is-fullwidth mr-2 mt-2"
+                    onClick={handleCloseDialog}
+                    style={{
+                      borderStyle: "solid",
+                      borderColor: "lightgray",
+                    }}
+                  >
+                    Close Window
+                  </div>
                     </figure>
                   </Fade>
                 </div>
                 <div className="card-content p-4 is-flex is-flex-direction-column">
                   <div className="content p-4 has-text-weight-normal">
                     <div>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          justifyContent: "flex-between",
-                        }}
-                      >
-                        <div
-                          className="has-text-left"
-                          style={{ flex: "0 0 auto" }}
-                        >
+                      <div>
+                        <div>
                           <div className="title is-size-3 is-italic">
                             {product.title}
                           </div>
                         </div>
-                        <div
-                          className="has-text-left"
-                          style={{ marginLeft: "auto" }}
-                        >
-                          <div
-                            className="button is-light"
-                            onClick={handleCloseDialog}
-                            style={{ flex: "0 0 auto" }}
-                          >
-                            <FontAwesomeIcon icon={faX} />
-                          </div>
-                        </div>
+                        <div className="has-text-left"></div>
                       </div>
-                      <div
-                        className="has-text-left mr-2"
-                        style={{ marginLeft: "auto" }}
-                      ></div>
+                      <div></div>
                     </div>
                     <br />
                     <div className="is-size-6 has-text-weight-normal is-italic p-2">
@@ -204,27 +188,49 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                     </p> */}
                     <div>
                       <span className="has-text-weight-semibold p-2">
-                        IMDB page:{" "}
-                      </span>
-                      <NavLink to={baseImdbUrl + product.imdbId}>
-                        {product.title}
-                      </NavLink>
-                    </div>
-                    <br />
-                    <div>
-                      <span className="has-text-weight-semibold p-2">
                         Runtime:{" "}
                       </span>
                       {product?.runtime} minutes
+                    </div>
+                    <div>
+                      <span className="has-text-weight-semibold p-2">
+                        Rating:
+                      </span>
+                      {product.vote_average}
+                    </div>
+                    <div>
+                      <span className="has-text-weight-semibold p-2">
+                        More info at
+                      </span>
+                      <NavLink to={baseImdbUrl + product.imdbId}>IMDB</NavLink>
+                    </div>
+                    <hr />
+                    <div className="pl-2">
+                      <span className="is-size-5 has-text-weight-semibold">
+                        Movie
+                        <span className="is-size-5 has-text-primary has-text-weight-bold">
+                          DL
+                        </span>{" "}
+                        price:
+                      </span>{" "}
+                      <span
+                        className="is-size-5 card p-2"
+                        style={{
+                          borderStyle: "solid",
+                          borderColor: "hsl(171, 100%, 41%)",
+                          color:
+                            product.price < 10 ? "hsl(348, 100%, 61%)" : "",
+                        }}
+                      >
+                        ${product.price.toFixed(2)}
+                      </span>
                     </div>
                   </div>
                   <div
                     className="content p-5 mb-2 mr-2 box is-shadowless has-background-light"
                     style={{ borderStyle: "solid", borderColor: "lightgray" }}
                   >
-                    <div className="columns pl-3">
-                      <div className="column is-4">
-                        {/*                       <div className="select" onChange={handleCartItemCountChange}>
+                    {/*                       <div className="select" onChange={handleCartItemCountChange}>
                         <select>
                           <option>0</option>
                           <option>1</option>
@@ -238,73 +244,52 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                           <option>9</option>
                         </select>
                       </div> */}
-                        <div className="is-size-5 has-text-weight-semibold">
-                          In Cart &nbsp;
-                          <input
-                            className="input has-text-centered"
-                            style={{ width: "50px" }}
-                            number
-                            value={
-                              cart.find((product) => product.id === id)
-                                ?.count || 0
-                            }
-                            readOnly
-                          />{" "}
-                        </div>
-                        <br />
-                        <div className="is-size-5">
-                          <span className="has-text-weight-semibold">
-                            Price:
-                          </span>{" "}
-                          <span
-                            style={{
-                              color:
-                                product.price < 10 ? "hsl(348, 100%, 61%)" : "",
-                            }}
-                          >
-                            ${product.price.toFixed(2)}
-                          </span>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="column">
-                          <button
-                            className="button is-primary is-small"
-                            style={{ minWidth: "165px" }}
-                            onClick={incrementCartItemButtonHandler}
-                          >
-                            <FontAwesomeIcon icon={faAdd} />
-                            &nbsp; Add to Cart
-                          </button>
-                          <br></br>
-                          <br></br>
-                          <button
-                            className="button is-warning is-small"
-                            style={{ minWidth: "165px" }}
-                            onClick={decrementCartItemButtonHandler}
-                            disabled={!thisItemInCart}
-                          >
-                            <FontAwesomeIcon icon={faSubtract} />
-                            &nbsp; Remove from Cart
-                          </button>
-                          <br></br>
-                          <br></br>
-                          <button
-                            className="button is-danger is-small"
-                            style={{ minWidth: "165px" }}
-                            onClick={removeAllThisItemButtonHandler}
-                            disabled={!thisItemInCart}
-                          >
-                            <FontAwesomeIcon icon={faTrash} />
-                            &nbsp; Remove All From Cart
-                          </button>
-                          <div>
-                            <span className={cartMessageStyle}>
-                              {cartMessage}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="has-text-weight-semibold pb-4">
+                      {" "}
+                      <input
+                        className="input has-text-centered"
+                        style={{ width: "50px" }}
+                        number
+                        value={
+                          cart.find((product) => product.id === id)?.count || 0
+                        }
+                        readOnly
+                      />{" "}
+                      <span className="menu-label has-text-weight-bold">
+                        IN CART
+                      </span>
+                    </div>
+                    <div className="">
+                      <button
+                        className="button is-primary is-small"
+                        style={{ width: "165px" }}
+                        onClick={incrementCartItemButtonHandler}
+                      >
+                        <FontAwesomeIcon icon={faAdd} />
+                        &nbsp; Add to Cart
+                      </button>
+                      <br></br>
+                      <br></br>
+                      <button
+                        className="button is-warning is-small"
+                        style={{ width: "165px" }}
+                        onClick={decrementCartItemButtonHandler}
+                        disabled={!thisItemInCart}
+                      >
+                        <FontAwesomeIcon icon={faSubtract} />
+                        &nbsp; Remove from Cart
+                      </button>
+                      <br></br>
+                      <br></br>
+                      <button
+                        className="button is-danger is-small"
+                        style={{ minWidth: "165px" }}
+                        onClick={removeAllThisItemButtonHandler}
+                        disabled={!thisItemInCart}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                        &nbsp; Remove All From Cart
+                      </button>
                     </div>
                   </div>
                 </div>
