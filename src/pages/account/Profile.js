@@ -207,18 +207,17 @@ export default function Profile(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          <img className="mt-4" src={logo125} width="112" height="28" />
-          Confirmation
-        </DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            <img className="mt-4" src={logo125} width="112" height="28" />
+          </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to update your profile?
+            Are you sure you want to <span className="has-text-weight-semibold">update your profile?</span>
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <button onClick={handleClose}>Cancel</button>
-          <button onClick={handleConfirmUpdate} autoFocus>
+        <DialogActions className="m-2">
+          <button className="button is-warning" onClick={handleClose}>Cancel</button>
+          <button className="button is-primary" onClick={handleConfirmUpdate} autoFocus>
             Update
           </button>
         </DialogActions>

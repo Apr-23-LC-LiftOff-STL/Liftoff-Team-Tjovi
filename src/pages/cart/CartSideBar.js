@@ -111,6 +111,7 @@ export default function CartSideBar({ allItemsSubtotal }) {
         }}
       >
         <div className="p-5 has-background-grey-lighter">
+        <img src={logo125} />
           <p className="menu-label has-text-weight-bold pt-2">
             {totalProductsInCart} ITEM(S) IN CART
           </p>
