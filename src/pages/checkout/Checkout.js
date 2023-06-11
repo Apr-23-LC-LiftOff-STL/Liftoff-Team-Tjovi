@@ -107,7 +107,7 @@ const Checkout = () => {
             </a>
           </li>
           <li>
-            <a href="./cart">Shopping Cart</a>
+            <a href="cart">Shopping Cart</a>
           </li>
           <li className="is-active">
             <a href="#" aria-current="page">
