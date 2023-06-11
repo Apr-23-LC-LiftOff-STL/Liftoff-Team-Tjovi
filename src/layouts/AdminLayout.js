@@ -100,7 +100,7 @@ export default function AdminLayout() {
           </p>
         </div>
       </div>
-      {activeButton === "adminButton" && <div><div className="mx-6 mt-2">Welcome to the Admin Portal. Please select an option from the menu above.
+      {activeButton === "adminButton" && <div><div className="mx-6 mt-2 has-text-info">Welcome to the Admin Portal. Please select an option from the menu above.
           </div><div className="section is-large"></div></div>
           
         }

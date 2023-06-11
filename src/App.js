@@ -12,6 +12,7 @@ import "bulma/css/bulma.min.css";
 import About from "./pages/About";
 import Cart from "./pages/cart/Cart.js";
 import Checkout from "./pages/checkout/Checkout";
+import CheckoutDEPLOY from "./pages/checkout/CheckoutDEPLOY";
 import CheckoutFailure from "./pages/checkout/CheckoutSuccess";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import Contact, { contactAction } from "./pages/help/Contact";
@@ -61,7 +62,7 @@ const router = createBrowserRouter(
       /> */}
       <Route element={<CartLayout />}>
         <Route path="cart" element={<Cart />} />
-        <Route path="checkout" element={<Checkout />} />
+        <Route path="checkout" element={<CheckoutDEPLOY />} />
         <Route path="success" element={<CheckoutSuccess />} />
         <Route path="failure" element={<CheckoutFailure />} />
       </Route>

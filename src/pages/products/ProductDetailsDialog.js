@@ -150,7 +150,7 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                   <div className="content p-4 has-text-weight-normal">
                     <div className="">
                       <div
-                        className="button is-pulled-right"
+                        className="button is-pulled-right is-light"
                         onClick={handleCloseDialog}
                         style={{
                           borderStyle: "solid",
@@ -160,22 +160,17 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                         <FontAwesomeIcon icon={faX} />
                       </div>
                       <div>
-                        <div>
-                          <div className="title is-size-3 is-italic">
-                            {product.title}
-                          </div>
+                        <div className="title is-3 is-italic pb-2">
+                          {product.title}
                         </div>
-                        <div className="has-text-left"></div>
                       </div>
                     </div>
-                    <br />
-                    <div className="is-size-6 has-text-weight-normal is-italic p-2">
+                    <div className="is-size-6 has-text-weight-normal ml-2 mr-6 my-4">
                       <span className="has-text-weight-semibold">
                         Overview:{" "}
                       </span>
-                      {product.overview}
+                      <span className="is-italic">{product.overview}</span>
                     </div>
-                    <br />
                     {/*                     <p>
                       <span className="has-text-weight-semibold">Genres: </span>
                       {product?.genres
@@ -192,7 +187,7 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                     </div>
                     <div>
                       <span className="has-text-weight-semibold p-2">
-                        Rating:
+                        Popularity Rating:
                       </span>
                       {product.vote_average}
                     </div>
@@ -226,7 +221,7 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                     </div>
                   </div>
                   <div
-                    className="content p-5 mb-2 mr-2 box is-shadowless has-background-light"
+                    className="content p-4 mb-2 mr-2 box is-shadowless has-background-light"
                     style={{ borderStyle: "solid", borderColor: "lightgray" }}
                   >
                     {/*                       <div className="select" onChange={handleCartItemCountChange}>
