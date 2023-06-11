@@ -94,7 +94,6 @@ function ChatBot({ handleCloseChatBot }) {
           </div>
           <div className="control">
             <div className="button is-info" onClick={handleSubmit}>
-              Submit &nbsp;
               <FontAwesomeIcon icon={faRobot} />
             </div>
           </div>
@@ -123,12 +122,12 @@ function ChatBot({ handleCloseChatBot }) {
           Response:{" "}
         </div>
         <div
-            className="button is-light has-text-info is-small mx-4"
+            className="button is-info is-light is-outlined is-small mx-4"
             onClick={() =>
               navigator.clipboard.writeText(chatReply)
             }
           >
-            Copy Response to Clipboard
+            Copy
           </div>
       </div>
       {chatReply === "Error occurred while communicating with server." && (

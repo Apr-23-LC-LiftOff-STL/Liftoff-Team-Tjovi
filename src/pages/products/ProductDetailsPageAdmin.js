@@ -76,10 +76,9 @@ export default function AdminProductDetails() {
     }));
   };
 
-  const ConfirmAlert = (id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
+  const confirmAlert = (id) => {
+    if (window.confirm("Delete product ID # " + id + " ?")) {
       handleDelete(id);
-      alert("Item deleted successfully!");
     } else {
     }
   };
@@ -88,6 +87,7 @@ export default function AdminProductDetails() {
     try {
       await axios.delete("http://localhost:8080/admin/deleteMovie/" + id);
       alert(id + " deleted from database");
+      navigate(-1);
     } catch (error) {
       console.log("Error deleting movie: ", error);
     }
@@ -270,14 +270,14 @@ export default function AdminProductDetails() {
                 )}
                 <hr></hr>
                 <p class="control">
-                      <button
-                        className="button is-small is-danger"
-                        onClick={ConfirmAlert}
-                        value="Update Product"
-                      >
-                        Delete Product
-                      </button>
-                    </p>
+                  <button
+                    className="button is-small is-danger"
+                    onClick={() => confirmAlert(product.id)}
+                    value="Update Product"
+                  >
+                    Delete Product
+                  </button>
+                </p>
               </div>
             </div>
           </div>

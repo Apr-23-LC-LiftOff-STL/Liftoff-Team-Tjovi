@@ -41,18 +41,18 @@ export default function ProductsAdmin() {
     navigate("./" + id);
   };
 
- const ConfirmAlert = (id) => {
-      if (window.confirm("Are you sure you want to delete this item?")) {
-        handleDelete(id);
-        alert("Item deleted successfully!");
-      } else {
+  const confirmAlert = (id) => {
+    if (window.confirm("Delete product ID # " + id + " ?")) {
+      handleDelete(id);
+    } else {
     }
-  }
+  };
 
   const handleDelete = async (id) => {
     try {
       await axios.delete("http://localhost:8080/admin/deleteMovie/" + id);
       alert(id + " deleted from database");
+      navigate(0);
     } catch (error) {
       console.log("Error deleting movie: ", error);
     }
@@ -230,7 +230,7 @@ export default function ProductsAdmin() {
                 </div>
                 <div
                   className="button is-small is-rounded is-danger"
-                  onClick={() => ConfirmAlert(product.id)}
+                  onClick={() => confirmAlert(product.id)}
                 >
                   DEL
                 </div>
