@@ -120,7 +120,6 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
               <div
                 className="card is-horizontal shadow-xl transform is-duration-100"
                 style={{ borderStyle: "solid", borderColor: "lightgray" }}
-                onClick={handleClickOpenRemove}
               >
                 <div className="card-image mx-4 my-4">
                   <Fade in timeout={500}>
@@ -144,22 +143,22 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                           "{product.tagline}"
                         </div>
                       )}
-                      <div
-                    className="button is-small is-fullwidth mr-2 mt-2"
-                    onClick={handleCloseDialog}
-                    style={{
-                      borderStyle: "solid",
-                      borderColor: "lightgray",
-                    }}
-                  >
-                    Close Window
-                  </div>
                     </figure>
                   </Fade>
                 </div>
                 <div className="card-content p-4 is-flex is-flex-direction-column">
                   <div className="content p-4 has-text-weight-normal">
-                    <div>
+                    <div className="">
+                      <div
+                        className="button is-pulled-right"
+                        onClick={handleCloseDialog}
+                        style={{
+                          borderStyle: "solid",
+                          borderColor: "lightgray",
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faX} />
+                      </div>
                       <div>
                         <div>
                           <div className="title is-size-3 is-italic">
@@ -168,7 +167,6 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                         </div>
                         <div className="has-text-left"></div>
                       </div>
-                      <div></div>
                     </div>
                     <br />
                     <div className="is-size-6 has-text-weight-normal is-italic p-2">
@@ -214,10 +212,11 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                         price:
                       </span>{" "}
                       <span
-                        className="is-size-5 card p-2"
+                        className="is-size-5 card mx-3 p-2"
                         style={{
                           borderStyle: "solid",
                           borderColor: "hsl(171, 100%, 41%)",
+                          borderWidth: "1px",
                           color:
                             product.price < 10 ? "hsl(348, 100%, 61%)" : "",
                         }}
