@@ -96,7 +96,7 @@ const NavBar = () => {
     } else {
       navigate("/");
     }
-    }
+  };
 
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -121,7 +121,7 @@ const NavBar = () => {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-      <div className="navbar-item" onClick={handleBrandClick}>
+        <div className="navbar-item" onClick={handleBrandClick}>
           <img src={logo150} />
         </div>
         <div className="mt-1">

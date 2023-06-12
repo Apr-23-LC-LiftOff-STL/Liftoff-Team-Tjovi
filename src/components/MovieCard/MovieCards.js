@@ -63,7 +63,6 @@ function MovieCards() {
 
   useEffect(() => {
     fetchMovies(searchTerm, selectedGenres, page);
-
     window.scrollTo({
       top: 0,
       left: 0,
