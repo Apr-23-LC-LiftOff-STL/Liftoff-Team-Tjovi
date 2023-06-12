@@ -90,11 +90,17 @@ const CartItemNEW = ({
             }}
           >
             {posterPath ? (
-              <figure className="cart-item-img" style={{ flex: "1" }}>
+              <figure className={{ flex: 1 }}>
                 <div onClick={handleClickOpen}>
                   <img
+                    className="cart-item-img"
                     src={`${baseImgUrl}${posterPath}`}
                     alt={`Poster for ${title}`}
+                    style={{
+                      borderStyle: "solid",
+                      borderColor: "lightgray",
+                      borderWidth: "1px",
+                    }}
                   ></img>
                 </div>
               </figure>
@@ -106,7 +112,7 @@ const CartItemNEW = ({
               />
             )}
 
-            <div className="px-4" style={{ flex: 1 }}>
+            <div className="ml-2 p-2" style={{ flex: 1 }}>
               <span className="is-size-5 has-text-weight-semibold">
                 {title}
               </span>
@@ -157,12 +163,13 @@ const CartItemNEW = ({
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
               </div>
+              <div className="has-text-right">
               <p
                 style={{
                   color: price < 10 ? "hsl(348, 100%, 61%)" : "",
                 }}
               >
-                <span className="menu-label">Item Price: &nbsp;</span>
+                <span className="menu-label">Price: &nbsp;</span>
                 {currencySymbol}
                 {price?.toFixed(2)}
               </p>
@@ -174,6 +181,7 @@ const CartItemNEW = ({
                     {subtotal}
                   </span>
                 </p>
+                </div>
               </div>
             </div>
           </div>
