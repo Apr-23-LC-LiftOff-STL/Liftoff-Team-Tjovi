@@ -31,33 +31,17 @@ const CartItemNEW = ({
   subtotal,
 }) => {
   const [open, setOpen] = useState(false);
+  const [openRemoveAll, setOpenRemoveAll] = useState(false);
   const [fullWidth, setFullWidth] = useState(true);
   const [maxWidth, setMaxWidth] = useState("lg");
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const cart = useCartStore((state) => state.cart);
-  const cartUser = useCartStore((state) => state.cartUser);
-
-  /*   useEffect(() => {
-    useCartStore.getState().initialize();
-    console.log(cartUser);
-  }, [cart]); */
-
-  const baseProductUrl = "/products/";
-  const baseImgUrl = "https://image.tmdb.org/t/p/w300";
-  const currencySymbol = "$";
 
   const incrementCartItem = useCartStore((state) => state.incrementCartItem);
   const decrementCartItem = useCartStore((state) => state.decrementCartItem);
   const removeAllThisItem = useCartStore((state) => state.removeAllThisItem);
-  //const changeItemCount = useCartStore((state) => state.changeItemCount);
+
+  const baseProductUrl = "/products/";
+  const baseImgUrl = "https://image.tmdb.org/t/p/w300";
+  const currencySymbol = "$";
 
   const incrementCartItemButtonHandler = () => {
     incrementCartItem(id);
@@ -72,9 +56,25 @@ const CartItemNEW = ({
   };
 
   const removeAllThisItemButtonHandler = () => {
-    handleClickOpen();
+    handleClickOpenRemoveAll();
     removeAllThisItem(id);
   };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClickOpenRemoveAll = () => {
+    setOpenRemoveAll(true);
+  }
+
+  const handleCloseRemoveAll = () => {
+    setOpenRemoveAll(false);
+  }
 
   return (
     <div>
@@ -88,7 +88,7 @@ const CartItemNEW = ({
               alignItems: "center",
             }}
           >
-            <figure className="cart-item-img" style={{ flex: '1' }}>
+            <figure className="cart-item-img" style={{ flex: "1" }}>
               <div onClick={handleClickOpen}>
                 <img
                   src={`${baseImgUrl}${posterPath}`}
@@ -98,7 +98,9 @@ const CartItemNEW = ({
             </figure>
 
             <div className="px-4" style={{ flex: 1 }}>
-              <span className="is-size-5 has-text-weight-semibold">{title}</span>
+              <span className="is-size-5 has-text-weight-semibold">
+                {title}
+              </span>
               <div className="is-size-6">({releaseDate?.slice(0, 4)})</div>
             </div>
             {/*               <div>
@@ -141,7 +143,7 @@ const CartItemNEW = ({
                 <button
                   className="button is-danger is-small"
                   style={{ minWidth: "36px", maxWidth: "36px" }}
-                  onClick={handleClickOpen}
+                  onClick={handleClickOpenRemoveAll}
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
@@ -156,13 +158,13 @@ const CartItemNEW = ({
                 {price?.toFixed(2)}
               </p>
               <div className="has-text-right">
-              <p className="">
-                <span className="menu-label">Subtotal: </span>{" "}
-                <span className="">
-                  {currencySymbol}
-                  {subtotal}
-                </span>
-              </p>
+                <p className="">
+                  <span className="menu-label">Subtotal: </span>{" "}
+                  <span className="">
+                    {currencySymbol}
+                    {subtotal}
+                  </span>
+                </p>
               </div>
             </div>
           </div>
@@ -170,58 +172,52 @@ const CartItemNEW = ({
           <hr></hr>
         </div>
 
-        <div>
-        </div>
+        <div></div>
       </div>
       <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
+        open={openRemoveAll}
+        onClose={handleCloseRemoveAll}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <img className="mt-4" src={logo125} width="112" height="28" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Remove <span className="has-text-weight-semibold">"{title}"</span>{" "}
+            from your cart?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button className="button is-warning" onClick={handleCloseRemoveAll} autoFocus>
+            Cancel
+          </button>
+          <button
+            className="button is-danger is-outlined m-2"
+            onClick={removeAllThisItemButtonHandler}
           >
-            <DialogTitle id="alert-dialog-title">
-              <img className="mt-4" src={logo125} width="112" height="28" />
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Remove{" "}
-                <span className="has-text-weight-semibold">"{title}"</span> from
-                your cart?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <button
-                className="button is-warning"
-                onClick={handleClose}
-                autoFocus
-              >
-                Cancel
-              </button>
-              <button
-                className="button is-danger is-outlined m-2"
-                onClick={removeAllThisItemButtonHandler}
-              >
-                Remove Item
-              </button>
-            </DialogActions>
-          </Dialog>
-          <Dialog
-          open={open}
-          onClose={handleClose}
-          fullWidth={fullWidth}
-          maxWidth={maxWidth}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          {/*                     <DialogActions>
+            Remove Item
+          </button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        {/*                     <DialogActions>
             <div className="button is-light m-2" onClick={handleClose}><FontAwesomeIcon icon={faX} /></div>
           </DialogActions> */}
-          <DialogTitle id="alert-dialog-title"></DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description"></DialogContentText>
-            <ProductDetailsDialog id={id} handleCloseDialog={handleClose} />
-          </DialogContent>
-        </Dialog>
+        <DialogTitle id="alert-dialog-title"></DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description"></DialogContentText>
+          <ProductDetailsDialog id={id} handleCloseDialog={handleClose} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

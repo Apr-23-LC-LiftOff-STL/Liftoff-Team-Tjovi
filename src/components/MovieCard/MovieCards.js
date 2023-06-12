@@ -105,7 +105,7 @@ function MovieCards() {
       </div>
       <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
         <Pagination
-          count={Math.ceil(movieCountGlobal / moviesPerPageGlobal)}
+          count={Math.ceil(totalElements / moviesPerPageGlobal)}
           page={page + 1}
           onChange={handleChangePage}
           siblingCount={3}

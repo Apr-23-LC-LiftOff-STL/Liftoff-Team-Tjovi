@@ -121,14 +121,14 @@ function ChatBot({ handleCloseChatBot }) {
         <div className="has-text-weight-semibold mx-4 mb-2">
           Response:{" "}
         </div>
-        <div
+{/*         <div
             className="button is-info is-light is-outlined is-small mx-4"
             onClick={() =>
               navigator.clipboard.writeText(chatReply)
             }
           >
             Copy
-          </div>
+          </div> */}
       </div>
       {chatReply === "Error occurred while communicating with server." && (
         <div className="is-italic has-text-danger mx-4">{chatReply}</div>

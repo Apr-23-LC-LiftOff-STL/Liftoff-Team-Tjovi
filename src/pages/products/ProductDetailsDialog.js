@@ -119,7 +119,7 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
             <div className="column">
               <div
                 className="card is-horizontal shadow-xl transform is-duration-100"
-                style={{ borderStyle: "solid", borderColor: "lightgray" }}
+                style={{ borderStyle: "solid", borderColor: "lightgray"}}
               >
                 <div className="card-image mx-4 my-4">
                   <Fade in timeout={500}>
@@ -221,7 +221,7 @@ export default function ProductDetailsDialog({ id, handleCloseDialog }) {
                     </div>
                   </div>
                   <div
-                    className="content p-4 mb-2 mr-2 box is-shadowless has-background-light"
+                    className="content mb-2 mr-2 box is-shadowless has-background-light"
                     style={{ borderStyle: "solid", borderColor: "lightgray" }}
                   >
                     {/*                       <div className="select" onChange={handleCartItemCountChange}>
