@@ -198,7 +198,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
-    public void createNewOrderTest() throws Exception{
+    public void createNewOrderWithOneItemTest() throws Exception{
         ShoppingCart testCart4 = new ShoppingCart(testMovie3.getId(), 5L);
         testCart4.setCustomer(testCustomer3);
         testCart4.setTotalPrice(testMovie3.getPrice() * testCart4.getQuantity());
@@ -217,8 +217,14 @@ class OrderServiceIntegrationTest {
         assertThat(allCompletedCustomer1Orders, hasSize(1));
         assertThat(savedOrder.getTotalOrderQuantity(), is(testCart4.getQuantity()));
         assertThat(savedOrder.getId(), is(testOrder2.getId()+1));
+        assertThat(savedOrder.getTotalOrderPrice(), is(testCart4.getTotalPrice()));
+        assertThat(savedOrder.getEmail(), is(testCustomer3.getEmail()));
+        assertThat(savedOrder.getCustomer().getId(), is(testCustomer3.getId()));
 
     }
 
-
+//    @Test
+//    public void createNewOrderWithMultipleItemsTest() throws Exception {
+//
+//    }
 }

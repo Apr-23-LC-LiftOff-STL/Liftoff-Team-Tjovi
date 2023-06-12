@@ -35,16 +35,16 @@ public class OrderService {
     private MovieRepository movieRepository;
 
     public ResponseEntity<?> createNewOrder(Customer customer) {
+        long totalOrderQuantity = 0;
+
+        List<ShoppingCart> cartItemsToOrder = shoppingCartRepository.findByCustomerId(customer.getId());
+        if (cartItemsToOrder.isEmpty()) {
+            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
+        }
         CompletedOrder newOrder = new CompletedOrder(customer, customer.getEmail());
         newOrder.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
         completedOrderRepository.save(newOrder);
 
-        long totalOrderQuantity = 0;
-        List<ShoppingCart> cartItemsToOrder = shoppingCartRepository.findByCustomerId(customer.getId());
-
-        if (cartItemsToOrder.isEmpty()) {
-            return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
-        }
         for (ShoppingCart currentCart : cartItemsToOrder) {
             Movie orderedMovie = movieRepository.findById(currentCart.getMovieId())
                     .orElseThrow(() -> new RuntimeException(NO_MOVIES_FOUND));
@@ -84,12 +84,13 @@ public class OrderService {
     }
 
     public ResponseEntity<?> returnMostRecentCompletedOrder(Long customerId){
-        List<CompletedOrder> mostRecentCompletedOrder = completedOrderRepository.findByCustomerId(customerId);
+        List<CompletedOrder> completedOrders = completedOrderRepository.findByCustomerId(customerId);
 
-        if(mostRecentCompletedOrder.isEmpty()){
+        if(completedOrders.isEmpty()){
             return new ResponseEntity<>(NO_ORDERS_FOUND, HttpStatus.NOT_FOUND);
         } else{
-            return new ResponseEntity<>(mostRecentCompletedOrder, HttpStatus.OK);
+            return new ResponseEntity<>(completedOrders.get(completedOrders.size()-1), HttpStatus.OK);
+
         }
     }
 

@@ -107,7 +107,6 @@ public class ShoppingCartServiceUnitTest {
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), is(testCustomer1Carts));
-
     }
 
     @Test
