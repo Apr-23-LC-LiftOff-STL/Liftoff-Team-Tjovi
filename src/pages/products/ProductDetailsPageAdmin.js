@@ -5,6 +5,7 @@ import { Fade } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import posterNA from "./posterNA.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -43,7 +44,7 @@ export default function AdminProductDetails() {
         navigate("/login");
       }
     };
-  
+
     fetchProduct();
   }, [id, navigate, isAdmin]);
 
@@ -121,56 +122,58 @@ export default function AdminProductDetails() {
         </label>
       </div>
       <p>
-      <label className="label">
+        <label className="label">
           price
           <div className="control">
+            <input
+              className="input"
+              type="number"
+              name="price"
+              value={product.price}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </label>
+      </p>
+      <label className="label">
+        overview
+        <div className="control">
           <input
-          className="input"
-            type="number"
-            name="price"
-            value={product.price}
+            className="input"
+            type="text"
+            name="overview"
+            value={product.overview}
             onChange={handleInputChange}
             required
           />
-          </div>
-        </label>
-
-      </p>
-      <label className="label">
-          overview
-          <div className="control">
-          <input
-          className="input"
-          type="text"
-          name="overview"
-          value={product.overview}
-          onChange={handleInputChange}
-          required
-        />
         </div>
       </label>
       <label className="label">
-          posterPath
-          <div className="control">
+        posterPath
+        <div className="control">
           <input
-          className="input"
-          type="text"
-          name="posterPath"
-          value={product.posterPath}
-          onChange={handleInputChange}
-          required
-        />
+            className="input"
+            type="text"
+            name="posterPath"
+            value={product.posterPath}
+            onChange={handleInputChange}
+            required
+          />
         </div>
       </label>
-      <input className="button is-warning" type="submit" value="Update Product" />
+      <input
+        className="button is-warning"
+        type="submit"
+        value="Update Product"
+      />
     </form>
   );
 
   return (
     <div>
       <div className="is-size-6 ml-6 mt-2 mb-2">
-        PRODUCT ID #{" "}
-        <span className="has-text-weight-semibold">{id}</span>
+        PRODUCT ID # <span className="has-text-weight-semibold">{id}</span>
       </div>
       <div className="field is-grouped ml-6">
         <p className="control">
@@ -209,21 +212,29 @@ export default function AdminProductDetails() {
                 borderWidth: "1px",
               }}
             >
-              <div className="card-image p-4" style={{maxWidth: '500px'}}>
-                <Fade in timeout={500}>
-                  <figure className="image">
-                    <img
-                      src={`${baseImgUrl}${product.posterPath}`}
-                      alt={`Poster for ${product.title}`}
-                      style={{
-                        borderStyle: "solid",
-                        borderColor: "lightgray",
-                        borderWidth: "1px",
-                      }}
-                    ></img>
-                  </figure>
-                </Fade>
-              </div>
+              {product.posterPath ? (
+                <div className="card-image p-4" style={{ maxWidth: "500px" }}>
+                  <Fade in timeout={500}>
+                    <figure className="image">
+                      <img
+                        src={`${baseImgUrl}${product.posterPath}`}
+                        alt={`Poster for ${product.title}`}
+                        style={{
+                          borderStyle: "solid",
+                          borderColor: "lightgray",
+                          borderWidth: "1px",
+                        }}
+                      ></img>
+                    </figure>
+                  </Fade>
+                </div>
+              ) : (
+                <img
+                  className="movie-bar-img"
+                  src={posterNA}
+                  alt={`no poster image available for ${product.title}`}
+                />
+              )}
               <div className="card-content p-4 is-flex is-flex-direction-column">
                 <div className="content p-4 has-text-weight-normal">
                   {isAdmin && renderAdminForm()}
@@ -242,13 +253,13 @@ export default function AdminProductDetails() {
             </div>
           </div>
         </div>
-        ) : (
+      ) : (
         <Fade in timeout={500}>
-        <div className="pl-6">
-          <h2 className="has-text-danger">Product Not Found</h2>
-          <p>Product ID # {id} was not found.</p>
-          <div className="section is-medium"></div>
-        </div>
+          <div className="pl-6">
+            <h2 className="has-text-danger">Product Not Found</h2>
+            <p>Product ID # {id} was not found.</p>
+            <div className="section is-medium"></div>
+          </div>
         </Fade>
       )}
     </div>

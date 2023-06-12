@@ -3,6 +3,7 @@ import axios from "axios";
 import MovieBarCard from "./MovieBarCard.js";
 import "./MovieBar.css";
 import { useMovieCountStore } from "../../store/movieCountStore";
+import { Fade } from "@mui/material";
 
 function MovieBar() {
   const [movies, setMovies] = useState([]);
@@ -58,7 +59,7 @@ function MovieBar() {
 
   return (
     <div className="pt-6">
-      <h1 className="is-size-6 has-text-centered pt-6 has-text-grey">
+      <h1 className="is-size-6 has-text-centered pt-6">
         Recommended Movies
       </h1>
       <hr className="movie-bar-hr" />
@@ -77,7 +78,9 @@ function MovieBar() {
             ))}
           </div>
         ) : (
-          <div className="mx-6 my-2">Loading movies...</div>
+          <Fade in timeout={2250}>
+          <div className="is-size-7 mx-6 my-6 has-text-centered is-italic">Loading movies...</div>
+          </Fade>
         )}
       </div>
     </div>

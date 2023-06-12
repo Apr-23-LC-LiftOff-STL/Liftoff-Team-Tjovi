@@ -20,6 +20,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import ProductDetailsDialog from "../products/ProductDetailsDialog";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
+import posterNA from "./posterNA.jpg";
 
 const CartItemNEW = ({
   title,
@@ -70,11 +71,11 @@ const CartItemNEW = ({
 
   const handleClickOpenRemoveAll = () => {
     setOpenRemoveAll(true);
-  }
+  };
 
   const handleCloseRemoveAll = () => {
     setOpenRemoveAll(false);
-  }
+  };
 
   return (
     <div>
@@ -88,14 +89,22 @@ const CartItemNEW = ({
               alignItems: "center",
             }}
           >
-            <figure className="cart-item-img" style={{ flex: "1" }}>
-              <div onClick={handleClickOpen}>
-                <img
-                  src={`${baseImgUrl}${posterPath}`}
-                  alt={`Poster for ${title}`}
-                ></img>
-              </div>
-            </figure>
+            {posterPath ? (
+              <figure className="cart-item-img" style={{ flex: "1" }}>
+                <div onClick={handleClickOpen}>
+                  <img
+                    src={`${baseImgUrl}${posterPath}`}
+                    alt={`Poster for ${title}`}
+                  ></img>
+                </div>
+              </figure>
+            ) : (
+              <img
+                className="movie-bar-img"
+                src={posterNA}
+                alt={`no poster image available for ${title}`}
+              />
+            )}
 
             <div className="px-4" style={{ flex: 1 }}>
               <span className="is-size-5 has-text-weight-semibold">
@@ -190,7 +199,11 @@ const CartItemNEW = ({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <button className="button is-warning" onClick={handleCloseRemoveAll} autoFocus>
+          <button
+            className="button is-warning"
+            onClick={handleCloseRemoveAll}
+            autoFocus
+          >
             Cancel
           </button>
           <button
