@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
 import axios from "axios";
+
 import MovieCard from "./MovieCard.js";
 import MovieCardsNoneFound from "./MovieCardsNoneFound.js";
+
 import { Box } from "@mui/material";
 import { Pagination } from "@mui/material";
+
 import { useSearchStore } from "../../store/searchStore.js";
 import { useGenreStore } from "../../store/genreStore.js";
 import { useSortStore } from "../../store/sortStore.js";
@@ -14,6 +18,7 @@ import SortButtons from "../MovieFilterAndSort/SortButtons.js";
 function MovieCards() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(0);
+  const [totalElements, setTotalElements] = useState(0);
 
   const searchTerm = useSearchStore((state) => state.searchTerm);
   const selectedGenres = useGenreStore((state) => state.selectedGenres);
@@ -21,12 +26,6 @@ function MovieCards() {
 
   const moviesPerPageGlobal = useMovieCountStore(
     (state) => state.moviesPerPageGlobal
-  );
-  const movieCountGlobal = useMovieCountStore(
-    (state) => state.movieCountGlobal
-  );
-  const setMovieCountGlobal = useMovieCountStore(
-    (state) => state.setMovieCountGlobal
   );
 
   const baseProductUrl = "/products/";
@@ -49,7 +48,7 @@ function MovieCards() {
           sortOptions[0]
         }&direction=${sortOptions[1]}`
       );
-      setMovieCountGlobal(response.data.totalElements);
+      setTotalElements(response.data.totalElements);
       setMovies(response.data.content);
     } catch (error) {
       console.log("Error fetching movies: ", error);
@@ -100,19 +99,20 @@ function MovieCards() {
               </div>
             ))}
           </div>
-          <div></div>
+          <div>
+            <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
+              <Pagination
+                count={Math.ceil(totalElements / moviesPerPageGlobal)}
+                page={page + 1}
+                onChange={handleChangePage}
+                siblingCount={3}
+                boundaryCount={1}
+                color="primary"
+              />
+            </Box>
+          </div>
         </div>
       </div>
-      <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
-        <Pagination
-          count={Math.ceil(totalElements / moviesPerPageGlobal)}
-          page={page + 1}
-          onChange={handleChangePage}
-          siblingCount={3}
-          boundaryCount={1}
-          color="primary"
-        />
-      </Box>
     </div>
   );
 }
