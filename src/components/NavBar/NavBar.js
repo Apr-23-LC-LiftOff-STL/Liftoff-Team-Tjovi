@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -53,6 +53,7 @@ const NavBar = () => {
   const setCartUser = useCartStore((state) => state.setCartUser);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (totalProductsInCart !== 0) {
@@ -88,6 +89,15 @@ const NavBar = () => {
     navigate("/");
   };
 
+  const handleBrandClick = () => {
+    const currentPath = location.pathname;
+    if (currentPath === "/") {
+      window.location.reload();
+    } else {
+      navigate("/");
+    }
+    }
+
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -111,9 +121,9 @@ const NavBar = () => {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <Link className="navbar-item" to="/">
+      <div className="navbar-item" onClick={handleBrandClick}>
           <img src={logo150} />
-        </Link>
+        </div>
         <div className="mt-1">
           <SearchBar />
         </div>

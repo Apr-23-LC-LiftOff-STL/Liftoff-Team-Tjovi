@@ -97,7 +97,7 @@ function MovieCards() {
         >
           {movies.length > 0 ? (
             movies.map((movie) => (
-              <div key={movie.id}>
+              <div className="mt-2" key={movie.id}>
                 <div href={`${baseProductUrl}${movie.id}`}>
                   <MovieCard
                     id={movie.id}
