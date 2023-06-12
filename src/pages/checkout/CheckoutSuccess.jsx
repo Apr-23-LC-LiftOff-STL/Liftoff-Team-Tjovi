@@ -14,6 +14,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function CheckoutSuccess() {
   const cart = useCartStore((state) => state.cart);
   const emptyCart = useCartStore((state) => state.emptyCart);
+  const emptyCartStateOnly = useCartStore((state) => state.emptyCartStateOnly);
 
   //let date = new Date();
   // {date.toLocaleString()}
@@ -67,6 +68,8 @@ export default function CheckoutSuccess() {
   const cartUser = userData?.username;
 
   useEffect(() => {
+    emptyCart();
+    emptyCartStateOnly();
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -78,7 +81,6 @@ export default function CheckoutSuccess() {
           return a.id - b.id;
         });
         setOrderData(orderData);
-        emptyCart();
       } catch (error) {
         console.error("Error getting order history:", error);
       }

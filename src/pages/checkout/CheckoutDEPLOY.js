@@ -160,11 +160,18 @@ function StripeCheckout() {
     }
   };
 
-  const handleSubmitDummy = () => {
-    sendOrderData();
-    navigate("/success");
-  }
-
+  const handleSubmitDummy = async (event) => {
+    event.preventDefault();  // prevent form submission which could refresh page
+    try {
+      await sendOrderData();
+      setTimeout(() => {
+        navigate("/success");
+      }, 3000);
+    } catch (error) {
+      console.error("Error posting purchase to DB", error);
+    }
+  };
+  
   const handleError = (error) => {
     setLoading(false);
     setErrorMessage(error.message);
