@@ -184,17 +184,16 @@ class OrderServiceIntegrationTest {
 
     @Test
     public void TestReturnMostRecentCompletedOrder() throws Exception{
-        List<CompletedOrder> mostRecentCompletedOrderByCustomerId = (List<CompletedOrder>) orderService.returnMostRecentCompletedOrder(testCustomer2.getId()).getBody();
+        CompletedOrder mostRecentCompletedOrderByCustomerId = (CompletedOrder) orderService.returnMostRecentCompletedOrder(testCustomer2.getId()).getBody();
 
         assertNotNull(mostRecentCompletedOrderByCustomerId);
         mockMvc.perform(get("/order/currentPurchase/{email}", testCustomer2.getEmail()))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is((int)(long)testOrder2.getId())))
-                .andExpect(jsonPath("$[0].email", is(testCustomer2.getEmail())))
-                .andExpect(jsonPath("$[0].totalOrderQuantity", is((int)(long)testOrder2.getTotalOrderQuantity())))
-                .andExpect(jsonPath("$[0].totalOrderPrice", is(testOrder2.getTotalOrderPrice())));
+                .andExpect(jsonPath("$.id", is((int)(long)testOrder2.getId())))
+                .andExpect(jsonPath("$.email", is(testCustomer2.getEmail())))
+                .andExpect(jsonPath("$.totalOrderQuantity", is((int)(long)testOrder2.getTotalOrderQuantity())))
+                .andExpect(jsonPath("$.totalOrderPrice", is(testOrder2.getTotalOrderPrice())));
     }
 
     @Test

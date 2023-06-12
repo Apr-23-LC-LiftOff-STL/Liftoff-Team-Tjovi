@@ -89,7 +89,8 @@ public class OrderService {
         if(completedOrders.isEmpty()){
             return new ResponseEntity<>(NO_ORDERS_FOUND, HttpStatus.NOT_FOUND);
         } else{
-            return new ResponseEntity<>(completedOrders.get(completedOrders.size()-1), HttpStatus.OK);
+            CompletedOrder mostRecentOrder = completedOrders.get(completedOrders.size()-1);
+            return new ResponseEntity<>(mostRecentOrder, HttpStatus.OK);
 
         }
     }
