@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2023-06-11T16:31:43" hostname="Joshs-Air.lan" time="0.128">
+  <properties/>
+  <testcase name="testRemoveItemFromCustomerCartWhenCartExists()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.095"/>
+  <testcase name="testRemoveAllItemsByCustomerFromCartWhenNoCartsFound()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.014"/>
+  <testcase name="testReturnAllCartsNotFound()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.002"/>
+  <testcase name="testReturnCartsByCustomerIdNotFound()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.002"/>
+  <testcase name="testReturnAllCarts()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.002"/>
+  <testcase name="testRemoveAllItemsFromCartByCustomerWhenCartsExist()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.002"/>
+  <testcase name="testUpdateQuantityInCartUpdatesQuantityAndTotalPriceAndSaves()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.002"/>
+  <testcase name="testCreateNewShoppingCart()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.001"/>
+  <testcase name="testUpdateQuantityInCartNotFound()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.001"/>
+  <testcase name="testReturnCartsByCustomerId()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.001"/>
+  <testcase name="testSetTotalPrice()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.0"/>
+  <testcase name="testRemoveItemFromCustomerCartWhenNoCartFound()" classname="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -31,6 +31,8 @@ public class CompletedOrder {
     @OneToMany(mappedBy="completedOrder", fetch=FetchType.EAGER)
     private Set<CompletedOrderItem> completedOrderItems;
 
+    public String email;
+
     public CompletedOrder() {
     }
 
@@ -38,8 +40,6 @@ public class CompletedOrder {
         this.customer = customer;
         this.email = email;
     }
-
-    public String email;
 
     public Long getId() {
         return id;

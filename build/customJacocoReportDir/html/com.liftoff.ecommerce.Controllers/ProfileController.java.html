@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Controllers</a> &gt; <span class="el_source">ProfileController.java</span></div><h1>ProfileController.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Controllers;
+
+
+import com.liftoff.ecommerce.Models.Customer;
+import com.liftoff.ecommerce.Repositories.CustomerRepository;
+import com.liftoff.ecommerce.Service.CustomerService;
+import com.liftoff.ecommerce.Service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/profile&quot;)
+<span class="fc" id="L19">public class ProfileController {</span>
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @GetMapping(&quot;/{email}&quot;)
+    public ResponseEntity&lt;?&gt; returnCustomerInformation(@PathVariable String email){
+<span class="nc" id="L32">        return customerService.returnCustomerInformation(email);</span>
+    }
+
+    @PutMapping(&quot;/edit/{email}&quot;)
+    public ResponseEntity&lt;?&gt; editCustomerInformation(@PathVariable String email, @RequestBody Customer customer){
+<span class="nc" id="L37">        return customerService.editCustomerInformation(email, customer);</span>
+    }
+
+    @GetMapping(&quot;/isUser/{email}&quot;)
+public ResponseEntity&lt;?&gt; isUser(@PathVariable String email) {
+<span class="nc" id="L42">    List&lt;Customer&gt; customer = customerRepository.findByEmail(email);</span>
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">    if (!customer.isEmpty()){</span>
+<span class="nc" id="L45">        return new ResponseEntity&lt;&gt;(HttpStatus.OK);</span>
+    } else {
+<span class="nc" id="L47">        return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT);</span>
+    }
+}
+
+    @PutMapping(&quot;/changePassword&quot;)
+    public ResponseEntity&lt;?&gt; changePassword(@PathVariable String email, @RequestBody String newPassword){
+<span class="nc" id="L53">        Customer customer = customerService.findCustomer(email);</span>
+<span class="nc" id="L54">        String hashPwd = passwordEncoder.encode(newPassword);</span>
+
+<span class="nc" id="L56">        customer.setPwd(hashPwd);</span>
+
+<span class="nc" id="L58">        customerRepository.save(customer);</span>
+
+<span class="nc" id="L60">        return new ResponseEntity&lt;&gt;(HttpStatus.OK);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

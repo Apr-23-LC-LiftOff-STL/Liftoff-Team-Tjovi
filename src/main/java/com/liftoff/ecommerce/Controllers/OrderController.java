@@ -18,16 +18,16 @@ public class OrderController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping("newOrder/{email}")
+    @PostMapping("/newOrder/{email}")
     public ResponseEntity<?> createNewOrder(@PathVariable String email){
         Customer customer = customerService.findCustomer(email);
         return orderService.createNewOrder(customer);
     }
 
     @GetMapping("/history/{email}")
-    public ResponseEntity<?> returnAllCompletedOrdersByCustomer(@PathVariable String email){
+    public ResponseEntity<?> returnAllCompletedOrdersByCustomerId(@PathVariable String email){
         Customer customer = customerService.findCustomer(email);
-        return orderService.returnAllCompletedOrdersByCustomer(customer.getId());
+        return orderService.returnAllCompletedOrdersByCustomerId(customer.getId());
     }
 
     @GetMapping("/currentPurchase/{email}")

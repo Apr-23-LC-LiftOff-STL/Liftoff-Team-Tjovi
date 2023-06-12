@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-06-11T16:31:42" hostname="Joshs-Air.lan" time="0.074">
+  <properties/>
+  <testcase name="testRemoveItemFromCustomerCart()" classname="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" time="0.065"/>
+  <testcase name="testReturnCartsByCustomer()" classname="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" time="0.001"/>
+  <testcase name="testReturnAllCarts()" classname="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" time="0.001"/>
+  <testcase name="testAddToCart()" classname="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" time="0.001"/>
+  <testcase name="testRemoveAllItemsFromCartByCustomer()" classname="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" time="0.001"/>
+  <testcase name="testUpdateCartQuantity()" classname="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

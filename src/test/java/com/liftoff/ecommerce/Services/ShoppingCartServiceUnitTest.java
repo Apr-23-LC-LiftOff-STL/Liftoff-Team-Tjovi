@@ -6,6 +6,7 @@ import com.liftoff.ecommerce.Models.ShoppingCart;
 import com.liftoff.ecommerce.Repositories.MovieRepository;
 import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
 import com.liftoff.ecommerce.Service.ShoppingCartService;
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -24,9 +26,13 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -99,8 +105,8 @@ public class ShoppingCartServiceUnitTest {
         String specStatus = "The status code should be HttpStatus.OK";
         String specBody = "The returned response body shopping carts should match the expected list testCustomer1Carts";
 
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
-        assertEquals(specBody, testCustomer1Carts, response.getBody());
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is(testCustomer1Carts));
     }
 
     @Test
@@ -111,7 +117,7 @@ public class ShoppingCartServiceUnitTest {
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
@@ -135,7 +141,7 @@ public class ShoppingCartServiceUnitTest {
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
@@ -190,7 +196,7 @@ public class ShoppingCartServiceUnitTest {
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).save(any());
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
@@ -223,7 +229,7 @@ public class ShoppingCartServiceUnitTest {
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).deleteAll(any());
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
@@ -265,7 +271,7 @@ public class ShoppingCartServiceUnitTest {
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
         verify(shoppingCartRepository, never()).deleteById(any());
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 }

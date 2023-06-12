@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovieController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Controllers</a> &gt; <span class="el_source">MovieController.java</span></div><h1>MovieController.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Controllers;
+
+import com.liftoff.ecommerce.Models.Movie;
+import com.liftoff.ecommerce.Repositories.MovieRepository;
+import com.liftoff.ecommerce.Specifications.MovieSpecification;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import static java.lang.Thread.sleep;
+
+@CrossOrigin(origins = &quot;http://localhost:3000/products/**&quot;)
+@RestController
+@RequestMapping(&quot;/movies&quot;)
+<span class="fc" id="L22">public class MovieController {</span>
+
+    @Autowired
+    private MovieRepository movieRepo;
+
+
+    @GetMapping(&quot;/{id}&quot;)
+    public Optional&lt;Movie&gt; searchMovieById(@PathVariable Long id) throws Exception {
+<span class="nc" id="L30">        return (movieRepo.findById(id));</span>
+    }
+
+    @GetMapping
+    public Page&lt;Movie&gt; findAllMovies(
+        @RequestParam(value = &quot;title&quot;, required = false) String title,
+        @RequestParam(value = &quot;genre&quot;, required = false) String genre,
+        @RequestParam(value = &quot;page&quot;, defaultValue = &quot;0&quot;) int page,
+        @RequestParam(value = &quot;size&quot;, defaultValue = &quot;10&quot;) int size,
+        @RequestParam(value = &quot;sort&quot;, defaultValue = &quot;title&quot;) String sort,
+        @RequestParam(value = &quot;direction&quot;, defaultValue = &quot;ASC&quot;) String direction) {
+
+<span class="nc" id="L42">        Specification&lt;Movie&gt; spec = Specification.where(MovieSpecification.hasGenre(genre)).and(MovieSpecification.hasTitle(title));</span>
+<span class="nc" id="L43">        PageRequest pageable = PageRequest.of(page, size, Sort.Direction.fromString(direction), sort);</span>
+
+<span class="nc" id="L45">            return movieRepo.findAll(spec, pageable);</span>
+    }
+
+   // @GetMapping(&quot;/favicon.ico&quot;)
+    //@ResponseBody
+    //public void favicon() {
+        // Empty method to handle favicon requests and avoid the type mismatch warning
+    //}
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
