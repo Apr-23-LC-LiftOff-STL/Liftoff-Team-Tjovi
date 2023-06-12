@@ -42,6 +42,11 @@ public class AdminController {
         return orderService.returnAllCompletedOrders();
     }
 
+    @DeleteMapping("/deleteMovie/{id}")
+    public ResponseEntity<?> deleteMovieById(@PathVariable Long id){
+        movieRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 }
