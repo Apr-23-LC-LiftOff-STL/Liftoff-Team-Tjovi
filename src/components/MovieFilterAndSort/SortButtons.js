@@ -24,12 +24,12 @@ const SortOptions = () => {
   };
 
   return (
-    <div className="ml-6" style={{marginRight: "-30px", marginBottom: "-10px"}}>
+    <div className="pl-5" style={{ marginBottom: "-10px"}}>
     <div>
         <FormControl name="radioSort">
         <FormLabel id="radio-buttons-sort-options" style={{ color: "hsl(0, 0%, 48%)", fontSize: "12px" }}>
         </FormLabel>
-        <RadioGroup sx={{ flexDirection: "row" }} defaultValue="title,ASC">
+        <RadioGroup sx={{ flexDirection: "column" }} defaultValue="title,ASC">
 
               <FormControlLabel
                 name="radioSort"

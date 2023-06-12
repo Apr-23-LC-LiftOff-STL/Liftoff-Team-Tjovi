@@ -5,6 +5,12 @@ import axios from "axios";
 
 import MovieCard from "./MovieCard.js";
 import MovieCardsNoneFound from "./MovieCardsNoneFound.js";
+import MovieCardsPerPageSelect from "../MovieFilterAndSort/MovieCardsPerPageSelect.js";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUp
+} from "@fortawesome/free-solid-svg-icons";
 
 import { Box } from "@mui/material";
 import { Pagination } from "@mui/material";
@@ -14,6 +20,7 @@ import { useGenreStore } from "../../store/genreStore.js";
 import { useSortStore } from "../../store/sortStore.js";
 import { useMovieCountStore } from "../../store/movieCountStore";
 import SortButtons from "../MovieFilterAndSort/SortButtons.js";
+import GenreSelect from "../MovieFilterAndSort/GenreSelect.js";
 
 function MovieCards() {
   const [movies, setMovies] = useState([]);
@@ -27,7 +34,6 @@ function MovieCards() {
   const moviesPerPageGlobal = useMovieCountStore(
     (state) => state.moviesPerPageGlobal
   );
-
   const baseProductUrl = "/products/";
 
   // fetch movies
@@ -74,19 +80,23 @@ function MovieCards() {
     fetchMovies(searchTerm, selectedGenres, value - 1);
   };
 
-  if (movies.length === 0) {
-    return <MovieCardsNoneFound />;
-  }
-
   return (
-    <div className="pb-5 mx-2">
-      <div className="columns">
-        <div className="column">
+    <div className="">
+      <div style={{ position: "relative" }}>
+        <div style={{ position: "absolute", left: 2 }}>
           <SortButtons />
         </div>
-        <div>
-          <div className="movie-grid">
-            {movies.map((movie) => (
+        <div
+          className="movie-grid"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginLeft: "5.5rem",
+            marginRight: "5.5rem",
+          }}
+        >
+          {movies.length > 0 ? (
+            movies.map((movie) => (
               <div key={movie.id}>
                 <div href={`${baseProductUrl}${movie.id}`}>
                   <MovieCard
@@ -97,10 +107,18 @@ function MovieCards() {
                   />
                 </div>
               </div>
-            ))}
-          </div>
-          <div>
-            <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
+            ))
+          ) : (
+            <div>
+              <MovieCardsNoneFound />
+            </div>
+          )}
+        </div>
+        <div>
+          {movies.length > 29 && (
+            <Box
+              sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}
+            >
               <Pagination
                 count={Math.ceil(totalElements / moviesPerPageGlobal)}
                 page={page + 1}
@@ -110,6 +128,26 @@ function MovieCards() {
                 color="primary"
               />
             </Box>
+          )}
+          <div className="has-text-centered">
+            <div
+              className="button is-rounded is-info mb-5"
+              style={{
+                  backgroundColor: 'hsl(210, 83%, 41%)',
+                  borderStyle: "solid",
+                  borderColor: "lightgray",
+                  borderWidth: "1px",
+                }}
+              onClick={() =>
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "instant",
+                })
+              }
+            >
+              <FontAwesomeIcon icon={faArrowUp} />
+            </div>
           </div>
         </div>
       </div>

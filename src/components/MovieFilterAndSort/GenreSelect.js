@@ -18,29 +18,29 @@ const GenreSelect = () => {
     control: (provided) => ({
       ...provided,
       color: "black",
-      background: "hsl(0, 0%, 96%)",
     }),
     dropdownIndicator: (base) => ({
       ...base,
       paddingTop: 0,
       paddingBottom: 0,
+      color: "hsl(0, 0%, 40%)",
     }),
     clearIndicator: (base) => ({
       ...base,
       paddingTop: 0,
       paddingBottom: 0,
-      color: "hsl(0, 0%, 48%)",
+      color: "hsl(0, 0%, 40%)",
     }),
     option: (provided) => ({
       ...provided,
-      color: "hsl(0, 0%, 21%)",
+      color: "hsl(0, 0%, 25%)",
       fontSize: "13px",
     }),
     placeholder: (defaultStyles) => {
       return {
         ...defaultStyles,
-        color: "hsl(0, 0%, 71%)",
-        fontSize: "14px",
+        color: "hsl(0, 0%, 50%)",
+        fontSize: "13px",
       };
     },
   };
@@ -88,7 +88,7 @@ const GenreSelect = () => {
 
   return (
     <div>
-      <div className="genre-select-main mt-1" style={{minWidth: '20rem'}}>
+      <div className="genre-select-main" style={{maxWidth: "30rem", marginLeft: "0.75rem"}}>
         <Select
           closeMenuOnSelect={false}
           styles={styles}
@@ -100,7 +100,7 @@ const GenreSelect = () => {
           options={genres}
         />
       </div>
-    </div>
+      </div>
   );
 };
 

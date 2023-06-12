@@ -28,6 +28,7 @@ import {
 
 import { useCartStore } from "../../store/cartStore";
 import { useLoginStore } from "../../store/loginStore";
+import GenreSelect from "../MovieFilterAndSort/GenreSelect";
 
 const NavBar = () => {
   const cart = useCartStore((state) => state.cart);
@@ -105,7 +106,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className="navbar pt-1 pl-4 pr-4"
+      className="navbar pt-1 pl-4 pr-4 pb-4"
       role="navigation"
       aria-label="main navigation"
     >
@@ -291,7 +292,7 @@ const NavBar = () => {
             <button
               className={
                 isLoggedIn
-                  ? "button is-normal is-danger is-outlined has-text-weight-semibold is-hidden-touch"
+                  ? "button is-normal is-danger is-outlined is-light is-hidden-touch"
                   : "button is-normal is-primary has-text-weight-semibold is-hidden-touch"
               }
               onClick={isLoggedIn ? handleClickOpen : handleLogInButton}

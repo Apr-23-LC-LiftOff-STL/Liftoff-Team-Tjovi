@@ -127,8 +127,10 @@ export default function AdminProductDetails() {
           <div className="control">
             <input
               className="input"
-              type="number"
               name="price"
+              type="number"
+              min="0"
+              step=".01"
               value={product.price}
               onChange={handleInputChange}
               required

@@ -7,30 +7,19 @@ import SortButtons from "./SortButtons";
 
 export default function NavBarMovieFilters() {
   return (
-    <Box className="pt-2 pl-2">
-      <AppBar
-        position="static"
+    <div>
+      <Box
         sx={{
-          backgroundColor: "white",
-          boxShadow: "none",
-          marginTop: "-4px",
-          marginBottom: "-4px",
+          display: "flex",
+          justifyContent: "flex-start",
+          flexWrap: "wrap",
+          alignItems: "center",
+          marginTop: "0.25rem"
         }}
       >
-        <Toolbar>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "flex-start",
-              flexWrap: "wrap",
-              width: "100%",
-            }}
-          >
-            <MovieCardsPerPageSelect />
-            <GenreSelect />
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        <MovieCardsPerPageSelect />
+        <GenreSelect />
+      </Box>
+    </div>
   );
 }
