@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Fade } from "@mui/material";
-import posterNA from "./posterNA.jpg";
 import axios from "axios";
 import "./OrderHistory.css";
 import DownloadDialog from "./DownloadDialog";
@@ -10,6 +9,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+
+import posterNA from "./posterNA.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -75,7 +76,7 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
                 marginRight: "auto",
               }}
             >
-              {productData?.posterPath && (
+              {productData?.posterPath ? (
                 <img
                   className="image"
                   src={`${baseImgUrl}${productData?.posterPath}`}
@@ -86,8 +87,13 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
                     borderWidth: "1px",
                   }}
                 />
-              )}
-              <div></div>
+                          ) : (
+              <img
+                className="movie-bar-img"
+                src={posterNA}
+                alt={`no poster image available for ${productData?.title}`}
+              />
+            )}
             </div>
           </Fade>
           <Fade in timeout={500}>
@@ -99,18 +105,6 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
                 marginRight: "auto",
               }}
             >
-              {!productData?.posterPath && (
-                <img
-                  className="image"
-                  src={posterNA}
-                  alt={`no poster available for ${productData?.title}`}
-                  style={{
-                    borderStyle: "solid",
-                    borderColor: "darkgray",
-                    borderWidth: "1px",
-                  }}
-                />
-              )}
             </div>
           </Fade>
         </div>

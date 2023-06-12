@@ -8,9 +8,8 @@ import { styled } from '@mui/system';
 import { useMovieCountStore } from "../../store/movieCountStore";
 
 const CustomSelect = styled(Select)({
-  color: 'hsl(0, 0%, 48%)',
-  fontSize: '12px',
-  maxHeight: '38px',
+  color: "hsl(0, 0%, 48%)",
+  fontSize: '13px',
 });
 
 export default function MovieCardsPerPageSelect() {
@@ -28,7 +27,7 @@ export default function MovieCardsPerPageSelect() {
   }
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 80 }} size="small">
+    <FormControl sx={{ mt: 0.4, ml: 2.5, minWidth: 60 }} size="small">
       <InputLabel id="demo-select-small-label">View</InputLabel>
       <CustomSelect
         labelId="demo-select-small-label"
@@ -37,10 +36,10 @@ export default function MovieCardsPerPageSelect() {
         label="Per Page"
         onChange={handleChange}
       >
-        <MenuItem style={{fontSize: '12px'}} value={30}>30</MenuItem>
-        <MenuItem style={{fontSize: '12px'}} value={60}>60</MenuItem>
-        <MenuItem style={{fontSize: '12px'}} value={90}>90</MenuItem>
-        <MenuItem style={{fontSize: '12px'}} value={120}>120</MenuItem>
+        <MenuItem style={{fontSize: '13px'}} value={30}>30</MenuItem>
+        <MenuItem style={{fontSize: '13px'}} value={60}>60</MenuItem>
+        <MenuItem style={{fontSize: '13px'}} value={90}>90</MenuItem>
+        <MenuItem style={{fontSize: '13px'}} value={120}>120</MenuItem>
       </CustomSelect>
     </FormControl>
   );

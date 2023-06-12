@@ -33,7 +33,7 @@ export default function About() {
         <div className="columns is-centered mx-5">
           <div className="column is-7">
             <div
-              className="box p-5"
+              className="box p-6"
               style={{
                 borderStyle: "solid",
                 borderColor: "lightgray",

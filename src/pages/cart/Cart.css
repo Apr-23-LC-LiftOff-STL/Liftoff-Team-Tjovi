@@ -38,6 +38,36 @@
   display: inline-block;
 }
 
-.thick-hr {
-  border-width: 3px;
+@media (prefers-reduced-motion) {
+  /* styles to apply if a user's device settings are set to reduced motion */
+  .movie-bar-card:hover {
+    transform: none;
+  }
+}
+
+.cart-item-card {
+  margin: 10px;
+  color: rgb(51, 51, 51);
+}
+
+.cart-item-img {
+  width: 130px;
+  height: auto;
+  min-width: 90px;
+  max-width: 100%;
+  box-shadow: 0 8px 16px 4px rgba(31, 31, 31, 0.09);
+  border: 1px solid hsl(0, 0%, 75%);
+  border-radius: 1rem;
+}
+
+.cart-item-img:hover {
+  transform: scale(1.025, 1.025) translateY(-3px);
+  box-shadow: 0 8px 16px 4px hsl(171, 100%, 41%, 0.3);
+}
+
+.cart-item-button-box {
+  height: auto;
+  width: 190px;
+  min-width: 160px;
+  max-width: 100%;
 }

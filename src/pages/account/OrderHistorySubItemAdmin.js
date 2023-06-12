@@ -1,18 +1,11 @@
 import { useState, useEffect } from "react";
-import { Fade } from "@mui/material";
-import posterNA from "./posterNA.jpg";
 import axios from "axios";
 import "./OrderHistory.css";
-import DownloadDialog from "./DownloadDialog";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
   const [productData, setProductData] = useState();
   const [showDialog, setShowDialog] = useState(false);
 
-  const baseImgUrl = "https://image.tmdb.org/t/p/w300";
   const baseProductUrl = "/admin/products/";
   const currencySymbol = "$";
 
@@ -47,13 +40,10 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
 
   return (
     <tr>
-
       <td className="has-text-centered">
-      <a href={`${baseProductUrl}${movieId}`}>
+        <a href={`${baseProductUrl}${movieId}`}>
           {createShortcut(productData?.title, 30)}
-        </a>
-        {" "}
-
+        </a>{" "}
       </td>
 
       <td className="has-text-right">

@@ -134,7 +134,7 @@ export default function Contact() {
       >
         <form ref={form} onSubmit={sendEmail}>
           <div className="columns">
-            <div className="column is-2">
+            <div className="column is-3">
               <div className="field">
                 <label className="label">
                   <span>Your Name</span>
@@ -153,10 +153,10 @@ export default function Contact() {
                 )}
               </div>
             </div>
-            <div className="column is-2">
+            <div className="column is-3">
               <div className="field">
                 <label className="label">
-                  <span>Your E-mail</span>
+                  <span>Your E-Mail</span>
                 </label>
                 <div className="control">
                   <input
@@ -176,7 +176,7 @@ export default function Contact() {
           <label>
             <div className="field">
               <label className="label">
-                <span>Your Message</span>
+                <span>Message</span>
               </label>
               <div className="control">
                 <textarea

@@ -60,7 +60,7 @@ export default function DownloadDialog() {
         </DialogContent>
         <DialogActions>
           <div
-            className="button is-info is-light is-outlined mb-2 mr-2"
+            className="button is-light is-outlined mb-2 mr-2"
             onClick={handleClose}
             autoFocus
           >

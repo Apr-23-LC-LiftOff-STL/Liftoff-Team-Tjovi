@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -12,6 +12,7 @@ import SearchBar from "./SearchBar";
 import ChatBot from "../Chat/ChatBot";
 
 import logo125 from "../../logos/Logo_MovieDL_20230426_125x22.png";
+import logo150 from "../../logos/Logo_MovieDL_20230426_150x26.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -27,6 +28,7 @@ import {
 
 import { useCartStore } from "../../store/cartStore";
 import { useLoginStore } from "../../store/loginStore";
+import GenreSelect from "../MovieFilterAndSort/GenreSelect";
 
 const NavBar = () => {
   const cart = useCartStore((state) => state.cart);
@@ -51,6 +53,7 @@ const NavBar = () => {
   const setCartUser = useCartStore((state) => state.setCartUser);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (totalProductsInCart !== 0) {
@@ -86,6 +89,15 @@ const NavBar = () => {
     navigate("/");
   };
 
+  const handleBrandClick = () => {
+    const currentPath = location.pathname;
+    if (currentPath === "/") {
+      window.location.reload();
+    } else {
+      navigate("/");
+    }
+  };
+
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -104,15 +116,17 @@ const NavBar = () => {
 
   return (
     <nav
-      className="navbar pt-1 pl-4 pr-4"
+      className="navbar pt-1 pl-4 pr-4 pb-4"
       role="navigation"
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <Link className="navbar-item" to="/">
-          <img src={logo125} width="112" height="28" />
-        </Link>
-
+        <div className="navbar-item" onClick={handleBrandClick}>
+          <img src={logo150} />
+        </div>
+        <div className="mt-1">
+          <SearchBar />
+        </div>
         <Link
           onClick={() => {
             setisActive(!isActive);
@@ -128,17 +142,16 @@ const NavBar = () => {
           <span aria-hidden="true"></span>
         </Link>
       </div>
-
-      <div className="navbar-item">
-        <SearchBar />
-      </div>
       <div className="navbar-end">
         <div
           id="navbarBasicExample"
           className={`navbar-menu ${isActive ? "is-active" : ""}`}
         >
-          <div className="navbar-item my-1">
-            <div className="buttons is-hidden-desktop">
+          <div className="navbar-item">
+            <div
+              className="buttons is-hidden-desktop"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               <button
                 className={
                   isLoggedIn
@@ -171,7 +184,10 @@ const NavBar = () => {
                 <FontAwesomeIcon icon={faHistory} />
                 &nbsp; Orders
               </Link>
-              <Link className="button is-small has-background-info-light" to="/help/faq">
+              <Link
+                className="button is-small has-background-info-light"
+                to="faq"
+              >
                 <FontAwesomeIcon icon={faQuestion} />
                 &nbsp;
               </Link>
@@ -193,24 +209,25 @@ const NavBar = () => {
             </div>
           </div>
 
-          <div className="navbar-item has-dropdown is-hoverable is-hidden-touch">
-            <a className="navbar-link">
-              <FontAwesomeIcon icon={faUser} />
-            </a>
-
-            <div>
-              <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/account/profile">
-                  <FontAwesomeIcon icon={faUser} /> &nbsp; Profile
-                </Link>
-                <Link className="navbar-item" to="/account/orders">
-                  <FontAwesomeIcon icon={faHistory} /> &nbsp; Orders
-                </Link>
-                <Link className="navbar-item" to="faq">
-                  <FontAwesomeIcon icon={faQuestion} /> &nbsp; Customer Service
-                </Link>
+          <div className="buttons is-hidden-mobile is-hidden-touch">
+            <div className="navbar-item has-dropdown is-hoverable is-hidden-touch button has-background-primary-light">
+              <a className="navbar-link">
+                <FontAwesomeIcon icon={faUser} />
+              </a>
+              <div>
+                <div className="navbar-dropdown">
+                  <Link className="navbar-item" to="/account/profile">
+                    <FontAwesomeIcon icon={faUser} /> &nbsp; Profile
+                  </Link>
+                  <Link className="navbar-item" to="/account/orders">
+                    <FontAwesomeIcon icon={faHistory} /> &nbsp; Orders
+                  </Link>
+                  <Link className="navbar-item" to="faq">
+                    <FontAwesomeIcon icon={faQuestion} /> &nbsp; Customer
+                    Service
+                  </Link>
+                </div>
               </div>
-
               <button
                 className="navbar-item is-hidden-desktop"
                 onClick={!isLoggedIn ? handleLogInButton : handleClickOpen}
@@ -225,8 +242,6 @@ const NavBar = () => {
                 </span>
               </Link>
             </div>
-          </div>
-          <div className="buttons is-hidden-mobile is-hidden-touch">
             <button
               className={
                 openChatBot ? "button is-info" : "button is-info is-light"
@@ -254,8 +269,14 @@ const NavBar = () => {
                     alignItems: "center",
                   }}
                 >
-                  <img className="mx-4 mt-2" src={logo125} width="112" height="28" />
-                  <div className="button is-light mx-4 mt-2"
+                  <img
+                    className="mx-4 mt-2"
+                    src={logo125}
+                    width="112"
+                    height="28"
+                  />
+                  <div
+                    className="button is-light mx-4 mt-2"
                     onClick={handleCloseChatBot}
                   >
                     <FontAwesomeIcon icon={faX} />
@@ -264,7 +285,11 @@ const NavBar = () => {
               </DialogTitle>
               <DialogContent>
                 <DialogContentText className="mx-4 mb-4">
-                <span className="has-text-danger has-text-weight-bold"> [BETA]</span> Ask Chat GPT movie questions here! 
+                  <span className="has-text-danger has-text-weight-bold">
+                    {" "}
+                    [BETA]
+                  </span>{" "}
+                  Ask Chat GPT movie questions here!
                 </DialogContentText>
                 <ChatBot />
               </DialogContent>
@@ -277,7 +302,7 @@ const NavBar = () => {
             <button
               className={
                 isLoggedIn
-                  ? "button is-normal is-danger is-outlined has-text-weight-semibold is-hidden-touch"
+                  ? "button is-normal is-danger is-outlined is-light is-hidden-touch"
                   : "button is-normal is-primary has-text-weight-semibold is-hidden-touch"
               }
               onClick={isLoggedIn ? handleClickOpen : handleLogInButton}
@@ -313,11 +338,7 @@ const NavBar = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <button
-            className="button is-primary"
-            onClick={handleClose}
-            autoFocus
-          >
+          <button className="button is-primary" onClick={handleClose} autoFocus>
             Cancel
           </button>
           <button
