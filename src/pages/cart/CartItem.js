@@ -80,10 +80,9 @@ const CartItemNEW = ({
   return (
     <div>
       <div className="columns">
-        <div className="column is-4"></div>
-        <div className="column is-8 mx-4">
+        <div className="column"></div>
+        <div className="column is-7 mx-4">
           <div
-            className="mx-4"
             style={{
               display: "flex",
               alignItems: "center",
@@ -123,7 +122,7 @@ const CartItemNEW = ({
               </div> */}
 
             <div
-              className="p-5 box"
+              className="p-5 box cart-item-button-box"
               style={{
                 borderStyle: "solid",
                 borderColor: "lightgray",
@@ -132,7 +131,7 @@ const CartItemNEW = ({
             >
               <div className="pb-4 has-text-centered">
                 <input
-                  className="input is-small has-text-centered"
+                  className="input is-small has-text-centered has-text-weight-semibold"
                   style={{ minWidth: "36px", maxWidth: "36px" }}
                   number
                   value={count}
@@ -163,33 +162,30 @@ const CartItemNEW = ({
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
               </div>
-              <div className="has-text-right">
-              <p
-                style={{
-                  color: price < 10 ? "hsl(348, 100%, 61%)" : "",
-                }}
-              >
-                <span className="menu-label">Price: &nbsp;</span>
-                {currencySymbol}
-                {price?.toFixed(2)}
-              </p>
-              <div className="has-text-right">
-                <p className="">
-                  <span className="menu-label">Subtotal: </span>{" "}
-                  <span className="">
-                    {currencySymbol}
-                    {subtotal}
-                  </span>
+              <div className="has-text-right mr-2">
+                <p
+                  style={{
+                    color: price < 10 ? "hsl(348, 100%, 61%)" : "",
+                  }}
+                >
+                  <span className="menu-label">Price: </span>{" "}
+                  {currencySymbol}
+                  {price?.toFixed(2)}
                 </p>
+                <div className="has-text-right">
+                  <p className="">
+                    <span className="menu-label">Sub: </span>{" "}
+                    <span>
+                      {currencySymbol}
+                      {subtotal}
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="column"></div>
           <hr></hr>
         </div>
-
-        <div></div>
       </div>
       <Dialog
         open={openRemoveAll}

@@ -2,7 +2,6 @@ import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import logo125 from "../logos/Logo_MovieDL_20230426_125x22.png";
 
 const Footer = () => {
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -23,37 +22,37 @@ const Footer = () => {
   return (
     <footer className="has-text-centered is-flex-align-items-flex-end has-background-white-ter pt-6">
       <div>
-      <div className="has-text-centered pb-5">
-        <div onClick={handleBrandClick}>
-          <img src={logo125} />
+        <div className="has-text-centered pb-6">
+          <div>
+            <img onClick={handleBrandClick} src={logo125} />
+          </div>
+          <p className="is-size-7">
+            5555 Delmar Blvd
+            <br />
+            St. Louis, MO 63108
+            <br />
+            (555) 555-5555
+          </p>
         </div>
-        <p className="is-size-7">
-          5555 Delmar Blvd
-          <br />
-          St. Louis, MO 63108
-          <br />
-          (555) 555-5555
-        </p>
-        </div>
-        <div className="tabs is-centered pb-4">
+        <div className="tabs is-centered pt-1 pb-5">
           <ul>
-          <li>
-              <a onClick={handleBrandClick}>
+            <li>
+              <NavLink className="menu-label" onClick={handleBrandClick}>
                 Home
-              </a>
+              </NavLink>
             </li>
             <li>
-              <Link to="faq">
+              <NavLink className="menu-label" to="faq">
                 Customer Service
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <NavLink to="about">
+              <NavLink className="menu-label" to="about">
                 About
               </NavLink>
             </li>
             <li>
-              <NavLink to="admin">
+              <NavLink className="menu-label" to="admin">
                 Admin
               </NavLink>
             </li>

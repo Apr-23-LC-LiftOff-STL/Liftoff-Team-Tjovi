@@ -91,7 +91,6 @@ export default function Cart() {
         </ul>
       </nav>
       <div className="title ml-6">Shopping Cart</div>
-      <hr></hr>
       <div className="columns">
         <div className="column">
           {/* <div>

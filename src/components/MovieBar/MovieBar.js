@@ -58,9 +58,9 @@ function MovieBar() {
   }
 
   return (
-    <div className="pt-6">
-      <h1 className="is-size-6 has-text-centered pt-6">
-        Recommended Movies
+    <div className="pt-5">
+      <h1 className="has-text-centered pt-6 menu-label">
+        More Recommended Movies
       </h1>
       <hr className="movie-bar-hr" />
       <div>
@@ -79,9 +79,9 @@ function MovieBar() {
           </div>
         ) : (
           <Fade in timeout={2250}>
-          <div className="is-size-7 mx-6 my-6 has-text-centered is-italic">Loading movies...</div>
+          <div className="is-size-7 mx-6 my-6 has-text-centered is-italic is-loading">Loading movies...<br /><p className="button is-ghost is-loading"></p></div>
           </Fade>
-        )}
+          )}
       </div>
     </div>
   );
