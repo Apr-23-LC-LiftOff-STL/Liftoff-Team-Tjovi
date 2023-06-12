@@ -115,9 +115,9 @@ function MovieCards() {
           )}
         </div>
         <div>
-          {movies.length > 29 && (
+          {movies.length > 0 && (
             <Box
-              sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}
+              sx={{ mt: 4, mb: 3, display: "flex", justifyContent: "center" }}
             >
               <Pagination
                 count={Math.ceil(totalElements / moviesPerPageGlobal)}
@@ -129,9 +129,10 @@ function MovieCards() {
               />
             </Box>
           )}
+          {movies.length > 0 &&
           <div className="has-text-centered">
             <div
-              className="button is-rounded is-info mb-5"
+              className="button is-small is-rounded is-info mb-5"
               style={{
                   backgroundColor: 'hsl(210, 83%, 41%)',
                   borderStyle: "solid",
@@ -148,7 +149,7 @@ function MovieCards() {
             >
               <FontAwesomeIcon icon={faArrowUp} />
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </div>
