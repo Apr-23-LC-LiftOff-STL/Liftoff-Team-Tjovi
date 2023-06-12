@@ -79,8 +79,8 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
               {productData?.posterPath ? (
                 <img
                   className="image"
-                  src={`${baseImgUrl}${productData.posterPath}`}
-                  alt={`Poster for ${productData.title}`}
+                  src={`${baseImgUrl}${productData?.posterPath}`}
+                  alt={`Poster for ${productData?.title}`}
                   style={{
                     borderStyle: "solid",
                     borderColor: "darkgray",
@@ -91,7 +91,7 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
               <img
                 className="movie-bar-img"
                 src={posterNA}
-                alt={`no poster image available for ${productData.title}`}
+                alt={`no poster image available for ${productData?.title}`}
               />
             )}
             </div>
@@ -110,7 +110,7 @@ const OrderHistorySubItem = ({ movieId, count, totalPrice }) => {
         </div>
       </td>
       <td className="has-text-centered">
-        {createShortcut(productData.title, 30)}
+        {createShortcut(productData?.title, 30)}
       </td>
       <td className="has-text-right">
         {currencySymbol}

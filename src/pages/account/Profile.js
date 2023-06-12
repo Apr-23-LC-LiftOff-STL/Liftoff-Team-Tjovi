@@ -237,6 +237,9 @@ export default function Profile(props) {
                   My Profile
                 </a>
               </li>
+              <li>
+                <a href="orders">Order History</a>
+              </li>
             </ul>
           </nav>
         </div>
