@@ -147,7 +147,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
-    public void returnAllCompletedOrdersTest() throws Exception{
+    public void TestReturnAllCompletedOrders() throws Exception{
     List<CompletedOrder> allCompletedOrders = (List<CompletedOrder>) orderService.returnAllCompletedOrders().getBody();
 
     assertNotNull(allCompletedOrders);
@@ -168,7 +168,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
-    public void returnAllCompletedOrdersByCustomerIdTest() throws Exception{
+    public void TestReturnAllCompletedOrdersByCustomerId() throws Exception{
         List<CompletedOrder> allCompletedOrdersByCustomerId = (List<CompletedOrder>) orderService.returnAllCompletedOrdersByCustomerId(testCustomer1.getId()).getBody();
 
         assertNotNull(allCompletedOrdersByCustomerId);
@@ -183,7 +183,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
-    public void returnMostRecentCompletedOrder() throws Exception{
+    public void TestReturnMostRecentCompletedOrder() throws Exception{
         List<CompletedOrder> mostRecentCompletedOrderByCustomerId = (List<CompletedOrder>) orderService.returnMostRecentCompletedOrder(testCustomer2.getId()).getBody();
 
         assertNotNull(mostRecentCompletedOrderByCustomerId);
@@ -198,7 +198,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
-    public void createNewOrderWithOneItemTest() throws Exception{
+    public void TestCreateNewOrderWithOneItem() throws Exception{
         ShoppingCart testCart4 = new ShoppingCart(testMovie3.getId(), 5L);
         testCart4.setCustomer(testCustomer3);
         testCart4.setTotalPrice(testMovie3.getPrice() * testCart4.getQuantity());

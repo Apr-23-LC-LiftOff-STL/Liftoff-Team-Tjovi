@@ -100,7 +100,7 @@ class ShoppingCartServiceIntegrationTest {
     }
 
     @Test
-    public void returnAllCartsTest() throws Exception{
+    public void testReturnAllCarts() throws Exception{
         List<ShoppingCart> allShoppingCarts = (List<ShoppingCart>) shoppingCartService.returnAllCarts().getBody();
 
         assertNotNull(allShoppingCarts);
@@ -119,7 +119,7 @@ class ShoppingCartServiceIntegrationTest {
     }
 
     @Test
-    public void returnCartsByCustomerIdTest() throws Exception {
+    public void testReturnCartsByCustomerId() throws Exception {
         List<ShoppingCart> allShoppingCartsByCustomer = (List<ShoppingCart>) shoppingCartService.returnCartsByCustomerId(testCustomer1.getId()).getBody();
 
         assertNotNull(allShoppingCartsByCustomer);
@@ -140,7 +140,7 @@ class ShoppingCartServiceIntegrationTest {
     }
 
     @Test
-    public void createNewShoppingCartTest() throws Exception{
+    public void testCreateNewShoppingCart() throws Exception{
         ShoppingCart newCartToAdd = new ShoppingCart(testMovie3.getId(), 5L);
 
         mockMvc.perform(post("/cart/add/{email}", testCustomer1.getEmail())
@@ -162,7 +162,7 @@ class ShoppingCartServiceIntegrationTest {
     }
 
     @Test
-    public void updateQuantityInCart() throws Exception{
+    public void testUpdateQuantityInCart() throws Exception{
         ShoppingCart cartToUpdate = new ShoppingCart(testMovie1.getId(), 4L);
 
         mockMvc.perform(put("/cart/edit/{email}", testCustomer1.getEmail())
@@ -183,7 +183,7 @@ class ShoppingCartServiceIntegrationTest {
     }
 
     @Test
-    public void removeItemFromCustomerCartTest() throws Exception{
+    public void testRemoveItemFromCustomerCart() throws Exception{
         ShoppingCart cartToDelete = new ShoppingCart(testCart1.getMovieId(), 1L);
 
         mockMvc.perform(delete("/cart/delete/{email}", testCustomer1.getEmail())
@@ -202,7 +202,7 @@ class ShoppingCartServiceIntegrationTest {
     }
 
     @Test
-    public void removeAllItemsFromCartByCustomer() throws Exception{
+    public void testRemoveAllItemsFromCartByCustomer() throws Exception{
         mockMvc.perform(delete("/cart/deleteAll/{email}", testCustomer1.getEmail()))
                 .andDo(print())
                 .andExpect(status().isOk());

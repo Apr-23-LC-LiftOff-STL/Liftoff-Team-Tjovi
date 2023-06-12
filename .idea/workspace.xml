@@ -13,49 +13,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Service/OrderService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/Services/OrderServiceIntegrationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/Services/OrderServiceIntegrationTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/Services/OrderServiceUnitTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/Services/OrderServiceUnitTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/Services/ShoppingCartServiceUnitTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/Services/ShoppingCartServiceUnitTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/AdminController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/AdminController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/CheckoutController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/CheckoutController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/InitializeProjectDBController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/InitializeProjectDBController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/LoginController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/LoginController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/MovieController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/MovieController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/OrderController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/OrderController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ProfileController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ProfileController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ShoppingCartController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ShoppingCartController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Authority.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Authority.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrder.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrder.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrderItem.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrderItem.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Customer.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Customer.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Genre.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Genre.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Movie.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Movie.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/ShoppingCart.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/ShoppingCart.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/CustomerService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/CustomerService.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/OrderService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/OrderService.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/ShoppingCartService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/ShoppingCartService.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Specifications/MovieSpecification.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Specifications/MovieSpecification.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/EcommerceUsernamePwdAuthenticationProvider.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/EcommerceUsernamePwdAuthenticationProvider.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/ProjectSecurityConfig.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/ProjectSecurityConfig.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAfterFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAfterFilter.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAtFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAtFilter.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/CsrfCookieFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/CsrfCookieFilter.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenGeneratorFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenGeneratorFilter.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenValidatorFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenValidatorFilter.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/OrderService.class.uniqueId2" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/OrderService.class.uniqueId2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/OrderServiceIntegrationTest.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/Services/ShoppingCartServiceIntegrationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/Services/ShoppingCartServiceIntegrationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/OrderServiceUnitTest.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/OrderServiceUnitTest.class.uniqueId0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/OrderServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/OrderServiceIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/OrderServiceUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/OrderServiceUnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/ShoppingCartServiceUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/ShoppingCartServiceUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/ShoppingCartServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/ShoppingCartServiceIntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,28 +140,7 @@
       <recent name="com.liftoff.ecommerce.Service" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Liftoff-Team-Tjovi [bootRun]">
-    <configuration name="Liftoff-Team-Tjovi [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="bootRun" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="JUnit.OrderServiceUnitTest.testCreateNewOrderNoMovieFoundNoMovieFound">
     <configuration name="OrderServiceUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
@@ -210,7 +156,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceUnitTest.returnAllCompletedOrders" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderServiceUnitTest.returnMostRecentCompletedOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
@@ -220,13 +166,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
-      <option name="METHOD_NAME" value="returnAllCompletedOrders" />
+      <option name="METHOD_NAME" value="returnMostRecentCompletedOrder" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceUnitTest.returnAllCompletedOrdersById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderServiceUnitTest.returnMostRecentCompletedOrderNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
@@ -236,13 +182,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
-      <option name="METHOD_NAME" value="returnAllCompletedOrdersById" />
+      <option name="METHOD_NAME" value="returnMostRecentCompletedOrderNotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceUnitTest.returnAllCompletedOrdersNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderServiceUnitTest.testCreateNewOrderNoCartFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
@@ -252,7 +198,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
       <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
-      <option name="METHOD_NAME" value="returnAllCompletedOrdersNotFound" />
+      <option name="METHOD_NAME" value="testCreateNewOrderNoCartFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceUnitTest.testCreateNewOrderNoMovieFoundNoMovieFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
+      <option name="METHOD_NAME" value="testCreateNewOrderNoMovieFoundNoMovieFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -293,19 +255,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.Liftoff-Team-Tjovi [bootRun]" />
       <item itemvalue="JUnit.OrderServiceUnitTest" />
-      <item itemvalue="JUnit.OrderServiceUnitTest.returnAllCompletedOrders" />
-      <item itemvalue="JUnit.OrderServiceUnitTest.returnAllCompletedOrdersById" />
-      <item itemvalue="JUnit.OrderServiceUnitTest.returnAllCompletedOrdersNotFound" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.returnMostRecentCompletedOrder" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.returnMostRecentCompletedOrderNotFound" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.testCreateNewOrderNoCartFound" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.testCreateNewOrderNoMovieFoundNoMovieFound" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Liftoff-Team-Tjovi [bootRun]" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.testCreateNewOrderNoMovieFoundNoMovieFound" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.testCreateNewOrderNoCartFound" />
         <item itemvalue="JUnit.OrderServiceUnitTest" />
-        <item itemvalue="JUnit.OrderServiceUnitTest.returnAllCompletedOrdersById" />
-        <item itemvalue="JUnit.OrderServiceUnitTest.returnAllCompletedOrdersNotFound" />
-        <item itemvalue="JUnit.OrderServiceUnitTest.returnAllCompletedOrders" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.returnMostRecentCompletedOrderNotFound" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.returnMostRecentCompletedOrder" />
       </list>
     </recent_temporary>
   </component>
