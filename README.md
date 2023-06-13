@@ -14,7 +14,7 @@ MovieDL is an e-commerce web app featuring a huge array of movies available for 
 - User checkout and Stripe API payment UI for credit card payments (test mode only)
 - User order history tables with sort, pagination
 - User registration, login and editable profile page (CRUD functionality)
-- REST API unit and integration tests
+- Unit and integration testing for REST API
 - Custom logging for Spring Security filters
 - Admin portal/dashboard - edit product details (CRUD functionality), view all orders
 - Chat GPT API integration - AI chatbot accessible from any page, answers user movie questions
