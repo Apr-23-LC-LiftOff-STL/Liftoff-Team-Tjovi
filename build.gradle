@@ -1,0 +1,88 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.5'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id "info.solidsoft.pitest" version "1.9.0"
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java:8.0.32'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'com.h2database:h2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.0'
+
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    //implementation group: 'org.json', name: 'json', version: '20090211'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    implementation 'com.auth0:auth0:2.3.0'
+    implementation 'com.auth0:java-jwt:4.4.0'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.10'
+    implementation "com.stripe:stripe-java:22.19.0"
+
+
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.10" // Check for the latest version
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        csv.enabled = false
+        html.destination file("${jacoco.reportsDir}/html")
+    }
+}
+
+//apply plugin: 'info.solidsoft.pitest'
+
+pitest {
+    junit5PluginVersion = '1.1.0'
+//    pitestVersion = '1.9.0'
+    targetClasses = ['com.liftoff.ecommerce.*']
+    targetTests = ['com.liftoff.ecommerce.*']
+    threads = 4
+    outputFormats = ['HTML']
+    timestampedReports = false
+//    mutationUnitSize = 5
+    timeoutConstInMillis = 5000
+}

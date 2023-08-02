@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Controllers</a> &gt; <span class="el_source">LoginController.java</span></div><h1>LoginController.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Controllers;
+
+import com.liftoff.ecommerce.Models.Authority;
+import com.liftoff.ecommerce.Models.Customer;
+import com.liftoff.ecommerce.Repositories.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.util.List;
+
+@RestController
+<span class="fc" id="L17">public class LoginController {</span>
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @PostMapping(&quot;/register&quot;)
+    public ResponseEntity&lt;String&gt; registerUser(@RequestBody Customer customer) {
+<span class="nc" id="L27">        Customer savedCustomer = null;</span>
+<span class="nc" id="L28">        ResponseEntity response = null;</span>
+<span class="nc" id="L29">        List&lt;Customer&gt; duplicateEmailCheck = customerRepository.findByEmail(customer.getEmail());</span>
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if(duplicateEmailCheck.size()&gt;0){</span>
+<span class="nc" id="L32">            response = ResponseEntity</span>
+<span class="nc" id="L33">                    .status(HttpStatus.NOT_ACCEPTABLE)</span>
+<span class="nc" id="L34">                    .body(&quot;An account is already registered with this email&quot;);</span>
+        } else {
+            try {
+<span class="nc" id="L37">                String hashPwd = passwordEncoder.encode(customer.getPwd());</span>
+<span class="nc" id="L38">                customer.setPwd(hashPwd);</span>
+<span class="nc" id="L39">                customer.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));</span>
+
+<span class="nc" id="L41">                Authority userAuthority = new Authority();</span>
+<span class="nc" id="L42">                userAuthority.setName(&quot;ROLE_USER&quot;);</span>
+<span class="nc" id="L43">                customer.addAuthority(userAuthority);</span>
+
+<span class="nc" id="L45">                savedCustomer = customerRepository.save(customer);</span>
+
+
+<span class="nc bnc" id="L48" title="All 2 branches missed.">                if (savedCustomer.getId() &gt; 0) {</span>
+<span class="nc" id="L49">                    response = ResponseEntity</span>
+<span class="nc" id="L50">                            .status(HttpStatus.CREATED)</span>
+<span class="nc" id="L51">                            .body(&quot;Given user details are successfully registered&quot;);</span>
+                }
+<span class="nc" id="L53">            } catch (Exception ex) {</span>
+<span class="nc" id="L54">                response = ResponseEntity</span>
+<span class="nc" id="L55">                        .status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L56">                        .body(&quot;An exception occured due to &quot; + ex.getMessage());</span>
+<span class="nc" id="L57">            }</span>
+        }
+<span class="nc" id="L59">        return response;</span>
+    }
+
+    @RequestMapping(&quot;/user&quot;)
+    public Customer getUserDetailsAfterLogin(Authentication authentication) {
+<span class="nc" id="L64">        List&lt;Customer&gt; customers = customerRepository.findByEmail(authentication.getName());</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (customers.size() &gt; 0) {</span>
+<span class="nc" id="L66">            return customers.get(0);</span>
+        } else {
+<span class="nc" id="L68">            return null;</span>
+        }
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

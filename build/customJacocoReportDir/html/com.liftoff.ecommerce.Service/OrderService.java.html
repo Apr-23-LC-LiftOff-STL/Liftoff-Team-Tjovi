@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Service</a> &gt; <span class="el_source">OrderService.java</span></div><h1>OrderService.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Service;
+
+
+import com.liftoff.ecommerce.Models.*;
+import com.liftoff.ecommerce.Repositories.CompletedOrderRepository;
+import com.liftoff.ecommerce.Repositories.CompletedOrderedItemRepository;
+import com.liftoff.ecommerce.Repositories.MovieRepository;
+import com.liftoff.ecommerce.Repositories.ShoppingCartRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.util.List;
+
+@Service
+<span class="fc" id="L19">public class OrderService {</span>
+
+    private static final String NO_ORDERS_FOUND = &quot;No orders matching your criteria were found&quot;;
+    private static final String NO_CARTS_FOUND = &quot;No carts matching your criteria were found&quot;;
+    private static final String NO_MOVIES_FOUND = &quot;No movies matching your criteria were found&quot;;
+
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
+
+    @Autowired
+    private CompletedOrderRepository completedOrderRepository;
+
+    @Autowired
+    private CompletedOrderedItemRepository completedOrderedItemRepository;
+
+    @Autowired
+    private MovieRepository movieRepository;
+
+    public ResponseEntity&lt;?&gt; createNewOrder(Customer customer) {
+<span class="nc" id="L38">        CompletedOrder newOrder = new CompletedOrder(customer, customer.getEmail());</span>
+<span class="nc" id="L39">        newOrder.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));</span>
+<span class="nc" id="L40">        completedOrderRepository.save(newOrder);</span>
+
+<span class="nc" id="L42">        long totalOrderQuantity = 0;</span>
+<span class="nc" id="L43">        List&lt;ShoppingCart&gt; cartItemsToOrder = shoppingCartRepository.findByCustomerId(customer.getId());</span>
+
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (cartItemsToOrder.isEmpty()) {</span>
+<span class="nc" id="L46">            return new ResponseEntity&lt;&gt;(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);</span>
+        }
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        for (ShoppingCart currentCart : cartItemsToOrder) {</span>
+<span class="nc" id="L49">            Movie orderedMovie = movieRepository.findById(currentCart.getMovieId())</span>
+<span class="nc" id="L50">                    .orElseThrow(() -&gt; new RuntimeException(NO_MOVIES_FOUND));</span>
+
+<span class="nc" id="L52">            String orderedMovieTitle = orderedMovie.getTitle();</span>
+<span class="nc" id="L53">            CompletedOrderItem orderItem = new CompletedOrderItem(newOrder, currentCart.getMovieId(), orderedMovieTitle,</span>
+<span class="nc" id="L54">                    currentCart.getQuantity(), currentCart.getTotalPrice());</span>
+<span class="nc" id="L55">            totalOrderQuantity += currentCart.getQuantity();</span>
+<span class="nc" id="L56">            completedOrderedItemRepository.save(orderItem);</span>
+<span class="nc" id="L57">            shoppingCartRepository.delete(currentCart);</span>
+<span class="nc" id="L58">        }</span>
+<span class="nc" id="L59">        newOrder.setTotalOrderQuantity(totalOrderQuantity);</span>
+<span class="nc" id="L60">        setTotalOrderPrice(newOrder);</span>
+<span class="nc" id="L61">        completedOrderRepository.save(newOrder);</span>
+
+<span class="nc" id="L63">        return ResponseEntity.ok(HttpStatus.CREATED);</span>
+    }
+
+    public ResponseEntity&lt;?&gt; returnAllCompletedOrders(){
+<span class="fc" id="L67">        List&lt;CompletedOrder&gt; allCompletedOrders = (List&lt;CompletedOrder&gt;) completedOrderRepository.findAll();</span>
+
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if(allCompletedOrders.isEmpty()){</span>
+<span class="nc" id="L70">            return new ResponseEntity&lt;&gt;(NO_ORDERS_FOUND, HttpStatus.NOT_FOUND);</span>
+        } else{
+<span class="fc" id="L72">            return new ResponseEntity&lt;&gt;(allCompletedOrders, HttpStatus.OK);</span>
+        }
+    }
+
+    public ResponseEntity&lt;?&gt; returnAllCompletedOrdersByCustomer(Long customerId){
+<span class="nc" id="L77">        List&lt;CompletedOrder&gt; allCompletedCustomerOrders = completedOrderRepository.findByCustomerId(customerId);</span>
+
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if(allCompletedCustomerOrders.isEmpty()){</span>
+<span class="nc" id="L80">            return new ResponseEntity&lt;&gt;(NO_ORDERS_FOUND, HttpStatus.NOT_FOUND);</span>
+        } else{
+<span class="nc" id="L82">            return new ResponseEntity&lt;&gt;(allCompletedCustomerOrders, HttpStatus.OK);</span>
+        }
+    }
+
+    public ResponseEntity&lt;?&gt; returnMostRecentCompletedOrder(Long customerId){
+<span class="nc" id="L87">        List&lt;CompletedOrder&gt; mostRecentCompletedOrder = completedOrderRepository.findByCustomerId(customerId);</span>
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if(mostRecentCompletedOrder.isEmpty()){</span>
+<span class="nc" id="L90">            return new ResponseEntity&lt;&gt;(NO_ORDERS_FOUND, HttpStatus.NOT_FOUND);</span>
+        } else{
+<span class="nc" id="L92">            return new ResponseEntity&lt;&gt;(mostRecentCompletedOrder, HttpStatus.OK);</span>
+        }
+    }
+
+    public void setTotalOrderPrice(CompletedOrder completedOrder){
+<span class="nc" id="L97">        Double totalOrderPrice=0.0;</span>
+<span class="nc" id="L98">        DecimalFormat decimalFormat = new DecimalFormat(&quot;0.00&quot;);</span>
+
+<span class="nc" id="L100">        List&lt;CompletedOrderItem&gt; orderItems = completedOrderedItemRepository.findByCompletedOrderId(completedOrder.getId());</span>
+
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if(orderItems.size()&gt;0){</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            for(CompletedOrderItem currentItem:orderItems){</span>
+<span class="nc" id="L104">                totalOrderPrice += currentItem.getTotalPrice();</span>
+<span class="nc" id="L105">            }</span>
+<span class="nc" id="L106">            Double finalPrice = Double.parseDouble(decimalFormat.format(totalOrderPrice));</span>
+<span class="nc" id="L107">            completedOrder.setTotalOrderPrice(finalPrice);</span>
+<span class="nc" id="L108">        } else{</span>
+<span class="nc" id="L109">            throw new RuntimeException(&quot;Order items not found&quot;);</span>
+        }
+<span class="nc" id="L111">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

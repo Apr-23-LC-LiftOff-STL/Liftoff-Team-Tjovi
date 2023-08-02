@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Controllers</a> &gt; <span class="el_source">OrderController.java</span></div><h1>OrderController.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Controllers;
+
+import com.liftoff.ecommerce.Models.Customer;
+import com.liftoff.ecommerce.Service.CustomerService;
+import com.liftoff.ecommerce.Service.OrderService;
+import com.liftoff.ecommerce.Service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(&quot;/order&quot;)
+<span class="fc" id="L13">public class OrderController {</span>
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @PostMapping(&quot;/newOrder/{email}&quot;)
+    public ResponseEntity&lt;?&gt; createNewOrder(@PathVariable String email){
+<span class="nc" id="L23">        Customer customer = customerService.findCustomer(email);</span>
+<span class="nc" id="L24">        return orderService.createNewOrder(customer);</span>
+    }
+
+    @GetMapping(&quot;/history/{email}&quot;)
+    public ResponseEntity&lt;?&gt; returnAllCompletedOrdersByCustomer(@PathVariable String email){
+<span class="nc" id="L29">        Customer customer = customerService.findCustomer(email);</span>
+<span class="nc" id="L30">        return orderService.returnAllCompletedOrdersByCustomer(customer.getId());</span>
+    }
+
+    @GetMapping(&quot;/currentPurchase/{email}&quot;)
+    public ResponseEntity&lt;?&gt; returnMostRecentCompletedOrder(@PathVariable String email){
+<span class="nc" id="L35">        Customer customer = customerService.findCustomer(email);</span>
+<span class="nc" id="L36">        return orderService.returnMostRecentCompletedOrder(customer.getId());</span>
+    }
+
+    @GetMapping(&quot;/allOrdersHistory&quot;)
+    public ResponseEntity&lt;?&gt; returnAllCompletedOrders(){
+<span class="fc" id="L41">        return orderService.returnAllCompletedOrders();</span>
+    }
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShoppingCart.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecommerce</a> &gt; <a href="index.source.html" class="el_package">com.liftoff.ecommerce.Models</a> &gt; <span class="el_source">ShoppingCart.java</span></div><h1>ShoppingCart.java</h1><pre class="source lang-java linenums">package com.liftoff.ecommerce.Models;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
+
+@Entity
+@Table
+public class ShoppingCart{
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO,generator=&quot;native&quot;)
+    @GenericGenerator(name = &quot;native&quot;,strategy = &quot;native&quot;)
+    @Column(name = &quot;cart_id&quot;)
+    private Long cartId;
+
+    @ManyToOne
+    @JoinColumn(name = &quot;customer_id&quot;)
+    private Customer customer;
+
+    @Column(name=&quot;movie_id&quot;)
+    private Long movieId;
+
+    private Long quantity;
+
+    private Double totalPrice;
+
+<span class="fc" id="L28">    public ShoppingCart() {</span>
+<span class="fc" id="L29">    }</span>
+
+<span class="fc" id="L31">    public ShoppingCart(Long movieId, Long quantity) {</span>
+<span class="fc" id="L32">        this.movieId = movieId;</span>
+<span class="fc" id="L33">        this.quantity = quantity;</span>
+<span class="fc" id="L34">    }</span>
+
+    public Long getCartId() {
+<span class="fc" id="L37">        return cartId;</span>
+    }
+
+    public void setCartId(Long cartId) {
+<span class="fc" id="L41">        this.cartId = cartId;</span>
+<span class="fc" id="L42">    }</span>
+
+    public Customer getCustomer() {
+<span class="fc" id="L45">        return customer;</span>
+    }
+
+    public void setCustomer(Customer customer) {
+<span class="fc" id="L49">        this.customer = customer;</span>
+<span class="fc" id="L50">    }</span>
+
+    public Long getMovieId() {
+<span class="fc" id="L53">        return movieId;</span>
+    }
+
+    public void setMovieId(Long movieId) {
+<span class="fc" id="L57">        this.movieId = movieId;</span>
+<span class="fc" id="L58">    }</span>
+
+    public Long getQuantity() {
+<span class="fc" id="L61">        return quantity;</span>
+    }
+
+    public void setQuantity(Long quantity) {
+<span class="fc" id="L65">        this.quantity = quantity;</span>
+<span class="fc" id="L66">    }</span>
+
+    public Double getTotalPrice() {
+<span class="fc" id="L69">        return totalPrice;</span>
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+<span class="fc" id="L73">        this.totalPrice = totalPrice;</span>
+<span class="fc" id="L74">    }</span>
+}
+
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
