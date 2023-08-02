@@ -50,6 +50,17 @@ public class Movie {
         return imdbId;
     }
 
+    public Movie() {
+    }
+
+    public Movie(String title, String overview, String releaseDate, String runtime, Double price) {
+        this.title = title;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+        this.runtime = runtime;
+        this.price = price;
+    }
+
     public void setImdbId(String imdbId) {
         this.imdbId = imdbId;
     }
