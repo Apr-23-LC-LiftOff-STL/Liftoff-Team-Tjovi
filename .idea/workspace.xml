@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2964784-6240-4bff-a82a-444cb80eef9c" name="Changes" comment="" />
+    <list default="true" id="a2964784-6240-4bff-a82a-444cb80eef9c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/CompletedOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/CompletedOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/CompletedOrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/CompletedOrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/OrderServiceUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/OrderServiceUnitTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +67,11 @@
     </system>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="back-end-dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -73,70 +92,8 @@
     &quot;last_opened_file_path&quot;: &quot;/Users/joshjennemann/Desktop/launchcode/Unit-3/Liftoff-Team-Tjovi&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.ShoppingCartControllerIntegrationTest">
-    <configuration name="ApiattemptApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ApiattemptApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest.addToCartTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="addToCartTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest.returnAllCartsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="returnAllCartsTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartServiceUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.OrderServiceUnitTest.testCreateNewOrderSuccess">
+    <configuration name="OrderServiceUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
@@ -145,26 +102,90 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OrderServiceUnitTest.testCreateNewOrderSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
+      <option name="METHOD_NAME" value="testCreateNewOrderSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceUnitTest.testReturnAllCompletedOrdersTestSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
+      <option name="METHOD_NAME" value="testReturnAllCompletedOrdersTestSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceUnitTest.testTotalOrderPriceOrderItemsNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
+      <option name="METHOD_NAME" value="testTotalOrderPriceOrderItemsNotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceUnitTest.testTotalOrderPriceSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.OrderServiceUnitTest" />
+      <option name="METHOD_NAME" value="testTotalOrderPriceSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.ApiattemptApplicationTests" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.addToCartTest" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.returnAllCartsTest" />
-      <item itemvalue="JUnit.ShoppingCartServiceUnitTest" />
+      <item itemvalue="JUnit.OrderServiceUnitTest" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.testCreateNewOrderSuccess" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.testReturnAllCompletedOrdersTestSuccess" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.testTotalOrderPriceOrderItemsNotFound" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.testTotalOrderPriceSuccess" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.addToCartTest" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.returnAllCartsTest" />
-        <item itemvalue="JUnit.ApiattemptApplicationTests" />
-        <item itemvalue="JUnit.ShoppingCartServiceUnitTest" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.testCreateNewOrderSuccess" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.testTotalOrderPriceOrderItemsNotFound" />
+        <item itemvalue="JUnit.OrderServiceUnitTest" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.testReturnAllCompletedOrdersTestSuccess" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.testTotalOrderPriceSuccess" />
       </list>
     </recent_temporary>
   </component>

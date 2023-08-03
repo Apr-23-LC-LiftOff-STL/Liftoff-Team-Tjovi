@@ -46,6 +46,10 @@ public class CompletedOrderItem {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public CompletedOrder getCompletedOrder() {
         return completedOrder;
     }

@@ -37,29 +37,54 @@ public class OrderService {
     public ResponseEntity<?> createNewOrder(Customer customer) {
         long totalOrderQuantity = 0;
 
+// Find all shoppingCarts associated with customer and return them in a List<ShoppingCart> cartItemsToOrder
         List<ShoppingCart> cartItemsToOrder = shoppingCartRepository.findByCustomerId(customer.getId());
         if (cartItemsToOrder.isEmpty()) {
             return new ResponseEntity<>(NO_CARTS_FOUND, HttpStatus.NOT_FOUND);
         }
+
+// If returned List<ShoppingCart> is not empty. Initialize new CompletedOrder object newOrder, set newOrder date,
+// and save newOrder to completedOrderRepo
         CompletedOrder newOrder = new CompletedOrder(customer, customer.getEmail());
         newOrder.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
         completedOrderRepository.save(newOrder);
 
+// Loop through the List<ShoppingCart> of cartItemsToOrder
         for (ShoppingCart currentCart : cartItemsToOrder) {
+
+// In each iteration:
+    // 1) Search movieRepository by movieId passing currentCart.getMovieId() and assign to orderedMovie
             Movie orderedMovie = movieRepository.findById(currentCart.getMovieId())
                     .orElseThrow(() -> new RuntimeException(NO_MOVIES_FOUND));
 
+    // 2) Get title from orderedMovie and assign to variable orderMovieTitle
             String orderedMovieTitle = orderedMovie.getTitle();
+
+    // 3) Initialize new parameterized CompletedOrderItem as orderItem - assign to newOrder - other parameters
+    // pulled from newly created and from current cart iteration
             CompletedOrderItem orderItem = new CompletedOrderItem(newOrder, currentCart.getMovieId(), orderedMovieTitle,
                     currentCart.getQuantity(), currentCart.getTotalPrice());
+
+    // 4) pull quantity from current cart and add to totalOrderQuantity
             totalOrderQuantity += currentCart.getQuantity();
+
+    // 5) Save orderItem to completedOrderedItemRepository
             completedOrderedItemRepository.save(orderItem);
+
+    // 6) Delete currentCart from shoppingCartRepository
             shoppingCartRepository.delete(currentCart);
         }
+
+// Set newOrder's totalOrderQuantity by passing it method variable totalOrderQuantity
         newOrder.setTotalOrderQuantity(totalOrderQuantity);
+
+// Pass newOrder to service helper method this.setTotalOrderPrice to set the totalOrderPrice
         this.setTotalOrderPrice(newOrder);
+
+// save newOrder to completedOrderRepository
         completedOrderRepository.save(newOrder);
 
+// return new ResponseEntity<>
         return new ResponseEntity<> (HttpStatus.CREATED);
     }
 
