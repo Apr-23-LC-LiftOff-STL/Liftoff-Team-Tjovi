@@ -130,7 +130,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import java.util.HashSet;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -145,7 +145,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import java.util.Set;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import java.util.HashSet;</span></pre></td></tr>
 
 
 <tr>
@@ -160,7 +160,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>import java.util.Set;</span></pre></td></tr>
 
 
 <tr>
@@ -175,7 +175,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>@Entity</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -190,7 +190,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>@Table(name=&#34;customer&#34;)</span></pre></td></tr>
+<td class=''><pre><span  class=''>@Entity</span></pre></td></tr>
 
 
 <tr>
@@ -205,7 +205,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>public class Customer {</span></pre></td></tr>
+<td class=''><pre><span  class=''>@Table(name=&#34;customer&#34;)</span></pre></td></tr>
 
 
 <tr>
@@ -220,7 +220,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>public class Customer {</span></pre></td></tr>
 
 
 <tr>
@@ -235,7 +235,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @Id</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -250,7 +250,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @GeneratedValue(strategy= GenerationType.AUTO,generator=&#34;native&#34;)</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @Id</span></pre></td></tr>
 
 
 <tr>
@@ -265,7 +265,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @GenericGenerator(name = &#34;native&#34;,strategy = &#34;native&#34;)</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @GeneratedValue(strategy= GenerationType.AUTO,generator=&#34;native&#34;)</span></pre></td></tr>
 
 
 <tr>
@@ -280,7 +280,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @Column(name = &#34;customer_id&#34;)</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @GenericGenerator(name = &#34;native&#34;,strategy = &#34;native&#34;)</span></pre></td></tr>
 
 
 <tr>
@@ -295,7 +295,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private Long id;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @Column(name = &#34;customer_id&#34;)</span></pre></td></tr>
 
 
 <tr>
@@ -310,7 +310,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private Long id;</span></pre></td></tr>
 
 
 <tr>
@@ -325,7 +325,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String firstName;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -340,7 +340,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String firstName;</span></pre></td></tr>
 
 
 <tr>
@@ -355,7 +355,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String lastName;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -370,7 +370,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String lastName;</span></pre></td></tr>
 
 
 <tr>
@@ -385,7 +385,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String email;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -400,7 +400,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String email;</span></pre></td></tr>
 
 
 <tr>
@@ -415,7 +415,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @Column(name = &#34;mobile_number&#34;)</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -430,7 +430,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String mobileNumber;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @Column(name = &#34;mobile_number&#34;)</span></pre></td></tr>
 
 
 <tr>
@@ -445,7 +445,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String mobileNumber;</span></pre></td></tr>
 
 
 <tr>
@@ -460,7 +460,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String streetAddress;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -475,7 +475,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String streetAddress;</span></pre></td></tr>
 
 
 <tr>
@@ -490,7 +490,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String suiteNumber;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -505,7 +505,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String suiteNumber;</span></pre></td></tr>
 
 
 <tr>
@@ -520,7 +520,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String city;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -535,7 +535,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String city;</span></pre></td></tr>
 
 
 <tr>
@@ -550,7 +550,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String state;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -565,7 +565,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String state;</span></pre></td></tr>
 
 
 <tr>
@@ -580,7 +580,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private Long zipCode;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -595,7 +595,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private Long zipCode;</span></pre></td></tr>
 
 
 <tr>
@@ -610,7 +610,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -625,7 +625,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String pwd;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)</span></pre></td></tr>
 
 
 <tr>
@@ -640,7 +640,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String pwd;</span></pre></td></tr>
 
 
 <tr>
@@ -655,7 +655,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @JsonIgnore</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -670,7 +670,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String role;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @JsonIgnore</span></pre></td></tr>
 
 
 <tr>
@@ -685,7 +685,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String role;</span></pre></td></tr>
 
 
 <tr>
@@ -700,7 +700,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @Column(name = &#34;create_dt&#34;)</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -715,7 +715,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private String createDt;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @Column(name = &#34;create_dt&#34;)</span></pre></td></tr>
 
 
 <tr>
@@ -730,7 +730,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private String createDt;</span></pre></td></tr>
 
 
 <tr>
@@ -745,7 +745,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @JsonIgnore</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -760,7 +760,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @OneToMany(mappedBy=&#34;customer&#34;,fetch=FetchType.EAGER, cascade = CascadeType.ALL)</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @JsonIgnore</span></pre></td></tr>
 
 
 <tr>
@@ -775,7 +775,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private Set&#60;Authority&#62; authorities;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @OneToMany(mappedBy=&#34;customer&#34;,fetch=FetchType.EAGER, cascade = CascadeType.ALL)</span></pre></td></tr>
 
 
 <tr>
@@ -790,7 +790,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private Set&#60;Authority&#62; authorities;</span></pre></td></tr>
 
 
 <tr>
@@ -805,7 +805,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @JsonIgnore</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -820,7 +820,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    @OneToMany(mappedBy = &#34;customer&#34;, fetch=FetchType.EAGER)</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @JsonIgnore</span></pre></td></tr>
 
 
 <tr>
@@ -835,7 +835,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private Set&#60;ShoppingCart&#62; shoppingCart;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    @OneToMany(mappedBy = &#34;customer&#34;, fetch=FetchType.EAGER)</span></pre></td></tr>
 
 
 <tr>
@@ -850,11 +850,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private Set&#60;ShoppingCart&#62; shoppingCart;</span></pre></td></tr>
 
 
 <tr>
-<td class='covered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_57'/>
 57
 </td>
@@ -865,7 +865,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>    public Customer() {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -880,11 +880,11 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    public Customer() {</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_59'/>
 59
 </td>
@@ -895,7 +895,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -910,11 +910,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public Customer(String firstName, String lastName, String email, String mobileNumber, String streetAddress,</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='covered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_61'/>
 61
 </td>
@@ -925,7 +925,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>                    String suiteNumber, String city, String state, Long zipCode) {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public Customer(String firstName, String lastName, String email, String mobileNumber, String streetAddress,</span></pre></td></tr>
 
 
 <tr>
@@ -940,7 +940,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.firstName = firstName;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>                    String suiteNumber, String city, String state, Long zipCode) {</span></pre></td></tr>
 
 
 <tr>
@@ -955,7 +955,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.lastName = lastName;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.firstName = firstName;</span></pre></td></tr>
 
 
 <tr>
@@ -970,7 +970,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.email = email;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.lastName = lastName;</span></pre></td></tr>
 
 
 <tr>
@@ -985,7 +985,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.mobileNumber = mobileNumber;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.email = email;</span></pre></td></tr>
 
 
 <tr>
@@ -1000,7 +1000,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.streetAddress = streetAddress;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.mobileNumber = mobileNumber;</span></pre></td></tr>
 
 
 <tr>
@@ -1015,7 +1015,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.suiteNumber = suiteNumber;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.streetAddress = streetAddress;</span></pre></td></tr>
 
 
 <tr>
@@ -1030,7 +1030,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.city = city;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.suiteNumber = suiteNumber;</span></pre></td></tr>
 
 
 <tr>
@@ -1045,7 +1045,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.state = state;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.city = city;</span></pre></td></tr>
 
 
 <tr>
@@ -1060,7 +1060,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.zipCode = zipCode;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.state = state;</span></pre></td></tr>
 
 
 <tr>
@@ -1075,11 +1075,11 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.zipCode = zipCode;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_72'/>
 72
 </td>
@@ -1090,7 +1090,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1105,17 +1105,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_74'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public Long getId() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_74'/>
-74
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_75'/>
+75
 </td>
 <td class='killed'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_74'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_75'>1</a>
 <span>
 1. getId : replaced Long return value with 0L for com/liftoff/ecommerce/Models/Customer::getId &rarr; KILLED<br/>
 
@@ -1123,21 +1138,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='killed'>        return id;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_75'/>
-75
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_75'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1152,7 +1152,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1167,11 +1167,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setId(Long id) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='covered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_78'/>
 78
 </td>
@@ -1182,7 +1182,7 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>        this.id = id;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setId(Long id) {</span></pre></td></tr>
 
 
 <tr>
@@ -1197,11 +1197,11 @@
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.id = id;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_80'/>
 80
 </td>
@@ -1212,7 +1212,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1227,17 +1227,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_82'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getFirstName() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_82'/>
-82
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_83'/>
+83
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_82'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_83'>1</a>
 <span>
 1. getFirstName : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getFirstName &rarr; SURVIVED<br/>
 
@@ -1245,21 +1260,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return firstName;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_83'/>
-83
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_83'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1274,7 +1274,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1289,11 +1289,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setFirstName(String firstName) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_86'/>
 86
 </td>
@@ -1304,7 +1304,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.firstName = firstName;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setFirstName(String firstName) {</span></pre></td></tr>
 
 
 <tr>
@@ -1319,11 +1319,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.firstName = firstName;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_88'/>
 88
 </td>
@@ -1334,7 +1334,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1349,17 +1349,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_90'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getLastName() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_90'/>
-90
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_91'/>
+91
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_90'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_91'>1</a>
 <span>
 1. getLastName : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getLastName &rarr; SURVIVED<br/>
 
@@ -1367,21 +1382,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return lastName;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_91'/>
-91
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_91'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1396,7 +1396,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1411,11 +1411,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setLastName(String lastName) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_94'/>
 94
 </td>
@@ -1426,7 +1426,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.lastName = lastName;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setLastName(String lastName) {</span></pre></td></tr>
 
 
 <tr>
@@ -1441,11 +1441,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.lastName = lastName;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_96'/>
 96
 </td>
@@ -1456,7 +1456,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1471,17 +1471,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_98'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getEmail() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_98'/>
-98
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_99'/>
+99
 </td>
 <td class='killed'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_98'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_99'>1</a>
 <span>
 1. getEmail : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getEmail &rarr; KILLED<br/>
 
@@ -1489,21 +1504,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='killed'>        return email;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_99'/>
-99
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_99'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1518,7 +1518,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1533,11 +1533,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setEmail(String email) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_102'/>
 102
 </td>
@@ -1548,7 +1548,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.email = email;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setEmail(String email) {</span></pre></td></tr>
 
 
 <tr>
@@ -1563,11 +1563,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.email = email;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_104'/>
 104
 </td>
@@ -1578,7 +1578,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1593,17 +1593,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_106'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getMobileNumber() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_106'/>
-106
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_107'/>
+107
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_106'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_107'>1</a>
 <span>
 1. getMobileNumber : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getMobileNumber &rarr; SURVIVED<br/>
 
@@ -1611,21 +1626,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return mobileNumber;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_107'/>
-107
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_107'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1640,7 +1640,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1655,11 +1655,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setMobileNumber(String mobileNumber) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_110'/>
 110
 </td>
@@ -1670,7 +1670,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.mobileNumber = mobileNumber;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setMobileNumber(String mobileNumber) {</span></pre></td></tr>
 
 
 <tr>
@@ -1685,11 +1685,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.mobileNumber = mobileNumber;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_112'/>
 112
 </td>
@@ -1700,7 +1700,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1715,17 +1715,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_114'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getStreetAddress() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_114'/>
-114
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_115'/>
+115
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_114'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_115'>1</a>
 <span>
 1. getStreetAddress : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getStreetAddress &rarr; SURVIVED<br/>
 
@@ -1733,21 +1748,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return streetAddress;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_115'/>
-115
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_115'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1762,7 +1762,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1777,11 +1777,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setStreetAddress(String streetAddress) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_118'/>
 118
 </td>
@@ -1792,7 +1792,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.streetAddress = streetAddress;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setStreetAddress(String streetAddress) {</span></pre></td></tr>
 
 
 <tr>
@@ -1807,11 +1807,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.streetAddress = streetAddress;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_120'/>
 120
 </td>
@@ -1822,7 +1822,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1837,17 +1837,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_122'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getSuiteNumber() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_122'/>
-122
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_123'/>
+123
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_122'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_123'>1</a>
 <span>
 1. getSuiteNumber : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getSuiteNumber &rarr; SURVIVED<br/>
 
@@ -1855,21 +1870,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return suiteNumber;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_123'/>
-123
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_123'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1884,7 +1884,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1899,11 +1899,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setSuiteNumber(String suiteNumber) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_126'/>
 126
 </td>
@@ -1914,7 +1914,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.suiteNumber = suiteNumber;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setSuiteNumber(String suiteNumber) {</span></pre></td></tr>
 
 
 <tr>
@@ -1929,11 +1929,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.suiteNumber = suiteNumber;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_128'/>
 128
 </td>
@@ -1944,7 +1944,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1959,17 +1959,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_130'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getCity() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_130'/>
-130
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_131'/>
+131
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_130'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_131'>1</a>
 <span>
 1. getCity : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getCity &rarr; SURVIVED<br/>
 
@@ -1977,21 +1992,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return city;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_131'/>
-131
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_131'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2006,7 +2006,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2021,11 +2021,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setCity(String city) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_134'/>
 134
 </td>
@@ -2036,7 +2036,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.city = city;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setCity(String city) {</span></pre></td></tr>
 
 
 <tr>
@@ -2051,11 +2051,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.city = city;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_136'/>
 136
 </td>
@@ -2066,7 +2066,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2081,17 +2081,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_138'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getState() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_138'/>
-138
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_139'/>
+139
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_138'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_139'>1</a>
 <span>
 1. getState : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getState &rarr; SURVIVED<br/>
 
@@ -2099,21 +2114,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return state;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_139'/>
-139
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_139'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2128,7 +2128,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2143,11 +2143,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setState(String state) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_142'/>
 142
 </td>
@@ -2158,7 +2158,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.state = state;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setState(String state) {</span></pre></td></tr>
 
 
 <tr>
@@ -2173,11 +2173,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.state = state;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_144'/>
 144
 </td>
@@ -2188,7 +2188,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2203,17 +2203,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_146'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public Long getZipCode() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_146'/>
-146
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_147'/>
+147
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_146'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_147'>1</a>
 <span>
 1. getZipCode : replaced Long return value with 0L for com/liftoff/ecommerce/Models/Customer::getZipCode &rarr; SURVIVED<br/>
 
@@ -2221,21 +2236,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return zipCode;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_147'/>
-147
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_147'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2250,7 +2250,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2265,11 +2265,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setZipCode(Long zipCode) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_150'/>
 150
 </td>
@@ -2280,7 +2280,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.zipCode = zipCode;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setZipCode(Long zipCode) {</span></pre></td></tr>
 
 
 <tr>
@@ -2295,11 +2295,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.zipCode = zipCode;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_152'/>
 152
 </td>
@@ -2310,7 +2310,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2325,17 +2325,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_154'/>
+154
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_154'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getPwd() {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_154'/>
-154
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_155'/>
+155
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_154'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_155'>1</a>
 <span>
 1. getPwd : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getPwd &rarr; NO_COVERAGE<br/>
 
@@ -2343,21 +2358,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>        return pwd;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_155'/>
-155
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_155'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2372,7 +2372,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2387,11 +2387,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setPwd(String pwd) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_158'/>
 158
 </td>
@@ -2402,7 +2402,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.pwd = pwd;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setPwd(String pwd) {</span></pre></td></tr>
 
 
 <tr>
@@ -2417,11 +2417,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.pwd = pwd;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_160'/>
 160
 </td>
@@ -2432,7 +2432,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2447,17 +2447,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_162'/>
+162
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_162'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getRole() {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_162'/>
-162
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_163'/>
+163
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_162'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_163'>1</a>
 <span>
 1. getRole : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getRole &rarr; NO_COVERAGE<br/>
 
@@ -2465,21 +2480,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>        return role;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_163'/>
-163
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_163'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2494,7 +2494,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2509,11 +2509,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setRole(String role) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_166'/>
 166
 </td>
@@ -2524,7 +2524,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.role = role;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setRole(String role) {</span></pre></td></tr>
 
 
 <tr>
@@ -2539,11 +2539,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.role = role;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_168'/>
 168
 </td>
@@ -2554,7 +2554,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2569,17 +2569,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_170'/>
+170
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_170'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public String getCreateDt() {</span></pre></td></tr>
 
 
 <tr>
 <td class='covered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_170'/>
-170
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_171'/>
+171
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_170'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_171'>1</a>
 <span>
 1. getCreateDt : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getCreateDt &rarr; SURVIVED<br/>
 
@@ -2587,21 +2602,6 @@
 </span>
 </td>
 <td class='covered'><pre><span  class='survived'>        return createDt;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_171'/>
-171
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_171'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2616,7 +2616,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2631,11 +2631,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setCreateDt(String createDt) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_174'/>
 174
 </td>
@@ -2646,7 +2646,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.createDt = createDt;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setCreateDt(String createDt) {</span></pre></td></tr>
 
 
 <tr>
@@ -2661,11 +2661,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.createDt = createDt;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_176'/>
 176
 </td>
@@ -2676,7 +2676,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2691,17 +2691,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_178'/>
+178
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_178'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public Set&#60;Authority&#62; getAuthorities() {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_178'/>
-178
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_179'/>
+179
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_178'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_179'>1</a>
 <span>
 1. getAuthorities : replaced return value with Collections.emptySet for com/liftoff/ecommerce/Models/Customer::getAuthorities &rarr; NO_COVERAGE<br/>
 
@@ -2709,21 +2724,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>        return authorities;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_179'/>
-179
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_179'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2738,7 +2738,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2753,11 +2753,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setAuthorities(Set&#60;Authority&#62; authorities) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_182'/>
 182
 </td>
@@ -2768,7 +2768,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.authorities = authorities;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setAuthorities(Set&#60;Authority&#62; authorities) {</span></pre></td></tr>
 
 
 <tr>
@@ -2783,11 +2783,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.authorities = authorities;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_184'/>
 184
 </td>
@@ -2798,7 +2798,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2813,17 +2813,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_186'/>
+186
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_186'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public void addAuthority(Authority authority) {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_186'/>
-186
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_187'/>
+187
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_186'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_187'>1</a>
 <span>
 1. addAuthority : negated conditional &rarr; NO_COVERAGE<br/>
 
@@ -2835,21 +2850,6 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_187'/>
-187
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_187'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>            this.authorities = new HashSet&#60;&#62;();</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_188'/>
 188
 </td>
@@ -2860,11 +2860,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            this.authorities = new HashSet&#60;&#62;();</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_189'/>
 189
 </td>
@@ -2875,7 +2875,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.authorities.add(authority);</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -2883,9 +2883,24 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_190'/>
 190
 </td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_190'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        this.authorities.add(authority);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_191'/>
+191
+</td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_190'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_191'>1</a>
 <span>
 1. addAuthority : removed call to com/liftoff/ecommerce/Models/Authority::setCustomer &rarr; NO_COVERAGE<br/>
 
@@ -2897,21 +2912,6 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_191'/>
-191
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_191'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_192'/>
 192
 </td>
@@ -2922,7 +2922,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2937,17 +2937,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_194'/>
+194
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_194'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>    public Set&#60;ShoppingCart&#62; getShoppingCart() {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_194'/>
-194
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_195'/>
+195
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_194'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_195'>1</a>
 <span>
 1. getShoppingCart : replaced return value with Collections.emptySet for com/liftoff/ecommerce/Models/Customer::getShoppingCart &rarr; NO_COVERAGE<br/>
 
@@ -2955,21 +2970,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>        return shoppingCart;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_195'/>
-195
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_195'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2984,7 +2984,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2999,11 +2999,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setShoppingCart(Set&#60;ShoppingCart&#62; shoppingCart) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_198'/>
 198
 </td>
@@ -3014,7 +3014,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.shoppingCart = shoppingCart;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setShoppingCart(Set&#60;ShoppingCart&#62; shoppingCart) {</span></pre></td></tr>
 
 
 <tr>
@@ -3029,17 +3029,32 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        this.shoppingCart = shoppingCart;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_200'/>
 200
 </td>
 <td class=''>
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_200'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@681aad3b_201'/>
+201
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_201'></a>
 <span>
 </span>
 </span>
@@ -3051,171 +3066,171 @@
 <tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
 
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_74'>74</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_75'>75</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_74'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_75'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getId<br/><b>Killed by : </b>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testRemoveAllItemsFromCartByCustomer()]</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/Customer::getId &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getId<br/><b>Killed by : </b>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testRemoveItemFromCustomerCart()]</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/Customer::getId &rarr; KILLED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_82'>82</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_83'>83</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_82'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_83'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getFirstName<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getFirstName &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_90'>90</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_91'>91</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_90'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_91'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getLastName<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getLastName &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_98'>98</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_99'>99</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_98'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_99'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEmail<br/><b>Killed by : </b>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testRemoveAllItemsFromCartByCustomer()]</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getEmail &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEmail<br/><b>Killed by : </b>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testRemoveItemFromCustomerCart()]</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getEmail &rarr; KILLED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_106'>106</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_107'>107</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_106'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_107'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMobileNumber<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getMobileNumber &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_114'>114</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_115'>115</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_114'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_115'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getStreetAddress<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getStreetAddress &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_122'>122</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_123'>123</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_122'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_123'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSuiteNumber<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getSuiteNumber &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_130'>130</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_131'>131</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_130'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_131'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCity<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getCity &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_138'>138</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_139'>139</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_138'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_139'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getState<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getState &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_146'>146</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_147'>147</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_146'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_147'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getZipCode<br/><b>Killed by : </b>none</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/Customer::getZipCode &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_154'>154</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_155'>155</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_154'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_155'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPwd<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getPwd &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_162'>162</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_163'>163</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_162'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_163'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getRole<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getRole &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_170'>170</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_171'>171</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_170'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_171'/> 
 
 <p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCreateDt<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/Customer::getCreateDt &rarr; SURVIVED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_178'>178</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_179'>179</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_178'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_179'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getAuthorities<br/><b>Killed by : </b>none</span></span> replaced return value with Collections.emptySet for com/liftoff/ecommerce/Models/Customer::getAuthorities &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_186'>186</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_187'>187</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_186'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_187'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addAuthority<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_190'>190</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_191'>191</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_190'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_191'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addAuthority<br/><b>Killed by : </b>none</span></span> removed call to com/liftoff/ecommerce/Models/Authority::setCustomer &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_194'>194</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@681aad3b_195'>195</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_194'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@681aad3b_195'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getShoppingCart<br/><b>Killed by : </b>none</span></span> replaced return value with Collections.emptySet for com/liftoff/ecommerce/Models/Customer::getShoppingCart &rarr; NO_COVERAGE</p> 
 </td>
@@ -3242,7 +3257,7 @@
 
 <h2>Tests examined</h2>
 <ul>
-<li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersNotFound()] (0 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnMostRecentCompletedOrder()] (27 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testUpdateQuantityInCart()] (19 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:returnCartsByCustomerTest()] (209 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnAllCompletedOrders()] (42 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testCreateNewOrderNoMovieFoundNoMovieFound()] (2 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testAddToCart()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersTest()] (1 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testUpdateCartQuantity()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testCreateNewOrderNoCartFound()] (1 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:returnAllCartsTest()] (35 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testUpdateQuantityInCartUpdatesQuantityAndTotalPriceAndSaves()] (1 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:updateCartQuantityTest()] (43 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testRemoveAllItemsFromCartByCustomer()] (1 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testRemoveAllItemsFromCartByCustomer()] (17 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnAllCompletedOrdersByCustomerId()] (37 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testRemoveItemFromCustomerCartWhenNoCartFound()] (0 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:removeAllItemsFromCartByCustomerTest()] (34 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestCreateNewOrderWithOneItem()] (25 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnMostRecentCompletedOrder()] (36 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testReturnCartsByCustomerId()] (20 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:addToCartTest()] (57 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testReturnCartsByCustomer()] (2 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersByIdNotFound()] (0 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testReturnAllCarts()] (33 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testRemoveItemFromCustomerCart()] (20 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testRemoveAllItemsByCustomerFromCartWhenNoCartsFound()] (1 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testCreateNewShoppingCart()] (20 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testReturnCartsByCustomerId()] (1 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testUpdateQuantityInCartNotFound()] (0 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersById()] (1 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testReturnCartsByCustomerIdNotFound()] (0 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testRemoveAllItemsFromCartByCustomerWhenCartsExist()] (1 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testRemoveItemFromCustomerCartWhenCartExists()] (30 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testRemoveItemFromCustomerCart()] (47 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:removeItemFromCustomerCartTest()] (33 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnMostRecentCompletedOrderNotFound()] (1 ms)</li>
+<li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testAddToCartNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersTestSuccess()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnAllCompletedOrders()] (52 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testCreateNewOrderNoMovieFoundNoMovieFound()] (3 ms)</li><li>com.liftoff.ecommerce.Controllers.OrderControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.OrderControllerUnitTest]/[method:testReturnAllCompletedOrdersByCustomerIdNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersByIdSuccess()] (0 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testCreateNewOrderSuccess()] (5 ms)</li><li>com.liftoff.ecommerce.Controllers.OrderControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.OrderControllerUnitTest]/[method:testReturnMostRecentCompletedOrderNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:returnAllCartsTest()] (55 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testRemoveAllItemsFromCartByCustomerSuccess()] (19 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testUpdateQuantityInCartUpdatesQuantityAndTotalPriceAndSaves()] (1 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:updateCartQuantityTest()] (37 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testRemoveAllItemsFromCartByCustomer()] (29 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnAllCompletedOrdersByCustomerId()] (39 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testRemoveItemFromCustomerCartWhenNoCartFound()] (1 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testRemoveItemFromCustomerCartNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testRemoveAllItemsFromCartByCustomerCartNotFound()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testTotalOrderPriceSuccess()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestCreateNewOrderWithOneItem()] (45 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testReturnCartsByCustomerCartNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testUpdateCartQuantityNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:addToCartTest()] (58 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnMostRecentCompletedOrderSuccess()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersByIdNotFound()] (65 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testRemoveAllItemsByCustomerFromCartWhenNoCartsFound()] (2 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testReturnCartsByCustomerIdNotFound()] (0 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testAddToCartSuccess()] (2 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testRemoveAllItemsFromCartByCustomerWhenCartsExist()] (0 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnMostRecentCompletedOrderNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnMostRecentCompletedOrder()] (34 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testUpdateQuantityInCart()] (35 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:returnCartsByCustomerTest()] (312 ms)</li><li>com.liftoff.ecommerce.Controllers.OrderControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.OrderControllerUnitTest]/[method:testCreateNewOrderMovieNotFound()] (6 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testReturnCartsByCustomerIdSuccess()] (0 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testRemoveItemFromCustomerCartSuccess()] (2 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testCreateNewOrderNoCartFound()] (1 ms)</li><li>com.liftoff.ecommerce.Controllers.OrderControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.OrderControllerUnitTest]/[method:testCreateNewOrderCartsNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testTotalOrderPriceOrderItemsNotFound()] (2 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:removeAllItemsFromCartByCustomerTest()] (45 ms)</li><li>com.liftoff.ecommerce.Controllers.OrderControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.OrderControllerUnitTest]/[method:testReturnAllCompletedOrdersByCustomerIdSuccess()] (2 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testReturnCartsByCustomerId()] (27 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testReturnCartsByCustomerSuccess()] (2 ms)</li><li>com.liftoff.ecommerce.Controllers.OrderControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.OrderControllerUnitTest]/[method:testCreateNewOrderSuccess()] (2 ms)</li><li>com.liftoff.ecommerce.Controllers.OrderControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.OrderControllerUnitTest]/[method:testReturnMostRecentCompletedOrderSuccess()] (67 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testReturnAllCarts()] (29 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testRemoveItemFromCustomerCart()] (25 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest]/[method:testUpdateCartQuantitySuccess()] (2 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceIntegrationTest]/[method:testCreateNewShoppingCart()] (30 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testUpdateQuantityInCartNotFound()] (1 ms)</li><li>com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest]/[method:testRemoveItemFromCustomerCartWhenCartExists()] (1 ms)</li><li>com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest]/[method:removeItemFromCustomerCartTest()] (35 ms)</li>
 </ul>
 
 <br/>
