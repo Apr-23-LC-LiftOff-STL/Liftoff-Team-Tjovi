@@ -26,13 +26,11 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -94,19 +92,20 @@ public class ShoppingCartServiceUnitTest {
         String specTotalPrice = "When passed a shoppingCart object, the setTotalPrice method invoked in the " +
                 "createNewShoppingCart method should return an accurate price to two decimal places";
 
-        assertEquals(specTotalPrice, expectedTotalPrice, testCart1.getTotalPrice());
+        assertThat(specTotalPrice,expectedTotalPrice, is(testCart1.getTotalPrice()));
+        verify(movieRepository).findById(testCart1.getMovieId());
+        verifyNoMoreInteractions(movieRepository);
     }
 
     @Test
-    public void testReturnAllCarts(){
+    public void testReturnAllCartsSuccess(){
         when(shoppingCartRepository.findAll()).thenReturn(testCustomer1Carts);
         ResponseEntity<?> response = shoppingCartService.returnAllCarts();
 
-        String specStatus = "The status code should be HttpStatus.OK";
-        String specBody = "The returned response body shopping carts should match the expected list testCustomer1Carts";
-
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), is(testCustomer1Carts));
+        verify(shoppingCartRepository).findAll();
+        verifyNoMoreInteractions(shoppingCartRepository);
     }
 
     @Test
@@ -114,23 +113,21 @@ public class ShoppingCartServiceUnitTest {
         when(shoppingCartRepository.findAll()).thenReturn(Collections.emptyList());
         ResponseEntity<?> response = shoppingCartService.returnAllCarts();
 
-        String specStatus = "The status code should be HttpStatus.NOT_FOUND";
-        String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
-
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals(null, "No carts matching your criteria were found", response.getBody());
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(shoppingCartRepository).findAll();
+        verifyNoMoreInteractions(shoppingCartRepository);
     }
 
     @Test
-    public void testReturnCartsByCustomerId(){
+    public void testReturnCartsByCustomerIdSuccess(){
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testCustomer1Carts);
         ResponseEntity<?> response = shoppingCartService.returnCartsByCustomerId(testCustomer1.getId());
 
-        String specStatus = "The status code should be HttpStatus.OK";
-        String specBody = "The returned response body shopping carts should match the expected list testShoppingCarts";
-
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
-        assertEquals(specBody, testCustomer1Carts, response.getBody());
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is(testCustomer1Carts));
+        verify(shoppingCartRepository).findByCustomerId(testCustomer1.getId());
+        verifyNoMoreInteractions(shoppingCartRepository);
     }
 
     @Test
@@ -138,11 +135,11 @@ public class ShoppingCartServiceUnitTest {
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(Collections.emptyList());
         ResponseEntity<?> response = shoppingCartService.returnCartsByCustomerId(testCustomer1.getId());
 
-        String specStatus = "The status code should be HttpStatus.NOT_FOUND";
-        String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(shoppingCartRepository).findByCustomerId(testCustomer1.getId());
+        verifyNoMoreInteractions(shoppingCartRepository);
 
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals(null, "No carts matching your criteria were found", response.getBody());
     }
 
     @Test
@@ -152,13 +149,14 @@ public class ShoppingCartServiceUnitTest {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         Double expectedTotalPrice = Double.parseDouble(decimalFormat.format(testMovie1.getPrice() * requestedCart.getQuantity()));
 
-        String specTotalPrice = "When passed a shoppingCart object, the setTotalPrice method invoked in the " +
-                "createNewShoppingCart method should return an accurate price to two decimal places";
-        String specStatus = "The status code should be HttpStatus.CREATED";
+        assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+        assertThat(response.getBody(), nullValue());
+        assertThat(requestedCart.getTotalPrice(), is(expectedTotalPrice));
+        verify(movieRepository).findById(testCart1.getMovieId());
+        verify(shoppingCartRepository).save(requestedCart);
+        verifyNoMoreInteractions(movieRepository);
+        verifyNoMoreInteractions(shoppingCartRepository);
 
-        assertEquals(specTotalPrice, expectedTotalPrice, requestedCart.getTotalPrice());
-        verify(shoppingCartRepository, times(1)).save(requestedCart);
-        assertEquals(specStatus, HttpStatus.CREATED, response.getStatusCode());
     }
 
     // Perhaps could be broke into multiple tests, but wanted to make sure it was updating quantity, setting total price,
@@ -195,9 +193,11 @@ public class ShoppingCartServiceUnitTest {
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(shoppingCartRepository).findByCustomerId(testCustomer1.getId());
         verify(shoppingCartRepository, never()).save(any());
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals(null, "No carts matching your criteria were found", response.getBody());
+        verifyNoMoreInteractions(shoppingCartRepository);
     }
 
     @Test
@@ -205,19 +205,24 @@ public class ShoppingCartServiceUnitTest {
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testCustomer1Carts);
         ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCartByCustomer(testCustomer1);
 
-        ArgumentCaptor<List<ShoppingCart>> argumentCaptor = ArgumentCaptor.forClass(List.class);
-        verify(shoppingCartRepository, times(1)).findByCustomerId(testCustomer1.getId());
-        verify(shoppingCartRepository, times(1)).deleteAll(argumentCaptor.capture());
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        verify(shoppingCartRepository).findByCustomerId(testCustomer1.getId());
+        verify(shoppingCartRepository).deleteAll(testCustomer1Carts);
+        verifyNoMoreInteractions(shoppingCartRepository);
 
-        List<ShoppingCart> deletedCarts = argumentCaptor.getValue();
-        assertThat(deletedCarts)
-                .hasSize(2)
-                .extracting(cart -> cart.getCustomer().getId())
-                .containsOnly(testCustomer1.getId());
+//        ArgumentCaptor<List<ShoppingCart>> argumentCaptor = ArgumentCaptor.forClass(List.class);
+//        verify(shoppingCartRepository, times(1)).findByCustomerId(testCustomer1.getId());
+//        verify(shoppingCartRepository, times(1)).deleteAll(argumentCaptor.capture());
 
+//        List<ShoppingCart> deletedCarts = argumentCaptor.getValue();
+//        assertThat(deletedCarts)
+//                .hasSize(2)
+//                .extracting(cart -> cart.getCustomer().getId())
+//                .containsOnly(testCustomer1.getId());
 
-        String specStatus = "The status code should be HttpStatus.OK";
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+//
+//        String specStatus = "The status code should be HttpStatus.OK";
+//        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
@@ -225,12 +230,10 @@ public class ShoppingCartServiceUnitTest {
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(Collections.emptyList());
         ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCartByCustomer(testCustomer1);
 
-        String specStatus = "The status code should be HttpStatus.NOT_FOUND";
-        String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
-
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
         verify(shoppingCartRepository, never()).deleteAll(any());
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals(null, "No carts matching your criteria were found", response.getBody());
+        verifyNoMoreInteractions(shoppingCartRepository);
     }
 
     @Test
@@ -238,28 +241,32 @@ public class ShoppingCartServiceUnitTest {
         when(shoppingCartRepository.findByCustomerId(testCustomer1.getId())).thenReturn(testCustomer1Carts);
         ResponseEntity<?> response = shoppingCartService.removeItemFromCustomerCart(testCustomer1, testCart1);
 
-        verify(shoppingCartRepository, times(1)).findByCustomerId(testCustomer1.getId());
-        ArgumentCaptor<Long> argumentCaptor = ArgumentCaptor.forClass(Long.class);
-        verify(shoppingCartRepository, times(1)).deleteById(argumentCaptor.capture());
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        verify(shoppingCartRepository).findByCustomerId(testCustomer1.getId());
+        verify(shoppingCartRepository).deleteById(testCart1.getCartId());
+        verifyNoMoreInteractions(shoppingCartRepository);
+//        verify(shoppingCartRepository, times(1)).findByCustomerId(testCustomer1.getId());
+//        ArgumentCaptor<Long> argumentCaptor = ArgumentCaptor.forClass(Long.class);
+//        verify(shoppingCartRepository, times(1)).deleteById(argumentCaptor.capture());
 
-        Long deletedCartId = argumentCaptor.getValue();
-        String specStatus = "The status code should be HttpStatus.OK";
+//        Long deletedCartId = argumentCaptor.getValue();
+//        String specStatus = "The status code should be HttpStatus.OK";
 
 //  This check to see if deletedCart was removed from Array list, is not explicitly necessary as it doesn't directly test
 //  service method functionality or in any other way provide information about the service method not learned without it.
 //  It does, however, provide an extra level of confidence in the test setup and help catch any inconsistencies between
 //  the test data and the actual behavior of the service method
-        if (deletedCartId != null) {
-            testCustomer1Carts.removeIf(cart -> cart.getCartId().equals(deletedCartId));
-        }
-
-        assertThat(testCustomer1Carts)
-                .hasSize(1)
-                .extracting(ShoppingCart::getCartId)
-                .doesNotContain(testCart1.getCartId());
+//        if (deletedCartId != null) {
+//            testCustomer1Carts.removeIf(cart -> cart.getCartId().equals(deletedCartId));
+//        }
 //
-        assertEquals(null, testCart1.getCartId(), deletedCartId);
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
+//        assertThat(testCustomer1Carts)
+//                .hasSize(1)
+//                .extracting(ShoppingCart::getCartId)
+//                .doesNotContain(testCart1.getCartId());
+////
+//        assertEquals(null, testCart1.getCartId(), deletedCartId);
+//        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
@@ -270,8 +277,9 @@ public class ShoppingCartServiceUnitTest {
         String specStatus = "The status code should be HttpStatus.NOT_FOUND";
         String specBody = "The response body should be 'No carts matching your criteria were found' for no shopping carts found";
 
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
         verify(shoppingCartRepository, never()).deleteById(any());
-        assertEquals(specStatus, HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals(null, "No carts matching your criteria were found", response.getBody());
+        verifyNoMoreInteractions(shoppingCartRepository);
     }
 }

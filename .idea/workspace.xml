@@ -5,75 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2964784-6240-4bff-a82a-444cb80eef9c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_10_23,_2_43_PM_[Changes]/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_10_23,_2_43_PM_[Changes]/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_10_23,_2_43_PM_[Changes]/dependencies-accessors.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_10_23,_2_43_PM_[Changes]/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_10_23,_2_43_PM_[Changes]/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_10_23,_2_43_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_10_23__2_43_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23,_6_39_PM_[Changes]1/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23,_6_39_PM_[Changes]1/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23,_6_39_PM_[Changes]1/dependencies-accessors.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23,_6_39_PM_[Changes]1/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23,_6_39_PM_[Changes]1/file-system.probe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23,_6_39_PM_[Changes]1/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23,_6_39_PM_[Changes]1/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23,_6_39_PM_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_8_23__6_39_PM__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/InitializeProjectDBController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/InitializeProjectDBController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/InitializeProjectDBController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Controllers/InitializeProjectDBController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/liftoff/ecommerce/Models/Movie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/config/DatabaseTestConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/liftoff/ecommerce/config/DatabaseTestConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/AdminController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/AdminController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/CheckoutController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/CheckoutController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/InitializeProjectDBController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/InitializeProjectDBController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/LoginController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/LoginController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/MovieController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/MovieController.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/OrderController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/OrderController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ProfileController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ProfileController.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ShoppingCartController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ShoppingCartController.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Authority.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Authority.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrder.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrder.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrderItem.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrderItem.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Customer.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Customer.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Genre.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Genre.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Movie.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Movie.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/ShoppingCart.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/ShoppingCart.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/CustomerService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/CustomerService.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/OrderService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/OrderService.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/ShoppingCartService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/ShoppingCartService.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Specifications/MovieSpecification.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Specifications/MovieSpecification.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/EcommerceUsernamePwdAuthenticationProvider.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/EcommerceUsernamePwdAuthenticationProvider.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/ProjectSecurityConfig.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/ProjectSecurityConfig.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAfterFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAfterFilter.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAtFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAtFilter.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/CsrfCookieFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/CsrfCookieFilter.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenGeneratorFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenGeneratorFilter.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenValidatorFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenValidatorFilter.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/pitest/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/test/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/test/application-test.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/OrderServiceIntegrationTest.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Models/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/OrderServiceUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/OrderServiceUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerUnitTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +80,19 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="back-end-dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -143,98 +113,99 @@
     &quot;last_opened_file_path&quot;: &quot;/Users/joshjennemann/Desktop/launchcode/Unit-3/Liftoff-Team-Tjovi&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.ShoppingCartControllerIntegrationTest">
-    <configuration name="ApiattemptApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CompletedOrderItemUnitTest">
+    <configuration name="CompletedOrderItemUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.ApiattemptApplicationTests" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompletedOrderItemUnitTest.testCompletedOrderItemConstructorParameterized" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest.addToCartTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="addToCartTest" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest" />
+      <option name="METHOD_NAME" value="testCompletedOrderItemConstructorParameterized" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest.returnAllCartsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompletedOrderUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="returnAllCartsTest" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompletedOrderUnitTest.testCompletedOrderConstructorNoArgs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderUnitTest" />
+      <option name="METHOD_NAME" value="testCompletedOrderConstructorNoArgs" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartServiceUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompletedOrderUnitTest.testCompletedOrderProperties" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Services.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Services" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Services.ShoppingCartServiceUnitTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderUnitTest" />
+      <option name="METHOD_NAME" value="testCompletedOrderProperties" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ApiattemptApplicationTests" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.addToCartTest" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.returnAllCartsTest" />
-      <item itemvalue="JUnit.ShoppingCartServiceUnitTest" />
+      <item itemvalue="JUnit.CompletedOrderItemUnitTest" />
+      <item itemvalue="JUnit.CompletedOrderItemUnitTest.testCompletedOrderItemConstructorParameterized" />
+      <item itemvalue="JUnit.CompletedOrderUnitTest" />
+      <item itemvalue="JUnit.CompletedOrderUnitTest.testCompletedOrderConstructorNoArgs" />
+      <item itemvalue="JUnit.CompletedOrderUnitTest.testCompletedOrderProperties" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.addToCartTest" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.returnAllCartsTest" />
-        <item itemvalue="JUnit.ApiattemptApplicationTests" />
-        <item itemvalue="JUnit.ShoppingCartServiceUnitTest" />
+        <item itemvalue="JUnit.CompletedOrderItemUnitTest" />
+        <item itemvalue="JUnit.CompletedOrderItemUnitTest.testCompletedOrderItemConstructorParameterized" />
+        <item itemvalue="JUnit.CompletedOrderUnitTest" />
+        <item itemvalue="JUnit.CompletedOrderUnitTest.testCompletedOrderConstructorNoArgs" />
+        <item itemvalue="JUnit.CompletedOrderUnitTest.testCompletedOrderProperties" />
       </list>
     </recent_temporary>
   </component>

@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
@@ -71,23 +73,33 @@ public class ShoppingCartControllerUnitTest {
     }
 
     @Test
-    public void testReturnAllCarts(){
+    public void testReturnAllCartsSuccess(){
         ResponseEntity<?> expectedResponse = new ResponseEntity<>(testCustomer1Carts, HttpStatus.OK);
         when(shoppingCartService.returnAllCarts()).thenAnswer(invocation->expectedResponse);
 
         ResponseEntity<?> response = shoppingCartController.returnAllCarts();
 
-        String specStatus = "The status code should be HttpStatus.OK";
-        String specBody = "The returned response body shopping carts should match the expected list testCustomer1Carts";
-
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
-        assertEquals(specBody, testCustomer1Carts, response.getBody());
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is(testCustomer1Carts));
         verify(shoppingCartService).returnAllCarts();
         verifyNoMoreInteractions(shoppingCartService);
     }
 
     @Test
-    public void testReturnCartsByCustomer(){
+    public void testReturnAllCartsNotFound(){
+        ResponseEntity<?> expectedResponse = new ResponseEntity<>("No carts matching your criteria were found", HttpStatus.NOT_FOUND);
+        when(shoppingCartService.returnAllCarts()).thenAnswer(invocation -> expectedResponse);
+
+        ResponseEntity<?> response = shoppingCartController.returnAllCarts();
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(shoppingCartService).returnAllCarts();
+        verifyNoMoreInteractions(customerService, shoppingCartService);
+    }
+
+    @Test
+    public void testReturnCartsByCustomerSuccess(){
         ResponseEntity<?> expectedResponse = new ResponseEntity<>(testCustomer1Carts, HttpStatus.OK);
         when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
         when(shoppingCartService.returnCartsByCustomerId(eq(testCustomer1.getId())))
@@ -95,52 +107,91 @@ public class ShoppingCartControllerUnitTest {
 
         ResponseEntity<?> response = shoppingCartController.returnCartsByCustomer(testCustomer1.getEmail());
 
-        String specStatus = "The status code should be HttpStatus.OK";
-        String specBody = "The returned response body shopping carts should match the expected list testCustomer1Carts";
-
-        assertEquals(specStatus, HttpStatus.OK, response.getStatusCode());
-        assertEquals(specBody, testCustomer1Carts, response.getBody());
-        verify(customerService).findCustomer(eq(testCustomer1.getEmail()));
-        verify(shoppingCartService).returnCartsByCustomerId(eq(testCustomer1.getId()));
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is(testCustomer1Carts));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).returnCartsByCustomerId(testCustomer1.getId());
         verifyNoMoreInteractions(customerService, shoppingCartService);
     }
 
     @Test
-    public void testAddToCart(){
+    public void testReturnCartsByCustomerCartNotFound(){
+        ResponseEntity<?> expectedResponse = new ResponseEntity<>("No carts matching your criteria were found", HttpStatus.NOT_FOUND);
+        when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
+        when(shoppingCartService.returnCartsByCustomerId(testCustomer1.getId())).thenAnswer(invocation -> expectedResponse);
+
+        ResponseEntity<?> response = shoppingCartController.returnCartsByCustomer(testCustomer1.getEmail());
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).returnCartsByCustomerId(testCustomer1.getId());
+        verifyNoMoreInteractions(customerService, shoppingCartService);
+    }
+
+    @Test
+    public void testAddToCartSuccess(){
         ResponseEntity<?> expectedResponse = new ResponseEntity<>(HttpStatus.CREATED);
         when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
-        when(shoppingCartService.createNewShoppingCart(eq(testCustomer1), eq(requestedCart)))
+        when(shoppingCartService.createNewShoppingCart(testCustomer1, requestedCart))
                 .thenAnswer(invocation -> expectedResponse);
 
         ResponseEntity<?> response = shoppingCartController.addToCart(testCustomer1.getEmail(), requestedCart);
 
-        String specStatus = "The status code should be HttpStatus.CREATED";
-
-        assertEquals(specStatus, expectedResponse, response);
-        verify(customerService).findCustomer(eq(testCustomer1.getEmail()));
-        verify(shoppingCartService).createNewShoppingCart(eq(testCustomer1),eq(requestedCart));
+        assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).createNewShoppingCart(testCustomer1, requestedCart);
         verifyNoMoreInteractions(customerService, shoppingCartService);
     }
 
     @Test
-    public void testUpdateCartQuantity(){
+    public void testAddToCartNotFound(){
+        ResponseEntity<?> expectedResponse = new ResponseEntity<>("No carts matching your criteria were found", HttpStatus.NOT_FOUND);
+        when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
+        when(shoppingCartService.createNewShoppingCart(testCustomer1, requestedCart)).thenAnswer(invocation -> expectedResponse);
+
+        ResponseEntity<?> response = shoppingCartController.addToCart(testCustomer1.getEmail(), requestedCart);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).createNewShoppingCart(testCustomer1, requestedCart);
+        verifyNoMoreInteractions(customerService, shoppingCartService);
+    }
+
+    @Test
+    public void testUpdateCartQuantitySuccess(){
         ResponseEntity<?> expectedResponse = new ResponseEntity<>(HttpStatus.OK);
+        when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
+        when(shoppingCartService.updateQuantityInCart(testCustomer1, requestedCart))
+                .thenAnswer(invocation -> expectedResponse);
+
+        ResponseEntity<?> response = shoppingCartController.updateCartQuantity(testCustomer1.getEmail(), requestedCart);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).updateQuantityInCart(testCustomer1, requestedCart);
+        verifyNoMoreInteractions(customerService, shoppingCartService);
+    }
+
+    @Test
+    public void testUpdateCartQuantityNotFound(){
+        ResponseEntity<?> expectedResponse = new ResponseEntity<>("No carts matching your criteria were found", HttpStatus.NOT_FOUND);
         when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
         when(shoppingCartService.updateQuantityInCart(eq(testCustomer1), eq(requestedCart)))
                 .thenAnswer(invocation -> expectedResponse);
 
         ResponseEntity<?> response = shoppingCartController.updateCartQuantity(testCustomer1.getEmail(), requestedCart);
 
-        String specStatus = "The status code should be HttpStatus.OK";
-
-        assertEquals(specStatus, expectedResponse, response);
-        verify(customerService).findCustomer(eq(testCustomer1.getEmail()));
-        verify(shoppingCartService).updateQuantityInCart(eq(testCustomer1), eq(requestedCart));
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).updateQuantityInCart(testCustomer1, requestedCart);
         verifyNoMoreInteractions(customerService, shoppingCartService);
     }
 
     @Test
-    public void testRemoveItemFromCustomerCart(){
+    public void testRemoveItemFromCustomerCartSuccess(){
         ResponseEntity<?> expectedResponse = new ResponseEntity<>(HttpStatus.OK);
         when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
         when(shoppingCartService.removeItemFromCustomerCart(eq(testCustomer1), eq(requestedCart)))
@@ -148,27 +199,55 @@ public class ShoppingCartControllerUnitTest {
 
         ResponseEntity<?> response = shoppingCartController.removeItemFromCustomerCart(testCustomer1.getEmail(), requestedCart);
 
-        String specStatus = "The status code should be HttpStatus.OK";
-
-        assertEquals(specStatus, expectedResponse, response);
-        verify(customerService).findCustomer(eq(testCustomer1.getEmail()));
-        verify(shoppingCartService).removeItemFromCustomerCart(eq(testCustomer1), eq(requestedCart));
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).removeItemFromCustomerCart(testCustomer1, requestedCart);
         verifyNoMoreInteractions(customerService, shoppingCartService);
     }
 
     @Test
-    public void testRemoveAllItemsFromCartByCustomer(){
+    public void testRemoveItemFromCustomerCartNotFound(){
+        ResponseEntity<?> expectedResponse = new ResponseEntity<>("No carts matching your criteria were found", HttpStatus.NOT_FOUND);
+        when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
+        when(shoppingCartService.removeItemFromCustomerCart(eq(testCustomer1), eq(requestedCart)))
+                .thenAnswer(invocation->expectedResponse);
+
+        ResponseEntity<?> response = shoppingCartController.removeItemFromCustomerCart(testCustomer1.getEmail(), requestedCart);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).removeItemFromCustomerCart(testCustomer1, requestedCart);
+        verifyNoMoreInteractions(customerService, shoppingCartService);
+    }
+
+    @Test
+    public void testRemoveAllItemsFromCartByCustomerSuccess(){
         ResponseEntity<?> expectedResponse = new ResponseEntity<>(HttpStatus.OK);
         when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
         when(shoppingCartService.removeAllItemsFromCartByCustomer(eq(testCustomer1))).thenAnswer(invocation->expectedResponse);
 
         ResponseEntity<?> response = shoppingCartController.removeAllItemsFromCartByCustomer(testCustomer1.getEmail());
 
-        String specStatus = "The status code should be HttpStatus.OK";
-
-        assertEquals(specStatus, expectedResponse, response);
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
         verify(customerService).findCustomer(eq(testCustomer1.getEmail()));
         verify(shoppingCartService).removeAllItemsFromCartByCustomer(eq(testCustomer1));
+        verifyNoMoreInteractions(customerService, shoppingCartService);
+    }
+
+    @Test
+    public void testRemoveAllItemsFromCartByCustomerCartNotFound(){
+        ResponseEntity<?> expectedResponse = new ResponseEntity<>("No carts matching your criteria were found", HttpStatus.NOT_FOUND);
+
+        when(customerService.findCustomer(testCustomer1.getEmail())).thenReturn(testCustomer1);
+        when(shoppingCartService.removeAllItemsFromCartByCustomer(testCustomer1)).thenAnswer(invocation->expectedResponse);
+
+        ResponseEntity<?> response = shoppingCartController.removeAllItemsFromCartByCustomer(testCustomer1.getEmail());
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        verify(customerService).findCustomer(testCustomer1.getEmail());
+        verify(shoppingCartService).removeAllItemsFromCartByCustomer(testCustomer1);
         verifyNoMoreInteractions(customerService, shoppingCartService);
     }
 
