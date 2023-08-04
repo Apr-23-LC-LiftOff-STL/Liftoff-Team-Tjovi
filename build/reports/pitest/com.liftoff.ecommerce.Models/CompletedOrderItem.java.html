@@ -693,16 +693,16 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_46'/>
 46
 </td>
-<td class='survived'>
+<td class='killed'>
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_46'>1</a>
 <span>
-1. getOrderedItemId : replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getOrderedItemId &rarr; SURVIVED<br/>
+1. getOrderedItemId : replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getOrderedItemId &rarr; KILLED<br/>
 
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class='survived'>        return id;</span></pre></td></tr>
+<td class='covered'><pre><span  class='killed'>        return id;</span></pre></td></tr>
 
 
 <tr>
@@ -747,28 +747,26 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public CompletedOrder getCompletedOrder() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setId(Long id) {</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_50'/>
 50
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_50'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_50'></a>
 <span>
-1. getCompletedOrder : replaced return value with null for com/liftoff/ecommerce/Models/CompletedOrderItem::getCompletedOrder &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>        return completedOrder;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.id = id;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_51'/>
 51
 </td>
@@ -779,7 +777,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -809,26 +807,28 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setCompletedOrder(CompletedOrder completedOrder) {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public CompletedOrder getCompletedOrder() {</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_54'/>
 54
 </td>
-<td class=''>
+<td class='killed'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_54'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_54'>1</a>
 <span>
+1. getCompletedOrder : replaced return value with null for com/liftoff/ecommerce/Models/CompletedOrderItem::getCompletedOrder &rarr; KILLED<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.completedOrder = completedOrder;</span></pre></td></tr>
+<td class='covered'><pre><span  class='killed'>        return completedOrder;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_55'/>
 55
 </td>
@@ -839,7 +839,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -869,7 +869,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public Long getMovieId() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setCompletedOrder(CompletedOrder completedOrder) {</span></pre></td></tr>
 
 
 <tr>
@@ -877,20 +877,18 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_58'/>
 58
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_58'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_58'></a>
 <span>
-1. getMovieId : replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getMovieId &rarr; SURVIVED<br/>
-
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class='survived'>        return movieId;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.completedOrder = completedOrder;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_59'/>
 59
 </td>
@@ -901,7 +899,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -931,26 +929,28 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setMovieId(Long movieId) {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public Long getMovieId() {</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_62'/>
 62
 </td>
-<td class=''>
+<td class='killed'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_62'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_62'>1</a>
 <span>
+1. getMovieId : replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getMovieId &rarr; KILLED<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.movieId = movieId;</span></pre></td></tr>
+<td class='covered'><pre><span  class='killed'>        return movieId;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_63'/>
 63
 </td>
@@ -961,7 +961,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -991,7 +991,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public String getMovieTitle() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setMovieId(Long movieId) {</span></pre></td></tr>
 
 
 <tr>
@@ -999,20 +999,18 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_66'/>
 66
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_66'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_66'></a>
 <span>
-1. getMovieTitle : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/CompletedOrderItem::getMovieTitle &rarr; SURVIVED<br/>
-
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class='survived'>        return movieTitle;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.movieId = movieId;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_67'/>
 67
 </td>
@@ -1023,7 +1021,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1053,26 +1051,28 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setMovieTitle(String movieTitle) {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public String getMovieTitle() {</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_70'/>
 70
 </td>
-<td class=''>
+<td class='killed'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_70'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_70'>1</a>
 <span>
+1. getMovieTitle : replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/CompletedOrderItem::getMovieTitle &rarr; KILLED<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.movieTitle = movieTitle;</span></pre></td></tr>
+<td class='covered'><pre><span  class='killed'>        return movieTitle;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_71'/>
 71
 </td>
@@ -1083,7 +1083,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1113,7 +1113,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public Long getQuantity() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setMovieTitle(String movieTitle) {</span></pre></td></tr>
 
 
 <tr>
@@ -1121,20 +1121,18 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_74'/>
 74
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_74'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_74'></a>
 <span>
-1. getQuantity : replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getQuantity &rarr; SURVIVED<br/>
-
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class='survived'>        return quantity;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.movieTitle = movieTitle;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_75'/>
 75
 </td>
@@ -1145,7 +1143,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1175,26 +1173,28 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setQuantity(Long quantity) {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public Long getQuantity() {</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_78'/>
 78
 </td>
-<td class=''>
+<td class='killed'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_78'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_78'>1</a>
 <span>
+1. getQuantity : replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getQuantity &rarr; KILLED<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.quantity = quantity;</span></pre></td></tr>
+<td class='covered'><pre><span  class='killed'>        return quantity;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_79'/>
 79
 </td>
@@ -1205,7 +1205,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1235,7 +1235,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public Double getTotalPrice() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void setQuantity(Long quantity) {</span></pre></td></tr>
 
 
 <tr>
@@ -1243,20 +1243,18 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_82'/>
 82
 </td>
-<td class='killed'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_82'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_82'></a>
 <span>
-1. getTotalPrice : replaced Double return value with 0 for com/liftoff/ecommerce/Models/CompletedOrderItem::getTotalPrice &rarr; KILLED<br/>
-
 </span>
 </span>
 </td>
-<td class='covered'><pre><span  class='killed'>        return totalPrice;</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>        this.quantity = quantity;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_83'/>
 83
 </td>
@@ -1267,7 +1265,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1297,26 +1295,28 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void setTotalPrice(Double totalPrice) {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public Double getTotalPrice() {</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='covered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_86'/>
 86
 </td>
-<td class=''>
+<td class='killed'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_86'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_86'>1</a>
 <span>
+1. getTotalPrice : replaced Double return value with 0 for com/liftoff/ecommerce/Models/CompletedOrderItem::getTotalPrice &rarr; KILLED<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        this.totalPrice = totalPrice;</span></pre></td></tr>
+<td class='covered'><pre><span  class='killed'>        return totalPrice;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@51768776_87'/>
 87
 </td>
@@ -1327,7 +1327,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1338,6 +1338,66 @@
 <td class=''>
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@51768776_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setTotalPrice(Double totalPrice) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@51768776_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.totalPrice = totalPrice;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@51768776_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@51768776_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@51768776_92'></a>
 <span>
 </span>
 </span>
@@ -1355,57 +1415,57 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_46'/> 
 
-<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getOrderedItemId<br/><b>Killed by : </b>none</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getOrderedItemId &rarr; SURVIVED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getOrderedItemId<br/><b>Killed by : </b>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemConstructorNoArgs()]</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getOrderedItemId &rarr; KILLED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_50'>50</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_54'>54</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_50'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_54'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCompletedOrder<br/><b>Killed by : </b>none</span></span> replaced return value with null for com/liftoff/ecommerce/Models/CompletedOrderItem::getCompletedOrder &rarr; NO_COVERAGE</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCompletedOrder<br/><b>Killed by : </b>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemConstructorParameterized()]</span></span> replaced return value with null for com/liftoff/ecommerce/Models/CompletedOrderItem::getCompletedOrder &rarr; KILLED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_58'>58</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_62'>62</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_58'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_62'/> 
 
-<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMovieId<br/><b>Killed by : </b>none</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getMovieId &rarr; SURVIVED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMovieId<br/><b>Killed by : </b>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemConstructorNoArgs()]</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getMovieId &rarr; KILLED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_66'>66</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_70'>70</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_66'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_70'/> 
 
-<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMovieTitle<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/CompletedOrderItem::getMovieTitle &rarr; SURVIVED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMovieTitle<br/><b>Killed by : </b>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemConstructorNoArgs()]</span></span> replaced return value with &#34;&#34; for com/liftoff/ecommerce/Models/CompletedOrderItem::getMovieTitle &rarr; KILLED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_74'>74</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_78'>78</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_74'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_78'/> 
 
-<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getQuantity<br/><b>Killed by : </b>none</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getQuantity &rarr; SURVIVED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getQuantity<br/><b>Killed by : </b>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemConstructorNoArgs()]</span></span> replaced Long return value with 0L for com/liftoff/ecommerce/Models/CompletedOrderItem::getQuantity &rarr; KILLED</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_82'>82</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@51768776_86'>86</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_82'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@51768776_86'/> 
 
-<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getTotalPrice<br/><b>Killed by : </b>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestCreateNewOrderWithOneItem()]</span></span> replaced Double return value with 0 for com/liftoff/ecommerce/Models/CompletedOrderItem::getTotalPrice &rarr; KILLED</p> 
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getTotalPrice<br/><b>Killed by : </b>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemConstructorNoArgs()]</span></span> replaced Double return value with 0 for com/liftoff/ecommerce/Models/CompletedOrderItem::getTotalPrice &rarr; KILLED</p> 
 </td>
 </tr>
 
@@ -1430,7 +1490,7 @@
 
 <h2>Tests examined</h2>
 <ul>
-<li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnMostRecentCompletedOrder()] (30 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersNotFound()] (0 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testCreateNewOrderNoCartFound()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnMostRecentCompletedOrder()] (36 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnAllCompletedOrders()] (43 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersById()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersByIdNotFound()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testCreateNewOrderNoMovieFoundNoMovieFound()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnAllCompletedOrdersByCustomerId()] (29 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnAllCompletedOrdersTest()] (1 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testReturnMostRecentCompletedOrderNotFound()] (0 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestCreateNewOrderWithOneItem()] (34 ms)</li>
+<li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnMostRecentCompletedOrder()] (34 ms)</li><li>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemConstructorNoArgs()] (0 ms)</li><li>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemConstructorParameterized()] (0 ms)</li><li>com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest]/[method:testCompletedOrderItemProperties()] (0 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnAllCompletedOrders()] (52 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestReturnAllCompletedOrdersByCustomerId()] (39 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testCreateNewOrderSuccess()] (5 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceIntegrationTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceIntegrationTest]/[method:TestCreateNewOrderWithOneItem()] (45 ms)</li><li>com.liftoff.ecommerce.Services.OrderServiceUnitTest.[engine:junit-jupiter]/[class:com.liftoff.ecommerce.Services.OrderServiceUnitTest]/[method:testTotalOrderPriceSuccess()] (1 ms)</li>
 </ul>
 
 <br/>

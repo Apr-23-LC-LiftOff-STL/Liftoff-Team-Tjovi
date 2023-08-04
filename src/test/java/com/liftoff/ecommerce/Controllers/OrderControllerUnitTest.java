@@ -1,7 +1,5 @@
 package com.liftoff.ecommerce.Controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.liftoff.ecommerce.Models.CompletedOrder;
 import com.liftoff.ecommerce.Models.Customer;
 import com.liftoff.ecommerce.Service.CustomerService;
@@ -21,8 +19,8 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 class OrderControllerUnitTest {

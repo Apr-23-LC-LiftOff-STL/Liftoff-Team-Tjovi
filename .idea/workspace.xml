@@ -11,6 +11,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/OrderController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/OrderController.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ShoppingCartController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Controllers/ShoppingCartController.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrder.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrder.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrderItem.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/CompletedOrderItem.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Customer.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Customer.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Movie.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/Movie.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/ShoppingCart.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/ShoppingCart.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Models/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/CustomerService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/CustomerService.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/OrderService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/OrderService.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/ShoppingCartService.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/ShoppingCartService.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.Service/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/ProjectSecurityConfig.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.config/ProjectSecurityConfig.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAfterFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAfterFilter.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAtFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/AuthoritiesLoggingAtFilter.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenGeneratorFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenGeneratorFilter.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenValidatorFilter.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/com.liftoff.ecommerce.filter/JWTTokenValidatorFilter.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/pitest/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/pitest/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerUnitTest.java" afterDir="false" />
     </list>
@@ -61,6 +80,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -87,101 +113,99 @@
     &quot;last_opened_file_path&quot;: &quot;/Users/joshjennemann/Desktop/launchcode/Unit-3/Liftoff-Team-Tjovi&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.OrderControllerUnitTest.testReturnAllCompletedOrdersByCustomerIdNotFound">
-    <configuration name="OrderControllerUnitTest.testReturnAllCartsNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CompletedOrderItemUnitTest">
+    <configuration name="CompletedOrderItemUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerUnitTest" />
-      <option name="METHOD_NAME" value="testReturnAllCartsNotFound" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompletedOrderItemUnitTest.testCompletedOrderItemConstructorParameterized" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderItemUnitTest" />
+      <option name="METHOD_NAME" value="testCompletedOrderItemConstructorParameterized" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderControllerUnitTest.testReturnAllCompletedOrders" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompletedOrderUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerUnitTest" />
-      <option name="METHOD_NAME" value="testReturnAllCompletedOrders" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompletedOrderUnitTest.testCompletedOrderConstructorNoArgs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderUnitTest" />
+      <option name="METHOD_NAME" value="testCompletedOrderConstructorNoArgs" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderControllerUnitTest.testReturnAllCompletedOrdersByCustomerId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompletedOrderUnitTest.testCompletedOrderProperties" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="PATTERN" value="com.liftoff.ecommerce.Models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerUnitTest" />
-      <option name="METHOD_NAME" value="testReturnAllCompletedOrdersByCustomerId" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OrderControllerUnitTest.testReturnAllCompletedOrdersByCustomerIdNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerUnitTest" />
-      <option name="METHOD_NAME" value="testReturnAllCompletedOrdersByCustomerIdNotFound" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartControllerUnitTest.testUpdateCartQuantityNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerUnitTest" />
-      <option name="METHOD_NAME" value="testUpdateCartQuantityNotFound" />
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Models" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Models.CompletedOrderUnitTest" />
+      <option name="METHOD_NAME" value="testCompletedOrderProperties" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.OrderControllerUnitTest.testReturnAllCartsNotFound" />
-      <item itemvalue="JUnit.OrderControllerUnitTest.testReturnAllCompletedOrders" />
-      <item itemvalue="JUnit.OrderControllerUnitTest.testReturnAllCompletedOrdersByCustomerId" />
-      <item itemvalue="JUnit.OrderControllerUnitTest.testReturnAllCompletedOrdersByCustomerIdNotFound" />
-      <item itemvalue="JUnit.ShoppingCartControllerUnitTest.testUpdateCartQuantityNotFound" />
+      <item itemvalue="JUnit.CompletedOrderItemUnitTest" />
+      <item itemvalue="JUnit.CompletedOrderItemUnitTest.testCompletedOrderItemConstructorParameterized" />
+      <item itemvalue="JUnit.CompletedOrderUnitTest" />
+      <item itemvalue="JUnit.CompletedOrderUnitTest.testCompletedOrderConstructorNoArgs" />
+      <item itemvalue="JUnit.CompletedOrderUnitTest.testCompletedOrderProperties" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.OrderControllerUnitTest.testReturnAllCompletedOrdersByCustomerIdNotFound" />
-        <item itemvalue="JUnit.OrderControllerUnitTest.testReturnAllCompletedOrdersByCustomerId" />
-        <item itemvalue="JUnit.OrderControllerUnitTest.testReturnAllCartsNotFound" />
-        <item itemvalue="JUnit.OrderControllerUnitTest.testReturnAllCompletedOrders" />
-        <item itemvalue="JUnit.ShoppingCartControllerUnitTest.testUpdateCartQuantityNotFound" />
+        <item itemvalue="JUnit.CompletedOrderItemUnitTest" />
+        <item itemvalue="JUnit.CompletedOrderItemUnitTest.testCompletedOrderItemConstructorParameterized" />
+        <item itemvalue="JUnit.CompletedOrderUnitTest" />
+        <item itemvalue="JUnit.CompletedOrderUnitTest.testCompletedOrderConstructorNoArgs" />
+        <item itemvalue="JUnit.CompletedOrderUnitTest.testCompletedOrderProperties" />
       </list>
     </recent_temporary>
   </component>
