@@ -16,7 +16,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -87,23 +89,26 @@ public class ShoppingCartControllerIntegrationTest {
 
         testCart1 = new ShoppingCart(testMovie1.getId(), 1L);
         testCart1.setCustomer(testCustomer1);
-        shoppingCartRepository.save(testCart1);
 
         testCart2 = new ShoppingCart(testMovie2.getId(), 2L);
         testCart2.setCustomer(testCustomer1);
-        shoppingCartRepository.save(testCart2);
 
         testCart3 = new ShoppingCart(testMovie3.getId(), 3L);
         testCart3.setCustomer(testCustomer2);
-        shoppingCartRepository.save(testCart3);
     }
 
     @Test
-    public void returnAllCartsTest() throws Exception {
-        List<ShoppingCart> allShoppingCarts = (List<ShoppingCart>) shoppingCartService.returnAllCarts().getBody();
+    public void testReturnAllCartsSuccess() throws Exception {
+        shoppingCartRepository.save(testCart1);
+        shoppingCartRepository.save(testCart2);
+        shoppingCartRepository.save(testCart3);
 
-        assert allShoppingCarts != null;
-        mockMvc.perform(get("/cart/returnAllCarts"))
+        ResponseEntity<?> response = shoppingCartService.returnAllCarts();
+        List<ShoppingCart> allShoppingCarts = (List<ShoppingCart>) response.getBody();
+
+            assertThat(response.getStatusCode(), is(HttpStatus.OK));
+            assertThat(allShoppingCarts, hasSize(3));
+            mockMvc.perform(get("/cart/returnAllCarts"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)));
@@ -118,16 +123,33 @@ public class ShoppingCartControllerIntegrationTest {
     }
 
     @Test
-    public void returnCartsByCustomerTest() throws Exception {
-        List<ShoppingCart> allShoppingCartsByCustomer = (List<ShoppingCart>) shoppingCartService.returnCartsByCustomerId(testCustomer1.getId()).getBody();
+    public void testReturnAllCartsNotFound() throws Exception {
+        ResponseEntity<?> response = shoppingCartService.returnAllCarts();
 
-        assert allShoppingCartsByCustomer != null;
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        mockMvc.perform(get("/cart/returnAllCarts"))
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", is("No carts matching your criteria were found")));
+    }
+
+    @Test
+    public void testReturnCartsByCustomerSuccess() throws Exception {
+        shoppingCartRepository.save(testCart1);
+        shoppingCartRepository.save(testCart2);
+        shoppingCartRepository.save(testCart3);
+
+        ResponseEntity<?> response = shoppingCartService.returnCartsByCustomerId(testCustomer1.getId());
+        List<ShoppingCart> allShoppingCartsByCustomer = (List<ShoppingCart>) response.getBody();
+
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(allShoppingCartsByCustomer, hasSize(2));
         mockMvc.perform(get("/cart/returnAll/{email}", testCustomer1.getEmail()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
 
-        assertThat(allShoppingCartsByCustomer, hasSize(2));
         for (int i = 0; i < allShoppingCartsByCustomer.size(); i++) {
             mockMvc.perform(get("/cart/returnAll/{email}", testCustomer1.getEmail()))
                     .andExpect(jsonPath("$[" + i + "].customer.id", is((int) ((long) testCustomer1.getId()))))
@@ -139,7 +161,23 @@ public class ShoppingCartControllerIntegrationTest {
     }
 
     @Test
-    public void addToCartTest() throws Exception {
+    public void testReturnAllCartsByCustomerCartNotFound() throws Exception {
+        ResponseEntity<?> response = shoppingCartService.returnCartsByCustomerId(testCustomer1.getId());
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        mockMvc.perform(get("/cart/returnAll/{email}", testCustomer1.getEmail()))
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", is("No carts matching your criteria were found")));
+    }
+
+    @Test
+    public void addToCartTestSuccess() throws Exception {
+        shoppingCartRepository.save(testCart1);
+        shoppingCartRepository.save(testCart2);
+        shoppingCartRepository.save(testCart3);
+
         ShoppingCart newCartToAdd = new ShoppingCart(testMovie3.getId(), 5L);
 
         mockMvc.perform(post("/cart/add/" + testCustomer1.getEmail())
@@ -148,11 +186,11 @@ public class ShoppingCartControllerIntegrationTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
 
-        List<ShoppingCart> allCustomerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
-        ShoppingCart addedCart = allCustomerCarts.get(2);
+        List<ShoppingCart> allCustomer1Carts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+        ShoppingCart addedCart = allCustomer1Carts.get(2);
         Double expectedPrice = testMovie3.getPrice() * 5;
 
-        assertThat(allCustomerCarts, hasSize(3));
+        assertThat(allCustomer1Carts, hasSize(3));
         assertThat(addedCart.getQuantity(), is(newCartToAdd.getQuantity()));
         assertThat(addedCart.getMovieId(), is(newCartToAdd.getMovieId()));
         assertThat(addedCart.getCustomer().getId(), is(testCustomer1.getId()));
@@ -160,7 +198,10 @@ public class ShoppingCartControllerIntegrationTest {
     }
 
     @Test
-    public void updateCartQuantityTest() throws Exception {
+    public void testUpdateCartQuantitySuccess() throws Exception {
+        shoppingCartRepository.save(testCart1);
+        shoppingCartRepository.save(testCart2);
+        shoppingCartRepository.save(testCart3);
         ShoppingCart cartToUpdate = new ShoppingCart(testMovie1.getId(), 4L);
 
         mockMvc.perform(put("/cart/edit/" + testCustomer1.getEmail())
@@ -169,18 +210,36 @@ public class ShoppingCartControllerIntegrationTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+        List<ShoppingCart> customer1Carts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
         Double expectedPrice = testMovie1.getPrice() * 4;
 
-        assertThat(customerCarts, hasSize(2));
-        ShoppingCart updatedCart = customerCarts.get(0);
+        assertThat(customer1Carts, hasSize(2));
+        ShoppingCart updatedCart = customer1Carts.get(0);
         assertThat(updatedCart.getMovieId(), is(cartToUpdate.getMovieId()));
         assertThat(updatedCart.getQuantity(), is(cartToUpdate.getQuantity()));
         assertThat(updatedCart.getTotalPrice(), is(expectedPrice));
     }
 
     @Test
-    public void removeItemFromCustomerCartTest() throws Exception {
+    public void testUpdateCartQuantityCartNotFound() throws Exception {
+        ShoppingCart cartToUpdate = new ShoppingCart(testMovie1.getId(), 4L);
+        ResponseEntity<?> response = shoppingCartService.updateQuantityInCart(testCustomer1, cartToUpdate);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        mockMvc.perform(put("/cart/edit/" + testCustomer1.getEmail())
+                        .content(objectMapper.writeValueAsString(cartToUpdate))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", is("No carts matching your criteria were found")));
+    }
+
+    @Test
+    public void testRemoveItemFromCustomerCartSuccess() throws Exception {
+        shoppingCartRepository.save(testCart1);
+        shoppingCartRepository.save(testCart2);
+        shoppingCartRepository.save(testCart3);
         ShoppingCart cartToDelete = new ShoppingCart(testCart1.getMovieId(), 1L);
 
         mockMvc.perform(delete("/cart/delete/" + testCustomer1.getEmail())
@@ -195,20 +254,52 @@ public class ShoppingCartControllerIntegrationTest {
         assertThat(customerCarts.get(0).getCartId(), is(testCart2.getCartId()));
         assertThat(customerCarts.get(0).getMovieId(), is(testCart2.getMovieId()));
         assertThat(customerCarts.get(0).getQuantity(), is(testCart2.getQuantity()));
-
     }
 
     @Test
-    public void removeAllItemsFromCartByCustomerTest() throws Exception {
+    public void testRemoveItemFromCustomerCartTestCartNotFound() throws Exception {
+        ShoppingCart cartToDelete = new ShoppingCart(testCart1.getMovieId(), 1L);
+
+        ResponseEntity<?> response = shoppingCartService.removeItemFromCustomerCart(testCustomer1, cartToDelete);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        mockMvc.perform(delete("/cart/delete/" + testCustomer1.getEmail())
+                        .content(objectMapper.writeValueAsString(cartToDelete))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", is("No carts matching your criteria were found")));
+    }
+
+    @Test
+    public void testRemoveAllItemsFromCartByCustomerSuccess() throws Exception {
+        shoppingCartRepository.save(testCart1);
+        shoppingCartRepository.save(testCart2);
+        shoppingCartRepository.save(testCart3);
+
         mockMvc.perform(delete("/cart/deleteAll/" + testCustomer1.getEmail())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        List<ShoppingCart> customerCarts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
+        List<ShoppingCart> customer1Carts = shoppingCartRepository.findByCustomerId(testCustomer1.getId());
         List<ShoppingCart> allCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
 
-        assertThat(customerCarts, hasSize(0));
+        assertThat(customer1Carts, hasSize(0));
         assertThat(allCarts, hasSize(1));
+        assertThat(allCarts.get(0).getCartId(), is(testCart3.getCartId()));
         assertThat(allCarts.get(0).getCustomer().getId(), is(testCustomer2.getId()));
+    }
+
+    @Test
+    public void testRemoveAllItemsFromCartByCustomerCartNotFound() throws Exception {
+        ResponseEntity<?> response = shoppingCartService.removeAllItemsFromCartByCustomer(testCustomer1);
+
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+        mockMvc.perform(delete("/cart/deleteAll/" + testCustomer1.getEmail())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", is("No carts matching your criteria were found")));
     }
 }
