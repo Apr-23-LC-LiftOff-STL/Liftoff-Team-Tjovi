@@ -106,9 +106,9 @@ public class ShoppingCartControllerIntegrationTest {
         ResponseEntity<?> response = shoppingCartService.returnAllCarts();
         List<ShoppingCart> allShoppingCarts = (List<ShoppingCart>) response.getBody();
 
-            assertThat(response.getStatusCode(), is(HttpStatus.OK));
-            assertThat(allShoppingCarts, hasSize(3));
-            mockMvc.perform(get("/cart/returnAllCarts"))
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(allShoppingCarts, hasSize(3));
+        mockMvc.perform(get("/cart/returnAllCarts"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)));

@@ -11,9 +11,30 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Authority.class.uniqueId8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CompletedOrder.class.uniqueId14" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CompletedOrderItem.class.uniqueId11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CompletedOrderRepository.class.uniqueId16" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Customer.class.uniqueId17" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CustomerRepository.class.uniqueId7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CustomerService.class.uniqueId6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/EcommerceUsernamePwdAuthenticationProvider.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/LoginController.class.uniqueId12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/OrderController.class.uniqueId13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/OrderService.class.uniqueId5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ProfileController.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ShoppingCart.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ShoppingCartController.class.uniqueId10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ShoppingCartRepository.class.uniqueId15" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ShoppingCartService.class.uniqueId9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Controllers/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/ShoppingCartControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/ShoppingCartControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/ShoppingCartServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Services/ShoppingCartServiceIntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,8 +116,8 @@
     &quot;last_opened_file_path&quot;: &quot;/Users/joshjennemann/Desktop/launchcode/Unit-3/Liftoff-Team-Tjovi&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.ShoppingCartControllerIntegrationTest.testReturnAllCartsByCustomerNotFound">
-    <configuration name="ShoppingCartControllerIntegrationTest.returnAllCartsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.OrderControllerIntegrationTest.testCreateNewOrderMovieNotFound">
+    <configuration name="OrderControllerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
@@ -105,14 +126,29 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="returnAllCartsTest" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderControllerIntegrationTest.testCreateNewOrderCartNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ecommerce.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="testCreateNewOrderCartNotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest.testReturnAllCartsByCustomerNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderControllerIntegrationTest.testCreateNewOrderMovieNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
@@ -121,14 +157,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="testReturnAllCartsByCustomerNotFound" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="testCreateNewOrderMovieNotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest.testReturnAllCartsNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderControllerIntegrationTest.testCreateNewOrderSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
@@ -137,14 +173,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="testReturnAllCartsNotFound" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="testCreateNewOrderSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest.testReturnAllCartsSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderControllerIntegrationTest.testReturnAllCompletedOrdersSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ecommerce.test" />
       <extension name="coverage">
         <pattern>
@@ -153,43 +189,27 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="testReturnAllCartsSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShoppingCartControllerIntegrationTest.testReturnCartsByCustomerSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ecommerce.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liftoff.ecommerce.Controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.liftoff.ecommerce.Controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.ShoppingCartControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="testReturnCartsByCustomerSuccess" />
+      <option name="MAIN_CLASS_NAME" value="com.liftoff.ecommerce.Controllers.OrderControllerIntegrationTest" />
+      <option name="METHOD_NAME" value="testReturnAllCompletedOrdersSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.returnAllCartsTest" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnAllCartsByCustomerNotFound" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnAllCartsNotFound" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnAllCartsSuccess" />
-      <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnCartsByCustomerSuccess" />
+      <item itemvalue="JUnit.OrderControllerIntegrationTest" />
+      <item itemvalue="JUnit.OrderControllerIntegrationTest.testCreateNewOrderCartNotFound" />
+      <item itemvalue="JUnit.OrderControllerIntegrationTest.testCreateNewOrderMovieNotFound" />
+      <item itemvalue="JUnit.OrderControllerIntegrationTest.testCreateNewOrderSuccess" />
+      <item itemvalue="JUnit.OrderControllerIntegrationTest.testReturnAllCompletedOrdersSuccess" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnAllCartsByCustomerNotFound" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnCartsByCustomerSuccess" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnAllCartsNotFound" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.testReturnAllCartsSuccess" />
-        <item itemvalue="JUnit.ShoppingCartControllerIntegrationTest.returnAllCartsTest" />
+        <item itemvalue="JUnit.OrderControllerIntegrationTest.testCreateNewOrderMovieNotFound" />
+        <item itemvalue="JUnit.OrderControllerIntegrationTest.testCreateNewOrderCartNotFound" />
+        <item itemvalue="JUnit.OrderControllerIntegrationTest" />
+        <item itemvalue="JUnit.OrderControllerIntegrationTest.testReturnAllCompletedOrdersSuccess" />
+        <item itemvalue="JUnit.OrderControllerIntegrationTest.testCreateNewOrderSuccess" />
       </list>
     </recent_temporary>
   </component>
@@ -203,6 +223,112 @@
       <updated>1686689625072</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerIntegrationTest.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerIntegrationTest.java</url>
+          <line>152</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerIntegrationTest.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerIntegrationTest.java</url>
+          <line>162</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerIntegrationTest.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/liftoff/ecommerce/Controllers/OrderControllerIntegrationTest.java</url>
+          <line>164</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/liftoff/ecommerce/Service/OrderService.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ecommerce$OrderServiceIntegrationTest_createNewOrderTest.ic" NAME="OrderServiceIntegrationTest.createNewOrderTest Coverage Results" MODIFIED="1686514723589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -43,9 +43,6 @@ class ShoppingCartServiceIntegrationTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
     private CustomerService customerService;
 
     @Autowired
