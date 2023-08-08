@@ -13,16 +13,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -35,12 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class OrderServiceIntegrationTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
@@ -68,22 +67,16 @@ class OrderServiceIntegrationTest {
 
     CompletedOrder testOrder1;
     CompletedOrder testOrder2;
-
+    CompletedOrder testOrder3;
     Customer testCustomer1;
     Customer testCustomer2;
-    Customer testCustomer3;
-
     Movie testMovie1;
     Movie testMovie2;
-    Movie testMovie3;
-
-    CompletedOrderItem testOrderItem1;
-    CompletedOrderItem testOrderItem2;
-    CompletedOrderItem testOrderItem3;
-
     ShoppingCart testCart1;
     ShoppingCart testCart2;
     ShoppingCart testCart3;
+    CompletedOrderItem orderItem1;
+    CompletedOrderItem orderItem2;
 
     @BeforeEach
     void setUp() {
@@ -93,137 +86,180 @@ class OrderServiceIntegrationTest {
         testCustomer2 = new Customer("Jane", "Doe", "jane@example.com", "123-456-7890",
                 "123 Main St.", "1", "St. Louis", "MO", 12345L);
         customerRepository.save(testCustomer2);
-        testCustomer3 = new Customer("Dianne", "Doe", "dianne@example.com", "123-456-7890",
-                "123 Main St.", "1", "St. Louis", "MO", 12345L);
-        customerRepository.save(testCustomer3);
+
+        testOrder1 = new CompletedOrder(testCustomer1, testCustomer1.getEmail());
+        testOrder2 = new CompletedOrder(testCustomer1, testCustomer1.getEmail());
+        testOrder3 = new CompletedOrder(testCustomer2, testCustomer2.getEmail());
 
         testMovie1 = new Movie("Test Movie 1", "Test Movie 1", "2021-06-05", "120", 9.99);
         movieRepository.save(testMovie1);
         testMovie2 = new Movie("Test Movie 2", "Test Movie 2: Return of the Test", "2022-06-05", "140", 8.99);
         movieRepository.save(testMovie2);
-        testMovie3 = new Movie("Test Movie 3", "Test Movie 3: Back Again", "2023-06-05", "160", 7.99);
-        movieRepository.save(testMovie3);
 
-        // Create Order and Save
-        testOrder1 = new CompletedOrder(testCustomer1, testCustomer1.getEmail());
-        completedOrderRepository.save(testOrder1);
-        //Create Cart 1 and Save
-        testCart1 = new ShoppingCart(testMovie1.getId(), 1L);
-        testCart1.setCustomer(testCustomer1);
+        testCart1 = new ShoppingCart(testMovie1.getId(), 5L);
+        testCart1.setCustomer(testCustomer2);
         testCart1.setTotalPrice(testMovie1.getPrice() * testCart1.getQuantity());
         shoppingCartRepository.save(testCart1);
-        //Create Order Item 1 and save
-        testOrderItem1 = new CompletedOrderItem(testOrder1, testCart1.getMovieId(), testMovie1.getTitle(),
-                testCart1.getQuantity(), testCart1.getTotalPrice());
-        completedOrderedItemRepository.save(testOrderItem1);
-        //Create Cart 2 and Save
+
         testCart2 = new ShoppingCart(testMovie2.getId(), 2L);
-        testCart2.setCustomer(testCustomer1);
+        testCart2.setCustomer(testCustomer2);
         testCart2.setTotalPrice(testMovie2.getPrice() * testCart2.getQuantity());
         shoppingCartRepository.save(testCart2);
-        //Create Order Item 2 and save
-        testOrderItem2 = new CompletedOrderItem(testOrder1, testCart2.getMovieId(), testMovie2.getTitle(),
-                testCart2.getQuantity(), testCart2.getTotalPrice());
-        completedOrderedItemRepository.save(testOrderItem2);
-        //Set Order Quantity and Total Price
-        testOrder1.setTotalOrderQuantity(testOrderItem1.getQuantity() + testOrderItem2.getQuantity());
-        testOrder1.setTotalOrderPrice((testOrderItem1.getTotalPrice() * testOrderItem1.getQuantity())
-                +(testOrderItem2.getTotalPrice() * testOrderItem2.getQuantity()));
-        completedOrderRepository.save(testOrder1);
-
-        testOrder2 = new CompletedOrder(testCustomer2, testCustomer2.getEmail());
-        completedOrderRepository.save(testOrder2);
-        testCart3 = new ShoppingCart(testMovie3.getId(), 3L);
-        testCart3.setCustomer(testCustomer2);
-        testCart3.setTotalPrice(testMovie3.getPrice() * testCart3.getQuantity());
-        shoppingCartRepository.save(testCart3);
-        testOrderItem3 = new CompletedOrderItem(testOrder2, testCart3.getMovieId(), testMovie3.getTitle(),
-                testCart3.getQuantity(), testCart3.getTotalPrice());
-        completedOrderedItemRepository.save(testOrderItem3);
-        testOrder2.setTotalOrderQuantity(testOrderItem3.getQuantity());
-        testOrder2.setTotalOrderPrice(testOrderItem3.getTotalPrice());
-        completedOrderRepository.save(testOrder2);
-
     }
 
     @Test
-    public void TestReturnAllCompletedOrders() throws Exception{
-    List<CompletedOrder> allCompletedOrders = (List<CompletedOrder>) orderService.returnAllCompletedOrders().getBody();
+    public void testSetTotalOrderPriceSuccess() throws Exception {
+        completedOrderRepository.save(testOrder1);
+        completedOrderRepository.save(testOrder2);
+        completedOrderRepository.save(testOrder3);
+        orderItem1 = new CompletedOrderItem(testOrder3, testCart1.getMovieId(), testMovie1.getTitle(),
+                                            testCart1.getQuantity(), testCart1.getTotalPrice());
+        orderItem2 = new CompletedOrderItem(testOrder3, testCart2.getMovieId(), testMovie2.getTitle(),
+                testCart2.getQuantity(), testCart2.getTotalPrice());
+        completedOrderedItemRepository.save(orderItem1);
+        completedOrderedItemRepository.save(orderItem2);
 
-    assertNotNull(allCompletedOrders);
-    mockMvc.perform(get("/order/allOrdersHistory"))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$", hasSize(2)));
+        orderService.setTotalOrderPrice(testOrder3);
 
+        assertThat(testOrder3.getTotalOrderPrice(), is(testCart1.getTotalPrice() + testCart2.getTotalPrice()));
+    }
 
-    for (int i=0; i<allCompletedOrders.size(); i++){
-        mockMvc.perform(get("/order/allOrdersHistory"))
-            .andExpect(jsonPath("$[" + i + "].id", is((int)((long)allCompletedOrders.get(i).getId()))))
-            .andExpect(jsonPath("$[" + i + "].email", is(allCompletedOrders.get(i).getCustomer().getEmail())))
-            .andExpect(jsonPath("$[" + i + "].totalOrderQuantity", is((int)((long)allCompletedOrders.get(i).getTotalOrderQuantity()))))
-            .andExpect(jsonPath("$[" + i + "].totalOrderPrice", is(allCompletedOrders.get(i).getTotalOrderPrice())))
-            .andExpect(jsonPath("$[" + i + "].email", is(allCompletedOrders.get(i).getEmail())));
+    @Test
+    public void testSetTotalOrderPriceMovieNotFoundRuntimeException() throws Exception {
+        completedOrderRepository.save(testOrder1);
+
+        assertThrows(RuntimeException.class, () -> orderService.setTotalOrderPrice(testOrder1), "Order items not found");
+    }
+
+    @Test
+    public void testCreateNewOrderSuccess() throws Exception {
+        ResponseEntity<?> response = orderService.createNewOrder(testCustomer2);
+        assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+
+        List<CompletedOrder> allCompletedOrders = (List<CompletedOrder>) completedOrderRepository.findAll();
+        CompletedOrder newCompletedOrder = allCompletedOrders.get(0);
+
+        assertThat(allCompletedOrders, hasSize(1));
+        assertThat(newCompletedOrder.getId(), is(1L));
+        assertThat(newCompletedOrder.getCustomer().getId(), is(testCustomer2.getId()));
+        assertThat(newCompletedOrder.getEmail(), is(testCustomer2.getEmail()));
+        assertThat(newCompletedOrder.getTotalOrderQuantity(), is(testCart1.getQuantity() + testCart2.getQuantity()));
+        assertThat(newCompletedOrder.getTotalOrderPrice(), is(testCart1.getTotalPrice() + testCart2.getTotalPrice()));
+    }
+
+    @Test
+    public void testCreateNewOrderCartNotFound() throws Exception{
+        ResponseEntity<?> response = orderService.createNewOrder(testCustomer1);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No carts matching your criteria were found"));
+
+        List<CompletedOrder> allCustomer1Orders = (List<CompletedOrder>) completedOrderRepository.findByCustomerId(testCustomer1.getId());
+        assertThat(allCustomer1Orders, is(empty()));
+    }
+
+    @Test
+    public void testCreateNewOrderMovieNotFoundRuntimeException() throws Exception {
+        testCart3 = new ShoppingCart(3L, 1L);
+        testCart3.setCustomer(testCustomer1);
+        shoppingCartRepository.save(testCart3);
+
+        assertThrows(RuntimeException.class, () -> orderService.createNewOrder(testCustomer1), "No movies matching your criteria were found");
+    }
+
+    @Test
+    public void testReturnAllCompletedOrdersSuccess() throws Exception{
+        completedOrderRepository.save(testOrder1);
+        completedOrderRepository.save(testOrder2);
+        completedOrderRepository.save(testOrder3);
+
+        ResponseEntity<?> response = orderService.returnAllCompletedOrders();
+        List<CompletedOrder> responseBody = (List<CompletedOrder>) response.getBody();
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(responseBody, hasSize(3));
+
+        List<CompletedOrder> allCompletedOrders = (List<CompletedOrder>) completedOrderRepository.findAll();
+        assertThat(allCompletedOrders, hasSize(3));
+
+        for(int i=0; i<allCompletedOrders.size(); i++){
+            assertThat(allCompletedOrders.get(i).getId(), is(responseBody.get(i).getId()));
+            assertThat(allCompletedOrders.get(i).getCustomer().getId(), is(responseBody.get(i).getCustomer().getId()));
+            assertThat(allCompletedOrders.get(i).getEmail(), is(responseBody.get(i).getEmail()));
+            assertThat(allCompletedOrders.get(i).getTotalOrderQuantity(), is(responseBody.get(i).getTotalOrderQuantity()));
+            assertThat(allCompletedOrders.get(i).getTotalOrderPrice(), is(responseBody.get(i).getTotalOrderPrice()));
         }
     }
 
     @Test
-    public void TestReturnAllCompletedOrdersByCustomerId() throws Exception{
-        List<CompletedOrder> allCompletedOrdersByCustomerId = (List<CompletedOrder>) orderService.returnAllCompletedOrdersByCustomerId(testCustomer1.getId()).getBody();
+    public void TestReturnAllCompletedOrdersNotFound() throws Exception{
+        ResponseEntity<?> response = orderService.returnAllCompletedOrders();
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No orders matching your criteria were found"));
 
-        assertNotNull(allCompletedOrdersByCustomerId);
-        mockMvc.perform(get("/order/history/{email}", testCustomer1.getEmail()))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id", is((int)(long)testOrder1.getId())))
-                .andExpect(jsonPath("$[0].email", is(testCustomer1.getEmail())))
-                .andExpect(jsonPath("$[0].totalOrderQuantity", is((int)(long)testOrder1.getTotalOrderQuantity())))
-                .andExpect(jsonPath("$[0].totalOrderPrice", is(testOrder1.getTotalOrderPrice())));
+        List<CompletedOrder> allCompletedOrders = (List<CompletedOrder>) completedOrderRepository.findAll();
+        assertThat(allCompletedOrders, is(empty()));
     }
 
     @Test
-    public void TestReturnMostRecentCompletedOrder() throws Exception{
-        CompletedOrder mostRecentCompletedOrderByCustomerId = (CompletedOrder) orderService.returnMostRecentCompletedOrder(testCustomer2.getId()).getBody();
+    public void TestReturnAllCompletedOrdersByCustomerIdSuccess() throws Exception{
+        completedOrderRepository.save(testOrder1);
+        completedOrderRepository.save(testOrder2);
+        completedOrderRepository.save(testOrder3);
 
-        assertNotNull(mostRecentCompletedOrderByCustomerId);
-        mockMvc.perform(get("/order/currentPurchase/{email}", testCustomer2.getEmail()))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is((int)(long)testOrder2.getId())))
-                .andExpect(jsonPath("$.email", is(testCustomer2.getEmail())))
-                .andExpect(jsonPath("$.totalOrderQuantity", is((int)(long)testOrder2.getTotalOrderQuantity())))
-                .andExpect(jsonPath("$.totalOrderPrice", is(testOrder2.getTotalOrderPrice())));
+        ResponseEntity<?> response = orderService.returnAllCompletedOrdersByCustomerId(testCustomer1.getId());
+        List<CompletedOrder> responseBody = (List<CompletedOrder>) response.getBody();
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(responseBody, hasSize(2));
+
+        List<CompletedOrder> allCustomer1Orders = (List<CompletedOrder>) completedOrderRepository.findByCustomerId(testCustomer1.getId());
+        assertThat(allCustomer1Orders, hasSize(2));
+
+        for(int i=0; i<allCustomer1Orders.size(); i++){
+            assertThat(allCustomer1Orders.get(i).getId(), is(responseBody.get(i).getId()));
+            assertThat(allCustomer1Orders.get(i).getCustomer().getId(), is(responseBody.get(i).getCustomer().getId()));
+            assertThat(allCustomer1Orders.get(i).getEmail(), is(responseBody.get(i).getEmail()));
+            assertThat(allCustomer1Orders.get(i).getTotalOrderQuantity(), is(responseBody.get(i).getTotalOrderQuantity()));
+            assertThat(allCustomer1Orders.get(i).getTotalOrderPrice(), is(responseBody.get(i).getTotalOrderPrice()));
+        }
     }
 
     @Test
-    public void TestCreateNewOrderWithOneItem() throws Exception{
-        ShoppingCart testCart4 = new ShoppingCart(testMovie3.getId(), 5L);
-        testCart4.setCustomer(testCustomer3);
-        testCart4.setTotalPrice(testMovie3.getPrice() * testCart4.getQuantity());
-        shoppingCartRepository.save(testCart4);
+    public void TestReturnAllCompletedOrdersByCustomerIdOrdersNotFound() throws Exception{
+        ResponseEntity<?> response = orderService.returnAllCompletedOrdersByCustomerId(testOrder1.getId());
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No orders matching your criteria were found"));
 
-        mockMvc.perform(post("/order/newOrder/{email}", testCustomer3.getEmail())
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isCreated());
+        List<CompletedOrder> allCustomer1Orders = (List<CompletedOrder>) completedOrderRepository.findByCustomerId(testCustomer1.getId());
+        assertThat(allCustomer1Orders, is(empty()));
+    }
 
-        List<CompletedOrder> allCompletedCustomer1Orders = completedOrderRepository.findByCustomerId(testCustomer3.getId());
-        CompletedOrder savedOrder = allCompletedCustomer1Orders.get(0);
+    @Test
+    public void TestReturnMostRecentCompletedOrderSuccess() throws Exception{
+        completedOrderRepository.save(testOrder1);
+        completedOrderRepository.save(testOrder2);
+        completedOrderRepository.save(testOrder3);
 
-        //actual, expected
-        assertThat(allCompletedCustomer1Orders, hasSize(1));
-        assertThat(savedOrder.getTotalOrderQuantity(), is(testCart4.getQuantity()));
-        assertThat(savedOrder.getId(), is(testOrder2.getId()+1));
-        assertThat(savedOrder.getTotalOrderPrice(), is(testCart4.getTotalPrice()));
-        assertThat(savedOrder.getEmail(), is(testCustomer3.getEmail()));
-        assertThat(savedOrder.getCustomer().getId(), is(testCustomer3.getId()));
+        ResponseEntity<?> response = orderService.returnMostRecentCompletedOrder(testOrder1.getId());
+        CompletedOrder responseBody = (CompletedOrder) response.getBody();
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+
+        List<CompletedOrder> allCustomer1Orders = completedOrderRepository.findByCustomerId(testCustomer1.getId());
+        CompletedOrder mostRecentCustomer1Order = allCustomer1Orders.get(allCustomer1Orders.size()-1);
+        assertThat(allCustomer1Orders, hasSize(2));
+        assertThat(mostRecentCustomer1Order.getId(), is(responseBody.getId()));
+        assertThat(mostRecentCustomer1Order.getCustomer().getId(), is(responseBody.getCustomer().getId()));
+        assertThat(mostRecentCustomer1Order.getEmail(), is(responseBody.getEmail()));
+        assertThat(mostRecentCustomer1Order.getTotalOrderQuantity(), is(responseBody.getTotalOrderQuantity()));
+        assertThat(mostRecentCustomer1Order.getTotalOrderPrice(), is(responseBody.getTotalOrderPrice()));
 
     }
 
-//    @Test
-//    public void createNewOrderWithMultipleItemsTest() throws Exception {
-//
-//    }
+    @Test
+    public void TestReturnMostRecentCompletedOrderNotFound() throws Exception{
+        ResponseEntity<?> response = orderService.returnMostRecentCompletedOrder(testOrder1.getId());
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+        assertThat(response.getBody(), is("No orders matching your criteria were found"));
+
+        List<CompletedOrder> allCustomer1Orders = (List<CompletedOrder>) completedOrderRepository.findByCustomerId(testCustomer1.getId());
+        assertThat(allCustomer1Orders, is(empty()));
+    }
 }
