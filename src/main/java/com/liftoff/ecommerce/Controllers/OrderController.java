@@ -5,6 +5,7 @@ import com.liftoff.ecommerce.Service.CustomerService;
 import com.liftoff.ecommerce.Service.OrderService;
 import com.liftoff.ecommerce.Service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +42,11 @@ public class OrderController {
         return orderService.returnAllCompletedOrders();
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ex.getMessage());
+    }
 
 
 }
