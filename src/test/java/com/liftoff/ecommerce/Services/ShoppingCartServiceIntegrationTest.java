@@ -40,9 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ShoppingCartServiceIntegrationTest {
 
     @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
     private CustomerService customerService;
 
     @Autowired
@@ -112,12 +109,13 @@ class ShoppingCartServiceIntegrationTest {
         List<ShoppingCart> allTestCarts = (List<ShoppingCart>) shoppingCartRepository.findAll();
         assertThat(allTestCarts, hasSize(3));
 
-        assertThat(allTestCarts.get(0).getCartId(), is(responseBody.get(0).getCartId()));
-        assertThat(allTestCarts.get(1).getCartId(), is(responseBody.get(1).getCartId()));
-        assertThat(allTestCarts.get(2).getCartId(), is(responseBody.get(2).getCartId()));
-        assertThat(allTestCarts.get(0).getCustomer().getId(), is(responseBody.get(0).getCustomer().getId()));
-        assertThat(allTestCarts.get(1).getCustomer().getId(), is(responseBody.get(1).getCustomer().getId()));
-        assertThat(allTestCarts.get(2).getCustomer().getId(), is(responseBody.get(2).getCustomer().getId()));
+        for(int i=0; i<allTestCarts.size(); i++){
+            assertThat(allTestCarts.get(i).getCartId(), is(responseBody.get(i).getCartId()));
+            assertThat(allTestCarts.get(i).getCustomer().getId(), is(responseBody.get(i).getCustomer().getId()));
+            assertThat(allTestCarts.get(i).getMovieId(), is(responseBody.get(i).getMovieId()));
+            assertThat(allTestCarts.get(i).getQuantity(), is(responseBody.get(i).getQuantity()));
+            assertThat(allTestCarts.get(i).getTotalPrice(), is(responseBody.get(i).getTotalPrice()));
+        }
     }
 
     @Test

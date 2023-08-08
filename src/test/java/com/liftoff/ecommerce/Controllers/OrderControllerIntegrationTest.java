@@ -159,11 +159,6 @@ class OrderControllerIntegrationTest {
     }
 
     @Test
-    public void testCreateNewOrderOrderItemNotFound() throws Exception {
-
-    }
-
-    @Test
     public void testReturnAllCompletedOrdersSuccess() throws Exception {
         completedOrderRepository.save(testOrder1);
         completedOrderRepository.save(testOrder2);
